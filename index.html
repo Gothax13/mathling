@@ -734,6 +734,99 @@ table.grid td.na { background: transparent; }
 .vh { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 label.act { cursor: pointer; display: inline-block; }
 
+/* ---------- v4: compact battle window (keeps the whole fight visible) ---------- */
+.panel { height: clamp(150px, 26vh, 214px); padding: 10px 16px; }
+.pmsg { font-size: clamp(22px, 2.8vw, 32px); }
+.t-hero .pmsg { font-size: clamp(28px, 3.4vw, 40px); }
+.pmenu { gap: 6px; }
+.prompt { font-size: clamp(18px, 2.4vw, 24px); }
+.t-hero .prompt { font-size: clamp(10px, 1.3vw, 13px); }
+.atks { grid-auto-columns: minmax(0, 290px); gap: 10px; }
+.atk { grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto auto; justify-items: start; align-content: center; text-align: left; column-gap: 12px; row-gap: 2px; padding: 8px 14px; }
+.atk-em { grid-row: 1 / span 3; align-self: center; font-size: clamp(36px, 6vmin, 58px); }
+.atk-move { font-size: clamp(18px, 2.2vw, 24px); }
+.t-hero .atk-move { font-size: clamp(9px, 1.1vw, 11px); }
+.atk:disabled { opacity: .4; }
+.atk.potion { border-color: #3ddc84; }
+.atk.potion .etag { background: rgba(61, 220, 132, .22); }
+.atk.pick { grid-template-rows: auto auto; }
+.atk.pick .atk-em { grid-row: 1 / span 2; font-size: clamp(32px, 5vmin, 48px); }
+.atk.pick .hpline { width: 100%; }
+.atk.back { grid-template-columns: 1fr; justify-items: center; }
+.pprob { gap: 14px; align-items: center; }
+.pleft { gap: 4px; }
+.pnote { font-size: 17px; }
+.t-hero .pnote { font-size: 22px; }
+.pnote.alert { font-size: 20px; }
+.t-hero .pnote.alert { font-size: 24px; }
+.panel .expr { font-size: clamp(40px, 7.4vmin, 76px); }
+.t-hero .panel .expr { font-size: clamp(52px, 9.6vmin, 98px); }
+.panel .expr.long { font-size: clamp(36px, 6.4vmin, 66px); }
+.t-hero .panel .expr.long { font-size: clamp(46px, 8.4vmin, 86px); }
+.panel .opword { font-size: 15px; }
+.ptools .tool { font-size: 16px; padding: 4px 14px; }
+.t-hero .ptools .tool { font-size: 10px; padding: 6px 10px; }
+.pad.wide { --k: clamp(46px, 7.2vmin, 66px); grid-template-columns: repeat(6, var(--k)); grid-template-rows: repeat(2, var(--k)); grid-auto-rows: var(--k); height: auto; gap: 6px; align-self: center; }
+.pad.wide .key { font-size: calc(var(--k) * .55); border-radius: 14px; }
+.t-hero .pad.wide .key { font-size: calc(var(--k) * .72); border-radius: 4px; }
+.foe-spr { font-size: clamp(90px, 23vmin, 210px); }
+.foe-spr.boss { font-size: clamp(110px, 29vmin, 260px); }
+.mem-spr { font-size: clamp(46px, 10vmin, 92px); }
+.healed .em { animation: healglow .7s ease-out; }
+@keyframes healglow { 40% { filter: brightness(1.8) drop-shadow(0 0 14px #6cff9f); } }
+.pop.heal { color: #6cff9f; }
+.foe-card { position: relative; z-index: 2; }
+@media (orientation: portrait) {
+  .panel { height: clamp(290px, 30vh, 340px); }
+  .pprob { grid-template-columns: 1fr; gap: 10px; }
+  .pad.wide { justify-self: center; }
+}
+@media (max-width: 640px) {
+  .panel { height: auto; min-height: 0; }
+  .pprob { grid-template-columns: 1fr; }
+  .pad.wide { --k: min(13vw, 56px); justify-self: center; }
+  .atks { grid-auto-flow: row; grid-auto-columns: auto; }
+}
+
+/* ---------- v4: names, bag, HP, rewards ---------- */
+input, textarea { -webkit-user-select: text; user-select: text; }
+.name-card { gap: 12px; }
+.name-in { font-family: var(--font-d); font-size: 22px; width: min(320px, 100%); padding: 12px 14px; border-radius: 10px; border: 3px solid var(--line); background: var(--panel2); color: var(--ink); text-align: center; }
+.t-hero .name-in { font-size: 16px; background: #050a3a; color: var(--accent); border-radius: 4px; }
+.name-btns { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.ccard-class { font-size: 18px; color: var(--muted); margin-top: -4px; }
+.hpline { width: 100%; }
+.ccard .hpline { width: 80%; }
+.bag-head { display: flex; gap: 14px; align-items: center; padding: 12px 16px; margin-bottom: 12px; }
+.bag-big { font-size: 48px; }
+.bag-sub { color: var(--muted); font-size: 20px; }
+.bag-list { display: grid; gap: 10px; margin-bottom: 8px; }
+.bag-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 10px 14px; }
+.bag-spr { font-size: 48px; }
+.bag-info { display: grid; gap: 4px; min-width: 0; }
+.bag-gear { display: grid; gap: 8px; }
+.minihp { width: 44px; height: 6px; border-radius: 3px; background: rgba(0, 0, 0, .35); overflow: hidden; margin-top: 2px; }
+.minihp i { display: block; height: 100%; background: var(--good); }
+.minihp.low i { background: var(--bad); }
+.pmini.out .spr { filter: grayscale(1); opacity: .5; }
+.t-hero .pmini-lv { font-size: 8px; max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ibadge.pot { background: #1f7a43; }
+.wpop.reward { z-index: 7; font-size: calc(var(--t) * .5); padding: .15em .5em; border-radius: 999px; background: rgba(255, 255, 255, .95); color: var(--accent); -webkit-text-stroke: 0; box-shadow: 0 3px 0 rgba(0, 0, 0, .2); animation: rewardup 2.6s ease-out forwards; }
+.t-hero .wpop.reward { background: #0b1462; color: var(--accent); border: 2px solid #fff; border-radius: 6px; font-size: calc(var(--t) * .6); }
+@keyframes rewardup { 0% { opacity: 0; transform: translate(-50%, 20%) scale(.6); } 12% { opacity: 1; transform: translate(-50%, -60%) scale(1.15); } 25% { transform: translate(-50%, -70%) scale(1); } 80% { opacity: 1; transform: translate(-50%, -90%); } 100% { opacity: 0; transform: translate(-50%, -125%); } }
+.nm-list { display: grid; gap: 8px; }
+.nm-row { display: grid; grid-template-columns: 28px minmax(0, 1fr) minmax(120px, 200px) auto; gap: 10px; align-items: center; }
+.nm-em { font-size: 22px; }
+.nm-sp { font-size: 13px; color: var(--p-muted); }
+.set-in { font: inherit; padding: 8px; border-radius: 10px; border: 1px solid var(--p-line); background: var(--p-card); color: var(--p-ink); min-width: 0; }
+@media (max-width: 640px) {
+  .bag-row { grid-template-columns: auto minmax(0, 1fr); }
+  .bag-row .buy { grid-column: 1 / -1; }
+  .nm-row { grid-template-columns: 28px minmax(0, 1fr) auto; }
+  .nm-row .nm-sp { grid-column: 2 / -1; }
+  .nm-row .set-in { grid-column: 1 / 3; }
+}
+
 </style>
 </head>
 <body>
@@ -1284,12 +1377,12 @@ const TXT = {
     used: (a, m) => `${a} uses ${m}!`, super: 'Weakness hit!', meh: 'Resisted...',
     happy: 'Victory!', joined: n => `${n} joined your party!`,
     catchIt: 'Recruit!', tryAgain: 'Not quite. Check it again.', yes: 'Correct!',
-    nap: n => `${n} is knocked out!`, allNap: 'The party retreats to camp. Try again!',
+    nap: n => `${n} is knocked out!`, allNap: 'The party retreats to camp and patches up. Try again!',
     help: 'Let’s break it down', nowYou: 'Now you try it.', next: 'Next', ok: 'OK',
     team: 'Party', map: 'Map', sleepy: 'Party is tired', night: 'Rest at camp',
     restMsg: 'Your party is resting at camp. They will be ready to fight again soon.',
     newArea: 'New region', bring: 'Tip', boss: 'Boss battle!', changed: 'The boss changed form!',
-    levelUp: n => `${n} leveled up!`, evolve: (a, b) => `${a} became ${b}!`,
+    levelUp: n => `${n} leveled up!`, evolve: (a, b) => `${a} became ${/^[AEIOU]/.test(b) ? 'an' : 'a'} ${b}!`,
     mastered: s => `Skill mastered: ${s}`, started: s => `New skill unlocked: ${s}`, placed: s => `You already know ${s}. Skill mastered!`,
     phaseHint: 'Its weakness has changed. Find it!', answerIs: n => `The answer is ${n}. Type ${n} to continue.`,
   },
@@ -1387,15 +1480,15 @@ const STORY_ITEMS = {
 // gear: p = attack power bonus, g = guard (less damage taken)
 const GEAR = {
   cute: [
-    { id: 'bow', em: '🎀', name: 'Pink Bow', act: 1, p: 0.2, g: 0, cost: 20 },
-    { id: 'cap', em: '🧢', name: 'Comfy Cap', act: 1, p: 0, g: 0.25, cost: 20 },
-    { id: 'flower', em: '🌸', name: 'Flower Crown', act: 1, p: 0.1, g: 0.15, cost: 35 },
-    { id: 'wand', em: '🪄', name: 'Magic Wand', act: 2, p: 0.45, g: 0, cost: 50 },
-    { id: 'sunhat', em: '👒', name: 'Sun Hat', act: 2, p: 0, g: 0.45, cost: 50 },
-    { id: 'scarf', em: '🧣', name: 'Cozy Scarf', act: 2, p: 0.3, g: 0.25, cost: 80 },
-    { id: 'ring', em: '💍', name: 'Star Ring', act: 3, p: 0.8, g: 0, cost: 100 },
-    { id: 'wings', em: '🦋', name: 'Fairy Wings', act: 3, p: 0.5, g: 0.4, cost: 120 },
-    { id: 'tiara', em: '👑', name: 'Rainbow Tiara', act: 3, p: 0.6, g: 0.6, cost: 160 },
+    { id: 'bow', em: '🎀', name: 'Bow', act: 1, p: 0.2, g: 0, cost: 20 },
+    { id: 'cap', em: '🧢', name: 'Cap', act: 1, p: 0, g: 0.25, cost: 20 },
+    { id: 'flower', em: '🧦', name: 'Sock', act: 1, p: 0.1, g: 0.15, cost: 35 },
+    { id: 'wand', em: '🪄', name: 'Wand', act: 2, p: 0.45, g: 0, cost: 50 },
+    { id: 'sunhat', em: '👒', name: 'Hat', act: 2, p: 0, g: 0.45, cost: 50 },
+    { id: 'scarf', em: '🧤', name: 'Mitt', act: 2, p: 0.3, g: 0.25, cost: 80 },
+    { id: 'ring', em: '💍', name: 'Ring', act: 3, p: 0.8, g: 0, cost: 100 },
+    { id: 'wings', em: '🔔', name: 'Bell', act: 3, p: 0.5, g: 0.4, cost: 120 },
+    { id: 'tiara', em: '👑', name: 'Crown', act: 3, p: 0.6, g: 0.6, cost: 160 },
   ],
   hero: [
     { id: 'bsword', em: '🗡️', name: 'Bronze Sword', act: 1, p: 0.2, g: 0, cost: 40 },
@@ -1410,6 +1503,7 @@ const GEAR = {
   ],
 };
 const ACT_NAMES = ['', 'Act I', 'Act II', 'Act III', 'World 2'];
+const HERO_NAMES = ['Rex', 'Kai', 'Zara', 'Blaze', 'Nova', 'Ash', 'Luna', 'Thor', 'Ivy', 'Max', 'Sage', 'Jet', 'Rook', 'Vex', 'Echo', 'Orion', 'Pike', 'Rune', 'Bolt', 'Fang'];
 
 /* ---------- tiny helpers ---------- */
 const $ = (s, el = document) => el.querySelector(s);
@@ -1485,7 +1579,7 @@ const Store = {
 function newer(a, b) { if (!a) return b || null; if (!b) return a; return (b.updated || 0) > (a.updated || 0) ? b : a; }
 function freshProfile(id) {
   const P = E.newProfile(id);
-  P.g = { v: 2, started: false, roster: [], party: [], caught: {}, book: {}, uid: 0, wins: 0, world: 1, area: 0, pos: null, gems: 0, bag: [], beaten: {}, gates: {}, q: {}, maps: {}, seen: {} };
+  P.g = { v: 2, started: false, roster: [], party: [], caught: {}, book: {}, uid: 0, wins: 0, world: 1, area: 0, pos: null, gems: 0, bag: [], items: { potion: id === 'gothax' ? 2 : 0 }, beaten: {}, gates: {}, q: {}, maps: {}, seen: {} };
   P.play = { day: E.dayKey(), ms: 0, sleepUntil: 0 };
   return P;
 }
@@ -1497,6 +1591,7 @@ function repairP(P) {
     P.g = Object.assign(f.g, { started: !!old.started, roster: old.roster || [], party: old.party || [], caught: old.caught || {}, book: old.book || {}, uid: old.uid || 0, wins: old.wins || 0 });
     P.act = 1;
   } else P.g = Object.assign(f.g, old);
+  if (!P.g.items) P.g.items = { potion: P.id === 'gothax' ? 2 : 0 };
   P.play = Object.assign(f.play, P.play || {});
   return P;
 }
@@ -1521,7 +1616,12 @@ const Voice = {
     choose();
     try { speechSynthesis.addEventListener('voiceschanged', choose); } catch (e) { /* old Safari */ }
   },
-  unlock() { if (!this.ok || this.unlocked) return; try { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); this.unlocked = true; } catch (e) { /* ignore */ } },
+  unlock() {
+    if (!this.ok) return;
+    try { if (speechSynthesis.paused) speechSynthesis.resume(); } catch (e) { /* ignore */ }
+    if (this.unlocked) return;
+    try { const u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); this.unlocked = true; } catch (e) { /* ignore */ }
+  },
   stop() { if (this.ok) try { speechSynthesis.cancel(); } catch (e) { /* ignore */ } },
   say(text, opts = {}) {
     return new Promise(resolve => {
@@ -1572,12 +1672,30 @@ function readLine(el, text, auto = true) {
 }
 
 /* ---------- chiptune sound ---------- */
+// iPads mute web pages when the silent switch / bell is on. Asking for the "playback" audio session
+// (Safari 16.4+) and keeping a silent media clip playing makes the game sound like a music app instead.
+const SILENT_CLIP = 'data:audio/wav;base64,UklGRvQHAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YdAHAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==';
+const AudioWake = {
+  el: null,
+  wake() {
+    try { if (navigator.audioSession && navigator.audioSession.type !== 'playback') navigator.audioSession.type = 'playback'; } catch (e) { /* not supported */ }
+    Sfx.init();
+    try {
+      if (!this.el) { this.el = new Audio(SILENT_CLIP); this.el.loop = true; this.el.setAttribute('playsinline', ''); this.el.preload = 'auto'; }
+      if (this.el.paused) { const p = this.el.play(); if (p && p.catch) p.catch(() => {}); }
+    } catch (e) { /* ignore */ }
+    Voice.unlock();
+  },
+  sleep() { try { if (this.el && !this.el.paused) this.el.pause(); } catch (e) { /* ignore */ } },
+};
+['pointerdown', 'touchend', 'click', 'keydown'].forEach(ev => document.addEventListener(ev, () => AudioWake.wake(), { capture: true, passive: true }));
+document.addEventListener('visibilitychange', () => { if (document.hidden) AudioWake.sleep(); });
 const Sfx = {
   ctx: null,
   init() {
     try {
       if (!this.ctx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) this.ctx = new AC(); }
-      if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+      if (this.ctx && this.ctx.state !== 'running' && this.ctx.state !== 'closed') this.ctx.resume();
     } catch (e) { this.ctx = null; }
   },
   tone(f, d, type, vol = 0.07, at = 0, f2) {
@@ -1596,6 +1714,7 @@ const Sfx = {
   },
   play(name, n = 0) {
     if (!this.ctx || !G.P || !G.P.settings.sound) return;
+    if (this.ctx.state !== 'running') { try { this.ctx.resume(); } catch (e) { /* ignore */ } }
     const tn = (f, d, at, v) => this.tone(f, d, null, v, at);
     switch (name) {
       case 'tap': tn(880, 0.04, 0, 0.03); break;
@@ -1613,6 +1732,7 @@ const Sfx = {
       case 'catch': tn(784, 0.1, 0); tn(988, 0.1, 0.1); tn(1318, 0.28, 0.2); break;
       case 'phase': this.tone(110, 0.5, 'sawtooth', 0.06, 0, 220); break;
       case 'star': [784, 988, 1175, 1568].forEach((f, i) => tn(f, 0.16, i * 0.09)); break;
+      case 'heal': [523, 659, 784, 1046, 1318].forEach((f, i) => this.tone(f, 0.18, 'sine', 0.06, i * 0.06)); break;
     }
   },
 };
@@ -1620,8 +1740,17 @@ const Sfx = {
 /* ---------- shared bits ---------- */
 const spById = id => SPECIES.cute.concat(SPECIES.hero).find(s => s.id === id);
 const stageOf = lv => (lv >= 12 ? 2 : lv >= 5 ? 1 : 0);
-const cName = c => spById(c.sp).names[stageOf(c.lv)];
+const cClass = c => spById(c.sp).names[stageOf(c.lv)];
+const cName = c => c.nm || cClass(c);
 const maxHp = c => 18 + 4 * c.lv;
+const keepsHp = () => G.theme === 'hero'; // Gothax's party keeps its HP between battles
+function hpOf(c) { if (c.hp == null || c.hp > maxHp(c)) c.hp = maxHp(c); return c.hp; }
+function healAll() { G.P.g.roster.forEach(c => { c.hp = maxHp(c); }); }
+const potions = () => (G.P.g.items && G.P.g.items.potion) || 0;
+function addPotions(n) { G.P.g.items = G.P.g.items || {}; G.P.g.items.potion = potions() + n; }
+const potionHeal = c => Math.max(30, Math.ceil(maxHp(c) * 0.5));
+const CUR = () => (cute() ? { em: '💎', many: 'gems', title: 'Gems' } : { em: '🪙', many: 'gold', title: 'Gold' });
+function hpLine(hp, mx) { return h('div', { class: 'hp hpline' + (hp / mx < 0.3 ? ' low' : '') }, h('i', { style: { width: Math.max(0, hp / mx * 100) + '%' } }), h('b', null, `${hp}/${mx}`)); }
 const xpNeed = lv => 30 + 10 * lv;
 const byU = u => G.P.g.roster.find(c => c.u === u);
 const party = () => G.P.g.party.map(byU).filter(Boolean);
@@ -1631,10 +1760,13 @@ function addCreature(spId) {
   g.roster.push(c); g.caught[spId] = true; if (g.party.length < 3) g.party.push(c.u); return c;
 }
 function giveXp(c, xp, out) {
-  const before = stageOf(c.lv); c.xp += xp;
-  while (c.xp >= xpNeed(c.lv) && c.lv < 30) { c.xp -= xpNeed(c.lv); c.lv++; out.push({ type: 'level', c }); }
+  const before = stageOf(c.lv); const fromName = cName(c); c.xp += xp;
+  while (c.xp >= xpNeed(c.lv) && c.lv < 30) {
+    c.xp -= xpNeed(c.lv); c.lv++; out.push({ type: 'level', c });
+    if (keepsHp()) { if (G.B && G.B.hp && G.B.hp[c.u] > 0) G.B.hp[c.u] += 4; else if (c.hp > 0) c.hp += 4; }
+  }
   const after = stageOf(c.lv);
-  if (after > before) out.push({ type: 'evolve', c, from: spById(c.sp).names[before], to: spById(c.sp).names[after] });
+  if (after > before) out.push({ type: 'evolve', c, from: fromName, to: spById(c.sp).names[after] });
 }
 function sprite(em, { stage = 0, elem = null, cls = '' } = {}) {
   const el = h('div', { class: `spr st${stage} ${cls}`, style: elem ? { '--glow': ELEM[elem].color } : null }, h('span', { class: 'em' }, em));
@@ -1708,7 +1840,7 @@ async function selectProfile(id) {
 }
 
 /* ---------- play time + sleepy creatures ---------- */
-function rollDay() { const d = E.dayKey(); if (G.P.play.day !== d) { G.P.play.day = d; G.P.play.ms = 0; } }
+function rollDay() { const d = E.dayKey(); if (G.P.play.day !== d) { G.P.play.day = d; G.P.play.ms = 0; if (keepsHp()) healAll(); } }
 const limitMs = () => (G.P.settings.sessionMin > 0 ? G.P.settings.sessionMin * 60000 : Infinity);
 const isAsleep = () => G.P.play.sleepUntil && Date.now() < G.P.play.sleepUntil;
 function goToSleep() {
@@ -1763,9 +1895,28 @@ function screenIntro() {
 }
 async function chooseStarter(sp) {
   Sfx.play('catch');
-  addCreature(sp.id); G.P.g.started = true; Store.save(G.P, true);
+  const c = addCreature(sp.id); G.P.g.started = true; Store.save(G.P, true);
   await card({ big: sprite(sp.em, { elem: sp.e, cls: 'ov-spr' }), title: T().joined(sp.names[0]), say: T().joined(sp.names[0]) });
+  if (!cute()) await nameHero(c);
   screenWorld();
+}
+// Gothax names each hero once, when it joins. (A grown-up can fix typos in the dashboard.)
+function nameHero(c) {
+  return new Promise(res => {
+    const sp = spById(c.sp); const prev = G.pad; G.pad = null;
+    const inp = h('input', { type: 'text', id: 'hero-name', class: 'name-in', maxlength: '12', autocomplete: 'off', autocapitalize: 'words', spellcheck: 'false', placeholder: sp.names[0], 'aria-label': 'Hero name' });
+    const done = () => {
+      const v = inp.value.replace(/[^A-Za-z0-9 '\-]/g, '').replace(/\s+/g, ' ').trim().slice(0, 12);
+      c.nm = v || sp.names[0]; c.named = true; Store.save(G.P, true); Sfx.play('good'); ov.remove(); G.pad = prev; res();
+    };
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); done(); } });
+    const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win name-card', role: 'dialog', 'aria-modal': 'true' },
+      cSprite(c, 'ov-spr'), h('div', { class: 'ov-title' }, `Name your ${cClass(c)}`),
+      h('div', { class: 'ov-line' }, 'Choose carefully. A hero’s name is forever!'), inp,
+      h('div', { class: 'name-btns' }, h('button', { class: 'tool', onclick: () => { Sfx.play('tap'); inp.value = pick(HERO_NAMES.filter(n => !G.P.g.roster.some(o => o.nm === n))); } }, '🎲 Suggest'),
+        h('button', { class: 'bigbtn', onclick: done }, 'Done'))));
+    ovRoot.append(ov); setTimeout(() => { try { inp.focus(); } catch (e) { /* ignore */ } }, 80);
+  });
 }
 
 /* ---------- team / party ---------- */
@@ -1773,9 +1924,11 @@ function screenTeam() {
   const g = G.P.g; const t = T();
   const tabs = !cute() ? h('div', { class: 'tabs' },
     h('button', { class: 'tab' + (G.teamTab === 'team' ? ' on' : ''), onclick: () => { G.teamTab = 'team'; screenTeam(); } }, 'Party'),
+    h('button', { class: 'tab' + (G.teamTab === 'items' ? ' on' : ''), onclick: () => { G.teamTab = 'items'; screenTeam(); } }, `Bag 🧪${potions()}`),
     h('button', { class: 'tab' + (G.teamTab === 'book' ? ' on' : ''), onclick: () => { G.teamTab = 'book'; screenTeam(); } }, 'Monster Book')) : null;
   let body;
   if (!cute() && G.teamTab === 'book') body = monsterBook();
+  else if (!cute() && G.teamTab === 'items') body = bagView();
   else {
     const inParty = new Set(g.party);
     const cardFor = c => {
@@ -1783,7 +1936,9 @@ function screenTeam() {
       return h('button', { class: `ccard win el-${sp.e}${inParty.has(c.u) ? ' in' : ''}${sel ? ' sel' : ''}`, onclick: () => tapCreature(c) },
         cSprite(c, 'ccard-spr'),
         h('div', { class: 'ccard-name' }, rw(cName(c))),
+        c.nm ? h('div', { class: 'ccard-class' }, cClass(c)) : null,
         h('div', { class: 'ccard-row' }, elemTag(sp.e), h('span', { class: 'ccard-lv' }, 'Lv ' + c.lv)),
+        keepsHp() ? hpLine(hpOf(c), maxHp(c)) : null,
         h('div', { class: 'xpbar', title: 'Experience' }, h('i', { style: { width: Math.round((c.xp / xpNeed(c.lv)) * 100) + '%' } })),
         h('div', { class: 'ccard-move' }, rw(sp.move)),
         h('span', { class: 'ccard-gear', role: 'button', tabindex: '0', onclick: e => { e.stopPropagation(); Sfx.play('tap'); gearMenu(c); } }, gearOf(c) ? `${gearOf(c).em} ${gearOf(c).name}` : (cute() ? '🎒 Gear' : '🎒 Equip')));
@@ -1813,6 +1968,27 @@ function tapCreature(c) {
   else G.swapSel = c.u;
   Store.save(G.P); screenTeam();
   Voice.say(cName(c), { auto: true });
+}
+function bagView() {
+  const g = G.P.g; const n = potions();
+  const order = [...party(), ...g.roster.filter(c => !g.party.includes(c.u))];
+  const rows = order.map(c => {
+    const hp = hpOf(c), mx = maxHp(c);
+    return h('div', { class: 'bag-row win' }, cSprite(c, 'bag-spr'),
+      h('div', { class: 'bag-info' }, h('div', { class: 'ccard-name' }, cName(c)), h('div', { class: 'bag-sub' }, hp <= 0 ? 'Knocked out' : `Lv ${c.lv} ${cClass(c)}`), hpLine(hp, mx)),
+      hp >= mx ? h('span', { class: 'shop-owned' }, 'Full HP') : h('button', { class: 'bigbtn buy', disabled: n <= 0 || null, onclick: () => usePotionOn(c) }, `🧪 +${Math.min(potionHeal(c), mx - hp)}`));
+  });
+  const owned = GEAR.hero.filter(i => g.bag.includes(i.id));
+  return h('div', { class: 'teambody bag' },
+    h('div', { class: 'bag-head win' }, h('span', { class: 'bag-big' }, '🧪'),
+      h('div', null, h('div', { class: 'tlabel' }, `Potions: ${n}`), h('div', { class: 'bag-sub' }, 'A potion heals about half a hero’s HP and wakes up a knocked-out hero. Get more from quests, chests and shops, or rest at an inn 🛖.'))),
+    h('div', { class: 'bag-list' }, rows),
+    owned.length ? h('div', { class: 'tlabel' }, 'Gear') : null,
+    owned.length ? h('div', { class: 'bag-gear' }, owned.map(i => { const who = g.roster.find(o => o.gear === i.id); return h('button', { class: 'gear-row', onclick: () => equipPicker(i).then(screenTeam) }, h('span', { class: 'shop-em' }, i.em), h('span', { class: 'shop-name' }, i.name), h('span', { class: 'shop-eff' }, effectText(i)), h('span', { class: 'gear-state' }, who ? cName(who) : 'Not equipped')); })) : null);
+}
+function usePotionOn(c) {
+  if (potions() <= 0) return; const mx = maxHp(c), hp = hpOf(c); if (hp >= mx) return;
+  c.hp = Math.min(mx, hp + potionHeal(c)); G.P.g.items.potion--; Sfx.play('heal'); Store.save(G.P); screenTeam();
 }
 function monsterBook() {
   const g = G.P.g; const rows = [];
@@ -1848,6 +2024,7 @@ function parentGate() {
 }
 
 document.addEventListener('keydown', e => {
+  if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
   if (!G.pad) return;
   if (/^\d$/.test(e.key)) { e.preventDefault(); G.pad(e.key); }
   else if (e.key === 'Backspace') { e.preventDefault(); G.pad('del'); }
@@ -1863,7 +2040,7 @@ function makeFoe(def, kind) {
   const hpMul = kind === 'k' ? 11 : kind === 'c' ? 3.5 : 5;
   const max = Math.round(tgt * hpMul * (1 + 0.15 * (g.world - 1)));
   const base = cute() ? 2 + g.area * 0.6 : 3 + g.area;
-  const atk = Math.max(1, Math.round((base + (g.world - 1) * 2) * (kind === 'k' ? 1.25 : 1)));
+  const atk = Math.max(1, Math.round((base + (g.world - 1) * 2) * (kind === 'k' ? 1.25 : 1) * (cute() ? 1 : 1.3)));
   const f = { id: def.id, em: def.em, name: (g.world > 1 && kind !== 'c' ? (cute() ? 'Big ' : 'Mega ') : '') + def.name, weak: def.weak || null, resist: def.resist || null, hp: max, max, atk, boss: kind === 'k', phase: 0 };
   if (def.phases) { f.phases = def.phases; f.weak = def.phases[0].weak; f.resist = def.phases[0].resist || null; }
   const k = f.id + ':0'; g.book[k] = Object.assign(g.book[k] || {}, { seen: 1 });
@@ -1876,10 +2053,14 @@ function catchSpecies(area) {
 // o = { type: 'b' | 'c' | 'k', def, catchSp, onWin(), after() }
 function startBattle(o) {
   Sfx.play('tap'); W.walkId++;
+  if (keepsHp() && party().every(c => hpOf(c) <= 0)) {
+    talk('🛏️', 'Innkeeper', 'Your party is too hurt to fight! Use a potion from your bag 🎒, or rest at the inn 🛖.');
+    return;
+  }
   let foe;
   if (o.type === 'c') { const sp = spById(o.catchSp); foe = makeFoe({ id: 'wild-' + sp.id, em: sp.em, name: sp.names[0], weak: TYPE_WEAK[sp.e], resist: sp.e }, 'c'); }
   else foe = makeFoe(o.def, o.type);
-  const hp = {}; party().forEach(c => { hp[c.u] = maxHp(c); });
+  const hp = {}; party().forEach(c => { hp[c.u] = keepsHp() ? hpOf(c) : maxHp(c); });
   G.B = { type: o.type, o, foe, hp, catchSp: o.catchSp || null, rewards: [], events: [], stats: { n: 0, c: 0 }, phase: 'intro', purpose: 'attack', gems: 0 };
   screenBattle();
   introBattle();
@@ -1943,8 +2124,37 @@ function showMenu() {
     return h('button', { class: `atk el-${sp.e}`, onclick: () => chooseAttack(c.u) },
       h('span', { class: 'atk-em' }, sp.em), h('span', { class: 'atk-who' }, cName(c)), h('span', { class: 'atk-move' }, rw(sp.move)), elemTag(sp.e));
   });
+  if (keepsHp()) btns.push(h('button', { class: 'atk potion', disabled: potions() <= 0 || null, onclick: potionMenu },
+    h('span', { class: 'atk-em' }, '🧪'), h('span', { class: 'atk-who' }, `${potions()} left`), h('span', { class: 'atk-move' }, 'Potion'), h('span', { class: 'etag' }, 'Heal')));
   setPanel('menu', h('div', { class: 'pmenu' }, prompt, h('div', { class: 'atks' }, btns)));
   readLine(prompt, T().who);
+}
+function syncHp() { if (!keepsHp() || !G.B) return; party().forEach(c => { if (G.B.hp[c.u] != null) c.hp = Math.max(0, Math.min(maxHp(c), G.B.hp[c.u])); }); }
+function potionMenu() {
+  const B = G.B; if (B.phase !== 'menu' || potions() <= 0) return; Sfx.play('tap');
+  const btns = party().map(c => {
+    const hp = B.hp[c.u], mx = maxHp(c);
+    return h('button', { class: 'atk pick', disabled: hp >= mx || null, onclick: () => drinkPotion(c.u) },
+      cSprite(c, 'atk-em'), h('span', { class: 'atk-move' }, cName(c)), hpLine(hp, mx));
+  });
+  btns.push(h('button', { class: 'atk back', onclick: () => { Sfx.play('tap'); showMenu(); } }, h('span', { class: 'atk-move' }, '‹ Back')));
+  setPanel('menu', h('div', { class: 'pmenu' }, h('div', { class: 'prompt' }, `Use a potion (${potions()} left) on...`), h('div', { class: 'atks' }, btns)));
+}
+async function drinkPotion(u) {
+  const B = G.B; if (B.phase !== 'menu' || potions() <= 0) return;
+  B.phase = 'anim'; const c = byU(u); const mx = maxHp(c);
+  const gain = Math.min(potionHeal(c), mx - B.hp[u]);
+  const wasOut = B.hp[u] <= 0;
+  G.P.g.items.potion--; B.hp[u] += gain; updateMem(c); syncHp(); Store.saveLocal(G.P);
+  const el = $(`.mem[data-u="${u}"] .spr`);
+  setMsg(wasOut ? `${cName(c)} is back on their feet!` : `${cName(c)} drinks a potion!`);
+  Sfx.play('heal'); anim(el, 'healed', 700); popText(el, '+' + gain, 'dmg heal');
+  await wait(1100);
+  if (G.B !== B) return;
+  await enemyTurn();
+  if (G.B !== B) return;
+  if (party().every(m => B.hp[m.u] <= 0)) return lose();
+  showMenu();
 }
 function chooseAttack(u) { if (G.B.phase !== 'menu') return; Sfx.play('tap'); G.B.attacker = u; G.B.purpose = 'attack'; nextProblem(); }
 
@@ -1977,13 +2187,14 @@ function renderProblem(note) {
       h('button', { class: 'tool', 'aria-label': 'Read it to me', onclick: () => Voice.say(pr.say) }, '🔊'),
       B.mode === 'answer' && !B.assisted ? h('button', { class: 'tool', onclick: helpTap }, '💡 ', rw(cute() ? 'Help' : 'Hint')) : null,
       B.purpose === 'attack' && B.mode === 'answer' && !B.recorded ? h('button', { class: 'tool ghost', onclick: () => { Sfx.play('tap'); showMenu(); } }, rw(cute() ? 'Back' : 'Change')) : null));
-  setPanel('problem', h('div', { class: 'pprob' }, left, numpad(padKey)));
+  setPanel('problem', h('div', { class: 'pprob' }, left, numpad(padKey, true)));
   G.pad = padKey;
   if (note) readLine(noteEl, note);
 }
-function numpad(onKey) {
-  const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'del', '0', 'ok'];
-  return h('div', { class: 'pad' }, keys.map(k => h('button', { class: 'key k-' + k, 'aria-label': k === 'del' ? 'Delete' : k === 'ok' ? 'Check' : k, onclick: () => { Sfx.play('tap'); onKey(k); } }, k === 'del' ? '⌫' : k === 'ok' ? '✓' : k)));
+function numpad(onKey, wide = false) {
+  // the battle keypad is two short rows so the fight above stays visible
+  const keys = wide ? ['1', '2', '3', '4', '5', 'del', '6', '7', '8', '9', '0', 'ok'] : ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'del', '0', 'ok'];
+  return h('div', { class: 'pad' + (wide ? ' wide' : '') }, keys.map(k => h('button', { class: 'key k-' + k, 'aria-label': k === 'del' ? 'Delete' : k === 'ok' ? 'Check' : k, onclick: () => { Sfx.play('tap'); onKey(k); } }, k === 'del' ? '⌫' : k === 'ok' ? '✓' : k)));
 }
 function padKey(k) {
   const B = G.B; if (!B || B.phase !== 'problem') return;
@@ -2084,7 +2295,7 @@ async function enemyTurn() {
   setMsg(cute() ? `${f.name}: ${pick(['Hmph!', 'Grr!', 'Splash!', 'Bonk!'])}` : `${f.name} attacks ${cName(t)}!`);
   anim(foeEl, 'lunge-r', 380); await wait(260);
   Sfx.play('enemy'); anim(tEl, 'hurt', 480); popText(tEl, '−' + dmg, 'dmg bad');
-  B.hp[t.u] = Math.max(0, B.hp[t.u] - dmg); updateMem(t);
+  B.hp[t.u] = Math.max(0, B.hp[t.u] - dmg); updateMem(t); syncHp();
   await wait(800);
   if (B.hp[t.u] <= 0) { setMsg(T().nap(cName(t))); Sfx.play('faint'); await wait(1200); }
 }
@@ -2094,7 +2305,7 @@ async function win() {
   if (cute()) { foeEl.classList.add('cheer'); hearts(foeEl); } else foeEl.classList.add('poof');
   setMsg(T().happy); readLine($('.panel'), T().happy, true);
   party().forEach(m => giveXp(m, 4, B.rewards));
-  B.gems = battleGems(B.type); setTimeout(() => { popText(foeEl, `+${B.gems} 💎`, 'tagpop gem'); Sfx.play('blip', 7); }, 500);
+  B.gems = battleGems(B.type); setTimeout(() => { popText(foeEl, `+${B.gems} ${CUR().em}`, 'tagpop gem'); Sfx.play('blip', 7); }, 500);
   await wait(1500);
   if (G.B !== B) return;
   if (B.type === 'c' && B.catchSp) return catchPhase();
@@ -2115,16 +2326,20 @@ async function doCatch() {
   Sfx.play('catch'); foeEl.classList.add('caught'); hearts(foeEl); await wait(900);
   const c = addCreature(sp.id); B.rewards.push({ type: 'joined', c });
   const msg = T().joined(sp.names[0]); setMsg(msg); await readLine($('.panel'), msg, true); await wait(900);
+  if (!cute()) await nameHero(c);
   endBattle(true);
 }
 async function lose() {
   const B = G.B; B.phase = 'done'; Sfx.play('faint');
   setMsg(T().allNap); await readLine($('.panel'), T().allNap, true); await wait(1500);
+  if (keepsHp()) { syncHp(); party().forEach(c => { c.hp = Math.max(hpOf(c), Math.ceil(maxHp(c) / 2)); }); }
   G.B = null; Store.save(G.P); screenWorld();
 }
 async function endBattle(won) {
   const B = G.B; const g = G.P.g;
+  syncHp();
   if (won) { g.gems += B.gems || 0; g.wins++; if (B.o.onWin) B.o.onWin(); }
+  if (won && B.type === 'k' && keepsHp()) { healAll(); B.healed = true; }
   Store.save(G.P, true);
   G.B = null;
   await showRewards(B);
@@ -2138,7 +2353,8 @@ async function showRewards(B) {
   leveled.forEach(c => lines.push(t.levelUp(cName(c)) + ` Lv ${c.lv}`));
   B.events.filter(e => e.type === 'start').forEach(e => lines.push(t.started(E.SK[e.skill].kid)));
   const rightTxt = cute() ? `${B.stats.c} right the first time!` : `${B.stats.c} of ${B.stats.n} correct on the first try.`;
-  if (lines.length) { Sfx.play('level'); await card({ big: '🎉', title: t.happy, lines: [rightTxt, `+${B.gems || 0} 💎`, ...lines], say: t.happy }); }
+  if (B.healed) lines.push('Your whole party is fully healed!');
+  if (lines.length) { Sfx.play('level'); await card({ big: '🎉', title: t.happy, lines: [rightTxt, `+${B.gems || 0} ${CUR().em}`, ...lines], say: t.happy }); }
   for (const e of B.events.filter(e => e.type === 'mastered')) {
     const name = E.SK[e.skill].kid; const title = e.placed ? t.placed(name) : t.mastered(name);
     party().forEach(m => giveXp(m, 25, []));
@@ -2306,7 +2522,8 @@ function buildEnts(ai) {
     const id = x + ',' + y;
     if ('ABC'.includes(c)) { const n = npcOf(ai, c); ents.push({ kind: 'npc', role: c, x, y, em: n[0], name: n[1], block: true }); }
     else if (c === 'S') ents.push({ kind: 'shop', x, y, em: '🏪', block: true });
-    else if (c === 'G' && !s.gems.includes(id)) ents.push({ kind: 'gem', x, y, em: '💎', id });
+    else if (c === 'G' && !s.gems.includes(id)) ents.push({ kind: 'gem', x, y, em: CUR().em, id });
+    else if (c === 'H' && !cute()) ents.push({ kind: 'inn', x, y, em: '🛖', block: true });
     else if (c === 'i' && qB.st === 'active' && !s.items.includes(id)) ents.push({ kind: 'item', x, y, em: npcOf(ai, 'B')[2], id });
     else if (c === 'M') { const foe = area.foes[mi++ % area.foes.length]; if (!(s.mons[id] > now)) ents.push({ kind: 'mon', x, y, em: foe.em, foe, id, block: true }); }
     else if (c === 'c') { const sp = catchSpecies(area); if (sp) ents.push({ kind: 'wild', x, y, em: spById(sp).em, sp, block: true }); }
@@ -2357,7 +2574,7 @@ function screenWorld() {
     let cls = 't-g', inner = '';
     if (c === '#') { cls = 't-w'; inner = bio.obs[hsh]; }
     else if (c === '~') cls = 't-water';
-    else if (c === 'H') { cls = 't-w'; inner = cute() ? '🏡' : '🛖'; }
+    else if (c === 'H') { cls = cute() ? 't-w' : 't-g'; inner = cute() ? '🏡' : ''; }
     else if (c === ',') { cls = 't-g'; inner = bio.deco[hsh % bio.deco.length]; }
     else if (hsh === 0) cls = 't-g alt';
     tiles.push(h('div', { class: 'tile ' + cls + (c === ',' ? ' tdeco' : '') }, inner));
@@ -2372,7 +2589,34 @@ function screenWorld() {
   const wrap = h('div', { class: 'wwrap' }, map);
   setScreen('world', h('div', { class: `world bg-${area.bg}` }, worldTop(ai), wrap, worldBottom(ai)));
   sizeWorld();
-  if (!g.seen[ai]) { g.seen[ai] = true; Store.saveLocal(G.P); setTimeout(() => areaIntro(ai), 250); }
+  if (!g.seen[ai]) { g.seen[ai] = true; Store.saveLocal(G.P); setTimeout(async () => { await areaIntro(ai); ensureNames(); }, 250); }
+  else setTimeout(ensureNames, 250);
+}
+// heroes recruited before naming existed get their one-time name here
+async function ensureNames() {
+  if (cute() || G.naming || G.screen !== 'world') return;
+  const todo = G.P.g.roster.filter(c => !c.named); if (!todo.length) return;
+  G.naming = true;
+  await card({ big: '✍️', title: 'Your heroes need names!', lines: ['Give each hero a name. Choose carefully: names are forever.'] });
+  for (const c of todo) await nameHero(c);
+  G.naming = false; if (G.screen === 'world') screenWorld();
+}
+function rewardPop(text) {
+  const map = $('.wmap'); const p = G.P.g.pos; if (!map || !p) return;
+  const el = h('div', { class: 'wpop reward', style: { left: `calc(var(--t) * ${p.x + 0.5})`, top: `calc(var(--t) * ${Math.max(0.15, p.y - 0.35)})` } }, text);
+  map.append(el); Sfx.play('catch'); setTimeout(() => el.remove(), 2600);
+}
+const rewardText = r => `+${r.gold} ${CUR().em}` + (r.pot ? `   +${r.pot} 🧪` : '');
+function grant(r) { addGems(r.gold); if (r.pot) addPotions(r.pot); }
+async function innTalk() {
+  const g = G.P.g; const cost = 10 * curAct();
+  if (!g.roster.some(c => hpOf(c) < maxHp(c))) return talk('🛏️', 'Innkeeper', 'Your party looks well rested! Come back when you need a bed.');
+  const can = g.gems >= cost;
+  const ok = await talk('🛏️', 'Innkeeper', can ? `A warm bed heals your whole party. Stay the night for ${cost} gold?` : 'You’re short on gold, but you look tired. Rest here free tonight!', [{ label: 'Rest', value: true }, { label: 'No thanks', value: false, alt: true }]);
+  if (!ok) return;
+  if (can) g.gems -= cost;
+  healAll(); Store.save(G.P, true); refreshWorldBits();
+  Sfx.play('heal'); rewardPop('❤️ All healed!');
 }
 function sizeWorld() {
   const wrap = $('.wwrap'), map = $('.wmap'); if (!wrap || !map) return;
@@ -2408,8 +2652,9 @@ function worldTop(ai) {
   return h('div', { class: 'top wtop' }, homeBtn(),
     h('div', { class: 'top-title' }, h('span', { class: 'banner-icon' }, area.icon), ' ', rw(area.name), h('span', { class: 'actlbl' }, g.world > 1 ? `World ${g.world}` : ACT_NAMES[act])),
     meter,
-    h('div', { class: 'gems', title: 'Gems' }, '💎 ', h('b', null, g.gems)),
+    h('div', { class: 'gems', title: CUR().title }, CUR().em + ' ', h('b', null, g.gems)),
     h('button', { class: 'ib', 'aria-label': 'Quests', title: 'Quests', onclick: questLog }, '📜', activeQ ? h('span', { class: 'ibadge' }, activeQ) : null),
+    !cute() ? h('button', { class: 'ib', 'aria-label': 'Bag', title: 'Bag', onclick: () => { G.teamTab = 'items'; screenTeam(); } }, '🎒', h('span', { class: 'ibadge pot' }, potions())) : null,
     h('button', { class: 'ib wide', onclick: screenTeam }, rw(T().team)),
     h('div', { class: 'moon', title: 'Play time today' }, '🌙', h('div', { class: 'moonbar' }, h('i', { style: { width: pct + '%' } }))),
     soundBtn(), gearBtn());
@@ -2420,7 +2665,8 @@ function worldBottom(ai) {
   if (qB.st === 'active') bits.push(h('span', { class: 'qt' }, npcOf(ai, 'B')[2], ` ${Math.min(3, qB.n)}/3`));
   if (qC.st === 'active') bits.push(h('span', { class: 'qt' }, cute() ? '😠' : '⚔️', ` ${Math.min(3, qC.n)}/3`));
   return h('div', { class: 'wbottom' },
-    h('button', { class: 'pstrip win', onclick: screenTeam }, party().map(c => h('div', { class: 'pmini' }, cSprite(c), h('div', { class: 'pmini-lv' }, 'Lv ' + c.lv)))),
+    h('button', { class: 'pstrip win', onclick: () => { G.teamTab = 'team'; screenTeam(); } }, party().map(c => h('div', { class: 'pmini' + (keepsHp() && hpOf(c) <= 0 ? ' out' : '') }, cSprite(c), h('div', { class: 'pmini-lv' }, keepsHp() ? cName(c) : 'Lv ' + c.lv),
+      keepsHp() ? h('div', { class: 'minihp' + (hpOf(c) / maxHp(c) < 0.3 ? ' low' : '') }, h('i', { style: { width: (hpOf(c) / maxHp(c) * 100) + '%' } })) : null))),
     bits.length ? h('div', { class: 'qtrack win' }, bits) : h('div', { class: 'qtrack win hint-tap' }, rw(cute() ? 'Tap to walk!' : 'Tap anywhere to move.')));
 }
 async function areaIntro(ai) {
@@ -2468,7 +2714,7 @@ function floatAt(x, y, text) {
   const el = h('div', { class: 'wpop', style: { left: `calc(var(--t) * ${x + 0.5})`, top: `calc(var(--t) * ${y})` } }, text);
   map.append(el); setTimeout(() => el.remove(), 1200);
 }
-function addGems(n, x, y) { G.P.g.gems += n; const el = $('.gems b'); if (el) el.textContent = G.P.g.gems; if (x != null) floatAt(x, y, `+${n} 💎`); }
+function addGems(n, x, y) { G.P.g.gems += n; const el = $('.gems b'); if (el) el.textContent = G.P.g.gems; if (x != null) floatAt(x, y, `+${n} ${CUR().em}`); }
 function pickGem(e) { aState(G.P.g.area).gems.push(e.id); removeEnt(e); Sfx.play('blip', 6); addGems(cute() ? 2 : 5, e.x, e.y); }
 function pickItem(e) {
   const ai = G.P.g.area; aState(ai).items.push(e.id); removeEnt(e); Sfx.play('catch');
@@ -2507,7 +2753,8 @@ async function interact(e) {
   const g = G.P.g; const ai = g.area; const area = AREAS[G.theme][ai];
   if (e.kind === 'npc') return npcTalk(e.role);
   if (e.kind === 'shop') return openShop();
-  if (e.kind === 'chest') { aState(ai).chest = true; removeEnt(e); Sfx.play('catch'); addGems(cute() ? 10 : 25, e.x, e.y); Store.save(G.P); return; }
+  if (e.kind === 'chest') { aState(ai).chest = true; removeEnt(e); const r = { gold: cute() ? 10 : 25, pot: cute() ? 0 : 1 }; grant(r); Store.save(G.P); refreshWorldBits(); rewardPop(rewardText(r)); return; }
+  if (e.kind === 'inn') return innTalk();
   if (e.kind === 'mon') {
     return startBattle({ type: 'b', def: e.foe, onWin: () => { aState(ai).mons[e.id] = Date.now() + 2 * 60000; const q = qState(ai, 'C'); if (q.st === 'active') q.n++; } });
   }
@@ -2547,16 +2794,15 @@ async function actComplete(ai) {
 
 async function npcTalk(role) {
   const g = G.P.g; const ai = g.area; const n = npcOf(ai, role); const q = qState(ai, role); const today = E.dayKey();
-  const rewardA = cute() ? 12 : 30, rewardB = cute() ? 15 : 35, rewardC = cute() ? 15 : 35;
+  const rA = { gold: cute() ? 12 : 30, pot: cute() ? 0 : 1 }, rB = { gold: cute() ? 15 : 35, pot: cute() ? 0 : 1 }, rC = { gold: cute() ? 15 : 35, pot: cute() ? 0 : 1 };
   if (role === 'A') {
     if (q.day === today) return talk(n[0], n[1], cute() ? 'Thank you! Come back tomorrow!' : 'Thank you, friend. I may need help again tomorrow.');
     const ok = await talk(n[0], n[1], cute() ? 'Hi! Can you help me count?' : 'Ah, a hero! I have a few problems that need a clever mind. Will you help?', [{ label: cute() ? 'Yes!' : 'I’ll help', value: true }, { label: cute() ? 'Not now' : 'Later', value: false, alt: true }]);
     if (!ok) return;
     for (let i = 0; i < 3; i++) await storyProblem(ai, n, i);
-    q.day = today; q.st = 'done'; Sfx.play('win'); addGems(rewardA);
-    Store.save(G.P, true);
-    await talk(n[0], n[1], cute() ? `Yay! Here are ${rewardA} gems!` : `Splendid work! Take these ${rewardA} gems.`);
-    return refreshWorldBits();
+    q.day = today; q.st = 'done'; Sfx.play('win'); Store.save(G.P, true);
+    await talk(n[0], n[1], cute() ? `Yay! Here are ${rA.gold} gems!` : `Splendid work! Take ${rA.gold} gold and a potion.`);
+    grant(rA); Store.save(G.P, true); refreshWorldBits(); rewardPop(rewardText(rA)); return;
   }
   if (role === 'B') {
     const item = n[3], em = n[2];
@@ -2565,7 +2811,7 @@ async function npcTalk(role) {
       if (!ok) return;
       q.st = 'active'; q.n = 0; aState(ai).items = []; Store.save(G.P); return screenWorld();
     }
-    if (q.st === 'active' && q.n >= 3) { q.st = 'done'; Sfx.play('win'); addGems(rewardB); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `My ${item}! Thank you! Here are ${rewardB} gems!` : `You found them! Here, ${rewardB} gems for your trouble.`); return screenWorld(); }
+    if (q.st === 'active' && q.n >= 3) { q.st = 'done'; Sfx.play('win'); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `My ${item}! Thank you! Here are ${rB.gold} gems!` : `You found them! Here are ${rB.gold} gold and a potion for your trouble.`); grant(rB); Store.save(G.P, true); screenWorld(); rewardPop(rewardText(rB)); return; }
     if (q.st === 'active') return talk(n[0], n[1], cute() ? `Find ${3 - q.n} more ${em}!` : `Still ${3 - q.n} ${item} out there. Look around!`);
     return talk(n[0], n[1], cute() ? 'Thank you, friend!' : 'Thanks again, hero.');
   }
@@ -2575,7 +2821,7 @@ async function npcTalk(role) {
       if (!ok) return;
       q.st = 'active'; q.n = 0; Store.save(G.P); return refreshWorldBits();
     }
-    if (q.st === 'active' && q.n >= 3) { q.st = 'done'; Sfx.play('win'); addGems(rewardC); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `So happy now! Here are ${rewardC} gems!` : `The raids have stopped! Take ${rewardC} gems.`); return refreshWorldBits(); }
+    if (q.st === 'active' && q.n >= 3) { q.st = 'done'; Sfx.play('win'); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `So happy now! Here are ${rC.gold} gems!` : `The raids have stopped! Take ${rC.gold} gold and a potion.`); grant(rC); Store.save(G.P, true); refreshWorldBits(); rewardPop(rewardText(rC)); return; }
     if (q.st === 'active') return talk(n[0], n[1], cute() ? `Cheer up ${3 - q.n} more!` : `${3 - q.n} more to go. Tap a monster to fight it.`);
     return talk(n[0], n[1], cute() ? 'It is so nice here now!' : 'Peace at last, thanks to you.');
   }
@@ -2673,15 +2919,20 @@ function openShop() {
   const items = GEAR[G.theme].filter(i => i.act <= curAct());
   const close = () => { ov.remove(); refreshWorldBits(); };
   const list = h('div', { class: 'shop-list' });
+  const potionPrice = 15;
+  const buyPotion = () => { if (g.gems < potionPrice) return; g.gems -= potionPrice; addPotions(1); Sfx.play('catch'); Store.save(G.P, true); render(); };
   const render = () => {
-    list.replaceChildren(...items.map(i => {
+    const potRow = cute() ? [] : [h('div', { class: 'shop-row' }, h('span', { class: 'shop-em' }, '🧪'),
+      h('div', { class: 'shop-info' }, h('div', { class: 'shop-name' }, 'Potion'), h('div', { class: 'shop-eff' }, `Heals about half HP · you have ${potions()}`)),
+      h('button', { class: 'bigbtn buy', disabled: g.gems < potionPrice || null, onclick: buyPotion }, `${potionPrice} ${CUR().em}`))];
+    list.replaceChildren(...potRow, ...items.map(i => {
       const owned = g.bag.includes(i.id);
       return h('div', { class: 'shop-row' + (owned ? ' owned' : '') }, h('span', { class: 'shop-em' }, i.em),
         h('div', { class: 'shop-info' }, h('div', { class: 'shop-name' }, rw(i.name)), h('div', { class: 'shop-eff' }, effectText(i))),
         owned ? h('span', { class: 'shop-owned' }, rw(cute() ? 'Got it!' : 'Owned'))
-          : h('button', { class: 'bigbtn buy', disabled: g.gems < i.cost || null, onclick: () => buy(i) }, `${i.cost} 💎`));
+          : h('button', { class: 'bigbtn buy', disabled: g.gems < i.cost || null, onclick: () => buy(i) }, `${i.cost} ${CUR().em}`));
     }));
-    gemsEl.textContent = `💎 ${g.gems}`;
+    gemsEl.textContent = `${CUR().em} ${g.gems}`;
   };
   const buy = async i => {
     if (g.gems < i.cost || g.bag.includes(i.id)) return;
@@ -2712,7 +2963,7 @@ function gearMenu(c) {
       const on = c.gear === i.id; const who = g.roster.find(o => o.gear === i.id && o !== c);
       return h('button', { class: 'gear-row' + (on ? ' on' : ''), onclick: () => { g.roster.forEach(o => { if (o.gear === i.id) o.gear = null; }); c.gear = on ? null : i.id; Sfx.play('good'); Store.save(G.P); ov.remove(); screenTeam(); } },
         h('span', { class: 'shop-em' }, i.em), h('span', { class: 'shop-name' }, rw(i.name)), h('span', { class: 'shop-eff' }, effectText(i)), h('span', { class: 'gear-state' }, on ? (cute() ? 'On!' : 'Equipped') : who ? `(${cName(who)})` : ''));
-    })) : h('div', { class: 'ov-line' }, rw(cute() ? 'Buy gear at the shop 🏪 with gems!' : 'Buy gear at a shop 🏪 with gems.')),
+    })) : h('div', { class: 'ov-line' }, rw(cute() ? 'Buy gear at the shop 🏪 with gems!' : 'Buy gear at a shop 🏪 with gold.')),
     h('button', { class: 'bigbtn', onclick: () => { Sfx.play('tap'); ov.remove(); } }, rw(T().ok))));
   ovRoot.append(ov);
 }
@@ -2757,7 +3008,7 @@ function renderParent() {
       backupCard(null))));
   }
   setScreen('parent', h('div', { class: 'pd' }, head, h('main', { class: 'pd-main' },
-    sync, reportCard(P), overview(P), activity(P), skillsCard(P), factsCard(P), troubleCard(P), backupCard(P), settingsCard(P), aboutCard())));
+    sync, reportCard(P), overview(P), activity(P), skillsCard(P), factsCard(P), troubleCard(P), P.id === 'gothax' ? namesCard(P) : null, backupCard(P), settingsCard(P), aboutCard())));
 }
 function overview(P) {
   const today = P.log[E.dayKey()] || { n: 0, c: 0 };
@@ -2775,11 +3026,12 @@ function overview(P) {
       tile('Story', P.g.world > 1 ? `World ${P.g.world}` : ACT_NAMES[Math.min(3, P.act || 1)], actLine(P)),
       tile('Practicing now', learning.length ? learning.join(', ') : '–', null)));
 }
+function moneyLine(P) { return P.id === 'gothax' ? `${P.g.gems} gold · ${(P.g.items && P.g.items.potion) || 0} potions` : `${P.g.gems} gems`; }
 function actLine(P) {
-  if (P.g.world > 1) return `${P.g.gems} gems`;
+  if (P.g.world > 1) return moneyLine(P);
   const act = Math.min(3, P.act || 1); const ids = E.actSkills(P, act);
   const lit = ids.filter(id => P.skills[id].st === 'mastered').length;
-  return `Gate: ${lit} of ${ids.length} skills mastered · ${P.g.gems} gems`;
+  return `Gate: ${lit} of ${ids.length} skills mastered · ${moneyLine(P)}`;
 }
 function activity(P) {
   const days = []; for (let i = 13; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); days.push({ d, l: P.log[E.dayKey(d.getTime())] || { n: 0, c: 0 } }); }
@@ -2898,7 +3150,7 @@ function summaryText(P, r) {
 }
 function reportText(P) {
   const r = E.report(P); const d = new Date().toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
-  const L = [`Mathlings report: ${pName(P)} (${d})`, `Story: ${storyLine(P)} · ${P.g.gems} gems`, trendLine(r), '', summaryText(P, r), '', 'Doing well'];
+  const L = [`Mathlings report: ${pName(P)} (${d})`, `Story: ${storyLine(P)} · ${moneyLine(P)}`, trendLine(r), '', summaryText(P, r), '', 'Doing well'];
   (r.strengths.length ? r.strengths : [{ title: 'Not enough data yet', detail: '' }]).forEach(x => L.push(`- ${x.title}${x.detail ? ': ' + x.detail : ''}`));
   L.push('', 'Working on');
   (r.working.length ? r.working : [{ title: 'Nothing in progress (waiting for the next act)', pct: null, needs: [] }]).forEach(x => L.push(`- ${x.title}${x.pct != null ? `: ${x.pct}% of the way` : ''}${x.needs.length ? ` (needs ${x.needs.join('; ')})` : ''}`));
@@ -2982,6 +3234,23 @@ function readBackup(f, status) {
       h('button', { class: 'danger', onclick: doIt }, 'Replace'), ' ', h('button', { class: 'act', onclick: () => { status.textContent = ''; } }, 'Cancel'));
   };
   rd.readAsText(f);
+}
+
+/* ---------- hero names (fix typos; Gothax names each hero once in the game) ---------- */
+function namesCard(P) {
+  const status = h('div', { class: 'rc-status', role: 'status' });
+  const rows = P.g.roster.map(c => {
+    const sp = spById(c.sp);
+    const inp = h('input', { type: 'text', id: 'nm-' + c.u, class: 'set-in', maxlength: '12', autocomplete: 'off', value: c.nm || '', placeholder: sp.names[0], 'aria-label': 'Name for ' + sp.names[0] });
+    const save = () => {
+      const v = inp.value.replace(/[^A-Za-z0-9 '\-]/g, '').replace(/\s+/g, ' ').trim().slice(0, 12);
+      c.nm = v || sp.names[0]; c.named = true; inp.value = c.nm; pdSave(P); status.textContent = `Saved: ${c.nm}`;
+    };
+    return h('div', { class: 'nm-row' }, h('span', { class: 'nm-em' }, sp.em), h('span', { class: 'nm-sp' }, `${sp.names[stageOf(c.lv)]} · Lv ${c.lv}`), inp, h('button', { class: 'act', onclick: save }, 'Save'));
+  });
+  return h('section', { class: 'pd-card' }, h('h2', null, 'Hero names'),
+    h('p', { class: 'pd-help' }, 'Gothax names each hero once, when it joins. Fix a typo here if you need to.'),
+    rows.length ? h('div', { class: 'nm-list' }, rows) : h('p', { class: 'pd-help' }, 'No heroes yet.'), status);
 }
 
 /* ---------- boot ---------- */
