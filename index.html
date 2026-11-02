@@ -280,7 +280,7 @@ button:disabled { cursor: default; }
 .phase .em { animation: phase .8s steps(8); }
 .poof .em { animation: poof .9s ease-in forwards; }
 .cheer .em { animation: cheer 1.2s ease-in-out forwards; }
-.cheer::after { content: '😊'; position: absolute; right: -10%; top: -6%; font-size: .4em; animation: popin .4s ease-out both; }
+.cheer::after { content: '♥'; color: #ff6fa8; position: absolute; right: -10%; top: -6%; font-size: .4em; animation: popin .4s ease-out both; }
 .friendly .em { animation: bob 2.4s ease-in-out infinite; }
 .caught .em { animation: caught .9s ease-in forwards; }
 @keyframes lunge { 30% { transform: translateX(-40%) scale(1.1) } 100% { transform: none } }
@@ -894,6 +894,99 @@ img.art.px { image-rendering: pixelated; image-rendering: crisp-edges; }
 .mk-mini { width: 32px !important; height: 32px !important; }
 @media (max-width: 700px), (orientation: portrait) { .mk-body { grid-template-columns: 1fr; } .mk-prev img.art { width: 110px; height: 110px; } }
 
+/* ---------- version 4: drawn map, gate crystals, sight words, sound check ---------- */
+.wmap .tile.t-g, .wmap .tile.t-w { background-image: var(--gtx); background-size: 100% 100%; }
+.wmap .tile.t-water { background-image: var(--wtx); background-size: 100% 100%; }
+.t-hero .wmap .tile { image-rendering: pixelated; }
+.tile img.art { width: 92%; height: 92%; vertical-align: 0; }
+.tile.tdeco img.art { width: 100%; height: 100%; }
+.tile.thouse img.art { width: 110%; height: 110%; }
+.ent img.art { width: 1em; height: 1em; vertical-align: 0; }
+.e-shop .eem img.art, .e-inn .eem img.art { width: 1.25em; height: 1.25em; }
+.e-npc .eem img.art { width: 1.08em; height: 1.08em; }
+.e-gate .eem img.art { width: 1.05em; height: 1.05em; }
+.crown img.art, .lockb img.art { width: 1em; height: 1em; }
+.lockb { font-size: .5em; }
+.ib img.art { width: 26px; height: 26px; }
+.t-hero .ib img.art { width: 24px; height: 24px; }
+.moon img.art { width: 22px; height: 22px; }
+.rest-moon img.art { width: 1em; height: 1em; }
+.ov-big img.art { width: 1em; height: 1em; }
+.banner-icon img.art { width: 1.1em; height: 1.1em; }
+.tool img.art { width: 1.3em; height: 1.3em; vertical-align: -0.3em; }
+.t-hero .tool img.art { width: 2em; height: 2em; vertical-align: -0.55em; }
+.replay img.art { width: 1em; height: 1em; }
+.proj img.art { width: 1em; height: 1em; }
+.pop.heart img.art { width: 1em; height: 1em; }
+.badge-st img.art { width: 1em; height: 1em; }
+.qt img.art, .qface img.art, .qarea img.art { width: 1.2em; height: 1.2em; }
+.pics-row img.art { width: 1em; height: 1em; }
+.etag img.art { width: 1.05em; height: 1.05em; vertical-align: -0.2em; }
+.t-hero .etag img.art { width: 1.25em; height: 1.25em; }
+.bem img.art { width: 1em; height: 1em; }
+.catchbtn img.art { width: 1.1em; height: 1.1em; }
+.ccard-gear img.art { width: 1.2em; height: 1.2em; }
+/* gate crystals fill up as they practice */
+.meter { border: none; background: none; padding: 2px 4px; cursor: pointer; gap: 4px; align-items: center; }
+.cry { position: relative; display: inline-grid; place-items: center; width: 26px; height: 26px; }
+.cry img.art { width: 100%; height: 100%; filter: grayscale(1) brightness(.75) opacity(.55); }
+.cry::after { content: ''; position: absolute; left: 3px; right: 3px; bottom: -4px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--accent) var(--f), color-mix(in srgb, var(--ink) 18%, transparent) var(--f)); }
+.t-hero .cry::after { border-radius: 0; background: linear-gradient(90deg, #7fe8ff var(--f), #1a2470 var(--f)); }
+.cry.on img.art { filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 80%, transparent)); animation: pulse 1.8s ease-in-out infinite; }
+.t-hero .cry.on img.art { filter: drop-shadow(0 0 6px #7fe8ff); }
+.cry.on::after { opacity: 0; }
+.gate-sk { display: flex; align-items: center; gap: 10px; text-align: left; }
+.gate-sk .cry { width: 34px; height: 34px; flex: 0 0 auto; }
+.gate-pct { margin-left: auto; font-family: var(--font-n); font-size: .9em; color: var(--muted) !important; }
+.gate-sk.on .gate-pct { color: var(--accent) !important; }
+.ov-big .cry { width: 1em; height: 1em; }
+/* sight words */
+.pword { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; height: 100%; }
+.wback { align-self: end; }
+.wword { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: 'head choices' 'head ok' 'msg msg'; align-items: center; column-gap: 22px; row-gap: 6px; height: 100%; }
+.whead { grid-area: head; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.wprompt { font-family: var(--font-d); font-size: clamp(20px, 2.6vw, 28px); font-weight: 700; }
+.wsay { width: clamp(64px, 10vmin, 92px); height: clamp(64px, 10vmin, 92px); border-radius: 50%; border: 4px solid var(--accent); background: color-mix(in srgb, var(--accent) 16%, var(--panel)); display: grid; place-items: center; padding: 0; animation: bob 2s ease-in-out infinite; }
+.wsay img.art { width: 62%; height: 62%; }
+.wbig { font-family: 'Andika', var(--font-b); font-weight: 700; font-size: clamp(46px, 9vmin, 88px); line-height: 1.05; padding: 2px 22px 8px; border-radius: 18px; background: #fff; border: 4px solid var(--accent); color: #2b1530; }
+.wchoices { grid-area: choices; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.wcard { font-family: 'Andika', var(--font-b); font-weight: 700; font-size: clamp(34px, 6.4vmin, 62px); line-height: 1.1; min-width: clamp(96px, 15vmin, 150px); padding: 6px 18px 10px; border-radius: 18px; border: 4px solid var(--line); background: #fff; color: #2b1530; box-shadow: 0 5px 0 color-mix(in srgb, var(--line) 70%, #000); transition: transform .1s; }
+.wcard:active { transform: translateY(3px); box-shadow: 0 2px 0 color-mix(in srgb, var(--line) 70%, #000); }
+.wcard.snd { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-d); font-size: clamp(22px, 3vmin, 30px); }
+.wcard.snd img.art { width: 1.6em; height: 1.6em; }
+.wcard.snd.s0 { border-color: #ff8fb8; } .wcard.snd.s1 { border-color: #7fc8ff; } .wcard.snd.s2 { border-color: #7ad86a; }
+.wcard.sel { outline: 5px solid var(--accent); outline-offset: 2px; transform: scale(1.05); }
+.wcard.right { background: #d9ffe6; border-color: #3ddc84; animation: popin .3s ease-out; }
+.wcard.hint { animation: beckon2 1s ease-in-out infinite; border-color: var(--accent); background: #fff6d6; }
+.wok { grid-area: ok; justify-self: center; padding: 8px 26px; }
+.wmsg { grid-area: msg; text-align: center; font-size: clamp(18px, 2.2vw, 24px); color: var(--muted); min-height: 1.2em; }
+.wlearned { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.wcard.sm { font-size: 34px; min-width: 0; }
+.wquest .wword { grid-template-columns: 1fr; grid-template-areas: 'head' 'choices' 'ok' 'msg'; padding: 10px 0 4px; }
+@media (orientation: portrait) {
+  .wword { grid-template-columns: 1fr; grid-template-areas: 'head' 'choices' 'ok' 'msg'; }
+  .whead { flex-direction: row; justify-content: center; gap: 16px; }
+  .pword { grid-template-columns: 1fr; }
+  .wback { justify-self: center; }
+}
+/* dashboard: words + sound check */
+.wact { margin: 10px 0; }
+.wact-h { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+.wact-h span { color: var(--p-muted); font-weight: 500; }
+.wchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.wchip { padding: 3px 10px; border-radius: 8px; font: 600 15px 'Andika', system-ui, sans-serif; border: 1px solid var(--p-line); }
+.wchip.f-unseen { background: #f3f2f7; color: #8b87a0; }
+.wchip.f-weak { background: #fde3dc; color: #8a2b14; border-color: #f1b8a8; }
+.wchip.f-learning { background: #fff3cf; color: #6b5200; border-color: #f0d98a; }
+.wchip.f-mastered { background: #d7f3e3; color: #145c36; border-color: #9fdcbb; }
+.snd-out { margin-top: 10px; display: grid; gap: 4px; font-size: 14px; line-height: 1.45; }
+@media (orientation: portrait) {
+  .wtop { flex-wrap: wrap; row-gap: 2px; }
+  .wtop .meter { order: 9; flex: 1 0 100%; justify-content: center; gap: 10px; padding: 2px 0 6px; }
+  .wtop .cry { width: 30px; height: 30px; }
+}
+@media (orientation: portrait) { .wtop .top-title { flex: 1 1 0; min-width: 70px; } }
+
 </style>
 </head>
 <body>
@@ -1123,6 +1216,7 @@ const ART = (() => {
     troll: ['brute', '#8fb3c9', '#4a6a80', '#5be7ff'], shark: ['shark', '#5b7fa6'], squid: ['octo', '#d76fa8', '#a84a80'], rustbot: ['mech', '#b0623a', '#6b4a3a', '#ffd23f'],
     kraken: ['octo', '#7a3fb0', '#4a2670'], ghost: ['ghost', '#e9eef7'], vamp: ['mage', '#3a1f3f', '#1a0f20', RED], darkmech: ['mech', '#3a3f55', '#1f2233', RED],
     rex: ['lizard', '#4caf50', '#2e7d32', true], voidking: ['demon', '#4a1f6b', '#24103a'],
+    golem: ['brute', '#8a6fd8', '#4a2f90', '#5be7ff'],
   };
   function hm(key, stage = 0, custom) {
     const id = `hm:${key}:${stage}:${custom ? JSON.stringify(custom) : ''}`;
@@ -1186,6 +1280,24 @@ const ART = (() => {
     fin: (x, y, c) => `<path d="M${x - 6} ${y}L${x + 12} ${y - 14}L${x + 12} ${y + 10}Z" fill="${c}"/>`,
     stinger: (x, y) => `<path d="M${x - 4} ${y - 4}L${x + 12} ${y}L${x - 4} ${y + 4}Z" fill="${OL}"/>`,
   };
+  // villager accessories (hats, glasses, scarves) for the people in Red Panda's world
+  const ACC = {
+    glasses: o => `<circle cx="${o.ex1}" cy="${o.ey}" r="9" fill="#ffffff" fill-opacity=".25" stroke-width="2.6"/><circle cx="${o.ex2}" cy="${o.ey}" r="9" fill="#ffffff" fill-opacity=".25" stroke-width="2.6"/><path d="M${o.ex1 + 9} ${o.ey}H${o.ex2 - 9}" stroke-width="2.6"/>`,
+    bun: o => `<circle cx="50" cy="${o.T - 4}" r="11" fill="${o.s.hc || '#e4e0ee'}"/><path d="M40 ${o.T - 2}Q50 ${o.T - 12} 60 ${o.T - 2}" fill="none" stroke-width="2"/>`,
+    strawhat: o => `<path d="M28 ${o.T + 6}Q30 ${o.T - 20} 50 ${o.T - 20}Q70 ${o.T - 20} 72 ${o.T + 6}Z" fill="#f6d77a"/><ellipse cx="50" cy="${o.T + 6}" rx="38" ry="8" fill="#f6d77a"/><path d="M29 ${o.T}H71" stroke="#ff6b6b" stroke-width="5"/>`,
+    chefhat: o => `<rect x="34" y="${o.T - 10}" width="32" height="16" rx="3" fill="#fff"/><circle cx="38" cy="${o.T - 14}" r="10" fill="#fff"/><circle cx="50" cy="${o.T - 20}" r="12" fill="#fff"/><circle cx="62" cy="${o.T - 14}" r="10" fill="#fff"/>`,
+    firehat: o => `<path d="M24 ${o.T + 8}Q26 ${o.T - 22} 50 ${o.T - 22}Q74 ${o.T - 22} 76 ${o.T + 8}Z" fill="#e53935"/><ellipse cx="50" cy="${o.T + 8}" rx="36" ry="7" fill="#e53935"/><circle cx="50" cy="${o.T - 6}" r="7" fill="#ffd23f"/>`,
+    beanie: o => `<path d="M26 ${o.T + 10}Q26 ${o.T - 20} 50 ${o.T - 20}Q74 ${o.T - 20} 74 ${o.T + 10}Z" fill="${o.s.hc || '#5aa9ff'}"/><rect x="24" y="${o.T + 2}" width="52" height="11" rx="5" fill="#fff"/><circle cx="50" cy="${o.T - 22}" r="8" fill="#fff"/>`,
+    scarf: o => `<path d="M24 ${o.fy + 17}Q50 ${o.fy + 29} 76 ${o.fy + 17}V${o.fy + 26}Q50 ${o.fy + 38} 24 ${o.fy + 26}Z" fill="${o.s.sfc || '#ff6b6b'}"/><rect x="58" y="${o.fy + 26}" width="10" height="20" rx="3" fill="${o.s.sfc || '#ff6b6b'}"/>`,
+    antlers: () => `<path d="M38 26L30 8M33 16L22 12M62 26L70 8M67 16L78 12" fill="none" stroke="#8a5a2b" stroke-width="5" stroke-linecap="round"/>`,
+    tiara: o => `<path d="M37 ${o.T + 3}L39 ${o.T - 8}L45 ${o.T - 2}L50 ${o.T - 13}L55 ${o.T - 2}L61 ${o.T - 8}L63 ${o.T + 3}Z" fill="#ffd23f"/><circle cx="50" cy="${o.T - 2}" r="3.5" fill="#ff6fa8" stroke="none"/>`,
+    witchhat: o => `<path d="M30 ${o.T + 8}L56 ${o.T - 32}L70 ${o.T + 8}Z" fill="#7b4fd6"/><ellipse cx="50" cy="${o.T + 8}" rx="34" ry="7" fill="#7b4fd6"/><path d="M34 ${o.T + 1}H67" stroke="#ffd23f" stroke-width="5"/>`,
+    bowtie: o => `<path d="M50 ${o.fy + 22}L38 ${o.fy + 15}V${o.fy + 29}ZM50 ${o.fy + 22}L62 ${o.fy + 15}V${o.fy + 29}Z" fill="${o.s.btc || '#ff6b6b'}"/><circle cx="50" cy="${o.fy + 22}" r="4" fill="${o.s.btc || '#ff6b6b'}"/>`,
+    apron: o => `<path d="M34 ${o.fy + 22}H66V${o.fy + 40}Q50 ${o.fy + 46} 34 ${o.fy + 40}Z" fill="#fff6ec"/><rect x="44" y="${o.fy + 28}" width="12" height="8" rx="2" fill="#ffd6e7"/>`,
+    flowerhair: o => `<g transform="translate(66 ${o.T + 4})"><circle cx="0" cy="-6" r="5" fill="#ff9ad5"/><circle cx="6" cy="0" r="5" fill="#ff9ad5"/><circle cx="0" cy="6" r="5" fill="#ff9ad5"/><circle cx="-6" cy="0" r="5" fill="#ff9ad5"/><circle r="3.5" fill="#ffd23f"/></g>`,
+    book: o => `<rect x="36" y="${o.fy + 20}" width="28" height="20" rx="3" fill="#6fa8ff" transform="rotate(-8 50 ${o.fy + 30})"/><path d="M50 ${o.fy + 20}V${o.fy + 40}" transform="rotate(-8 50 ${o.fy + 30})"/>`,
+    mustache: o => `<path d="M${o.fx} ${o.fy + 7}C${o.fx - 6} ${o.fy + 3} ${o.fx - 14} ${o.fy + 6} ${o.fx - 14} ${o.fy + 11}C${o.fx - 8} ${o.fy + 10} ${o.fx - 4} ${o.fy + 10} ${o.fx} ${o.fy + 7}C${o.fx + 4} ${o.fy + 10} ${o.fx + 8} ${o.fy + 10} ${o.fx + 14} ${o.fy + 11}C${o.fx + 14} ${o.fy + 6} ${o.fx + 6} ${o.fy + 3} ${o.fx} ${o.fy + 7}Z" fill="#6b4226" stroke-width="2"/>`,
+  };
   function rpSVG(s, stage = 0, grumpy = false) {
     const sh = SHAPES[s.shape] || SHAPES.round; const [fx, fy] = sh.f;
     const c = s.c, a = s.a || '#ffc7dd', w = s.b || '#fff6ec';
@@ -1234,6 +1346,7 @@ const ART = (() => {
     if (ex.has('antenna')) front += `<path d="M42 ${T + 2}Q38 ${T - 10} 32 ${T - 14}M58 ${T + 2}Q62 ${T - 10} 68 ${T - 14}" fill="none" stroke="${OL}" stroke-width="3"/><circle cx="32" cy="${T - 14}" r="4" fill="${a}"/><circle cx="68" cy="${T - 14}" r="4" fill="${a}"/>`;
     if (ex.has('stem')) front += `<path d="M50 ${T + 2}Q48 ${T - 8} 56 ${T - 12}" stroke="#4caf50" stroke-width="5" fill="none" stroke-linecap="round"/>`;
     if (ex.has('flower')) front += `<circle cx="62" cy="${T + 2}" r="6" fill="#ff9ad5"/><circle cx="62" cy="${T + 2}" r="2.5" fill="#ffd23f" stroke="none"/>`;
+    for (const ac of s.acc || []) front += ACC[ac] ? ACC[ac]({ T, fx, fy, ex1, ex2, ey, c, a, s }) : '';
     if (ex.has('crown') || stage >= 2) front += `<path d="M36 ${T + 2}L36 ${T - 10}L43 ${T - 4}L50 ${T - 14}L57 ${T - 4}L64 ${T - 10}L64 ${T + 2}Z" fill="#ffd23f"/>`;
     else if (stage === 1) front += `<path d="M66 ${T - 2}l3 6 6 1-4.5 4 1 6.5-5.5-3-5.5 3 1-6.5-4.5-4 6-1z" fill="#ffd23f"/>`;
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -6 108 108"><g stroke="${OL}" stroke-width="3.5" stroke-linejoin="round">${back}${mid}${front}</g></svg>`;
@@ -1275,6 +1388,7 @@ const ART = (() => {
     frostking: { shape: 'round', c: '#cfeaff', b: '#ffffff', ears: 'bear', a: '#9fd3ff', x: ['crown', 'snow'] },
     whale: { shape: 'blob', c: '#6fa8ff', b: '#e3f0ff', tail: 'fin' },
     dragon: { shape: 'round', c: '#b48cff', b: '#ffe3f4', x: ['horns', 'wings', 'flame'], wc: '#ff9ad5', tail: 'curl' },
+    keeper: { shape: 'cube', c: '#ffe58a', b: '#fff6d6', x: ['crown', 'wings'], wc: '#fff3b0' },
   };
   function rp(key, stage = 0, grumpy = false, custom) {
     const id = `rp:${key}:${stage}:${grumpy ? 1 : 0}:${custom ? JSON.stringify(custom) : ''}`;
@@ -1319,10 +1433,341 @@ const ART = (() => {
     if (kind === 'it') return item(id, x);
     if (kind === 'rpi') return rpItem(id, x);
     if (kind === 'cu' && customResolver) return customResolver(id, stage);
+    if (extra[kind]) { const k = key; if (cache[k] === undefined) cache[k] = extra[kind](id, x) || null; return cache[k]; }
     return null;
   }
   const setCustomResolver = fn => { customResolver = fn; };
-  return { url, setCustomResolver, hm, rp, item, rpItem, HM_SPEC, RP_SPEC, HT, SHAPES };
+  const extra = {};
+  const register = (kind, fn) => { extra[kind] = fn; };
+  return { url, setCustomResolver, register, raster, pixelURL, rpSVG, hm, rp, item, rpItem, HM_SPEC, RP_SPEC, HT, SHAPES, IT, RPI, OL };
+})();
+
+/* Map art: scenery, buildings, townspeople, items and icons, drawn in code.
+   '@mp:<id>' = Hamstey Man's pixel style, '@ms:<id>' = Red Panda's soft style. An optional ':#hex' tints some pieces. */
+(() => {
+  const K = '#160d24', W = '#f4f6ff', GOLD = '#ffcf3f', STEEL = '#c9ced8', DARKS = '#5b6474', RED = '#ff3b3b', YEL = '#ffd23f', BROWN = '#8a5a2b', SKIN = '#f5c9a0', SKIN2 = '#d9a074';
+  /* ---------- pixel helpers ---------- */
+  const mirror = (ops, N) => ops.filter(Boolean).map(op => {
+    const [t, ...a] = op; const fx = x => N - 1 - x;
+    if (t === 'R' || t === 'X') return [t, N - a[0] - (a[2] || 1), a[1], ...a.slice(2)];
+    if (t === 'E') return [t, fx(a[0]), ...a.slice(1)];
+    if (t === 'L') return [t, fx(a[0]), a[1], fx(a[2]), ...a.slice(3)];
+    if (t === 'T') return [t, a[0].map(([x, y]) => [fx(x), y]), a[1]];
+    if (t === 'P') return [t, fx(a[0]), a[1], a[2]];
+    return op;
+  });
+  // raw tile (no outline): ops may use #rrggbbaa colors for soft overlays
+  function rawURL(N, ops, scale = 1) {
+    const g = ART.raster(N, ops);
+    const cv = document.createElement('canvas'); cv.width = N; cv.height = N;
+    const cx = cv.getContext('2d'); const img = cx.createImageData(N, N);
+    g.forEach((row, y) => row.forEach((c, x) => {
+      if (!c) return; const i = (y * N + x) * 4;
+      img.data[i] = parseInt(c.slice(1, 3), 16); img.data[i + 1] = parseInt(c.slice(3, 5), 16); img.data[i + 2] = parseInt(c.slice(5, 7), 16);
+      img.data[i + 3] = c.length > 7 ? parseInt(c.slice(7, 9), 16) : 255;
+    }));
+    cx.putImageData(img, 0, 0);
+    return cv.toDataURL('image/png');
+  }
+  const px = (ops, N = 16) => ART.pixelURL(N, ops.filter(Boolean));
+
+  /* ---------- pixel scenery (16 x 16) ---------- */
+  const P = {
+    oak: () => [['R', 7, 10, 3, 6, BROWN], ['E', 8, 6, 7, 6, '#3fa34d'], ['E', 5, 4, 2, 2, '#6fd35f'], ['E', 11, 7, 2, 1, '#2f8a3d'], ['P', 9, 3, '#6fd35f']],
+    bush: () => [['E', 8, 10, 7, 5, '#3f9a45'], ['E', 6, 8, 2, 2, '#5fc25f'], ['P', 5, 10, RED], ['P', 10, 8, RED], ['P', 9, 12, RED], ['P', 12, 11, RED]],
+    rock: c => [['E', 8, 10, 7, 5, c || '#8d93a3'], ['E', 6, 8, 3, 2, '#b5bac6'], ['L', 9, 9, 11, 12, '#5b6474']],
+    pine: () => [['R', 7, 13, 2, 3, BROWN], ['T', [[8, 0], [3, 8], [13, 8]], '#2e7d4f'], ['T', [[8, 3], [1, 13], [15, 13]], '#2a6e45'], ['P', 7, 5, '#4fae6f'], ['P', 6, 9, '#4fae6f']],
+    snowpine: () => [['R', 7, 13, 2, 3, BROWN], ['T', [[8, 0], [3, 8], [13, 8]], '#2e7d4f'], ['T', [[8, 3], [1, 13], [15, 13]], '#2a6e45'], ['T', [[8, 0], [6, 3], [10, 3]], W], ['R', 3, 8, 10, 1, W], ['R', 2, 12, 12, 1, W]],
+    shroom: () => [['R', 6, 9, 4, 7, '#f2e3c0'], ['E', 8, 7, 7, 4, '#c0392b'], ['P', 5, 6, W], ['E', 10, 5, 1, 1, W], ['P', 8, 8, W], ['P', 13, 7, W]],
+    volcano: () => [['T', [[8, 3], [0, 15], [15, 15]], '#5a2a1a'], ['T', [[8, 3], [6, 7], [10, 7]], '#ff7a2f'], ['L', 8, 7, 7, 11, '#ff7a2f'], ['P', 8, 1, '#ffd23f'], ['P', 6, 0, '#ff7a2f']],
+    spike: () => [['T', [[4, 15], [8, 1], [12, 15]], '#3a2240'], ['L', 8, 3, 8, 13, '#7a4a8a'], ['T', [[11, 15], [13, 8], [15, 15]], '#3a2240']],
+    lavarock: () => [['E', 8, 10, 7, 5, '#4a2a22'], ['L', 4, 10, 8, 9, '#ff7a2f'], ['L', 8, 9, 11, 13, '#ff7a2f'], ['P', 6, 7, '#7a4a3a']],
+    icerock: () => [['E', 8, 10, 7, 5, '#bfe3ff'], ['E', 6, 8, 2, 2, W], ['L', 9, 8, 12, 12, '#7fb8e8'], ['T', [[3, 11], [5, 4], [7, 11]], '#d8f0ff']],
+    palm: () => [['L', 8, 15, 9, 6, '#a0703a', 2], ['T', [[8, 5], [0, 4], [2, 8]], '#3fae4a'], ['T', [[9, 5], [15, 3], [14, 8]], '#3fae4a'], ['T', [[8, 5], [5, 0], [11, 1]], '#4cbf55'], ['P', 8, 6, BROWN], ['P', 10, 6, BROWN]],
+    searock: () => [['E', 8, 10, 7, 5, '#7d8a8f'], ['E', 6, 8, 3, 2, '#a9b8bd'], ['P', 11, 11, W], ['P', 12, 12, W], ['P', 4, 12, '#e8a5b0']],
+    brick: () => [['R', 0, 2, 16, 13, '#6b5a8a'], ['L', 0, 6, 15, 6, '#4a3d63'], ['L', 0, 10, 15, 10, '#4a3d63'], ['L', 5, 2, 5, 6, '#4a3d63'], ['L', 11, 2, 11, 6, '#4a3d63'], ['L', 2, 6, 2, 10, '#4a3d63'], ['L', 8, 6, 8, 10, '#4a3d63'], ['L', 13, 6, 13, 10, '#4a3d63'], ['L', 5, 10, 5, 14, '#4a3d63'], ['L', 11, 10, 11, 14, '#4a3d63']],
+    statue: () => [['R', 4, 12, 8, 4, STEEL], ['R', 6, 7, 4, 5, '#9aa3b5'], ['E', 8, 4, 3, 3, '#9aa3b5'], ['L', 10, 8, 13, 2, '#9aa3b5'], ['P', 7, 4, DARKS], ['P', 9, 4, DARKS]],
+    deadtree: () => [['L', 8, 15, 8, 4, '#5a3a22', 2], ['L', 8, 8, 4, 4, '#5a3a22'], ['L', 9, 6, 13, 2, '#5a3a22'], ['L', 4, 4, 2, 5, '#5a3a22']],
+    // decorations (small, sit on the ground)
+    flower: c => [['L', 8, 9, 8, 14, '#3fae4a'], ['E', 8, 6, 3, 3, c || YEL], ['P', 8, 6, '#ff9f1c'], ['P', 6, 12, '#3fae4a']],
+    clover: () => [['E', 6, 8, 2, 2, '#4caf50'], ['E', 10, 8, 2, 2, '#4caf50'], ['E', 8, 5, 2, 2, '#4caf50'], ['L', 8, 9, 9, 14, '#2e7d32']],
+    leaf: () => [['T', [[3, 12], [12, 3], [13, 9]], '#d9822b'], ['L', 4, 12, 12, 4, '#8a4a1a']],
+    fern: () => [['L', 8, 15, 8, 4, '#2e7d32'], ['L', 8, 6, 4, 4, '#4caf50'], ['L', 8, 6, 12, 4, '#4caf50'], ['L', 8, 9, 3, 7, '#4caf50'], ['L', 8, 9, 13, 7, '#4caf50'], ['L', 8, 12, 4, 10, '#4caf50'], ['L', 8, 12, 12, 10, '#4caf50']],
+    minishroom: () => [['R', 7, 10, 2, 4, '#f2e3c0'], ['E', 8, 9, 3, 2, '#c0392b'], ['P', 7, 8, W]],
+    ember: () => [['T', [[8, 3], [4, 12], [12, 12]], '#ff7a2f'], ['T', [[8, 7], [6, 12], [10, 12]], '#ffd23f']],
+    sparkle: c => [['L', 8, 2, 8, 14, c || '#fff3b0'], ['L', 2, 8, 14, 8, c || '#fff3b0'], ['R', 7, 7, 3, 3, W]],
+    pebble: () => [['E', 6, 11, 2, 1, '#9aa3b5'], ['E', 11, 9, 2, 2, '#7d8496']],
+    snowflake: () => [['L', 8, 2, 8, 14, W], ['L', 3, 5, 13, 11, W], ['L', 3, 11, 13, 5, W], ['P', 8, 8, '#bfe3ff']],
+    snowpile: () => [['E', 8, 12, 6, 3, W], ['E', 6, 10, 3, 2, W]],
+    shell: () => [['T', [[8, 4], [2, 13], [14, 13]], '#ffb38a'], ['L', 8, 5, 5, 12, '#d9825a'], ['L', 8, 5, 8, 12, '#d9825a'], ['L', 8, 5, 11, 12, '#d9825a']],
+    bubble: () => [['E', 7, 9, 3, 3, '#bfe9ff'], ['P', 6, 8, W], ['E', 12, 5, 1, 1, '#bfe9ff']],
+    coral: () => [['L', 8, 15, 8, 6, '#ff6f91', 2], ['L', 8, 10, 4, 5, '#ff6f91', 2], ['L', 8, 8, 12, 4, '#ff6f91', 2]],
+    candle: () => [['R', 6, 7, 4, 8, '#f2e3c0'], ['L', 8, 5, 8, 6, K], ['E', 8, 3, 1, 2, '#ffd23f']],
+    star: c => [['T', [[8, 0], [10, 5], [16, 6], [11, 10], [13, 16], [8, 12], [3, 16], [5, 10], [0, 6], [6, 5]], c || YEL], ['P', 7, 6, W]],
+    // buildings and things on the map
+    chest: () => [['R', 1, 7, 14, 8, '#a0703a'], ['R', 1, 3, 14, 5, '#8a5a2b'], ['R', 1, 7, 14, 1, GOLD], ['R', 3, 3, 1, 12, GOLD], ['R', 12, 3, 1, 12, GOLD], ['R', 7, 6, 2, 3, GOLD], ['P', 7, 7, K]],
+    gate: () => [['T', [[8, 0], [5, 6], [8, 15], [11, 6]], '#b06cff'], ['T', [[3, 4], [1, 9], [3, 15], [5, 9]], '#8a4fd8'], ['T', [[13, 4], [11, 9], [13, 15], [15, 9]], '#8a4fd8'], ['L', 7, 3, 7, 9, '#e0c4ff'], ['P', 3, 7, '#e0c4ff'], ['P', 13, 7, '#e0c4ff']],
+    exit: () => [['T', [[1, 5], [8, 5], [8, 1], [15, 8], [8, 15], [8, 11], [1, 11]], YEL], ['L', 2, 7, 8, 7, '#fff3b0']],
+    lock: () => [['L', 5, 7, 5, 3, STEEL, 2], ['L', 10, 7, 10, 3, STEEL, 2], ['R', 5, 1, 7, 2, STEEL], ['R', 3, 7, 10, 8, GOLD], ['P', 8, 10, K], ['P', 8, 11, K]],
+    crown: () => [['R', 2, 8, 12, 6, GOLD], ['T', [[2, 8], [2, 2], [6, 8]], GOLD], ['T', [[6, 8], [8, 1], [10, 8]], GOLD], ['T', [[10, 8], [14, 2], [14, 8]], GOLD], ['P', 8, 10, RED], ['P', 4, 11, '#3f7fd9'], ['P', 12, 11, '#4caf50']],
+    // quest things
+    egg: () => [['E', 8, 9, 5, 6, '#f4efe0'], ['P', 6, 7, '#c8b48a'], ['P', 10, 11, '#c8b48a'], ['P', 6, 6, W]],
+    firecrystal: c => [['T', [[8, 0], [3, 8], [8, 15], [13, 8]], c || '#ff7a2f'], ['T', [[8, 2], [6, 8], [8, 6]], '#ffd23f']],
+    iceshard: () => [['T', [[8, 0], [4, 8], [8, 15], [12, 8]], '#7fd6ff'], ['T', [[8, 2], [6, 8], [8, 6]], W]],
+    scroll: () => [['R', 3, 3, 10, 10, '#f2e3c0'], ['E', 3, 8, 1, 5, '#c8b48a'], ['E', 12, 8, 1, 5, '#c8b48a'], ['L', 5, 5, 10, 5, BROWN], ['L', 5, 8, 10, 8, BROWN], ['L', 5, 11, 8, 11, BROWN]],
+    // area banners
+    wheat: () => [['L', 4, 15, 6, 4, '#c79a2a'], ['L', 8, 15, 8, 2, '#c79a2a'], ['L', 12, 15, 10, 4, '#c79a2a'], ['E', 6, 4, 1, 3, '#f2c94c'], ['E', 8, 3, 1, 3, '#f2c94c'], ['E', 10, 4, 1, 3, '#f2c94c']],
+    wave: () => [['E', 8, 12, 7, 3, '#2a7fd4'], ['E', 10, 7, 4, 4, '#2a7fd4'], ['E', 9, 8, 2, 2, '#7fc8ff'], ['P', 13, 4, W], ['P', 14, 6, W], ['P', 4, 10, W]],
+    castle: () => [['R', 2, 6, 12, 9, '#8a8fa3'], ['R', 2, 4, 2, 2, '#8a8fa3'], ['R', 7, 4, 2, 2, '#8a8fa3'], ['R', 12, 4, 2, 2, '#8a8fa3'], ['R', 6, 10, 4, 5, K], ['L', 8, 0, 8, 4, K], ['R', 9, 0, 4, 2, RED]],
+    icecrystal: () => [['T', [[8, 0], [4, 7], [8, 15], [12, 7]], '#7fd6ff'], ['T', [[3, 6], [1, 10], [3, 15], [5, 10]], '#bfe9ff'], ['L', 7, 3, 7, 10, W]],
+    // elements
+    fire: () => [['T', [[8, 0], [2, 10], [4, 15], [12, 15], [14, 10]], '#ff5a2a'], ['T', [[8, 6], [5, 12], [7, 15], [10, 15], [11, 12]], '#ffd23f'], ['P', 5, 5, '#ff9f43']],
+    ice: () => [['L', 8, 1, 8, 15, '#7fd6ff', 2], ['L', 2, 4, 14, 12, '#7fd6ff', 2], ['L', 2, 12, 14, 4, '#7fd6ff', 2], ['R', 7, 7, 3, 3, W]],
+    zap: () => [['T', [[10, 0], [3, 9], [8, 9], [5, 16], [13, 6], [8, 6]], YEL], ['L', 9, 2, 6, 8, '#fff3b0']],
+    // interface icons
+    bag: () => [['E', 8, 10, 6, 5, '#a0703a'], ['R', 3, 6, 10, 6, '#a0703a'], ['R', 5, 2, 6, 2, '#8a5a2b'], ['L', 5, 2, 4, 6, '#8a5a2b'], ['L', 10, 2, 11, 6, '#8a5a2b'], ['R', 6, 8, 4, 3, GOLD]],
+    moon: () => [['E', 8, 8, 6, 6, '#ffe58a'], ['E', 11, 6, 5, 5, null], ['X', 9, 2, 6, 3], ['P', 4, 9, '#f2c94c']],
+    gear: () => [['E', 8, 8, 5, 5, STEEL], ['R', 7, 0, 3, 16, STEEL], ['R', 0, 7, 16, 3, STEEL], ['L', 2, 2, 13, 13, STEEL, 2], ['L', 13, 2, 2, 13, STEEL, 2], ['E', 8, 8, 2, 2, DARKS]],
+    sound: () => [['R', 1, 5, 4, 6, STEEL], ['T', [[4, 5], [9, 1], [9, 15], [4, 11]], STEEL], ['L', 11, 5, 11, 10, YEL], ['L', 13, 3, 13, 12, YEL]],
+    mute: () => [['R', 1, 5, 4, 6, STEEL], ['T', [[4, 5], [9, 1], [9, 15], [4, 11]], STEEL], ['L', 11, 5, 15, 10, RED, 2], ['L', 11, 10, 15, 5, RED, 2]],
+    home: () => [['T', [[8, 1], [0, 8], [16, 8]], '#c0392b'], ['R', 2, 8, 12, 7, '#e8d4b0'], ['R', 6, 10, 4, 5, '#8a5a2b'], ['R', 11, 9, 2, 2, '#7fd6ff']],
+    bulb: () => [['E', 8, 6, 5, 5, YEL], ['R', 6, 11, 4, 3, STEEL], ['P', 6, 4, W], ['L', 7, 14, 8, 14, DARKS]],
+    hammer: () => [['L', 3, 14, 10, 7, BROWN, 2], ['T', [[8, 2], [14, 8], [12, 10], [6, 4]], STEEL]],
+    dice: () => [['R', 2, 2, 12, 12, W], ['P', 5, 5, K], ['P', 8, 8, K], ['P', 11, 11, K], ['P', 11, 5, K], ['P', 5, 11, K]],
+    heart: c => [['E', 5, 6, 4, 4, c || '#ff4d6d'], ['E', 11, 6, 4, 4, c || '#ff4d6d'], ['T', [[1, 7], [15, 7], [8, 15]], c || '#ff4d6d'], ['P', 4, 4, W]],
+    trophy: () => [['R', 4, 1, 8, 7, GOLD], ['E', 8, 7, 4, 3, GOLD], ['R', 7, 10, 2, 3, GOLD], ['R', 4, 13, 8, 2, BROWN], ['L', 2, 2, 2, 5, GOLD], ['L', 13, 2, 13, 5, GOLD], ['P', 6, 3, W]],
+    party: () => [['T', [[1, 15], [5, 4], [12, 11]], '#b06cff'], ['P', 9, 3, RED], ['P', 12, 2, YEL], ['P', 13, 6, '#4caf50'], ['P', 14, 9, '#3f7fd9'], ['P', 10, 6, '#ff9ad5'], ['L', 3, 12, 7, 8, YEL]],
+    question: () => [['E', 8, 8, 7, 7, '#3f7fd9'], ['L', 6, 5, 9, 4, W], ['L', 10, 5, 10, 7, W], ['L', 9, 8, 8, 9, W], ['P', 8, 12, W]],
+    pencil: () => [['L', 3, 13, 12, 4, '#ffd23f', 2], ['T', [[1, 15], [2, 11], [5, 14]], '#f2c9a0'], ['L', 12, 3, 14, 5, '#ff8fa3', 2]],
+    shop: () => [['R', 2, 7, 12, 8, '#c8925a'], ['R', 1, 3, 14, 4, RED], ['R', 3, 3, 2, 4, W], ['R', 7, 3, 2, 4, W], ['R', 11, 3, 2, 4, W], ['R', 6, 10, 4, 5, '#6b3f1f']],
+    sword: () => [['L', 4, 12, 13, 3, W, 2], ['L', 2, 10, 6, 14, GOLD, 2], ['L', 1, 14, 3, 12, BROWN, 2]],
+    shield: () => [['T', [[2, 2], [14, 2], [14, 8], [8, 15], [2, 8]], '#3f7fd9'], ['L', 8, 3, 8, 13, GOLD], ['L', 3, 7, 13, 7, GOLD]],
+    boom: () => [['T', [[8, 0], [10, 5], [16, 4], [12, 8], [16, 13], [10, 11], [8, 16], [6, 11], [0, 13], [4, 8], [0, 4], [6, 5]], '#ff7a2f'], ['E', 8, 8, 2, 2, YEL]],
+    crystal: () => [['T', [[8, 0], [3, 8], [8, 15], [13, 8]], '#4fc3ff'], ['L', 7, 3, 7, 10, W]],
+    book: () => [['R', 2, 3, 12, 11, '#8e44ad'], ['R', 4, 4, 9, 9, '#f4efe0'], ['L', 8, 4, 8, 12, '#c8b48a'], ['L', 5, 6, 7, 6, DARKS], ['L', 9, 6, 11, 6, DARKS]],
+    bed: () => [['R', 1, 8, 14, 5, '#c0392b'], ['R', 1, 6, 4, 3, W], ['R', 1, 4, 2, 11, BROWN], ['R', 13, 7, 2, 8, BROWN]],
+  };
+  // ground and water textures (no outline, see-through specks)
+  const GROUND = {
+    meadow: [['P', 3, 4, '#ffffff22'], ['P', 4, 3, '#ffffff22'], ['P', 11, 10, '#00000026'], ['P', 12, 11, '#00000026'], ['P', 10, 11, '#00000026'], ['P', 7, 13, '#00000018'], ['P', 13, 2, '#00000018']],
+    forest: [['P', 3, 4, '#00000030'], ['P', 11, 10, '#00000030'], ['P', 12, 11, '#00000022'], ['P', 6, 12, '#ffffff14'], ['P', 13, 3, '#00000022']],
+    lava: [['P', 4, 4, '#00000030'], ['P', 10, 9, '#ff7a2f40'], ['P', 12, 12, '#00000030'], ['P', 6, 13, '#ffffff12']],
+    snow: [['P', 3, 4, '#7fb8e833'], ['P', 11, 10, '#7fb8e833'], ['P', 12, 11, '#ffffff66'], ['P', 6, 12, '#7fb8e826']],
+    sea: [['P', 3, 4, '#00000022'], ['P', 11, 10, '#ffffff33'], ['P', 12, 11, '#00000022'], ['P', 7, 13, '#ffffff26']],
+    castle: [['L', 0, 0, 15, 0, '#00000026'], ['L', 0, 0, 0, 15, '#00000026'], ['L', 0, 8, 15, 8, '#0000001a'], ['L', 8, 0, 8, 7, '#0000001a'], ['L', 4, 8, 4, 15, '#0000001a']],
+  };
+  const WATER = {
+    lava: [['R', 0, 0, 16, 16, '#d63a0a'], ['L', 1, 4, 5, 4, '#ff7b1f'], ['L', 9, 10, 14, 10, '#ff7b1f'], ['E', 11, 4, 1, 1, '#ffd23f'], ['E', 4, 12, 1, 1, '#ffd23f'], ['P', 7, 7, '#ffd23f']],
+    castle: [['R', 0, 0, 16, 16, '#241a3d'], ['L', 1, 4, 5, 4, '#4a3a75'], ['L', 9, 10, 14, 10, '#4a3a75'], ['P', 12, 3, '#b06cff']],
+    water: c => [['R', 0, 0, 16, 16, c], ['L', 1, 4, 3, 3, '#ffffff55'], ['L', 4, 3, 6, 4, '#ffffff55'], ['L', 9, 10, 11, 9, '#ffffff55'], ['L', 12, 9, 14, 10, '#ffffff55'], ['P', 7, 13, '#ffffff33']],
+  };
+  const WATER_C = { meadow: '#2156b8', forest: '#3e3f1e', snow: '#6fa8dc', sea: '#0b4b80' };
+
+  /* ---------- pixel townspeople (24 x 24, facing you) ---------- */
+  function person(o) {
+    const hair = o.hair || '#6b3f1f', top = o.top || '#3f7fd9', legs = o.legs || '#4a4a6a', skin = o.skin || SKIN;
+    const ops = [];
+    if (o.cape) ops.push(['R', 6, 12, 13, 11, o.cape]);
+    if (o.long) ops.push(['R', 6, 6, 13, 9, hair]);
+    if (o.robe) ops.push(['T', [[8, 13], [16, 13], [19, 23], [5, 23]], top]);
+    else { ops.push(['R', 9, 19, 3, 4, legs], ['R', 13, 19, 3, 4, legs], ['R', 8, 22, 4, 2, K], ['R', 13, 22, 4, 2, K], ['R', 8, 13, 9, 7, top]); }
+    if (o.belt) ops.push(['R', 8, 18, 9, 1, o.belt]);
+    if (o.apron) ops.push(['R', 9, 15, 7, 6, '#e8e0d0']);
+    if (o.armor) ops.push(['R', 9, 14, 7, 4, STEEL], ['P', 12, 15, GOLD]);
+    if (o.plaid) ops.push(['L', 8, 15, 16, 15, '#7a1f1f'], ['L', 10, 13, 10, 19, '#7a1f1f'], ['L', 14, 13, 14, 19, '#7a1f1f']);
+    ops.push(['R', 6, 13, 2, 6, o.arms || top], ['R', 17, 13, 2, 6, o.arms || top], ['R', 6, 19, 2, 1, skin], ['R', 17, 19, 2, 1, skin]);
+    if (o.hood) ops.push(['E', 12, 8, 7, 7, o.hood]);
+    ops.push(['E', 12, 8, 5, 5, skin]);
+    if (!o.bald && !o.hood && !o.hatOnly) ops.push(['R', 7, 3, 11, 3, hair], ['R', 7, 5, 2, 4, hair], ['R', 16, 5, 2, 4, hair]);
+    if (o.bald) ops.push(['R', 7, 6, 2, 3, hair], ['R', 16, 6, 2, 3, hair]);
+    ops.push(['P', 10, 8, K], ['P', 14, 8, K], ['P', 9, 10, '#ff9fb0'], ['P', 15, 10, '#ff9fb0']);
+    if (o.beard) ops.push(['E', 12, 12, 4, 3, o.beard], ['R', 8, 10, 9, 2, o.beard], ['P', 12, 10, skin]);
+    if (o.stache) ops.push(['R', 10, 10, 5, 1, o.stache]);
+    if (o.glasses) ops.push(['R', 9, 7, 3, 3, '#7fd6ff'], ['R', 13, 7, 3, 3, '#7fd6ff'], ['P', 10, 8, K], ['P', 14, 8, K], ['L', 12, 8, 12, 8, K]);
+    if (o.goggles) ops.push(['R', 7, 5, 11, 2, '#7a5a2a'], ['E', 10, 6, 1, 1, '#7fd6ff'], ['E', 14, 6, 1, 1, '#7fd6ff']);
+    const hats = {
+      wizard: () => [['T', [[12, 0], [6, 5], [18, 5]], o.hat2 || '#5a3fa0'], ['R', 4, 4, 17, 2, o.hat2 || '#5a3fa0'], ['P', 12, 2, YEL]],
+      crown: () => [['R', 8, 2, 9, 2, GOLD], ['P', 8, 1, GOLD], ['P', 12, 0, GOLD], ['P', 16, 1, GOLD], ['P', 12, 2, RED]],
+      helm: () => [['E', 12, 5, 6, 3, STEEL], ['R', 6, 5, 13, 2, STEEL], ['R', 11, 6, 3, 3, STEEL]],
+      plume: () => [['E', 12, 5, 6, 3, STEEL], ['R', 6, 5, 13, 2, STEEL], ['R', 11, 6, 3, 3, STEEL], ['R', 11, 0, 3, 3, o.hat2 || RED]],
+      straw: () => [['R', 3, 4, 19, 2, '#e8c86a'], ['R', 8, 1, 9, 4, '#e8c86a'], ['R', 8, 4, 9, 1, RED]],
+      miner: () => [['E', 12, 4, 6, 3, YEL], ['R', 6, 4, 13, 2, YEL], ['E', 12, 3, 1, 1, W]],
+      pirate: () => [['T', [[4, 5], [20, 5], [16, 0], [8, 0]], K], ['P', 12, 2, W]],
+      beanie: () => [['E', 12, 4, 6, 3, o.hat2 || RED], ['R', 6, 5, 13, 2, o.hat2 || RED], ['E', 12, 0, 1, 1, W]],
+      dive: () => [['E', 12, 8, 7, 7, '#c9a227'], ['E', 12, 8, 4, 3, '#7fd6ff'], ['P', 10, 8, K], ['P', 14, 8, K], ['P', 11, 7, W]],
+    };
+    if (o.hat && hats[o.hat]) ops.push(...hats[o.hat]());
+    const items = {
+      staff: () => [['L', 21, 4, 21, 22, BROWN, 2], ['E', 21, 3, 2, 2, o.gem || '#5be7ff']],
+      spear: () => [['L', 21, 2, 21, 22, BROWN], ['T', [[21, 0], [19, 4], [23, 4]], STEEL]],
+      bow: () => [['L', 20, 6, 22, 12, BROWN], ['L', 22, 12, 20, 18, BROWN], ['L', 20, 6, 20, 18, W]],
+      axe: () => [['L', 21, 7, 21, 22, BROWN, 2], ['T', [[22, 6], [23, 4], [23, 12], [22, 10]], STEEL], ['R', 22, 6, 1, 5, STEEL]],
+      pick: () => [['L', 21, 8, 21, 22, BROWN, 2], ['L', 17, 8, 23, 7, STEEL, 2]],
+      book: () => [['R', 18, 14, 5, 6, '#8e44ad'], ['R', 19, 15, 3, 4, '#f4efe0']],
+      trident: () => [['L', 21, 4, 21, 22, GOLD], ['L', 19, 1, 19, 5, GOLD], ['L', 23, 1, 23, 5, GOLD], ['L', 21, 0, 21, 4, GOLD], ['R', 19, 5, 5, 1, GOLD]],
+      hammer: () => [['L', 21, 10, 21, 22, BROWN, 2], ['R', 19, 7, 6, 4, DARKS]],
+      flask: () => [['R', 20, 12, 2, 3, STEEL], ['E', 21, 17, 2, 2, '#6cff9f']],
+      sword: () => [['L', 21, 3, 21, 17, W, 2], ['R', 19, 17, 5, 1, GOLD], ['R', 21, 18, 1, 3, BROWN]],
+      mug: () => [['R', 19, 15, 4, 5, '#c8925a'], ['R', 19, 14, 4, 1, W], ['P', 23, 17, '#c8925a']],
+    };
+    if (o.item && items[o.item]) ops.push(...items[o.item]());
+    return ops;
+  }
+  const owl = () => [['E', 12, 14, 8, 9, '#8a6a4a'], ['E', 12, 17, 5, 5, '#d9c2a0'], ['T', [[5, 6], [7, 1], [9, 6]], '#8a6a4a'], ['T', [[15, 6], [17, 1], [19, 6]], '#8a6a4a'],
+    ['E', 9, 10, 3, 3, W], ['E', 15, 10, 3, 3, W], ['E', 9, 10, 1, 1, K], ['E', 15, 10, 1, 1, K], ['T', [[11, 12], [13, 12], [12, 15]], '#ff9f1c'],
+    ['R', 6, 8, 12, 1, '#3f2a1a'], ['R', 8, 3, 8, 2, '#5a3fa0'], ['L', 9, 22, 9, 23, '#ff9f1c'], ['L', 15, 22, 15, 23, '#ff9f1c']];
+  const PEOPLE = {
+    rowan: { robe: 1, top: '#6f7f9a', hair: '#e8e8f0', bald: 1, beard: '#f4f6ff', item: 'staff' },
+    gil: { hat: 'straw', hatOnly: 1, top: '#c0392b', legs: '#3f6fb0', apron: 0, beard: '#8a5a2b', item: 'pick' },
+    brom: { hat: 'helm', hatOnly: 1, top: '#b0432a', armor: 1, legs: '#5b6474', item: 'spear', stache: '#6b3f1f' },
+    lyra: { hood: '#2e7d4f', top: '#3f9a45', legs: '#5a4632', item: 'bow', skin: '#f8d8b8' },
+    oz: { hat: 'wizard', hat2: '#7a5a2a', hatOnly: 1, robe: 1, top: '#8a6a4a', beard: '#c9ced8', item: 'staff', gem: '#6cff9f' },
+    hal: { top: '#c0392b', plaid: 1, legs: '#3f4a6a', hair: '#6b3f1f', beard: '#6b3f1f', item: 'axe' },
+    dax: { hat: 'miner', hatOnly: 1, top: '#7d8496', legs: '#4a4a6a', beard: '#2b2b3a', item: 'pick', belt: BROWN },
+    vee: { goggles: 1, long: 1, hair: '#e8742a', top: '#8e44ad', legs: '#4a2a5a', item: 'flask' },
+    rhea: { hat: 'plume', hatOnly: 1, long: 1, hair: '#c0392b', top: '#9aa3b5', armor: 1, legs: '#5b6474', item: 'sword' },
+    finn: { glasses: 1, robe: 1, top: '#2f5fa8', hair: '#8a5a2b', item: 'book' },
+    bjorn: { hood: '#d9c2a0', top: '#8a5a2b', legs: '#5a4632', beard: '#c0532a', item: 'bow' },
+    triton: { hat: 'crown', long: 1, hair: '#2ab3a0', top: '#2a7fd4', legs: '#2a6e8a', beard: '#2ab3a0', item: 'trident', skin: '#cfe9e0' },
+    salt: { hat: 'pirate', hatOnly: 1, top: '#b0232a', legs: '#2b2b3a', beard: '#2b2b3a', belt: GOLD, item: 'sword' },
+    kai: { hat: 'dive', hatOnly: 1, top: '#ffcf3f', legs: '#ffcf3f', arms: '#ffcf3f' },
+    aldric: { hat: 'crown', hair: '#f2c94c', top: W, legs: '#3f7fd9', cape: '#3f5fc0', item: 'sword' },
+    mira: { hat: 'crown', long: 1, hair: '#6b3f1f', robe: 1, top: '#8e44ad', item: 'staff', gem: '#ff6fa8' },
+    royal: { hat: 'plume', hat2: GOLD, hatOnly: 1, top: '#c0392b', armor: 1, legs: '#2b2b3a', item: 'spear' },
+    doran: { bald: 1, hair: '#2b2b3a', beard: '#2b2b3a', top: '#7a4b2a', apron: 1, legs: '#3a3a4a', item: 'hammer', skin: SKIN2 },
+    inn: { hair: '#8a5a2b', stache: '#6b3f1f', top: '#4caf50', apron: 1, legs: '#5a4632', item: 'mug' },
+  };
+  function pixelArt(id, color) {
+    if (id.startsWith('p-')) { const k = id.slice(2); if (k === 'owl') return px(owl(), 24); return PEOPLE[k] ? px(person(PEOPLE[k]), 24) : null; }
+    if (id === 'shop') return px(shopOps(), 24);
+    if (id === 'inn') return px(innOps(), 24);
+    if (id.startsWith('g-')) return rawURL(16, GROUND[id.slice(2)] || GROUND.meadow);
+    if (id.startsWith('w-')) { const b = id.slice(2); return rawURL(16, WATER[b] || WATER.water(WATER_C[b] || '#2156b8')); }
+    if (id === 'exitl') return px(mirror(P.exit(), 16));
+    if (id === 'moon') return px([['E', 8, 8, 6, 6, '#ffe58a'], ['X', 9, 1, 7, 5], ['X', 11, 6, 5, 4], ['X', 12, 10, 4, 1]]);
+    const f = P[id]; return f ? px(f(color)) : null;
+  }
+  const shopOps = () => [['R', 2, 15, 20, 8, '#a0703a'], ['R', 1, 14, 22, 2, '#c8925a'], ['L', 3, 8, 3, 14, BROWN, 2], ['L', 20, 8, 20, 14, BROWN, 2],
+    ...[0, 1, 2, 3, 4].map(i => ['R', 2 + i * 4, 6, 4, 4, i % 2 ? W : RED]), ['T', [[2, 10], [22, 10], [20, 12], [4, 12]], RED],
+    ['E', 7, 12, 2, 2, '#ff4d6d'], ['L', 13, 9, 17, 13, STEEL, 2], ['R', 8, 0, 8, 5, '#e8c86a'], ['E', 12, 2, 2, 2, GOLD], ['R', 9, 18, 6, 3, '#6b3f1f']];
+  const innOps = () => [['R', 3, 11, 18, 12, '#c8925a'], ['T', [[0, 12], [12, 2], [24, 12]], '#b0432a'], ['R', 16, 3, 3, 6, DARKS], ['R', 10, 16, 4, 7, '#6b3f1f'],
+    ['R', 5, 14, 3, 3, '#ffd23f'], ['R', 16, 14, 3, 3, '#ffd23f'], ['L', 2, 12, 22, 12, '#7a2a1a'], ['P', 13, 19, GOLD]];
+
+  /* ---------- soft style (SVG, 100 x 100) ---------- */
+  const OL = ART.OL;
+  const svg = (body, vb = '0 0 100 100', sw = 4) => 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb}"><g stroke="${OL}" stroke-width="${sw}" stroke-linejoin="round" stroke-linecap="round">${body}</g></svg>`);
+  const S = {
+    tree: c => `<rect x="42" y="58" width="16" height="34" rx="6" fill="#b07a52"/><circle cx="50" cy="40" r="32" fill="${c || '#7ccf5a'}"/><circle cx="36" cy="30" r="9" fill="#fff" opacity=".35" stroke="none"/>`,
+    blossom: () => `<rect x="42" y="58" width="16" height="34" rx="6" fill="#b07a52"/><circle cx="50" cy="40" r="32" fill="#ffc2df"/><circle cx="34" cy="34" r="5" fill="#fff" stroke="none"/><circle cx="60" cy="26" r="5" fill="#fff" stroke="none"/><circle cx="62" cy="50" r="5" fill="#fff" stroke="none"/><circle cx="42" cy="54" r="4" fill="#ff8fc0" stroke="none"/>`,
+    pine: c => `<rect x="44" y="72" width="12" height="22" rx="4" fill="#b07a52"/><path d="M50 6L82 50H64L88 78H12L36 50H18Z" fill="${c || '#5cbf6a'}"/>`,
+    snowpine: () => `<rect x="44" y="72" width="12" height="22" rx="4" fill="#b07a52"/><path d="M50 6L82 50H64L88 78H12L36 50H18Z" fill="#6fc28a"/><path d="M50 6L66 28Q50 34 34 28Z" fill="#fff"/><path d="M28 50Q50 58 72 50" fill="none" stroke="#fff" stroke-width="6"/>`,
+    rock: c => `<path d="M14 82C8 60 26 34 48 32C72 30 92 52 86 82Z" fill="${c || '#c5c3d6'}"/><ellipse cx="38" cy="50" rx="9" ry="5" fill="#fff" opacity=".5" stroke="none"/>`,
+    bush: () => `<path d="M10 84C6 64 22 50 34 56C38 38 64 36 68 54C82 48 96 64 90 84Z" fill="#6fc95a"/><circle cx="34" cy="66" r="6" fill="#ff8fc0"/><circle cx="62" cy="58" r="6" fill="#ffd23f"/><circle cx="72" cy="74" r="6" fill="#ff8fc0"/>`,
+    volcano: () => `<path d="M8 90L38 28H62L92 90Z" fill="#c9876a"/><path d="M38 28Q44 40 50 34Q56 46 62 28Z" fill="#ff8a4f"/><circle cx="50" cy="14" r="7" fill="#ffd23f" stroke="none" opacity=".8"/>`,
+    lavarock: () => `<path d="M14 82C8 60 26 34 48 32C72 30 92 52 86 82Z" fill="#a8786a"/><path d="M30 62L44 56L52 66" fill="none" stroke="#ff8a4f" stroke-width="5"/>`,
+    iceblock: () => `<rect x="16" y="28" width="68" height="60" rx="14" fill="#cfeeff"/><path d="M28 40L40 52" stroke="#fff" stroke-width="6"/>`,
+    palm: () => `<path d="M46 92Q50 60 56 38" fill="none" stroke="#c49a6c" stroke-width="10"/><path d="M56 38Q30 18 10 34Q34 30 56 38Z" fill="#6fc95a"/><path d="M56 38Q80 14 94 32Q72 30 56 38Z" fill="#6fc95a"/><path d="M56 38Q52 10 70 6Q62 24 56 38Z" fill="#7ad86a"/><circle cx="54" cy="42" r="5" fill="#a0703a"/><circle cx="62" cy="42" r="5" fill="#a0703a"/>`,
+    brick: () => `<rect x="4" y="12" width="92" height="80" rx="10" fill="#d9b8f7"/><path d="M4 38H96M4 64H96M34 12V38M70 12V38M18 38V64M54 38V64M86 38V64M34 64V92M70 64V92" fill="none" stroke="#b08ae6" stroke-width="4"/>`,
+    statue: () => `<rect x="24" y="66" width="52" height="24" rx="6" fill="#e4dcf2"/><path d="M50 8L59 30L84 32L65 47L71 70H29L35 47L16 32L41 30Z" fill="#ffd23f"/>`,
+    sandcastle: () => `<rect x="18" y="44" width="64" height="44" rx="4" fill="#f6d68a"/><rect x="12" y="30" width="20" height="58" rx="3" fill="#f6d68a"/><rect x="68" y="30" width="20" height="58" rx="3" fill="#f6d68a"/><path d="M44 88V68Q50 60 56 68V88Z" fill="#e8b45a"/><path d="M50 44V20L64 26L50 30" fill="#ff8fc0"/>`,
+    // decorations
+    daisy: c => `<g transform="translate(50 46)">${[0, 72, 144, 216, 288].map(r => `<ellipse cx="0" cy="-16" rx="10" ry="15" fill="#fff" transform="rotate(${r})"/>`).join('')}<circle r="10" fill="${c || '#ffd23f'}"/></g><path d="M50 62V92" stroke="#5cbf6a" stroke-width="6"/>`,
+    tulip: c => `<path d="M50 60V94" stroke="#5cbf6a" stroke-width="6"/><path d="M30 26L40 40L50 22L60 40L70 26V48Q50 72 30 48Z" fill="${c || '#ff6fa8'}"/>`,
+    clover: () => `<circle cx="38" cy="44" r="15" fill="#7ad86a"/><circle cx="62" cy="44" r="15" fill="#7ad86a"/><circle cx="50" cy="26" r="15" fill="#7ad86a"/><path d="M50 50Q54 72 46 90" fill="none" stroke="#4caf50" stroke-width="6"/>`,
+    berry: () => `<path d="M30 34Q50 22 70 34Q76 62 50 90Q24 62 30 34Z" fill="#ff5c7a"/><path d="M34 30L50 18L66 30L50 36Z" fill="#6fc95a"/><circle cx="42" cy="50" r="2.5" fill="#ffe680" stroke="none"/><circle cx="58" cy="52" r="2.5" fill="#ffe680" stroke="none"/><circle cx="50" cy="66" r="2.5" fill="#ffe680" stroke="none"/>`,
+    ember: () => `<path d="M50 10C70 34 80 50 74 70C68 88 32 88 26 70C20 52 34 44 40 30C46 44 50 30 50 10Z" fill="#ff8a4f"/><path d="M50 48C60 58 62 70 56 78C50 84 42 80 42 72C42 64 48 60 50 48Z" fill="#ffd23f" stroke-width="2"/>`,
+    sparkle: c => `<path d="M50 8Q56 44 92 50Q56 56 50 92Q44 56 8 50Q44 44 50 8Z" fill="${c || '#fff3b0'}"/>`,
+    pebble: () => `<ellipse cx="36" cy="64" rx="16" ry="10" fill="#d8cfe6"/><ellipse cx="66" cy="56" rx="12" ry="9" fill="#c5bcd6"/>`,
+    snowflake: () => `<path d="M50 8V92M14 29L86 71M14 71L86 29" stroke="#9fd3ff" stroke-width="8"/><path d="M50 8V92M14 29L86 71M14 71L86 29" stroke="#fff" stroke-width="3"/>`,
+    snowpile: () => `<path d="M10 84C10 60 34 50 46 60C56 44 88 52 90 84Z" fill="#fff"/>`,
+    shell: c => `<path d="M50 14L88 70Q50 92 12 70Z" fill="${c || '#ffc2a8'}"/><path d="M50 18L32 76M50 18L50 82M50 18L68 76" fill="none" stroke-width="3"/>`,
+    bubble: () => `<circle cx="42" cy="54" r="24" fill="#d8f3ff" fill-opacity=".8"/><circle cx="74" cy="26" r="10" fill="#d8f3ff" fill-opacity=".8"/><circle cx="34" cy="46" r="6" fill="#fff" stroke="none"/>`,
+    coral: () => `<path d="M50 92V54M50 66L30 44V26M50 58L70 40V22M30 44L18 36" fill="none" stroke="#ff8fb8" stroke-width="12"/>`,
+    candle: () => `<rect x="36" y="40" width="28" height="50" rx="6" fill="#fff0fb"/><path d="M50 40V30" stroke-width="3"/><path d="M50 8C60 20 60 28 50 32C40 28 40 20 50 8Z" fill="#ffd23f"/>`,
+    star: c => `<path d="M50 6L62 36L94 38L69 58L78 90L50 72L22 90L31 58L6 38L38 36Z" fill="${c || '#ffd23f'}"/><circle cx="40" cy="42" r="5" fill="#fff" opacity=".6" stroke="none"/>`,
+    // map things
+    house: () => `<path d="M12 46L50 12L88 46Z" fill="#ff8fb8"/><rect x="20" y="44" width="60" height="46" rx="4" fill="#fff6ec"/><rect x="42" y="62" width="16" height="28" rx="7" fill="#c08bff"/><rect x="26" y="54" width="12" height="12" rx="3" fill="#bfe9ff"/><rect x="62" y="54" width="12" height="12" rx="3" fill="#bfe9ff"/><rect x="64" y="18" width="10" height="20" fill="#ff8fb8"/>`,
+    shop: () => `<rect x="12" y="52" width="76" height="38" rx="6" fill="#fff6ec"/><path d="M6 22H94V44Q87 54 81 44Q75 54 69 44Q62 54 56 44Q50 54 44 44Q38 54 31 44Q25 54 19 44Q12 54 6 44Z" fill="#ff8fb8"/><path d="M24 22V46M44 22V48M62 22V48M80 22V46" stroke="#fff" stroke-width="7"/><circle cx="32" cy="70" r="8" fill="#ff5c8a"/><path d="M60 62L72 76L60 82Z" fill="#c08bff"/><rect x="38" y="8" width="24" height="14" rx="4" fill="#ffd23f"/>`,
+    gift: () => `<rect x="14" y="40" width="72" height="50" rx="6" fill="#c08bff"/><rect x="10" y="28" width="80" height="18" rx="5" fill="#d9b8ff"/><path d="M50 28V90" stroke="#ffd23f" stroke-width="10"/><path d="M50 28V90" stroke="${OL}" stroke-width="2"/><path d="M50 28C36 8 18 16 30 26ZM50 28C64 8 82 16 70 26Z" fill="#ffd23f"/>`,
+    gate: () => `<path d="M50 4L63 36L96 38L70 58L80 92L50 72L20 92L30 58L4 38L37 36Z" fill="#ffd23f"/><circle cx="40" cy="48" r="4" fill="${OL}" stroke="none"/><circle cx="60" cy="48" r="4" fill="${OL}" stroke="none"/><path d="M42 58Q50 64 58 58" fill="none" stroke-width="3"/>`,
+    exit: () => `<path d="M8 38H50V14L92 50L50 86V62H8Z" fill="#ffd23f"/>`,
+    exitl: () => `<path d="M92 38H50V14L8 50L50 86V62H92Z" fill="#ffd23f"/>`,
+    lock: () => `<path d="M30 46V32C30 10 70 10 70 32V46" fill="none" stroke-width="10"/><path d="M30 46V32C30 10 70 10 70 32V46" fill="none" stroke="#e4dcf2" stroke-width="4"/><rect x="18" y="44" width="64" height="48" rx="10" fill="#ffd23f"/><circle cx="50" cy="64" r="6" fill="${OL}" stroke="none"/>`,
+    crown: () => `<path d="M14 78V32L32 52L50 22L68 52L86 32V78Z" fill="#ffd23f"/><circle cx="50" cy="62" r="6" fill="#ff6fa8"/>`,
+    // quest things
+    acorn: () => `<path d="M24 46Q24 92 50 92Q76 92 76 46Z" fill="#c98a52"/><path d="M18 46Q20 22 50 22Q80 22 82 46Z" fill="#8a5a2b"/><path d="M50 22V8" stroke-width="6"/>`,
+    drop: c => `<path d="M50 6C66 34 80 48 80 64A30 30 0 0 1 20 64C20 48 34 34 50 6Z" fill="${c || '#7fc8ff'}"/><ellipse cx="38" cy="62" rx="5" ry="9" fill="#fff" opacity=".6" stroke="none"/>`,
+    mitten: c => `<path d="M30 92V44C30 22 70 18 70 44V92Z" fill="${c || '#ff6b6b'}"/><path d="M30 58C12 54 10 32 26 34" fill="${c || '#ff6b6b'}"/><path d="M30 80H70" stroke="#fff" stroke-width="7"/>`,
+    cookie: () => `<circle cx="50" cy="50" r="40" fill="#e8b46a"/><circle cx="36" cy="38" r="5" fill="#6b3f1f" stroke="none"/><circle cx="62" cy="34" r="5" fill="#6b3f1f" stroke="none"/><circle cx="58" cy="62" r="5" fill="#6b3f1f" stroke="none"/><circle cx="34" cy="62" r="5" fill="#6b3f1f" stroke="none"/>`,
+    apple: () => `<path d="M50 30C30 14 8 32 16 58C22 80 38 92 50 84C62 92 78 80 84 58C92 32 70 14 50 30Z" fill="#ff5c5c"/><path d="M50 30Q52 16 60 8" fill="none" stroke-width="5"/><path d="M54 22Q70 8 78 20Q64 28 54 22Z" fill="#6fc95a"/><ellipse cx="32" cy="44" rx="5" ry="9" fill="#fff" opacity=".5" stroke="none"/>`,
+    egg: () => `<path d="M50 8C72 8 86 46 86 62A36 32 0 0 1 14 62C14 46 28 8 50 8Z" fill="#fff6ec"/><circle cx="40" cy="36" r="5" fill="#ffd6e7" stroke="none"/>`,
+    snowball: () => `<circle cx="50" cy="52" r="38" fill="#fff"/><path d="M28 40Q40 30 52 34" fill="none" stroke="#cfe6ff" stroke-width="5"/>`,
+    // areas
+    mountain: () => `<path d="M4 90L38 24L56 52L68 36L96 90Z" fill="#b8c8f0"/><path d="M30 40L38 24L46 40L40 36Z" fill="#fff"/>`,
+    wave: () => `<path d="M6 76C20 40 54 28 70 40C58 42 52 52 60 60C74 70 90 58 94 50V90H6Z" fill="#7fc8ff"/><path d="M30 64Q40 52 54 56" fill="none" stroke="#fff" stroke-width="5"/>`,
+    castle: () => `<path d="M14 90V36H26V26H34V36H44V26H56V36H66V26H74V36H86V90Z" fill="#e4c8ff"/><path d="M42 90V66Q50 56 58 66V90Z" fill="#c08bff"/><path d="M50 26V6L66 12L50 18" fill="#ff8fc0"/>`,
+    // elements
+    fire: () => `<path d="M50 6C74 32 86 50 80 70C74 90 26 90 20 70C14 52 30 42 36 26C44 42 50 26 50 6Z" fill="#ff7a3d"/><path d="M50 46C62 58 66 72 58 82C52 88 40 84 40 74C40 64 48 60 50 46Z" fill="#ffd23f" stroke-width="2.5"/>`,
+    ice: () => `<path d="M50 6V94M12 28L88 72M12 72L88 28" stroke="#7fc8ff" stroke-width="12"/><path d="M50 6V94M12 28L88 72M12 72L88 28" stroke="#fff" stroke-width="4"/>`,
+    zap: () => `<path d="M60 4L18 56H46L38 96L82 40H54Z" fill="#ffd23f"/>`,
+    // interface icons
+    scroll: () => `<rect x="20" y="16" width="60" height="68" rx="6" fill="#fff6ec"/><rect x="12" y="10" width="76" height="14" rx="7" fill="#ffd6a5"/><rect x="12" y="78" width="76" height="14" rx="7" fill="#ffd6a5"/><path d="M32 38H68M32 50H68M32 62H56" stroke-width="4"/>`,
+    bag: () => `<path d="M20 44C16 74 22 92 50 92C78 92 84 74 80 44Z" fill="#ffb3c7"/><path d="M34 44L30 20H70L66 44Z" fill="#ff8fb8"/><circle cx="50" cy="64" r="8" fill="#ffd23f"/>`,
+    moon: () => `<path d="M64 8A42 42 0 1 0 92 66A34 34 0 1 1 64 8Z" fill="#ffe58a"/><circle cx="36" cy="58" r="4" fill="#ffd23f" stroke="none"/>`,
+    gear: () => `<path d="M43 6H57L60 18L71 23L82 16L92 26L85 37L90 48L98 51V65L86 68L81 78L88 89L78 98L67 91L57 96L54 98H40L37 86L27 81L16 88L6 78L13 67L8 57L2 54V40L14 37L19 27L12 16L22 6L33 13L41 8Z" fill="#e4dcf2" transform="scale(.94) translate(3 2)"/><circle cx="50" cy="50" r="13" fill="#fff"/>`,
+    sound: () => `<path d="M10 38H28L52 18V82L28 62H10Z" fill="#c08bff"/><path d="M64 34Q74 50 64 66M74 24Q90 50 74 76" fill="none" stroke-width="6"/>`,
+    mute: () => `<path d="M10 38H28L52 18V82L28 62H10Z" fill="#c08bff"/><path d="M64 36L88 64M88 36L64 64" stroke="#ff6b6b" stroke-width="8"/>`,
+    home: () => `<path d="M8 50L50 12L92 50Z" fill="#ff8fb8"/><rect x="18" y="46" width="64" height="44" rx="5" fill="#fff6ec"/><rect x="42" y="62" width="16" height="28" rx="6" fill="#c08bff"/>`,
+    bulb: () => `<path d="M50 8C28 8 16 26 20 44C24 58 34 62 34 74H66C66 62 76 58 80 44C84 26 72 8 50 8Z" fill="#ffe58a"/><rect x="34" y="74" width="32" height="16" rx="5" fill="#d8cfe6"/><path d="M42 40Q50 50 58 40" fill="none" stroke-width="3"/>`,
+    hammer: () => `<path d="M28 88L64 46" stroke="#c49a6c" stroke-width="12"/><rect x="46" y="12" width="44" height="28" rx="6" fill="#d8cfe6" transform="rotate(40 68 26)"/>`,
+    dice: () => `<rect x="12" y="12" width="76" height="76" rx="16" fill="#fff"/><circle cx="32" cy="32" r="7" fill="${OL}" stroke="none"/><circle cx="50" cy="50" r="7" fill="${OL}" stroke="none"/><circle cx="68" cy="68" r="7" fill="${OL}" stroke="none"/>`,
+    heart: c => `<path d="M50 88C20 66 6 50 8 32C10 14 34 6 50 26C66 6 90 14 92 32C94 50 80 66 50 88Z" fill="${c || '#ff6fa8'}"/><ellipse cx="28" cy="32" rx="6" ry="8" fill="#fff" opacity=".6" stroke="none"/>`,
+    trophy: () => `<path d="M26 10H74V40C74 58 62 66 50 66C38 66 26 58 26 40Z" fill="#ffd23f"/><path d="M26 18H10C10 38 20 44 30 46M74 18H90C90 38 80 44 70 46" fill="none" stroke-width="6"/><rect x="42" y="64" width="16" height="14" fill="#ffd23f"/><rect x="26" y="78" width="48" height="14" rx="4" fill="#c49a6c"/>`,
+    party: () => `<path d="M10 92L32 26L76 70Z" fill="#c08bff"/><path d="M22 58L52 80M28 40L62 66" stroke="#ffd23f" stroke-width="6"/><circle cx="62" cy="18" r="6" fill="#ff6fa8"/><circle cx="84" cy="34" r="6" fill="#7fc8ff"/><circle cx="80" cy="12" r="5" fill="#ffd23f"/><circle cx="90" cy="58" r="5" fill="#7ad86a"/>`,
+    question: () => `<circle cx="50" cy="50" r="42" fill="#c08bff"/><path d="M36 38Q36 22 50 22Q66 22 66 36Q66 46 52 52V60" fill="none" stroke="#fff" stroke-width="9"/><circle cx="52" cy="74" r="6" fill="#fff" stroke="none"/>`,
+    pencil: () => `<path d="M20 80L70 30L82 42L32 92H20Z" fill="#ffd23f"/><path d="M70 30L78 22Q84 18 90 24Q94 30 88 36L82 42Z" fill="#ff8fb8"/><path d="M20 80L32 92H20Z" fill="${OL}"/>`,
+    sword: () => `<path d="M24 78L78 24" stroke="#e4dcf2" stroke-width="12"/><path d="M14 66L36 88" stroke="#ffd23f" stroke-width="8"/>`,
+    shield: () => `<path d="M14 14H86V48Q86 76 50 92Q14 76 14 48Z" fill="#7fc8ff"/><path d="M50 14V92M14 44H86" stroke="#ffd23f" stroke-width="5"/>`,
+    boom: () => `<path d="M50 4L60 32L90 22L72 48L96 66L66 66L62 96L48 72L22 92L30 62L4 52L32 42L18 14L42 30Z" fill="#ff8a4f"/><circle cx="50" cy="52" r="12" fill="#ffd23f"/>`,
+    book: () => `<path d="M10 22Q30 14 50 24Q70 14 90 22V84Q70 76 50 86Q30 76 10 84Z" fill="#fff6ec"/><path d="M50 24V86" /><path d="M10 22V84Q30 76 50 86" fill="none"/><path d="M20 38Q32 34 42 38M58 38Q68 34 80 38M20 52Q32 48 42 52M58 52Q68 48 80 52" fill="none" stroke-width="3"/>`,
+    shop2: () => `<rect x="12" y="52" width="76" height="38" rx="6" fill="#fff6ec"/><path d="M6 22H94V44H6Z" fill="#ff8fb8"/>`,
+  };
+  // townspeople in Red Panda's world: friendly animal villagers
+  const VILLAGERS = {
+    pom: { shape: 'round', c: '#f3eefa', b: '#ffffff', a: '#ffd6e7', ears: 'round', nose: 1, acc: ['bun', 'glasses'] },
+    bo: { shape: 'round', c: '#c99a6b', b: '#f0dcc0', a: '#f0dcc0', ears: 'bear', nose: 1, acc: ['strawhat'] },
+    bun: { shape: 'bean', c: '#ffffff', b: '#fff0f6', a: '#ffc7dd', ears: 'bunny', nose: 1 },
+    cherry: { shape: 'round', c: '#ffb3c7', b: '#fff0f6', a: '#fff0f6', ears: 'cat', nose: 1, acc: ['chefhat'] },
+    nutty: { shape: 'round', c: '#c97b4a', b: '#fbe3c8', a: '#fbe3c8', ears: 'cat', tail: 'fluffy', nose: 1 },
+    hoot: { shape: 'bean', c: '#a7826a', b: '#e9d8c4', a: '#e9d8c4', ears: 'cat', x: ['beak'] },
+    ash: { shape: 'round', c: '#e8c39c', b: '#fff1e0', a: '#c99a6b', ears: 'bear', nose: 1, acc: ['firehat'] },
+    shelly: { shape: 'blob', c: '#8fd694', b: '#d9f5b8', x: ['shell'], shc: '#c49a6c' },
+    chirp: { shape: 'round', c: '#7fc8ff', b: '#e3f4ff', x: ['beak', 'wings'], wc: '#a9dcff' },
+    sam: { shape: 'round', c: '#ff9a4a', b: '#fff1e0', a: '#fff1e0', ears: 'fox', nose: 1, acc: ['beanie', 'scarf'], hc: '#5aa9ff', sfc: '#ff6b6b' },
+    rudy: { shape: 'round', c: '#c08a5a', b: '#f3e0c8', a: '#f3e0c8', ears: 'cat', nose: 1, acc: ['antlers'] },
+    snowy: { shape: 'bean', c: '#f4f8ff', b: '#ffffff', a: '#cfe0ff', ears: 'bunny', nose: 1, acc: ['scarf'], sfc: '#7fc8ff' },
+    marina: { shape: 'blob', c: '#7fb6d6', b: '#e3f0ff', tail: 'fin', nose: 1, x: ['whiskers'], acc: ['flowerhair'] },
+    flip: { shape: 'blob', c: '#6fa8ff', b: '#e3f0ff', tail: 'fin', x: ['flippers'] },
+    bubbles: { shape: 'round', c: '#ff9f43', b: '#fff1dc', tail: 'fin', x: ['flippers'] },
+    pia: { shape: 'round', c: '#ffd6f0', b: '#fff0fb', a: '#ffffff', ears: 'cat', nose: 1, acc: ['tiara'] },
+    twinkle: { shape: 'bean', c: '#fff0fb', b: '#ffffff', a: '#ffd23f', x: ['bwings', 'antenna'] },
+    wanda: { shape: 'round', c: '#c08bff', b: '#f0e4ff', a: '#f0e4ff', ears: 'cat', nose: 1, acc: ['witchhat'] },
+    teddy: { shape: 'round', c: '#b07a52', b: '#e9cfb4', a: '#e9cfb4', ears: 'bear', nose: 1, acc: ['bowtie'] },
+    tia: { shape: 'round', c: '#d6cfe0', b: '#f6f2fb', a: '#ffc7dd', ears: 'round', nose: 1, acc: ['glasses', 'book'] },
+  };
+  function softArt(id, color) {
+    if (id.startsWith('v-')) { const v = VILLAGERS[id.slice(2)]; return v ? ART.rpSVG(v, 0, false) : null; }
+    if (id.startsWith('g-')) return null;
+    if (id.startsWith('w-')) {
+      const lava = id === 'w-lava', castle = id === 'w-castle';
+      const base = lava ? '#ff8a4f' : castle ? '#b08ae6' : '#8fd8f5', hi = lava ? '#ffd23f' : '#ffffff';
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="${base}"/><path d="M8 34Q20 24 32 34T56 34M48 72Q60 62 72 72T96 72" fill="none" stroke="${hi}" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/></svg>`);
+    }
+    const f = S[id]; return f ? svg(f(color)) : null;
+  }
+  ART.register('mp', (id, color) => pixelArt(id, color));
+  ART.register('ms', (id, color) => softArt(id, color));
+  ART.MAPART = { P, S, PEOPLE, VILLAGERS };
 })();
 
 /* Mathlings adaptive engine: pure logic, no DOM.
@@ -1444,14 +1889,14 @@ const Engine = (() => {
   const actDone = (p, act) => actSkills(p, act).every(id => p.skills[id] && p.skills[id].st === 'mastered');
 
   // ---------- starting points ----------
-  const DEFAULT_SETTINGS = { maxActive: 3, speedGoalMs: 4000, reviewRate: 0.25, sessionMin: 40, rest: 'day', readAloud: true, autoRead: false, retryFirst: true, sound: true, timed: true };
+  const DEFAULT_SETTINGS = { maxActive: 3, speedGoalMs: 4000, reviewRate: 0.25, sessionMin: 40, rest: 'day', readAloud: true, autoRead: false, retryFirst: true, sound: true, timed: true, words: false, wordRate: 0.35 };
   const STARTS = {
     hamstey: { mastered: ['add5', 'add10', 'make10', 'teen', 'sub5', 'sub10', 'teensub', 'add20'], learning: ['sub20', 'add2d_easy', 'mul2510'], ea: 30,
       settings: { maxActive: 3, speedGoalMs: 4000, autoRead: false, retryFirst: true, timed: true } },
     redpanda: { mastered: [], learning: ['add5'], ea: 4,
-      settings: { maxActive: 2, speedGoalMs: 6000, autoRead: true, retryFirst: false, timed: false } },
+      settings: { maxActive: 2, speedGoalMs: 6000, autoRead: true, retryFirst: false, timed: false, words: true } },
   };
-  const SETTINGS_V = 3;
+  const SETTINGS_V = 4;
 
   // ---------- helpers ----------
   const median = (arr) => { if (!arr.length) return Infinity; const s = [...arr].sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
@@ -1466,7 +1911,7 @@ const Engine = (() => {
 
   function newProfile(id) {
     const start = STARTS[id] || STARTS.redpanda;
-    const p = { v: 1, sv: SETTINGS_V, id, seq: 0, ea: start.ea, act: 1, skills: {}, facts: {}, log: {}, settings: { ...DEFAULT_SETTINGS, ...start.settings } };
+    const p = { v: 1, sv: SETTINGS_V, id, seq: 0, ea: start.ea, act: 1, skills: {}, facts: {}, log: {}, wf: {}, wseq: 0, settings: { ...DEFAULT_SETTINGS, ...start.settings } };
     for (const s of SKILLS) p.skills[s.id] = { st: 'locked', n: 0, c: 0, r: [], rv: [] };
     start.mastered.forEach(k => Object.assign(p.skills[k], { st: 'mastered', assumed: true }));
     start.learning.forEach(k => { p.skills[k].st = 'learning'; });
@@ -1480,12 +1925,16 @@ const Engine = (() => {
     p.settings = { ...DEFAULT_SETTINGS, ...(p.settings || {}) };
     p.skills = p.skills || {}; p.facts = p.facts || {}; p.log = p.log || {}; p.act = p.act || 1;
     for (const s of SKILLS) if (!p.skills[s.id]) p.skills[s.id] = { st: 'locked', n: 0, c: 0, r: [], rv: [] };
-    if (!p.sv || p.sv < SETTINGS_V) { // version 3 settings: 40-minute play, Red Panda untimed
+    if (!p.sv || p.sv < 3) { // version 3 settings: 40-minute play, Red Panda untimed
       if (p.settings.sessionMin > 0 && p.settings.sessionMin < 40) p.settings.sessionMin = 40;
       p.settings.timed = p.id !== 'redpanda';
       if (p.id === 'hamstey' && p.skills.add20.st === 'mastered') ['teen', 'teensub'].forEach(k => { if (p.skills[k].st !== 'mastered') Object.assign(p.skills[k], { st: 'mastered', assumed: true }); });
-      p.sv = SETTINGS_V;
     }
+    if (!p.sv || p.sv < 4) { // version 4: sight words for Red Panda
+      if (p.id === 'redpanda') p.settings.words = true;
+    }
+    p.sv = SETTINGS_V;
+    p.wf = p.wf || {}; p.wseq = p.wseq || 0;
     refresh(p);
     return p;
   }
@@ -1627,6 +2076,101 @@ const Engine = (() => {
       if (master) { s.st = 'mastered'; s.mAt = now; s.placed = placed; s.assumed = false; s.rv = []; ev.push({ type: 'mastered', skill: sk.id, placed }); ev.push(...refresh(p)); }
     }
     return ev;
+  }
+
+  // ---------- the gate: a crystal (star) lights when its skill is mastered, or well on the way ----------
+  // charged = at least 60% of the needed tries, 80%+ right lately and 70% of the way to mastery
+  function charged(p, id) {
+    const s = p.skills[id]; if (!s) return false;
+    if (s.st === 'mastered') return true; if (s.st !== 'learning') return false;
+    const sk = SK[id]; const need = needTries(sk); const last = s.r.slice(-need);
+    return last.length >= Math.ceil(need * 0.6) && acc(last) >= 0.8 && progress(p, sk) >= 0.7;
+  }
+  // how full the crystal looks (0-1)
+  function chargeOf(p, id) {
+    const s = p.skills[id]; if (!s) return 0;
+    if (charged(p, id)) return 1; if (s.st !== 'learning') return 0;
+    const sk = SK[id]; const need = needTries(sk); const last = s.r.slice(-need);
+    const tries = Math.min(1, last.length / Math.ceil(need * 0.6));
+    const quality = last.length ? Math.min(1, acc(last) / 0.8, progress(p, sk) / 0.7) : 0;
+    return Math.min(0.95, tries * 0.5 + quality * 0.5);
+  }
+  function gateReady(p, act) { return actSkills(p, act).every(id => charged(p, id)) && (!p.settings.words || wordCharged(p, act)); }
+  // a Gate Trial problem: any started skill of the act, leaning toward the ones not lit yet
+  function pickFrom(p, ids, rng = Math.random, now = Date.now()) {
+    const ok = ids.filter(id => p.skills[id] && ['learning', 'mastered'].includes(p.skills[id].st));
+    if (!ok.length) return pickProblem(p, rng, now);
+    p.seq++;
+    const sk = SK[wpick(ok, id => (charged(p, id) ? 1 : 2.5), rng)];
+    const fact = sk.kind === 'fact' ? pickFact(p, sk, false, rng, now) : sk.gen(rng);
+    return build(sk, fact, rng, p.skills[sk.id].st === 'mastered');
+  }
+
+  // ---------- sight words (Red Panda): Dolch pre-primer by act, then primer words ----------
+  const WORDS = {
+    1: ['the', 'a', 'I', 'to', 'and', 'is', 'it', 'in', 'see', 'you', 'my', 'me', 'go', 'up'],
+    2: ['we', 'can', 'look', 'said', 'here', 'not', 'come', 'play', 'run', 'big', 'little', 'for', 'down'],
+    3: ['one', 'two', 'three', 'red', 'blue', 'yellow', 'help', 'make', 'find', 'jump', 'funny', 'where', 'away'],
+    4: ['he', 'she', 'on', 'at', 'no', 'yes', 'do', 'like', 'have', 'are', 'was', 'they', 'this', 'that', 'what', 'who', 'with', 'all', 'am', 'be', 'but', 'did', 'get', 'good', 'now', 'out', 'so',
+      'say', 'saw', 'ran', 'ride', 'eat', 'ate', 'came', 'went', 'want', 'will', 'well', 'into', 'under', 'there', 'our', 'new', 'too', 'soon', 'must', 'please', 'pretty', 'four', 'black', 'brown', 'white'],
+  };
+  const ALL_WORDS = [1, 2, 3, 4].flatMap(a => WORDS[a]);
+  // mode by box: hear it and pick from 2, hear it and pick from 3, then read it first (no audio) and match the sound
+  const wordMode = b => (b <= 0 ? 'hear2' : b === 1 ? 'hear3' : 'read');
+  const WORD_CAP = { hear2: 1, hear3: 2, read: 5 };
+  const KNOWN_B = 3;
+  const WORD_GAP = [0, 3, 6, 10, 16]; // word turns in between before a word moves up a box
+  function wordPool(p) { const top = Math.min(4, p.act || 1); const out = []; for (let a = 1; a <= top; a++) out.push(...WORDS[a]); return out; }
+  function pickWord(p, rng = Math.random, now = Date.now()) {
+    p.wf = p.wf || {}; p.wseq = (p.wseq || 0) + 1;
+    const pool = wordPool(p); const F = p.wf;
+    let shaky = 0, seen = 0; const unseen = [];
+    for (const w of pool) { const st = F[w]; if (!st) unseen.push(w); else { seen++; if (st.b <= 1) shaky++; } }
+    const cands = [], ws = [];
+    for (const w of pool) {
+      const st = F[w]; if (!st) continue;
+      const gap = p.wseq - st.s; if (gap < 2 && seen > 2) continue;
+      let wt = BOX_W[st.b] || 0.4; wt *= Math.min(1 + gap / 8, 3); wt *= 1 + Math.min((now - (st.d || 0)) / DAY, 7) / 3;
+      cands.push(w); ws.push(wt);
+    }
+    if (unseen.length && (shaky < 3 || seen < 3)) { cands.push(unseen[0]); ws.push(seen < 3 ? 50 : 6); }
+    let word = cands.length ? cands[0] : pool[0];
+    if (cands.length) { const tot = ws.reduce((a, b) => a + b, 0); let r = rng() * tot; for (let i = 0; i < cands.length; i++) { r -= ws[i]; if (r <= 0) { word = cands[i]; break; } } }
+    const st = F[word]; const mode = wordMode(st ? st.b : 0);
+    const n = mode === 'hear2' ? 1 : 2;
+    // easy distractors early (different first letter), any other word later
+    const others = pool.concat(ALL_WORDS).filter((w, i, arr) => w !== word && arr.indexOf(w) === i && w.toLowerCase() !== word.toLowerCase());
+    const pref = others.filter(w => mode === 'read' || w[0].toLowerCase() !== word[0].toLowerCase());
+    const known = pref.filter(w => F[w]);
+    const src = (known.length >= n ? known : pref.length >= n ? pref : others).slice();
+    const choices = [word];
+    while (choices.length < n + 1 && src.length) choices.push(src.splice(Math.floor(rng() * src.length), 1)[0]);
+    for (let i = choices.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [choices[i], choices[j]] = [choices[j], choices[i]]; }
+    return { word, mode, choices, isWord: true };
+  }
+  function recordWord(p, wq, first, now = Date.now()) {
+    p.wf = p.wf || {};
+    const st = (p.wf[wq.word] = p.wf[wq.word] || { b: 0, n: 0, c: 0, w: 0, s: 0, d: 0 });
+    // spaced: a word moves up only if some other words came in between (or it's a new day), so it's really remembered
+    const gap = (p.wseq || 0) - (st.s || 0), newDay = st.d && dayKey(st.d) !== dayKey(now);
+    st.n++;
+    if (first) { st.c++; if (st.n === 1 || newDay || gap >= (WORD_GAP[st.b] || 12)) st.b = Math.min(WORD_CAP[wq.mode] || 1, st.b + 1); }
+    else { st.w++; st.b = 0; }
+    st.s = p.wseq || 0; st.d = now;
+    const dk = dayKey(now); const lg = (p.log[dk] = p.log[dk] || { n: 0, c: 0 }); lg.wn = (lg.wn || 0) + 1; if (first) lg.wc = (lg.wc || 0) + 1;
+    if (st.b >= KNOWN_B && !st.k) { st.k = 1; return [{ type: 'word', word: wq.word }]; }
+    return [];
+  }
+  const wordKnown = (p, w) => !!(p.wf && p.wf[w] && p.wf[w].b >= KNOWN_B);
+  function wordCharged(p, act) { const set = WORDS[Math.min(4, act)] || []; return set.length ? set.filter(w => wordKnown(p, w)).length / set.length >= 0.7 : true; }
+  function wordStats(p) {
+    const F = p.wf || {};
+    const intro = ALL_WORDS.filter(w => F[w]);
+    return {
+      known: intro.filter(w => F[w].b >= KNOWN_B), learning: intro.filter(w => F[w].b < KNOWN_B),
+      tricky: intro.filter(w => F[w].w >= 2 && F[w].b < KNOWN_B).sort((a, b) => F[b].w - F[a].w),
+      total: ALL_WORDS.length, byAct: [1, 2, 3, 4].map(a => ({ act: a, n: WORDS[a].length, known: WORDS[a].filter(w => wordKnown(p, w)).length })),
+    };
   }
 
   // ---------- guided help (Synthesis-style breakdowns) ----------
@@ -1789,16 +2333,19 @@ const Engine = (() => {
     return out;
   }
 
-  return { SKILLS, SK, SYM, WORD, power, ACTS, skillAct, actSkills, actDone, report, progress, needTries, STARTS, DEFAULT_SETTINGS, newProfile, repair, refresh, pickProblem, recordAnswer, helpSteps, skillStats, grid, trouble, keyLabel, dayKey, goalMs, median, acc };
+  return { WORDS, ALL_WORDS, pickWord, recordWord, wordStats, wordCharged, wordKnown, charged, chargeOf, gateReady, pickFrom, SKILLS, SK, SYM, WORD, power, ACTS, skillAct, actSkills, actDone, report, progress, needTries, STARTS, DEFAULT_SETTINGS, newProfile, repair, refresh, pickProblem, recordAnswer, helpSteps, skillStats, grid, trouble, keyLabel, dayKey, goalMs, median, acc };
 })();
 if (typeof module !== 'undefined') module.exports = Engine;
 
 /* Mathlings content: two worlds sharing one engine */
+// element icons are drawn: pixel for Hamstey Man, soft for Red Panda
 const ELEM = {
-  fire: { icon: '🔥', color: '#ff6a3d', cute: 'Fire', hero: 'Fire' },
-  ice:  { icon: '❄️', color: '#3fc4ff', cute: 'Ice',  hero: 'Ice' },
-  zap:  { icon: '⚡', color: '#ffc928', cute: 'Zap',  hero: 'Thunder' },
+  fire: { color: '#ff6a3d', cute: 'Fire', hero: 'Fire', get icon() { return ic('fire'); } },
+  ice:  { color: '#3fc4ff', cute: 'Ice',  hero: 'Ice', get icon() { return ic('ice'); } },
+  zap:  { color: '#ffc928', cute: 'Zap',  hero: 'Thunder', get icon() { return ic('zap'); } },
 };
+// a drawn icon in the current kid's style
+function ic(name, color) { return (typeof G !== 'undefined' && G.theme === 'cute' ? '@ms:' : '@mp:') + name + (color ? ':' + color : ''); }
 
 const PROFILES = [
   { id: 'redpanda', name: 'Red Panda', theme: 'cute' },
@@ -1834,42 +2381,42 @@ const SPECIES = {
 // enemies: weak = takes x2, resist = takes half. boss phases switch weakness at half health.
 const AREAS = {
   cute: [
-    { name: 'Sunny Meadow', icon: '🌼', bg: 'meadow', hint: null, catch: 'starters',
+    { name: 'Sunny Meadow', icon: '@ms:daisy', bg: 'meadow', hint: null, catch: 'starters',
       foes: [{ id: 'frog', em: '🐸', name: 'Frog', weak: 'zap' }, { id: 'bug', em: '🐛', name: 'Bug', weak: 'fire' }, { id: 'hog', em: '🦔', name: 'Hog', weak: 'fire' }],
       boss: { id: 'bear', em: '🐻', name: 'Grump Bear', phases: [{ weak: 'zap' }, { weak: 'fire' }] } },
-    { name: 'Berry Garden', icon: '🍓', bg: 'garden', hint: 'fire', catch: ['puff'],
+    { name: 'Berry Garden', icon: '@ms:berry', bg: 'garden', hint: 'fire', catch: ['puff'],
       foes: [{ id: 'shroom', em: '🍄', name: 'Shroom', weak: 'fire' }, { id: 'snail', em: '🐌', name: 'Snail', weak: 'fire' }, { id: 'cactus', em: '🌵', name: 'Cactus', weak: 'fire', resist: 'ice' }],
       boss: { id: 'moth', em: '🦋', name: 'Moth Queen', phases: [{ weak: 'fire' }, { weak: 'zap' }] } },
-    { name: 'Lava Hills', icon: '🌋', bg: 'lava', hint: 'ice', catch: ['fluff'],
+    { name: 'Lava Hills', icon: '@ms:volcano', bg: 'lava', hint: 'ice', catch: ['fluff'],
       foes: [{ id: 'pepper', em: '🌶️', name: 'Hot Pepper', weak: 'ice', resist: 'fire' }, { id: 'lizzy', em: '🦎', name: 'Lizzy', weak: 'ice', resist: 'fire' }, { id: 'hothog', em: '🐗', name: 'Hot Hog', weak: 'ice', resist: 'fire' }],
       boss: { id: 'rex', em: '🦖', name: 'Lava Rex', phases: [{ weak: 'ice', resist: 'fire' }, { weak: 'zap', resist: 'fire' }] } },
-    { name: 'Snowy Peak', icon: '🏔️', bg: 'snow', hint: 'fire', catch: ['dot'],
+    { name: 'Snowy Peak', icon: '@ms:mountain', bg: 'snow', hint: 'fire', catch: ['dot'],
       foes: [{ id: 'snowman', em: '⛄', name: 'Snow Man', weak: 'fire', resist: 'ice' }, { id: 'cube', em: '🧊', name: 'Ice Cube', weak: 'fire', resist: 'ice' }, { id: 'woolly', em: '🦣', name: 'Woolly', weak: 'fire', resist: 'ice' }],
       boss: { id: 'frostking', em: '🥶', name: 'Frost King', phases: [{ weak: 'fire', resist: 'ice' }, { weak: 'zap', resist: 'ice' }] } },
-    { name: 'Bubble Bay', icon: '🌊', bg: 'sea', hint: 'zap', catch: ['buzz'],
+    { name: 'Bubble Bay', icon: '@ms:wave', bg: 'sea', hint: 'zap', catch: ['buzz'],
       foes: [{ id: 'crab', em: '🦀', name: 'Crab', weak: 'zap' }, { id: 'octo', em: '🐙', name: 'Octo', weak: 'zap', resist: 'fire' }, { id: 'puffer', em: '🐡', name: 'Puffer', weak: 'zap', resist: 'fire' }],
       boss: { id: 'whale', em: '🐳', name: 'Big Whale', phases: [{ weak: 'zap', resist: 'fire' }, { weak: 'ice' }] } },
-    { name: 'Rainbow Castle', icon: '🏰', bg: 'castle', hint: null, catch: ['slush', 'star'],
+    { name: 'Rainbow Castle', icon: '@ms:castle', bg: 'castle', hint: null, catch: ['slush', 'star'],
       foes: [{ id: 'boo', em: '👻', name: 'Boo', weak: 'fire' }, { id: 'bat', em: '🦇', name: 'Bat', weak: 'zap' }, { id: 'cloud', em: '🌩️', name: 'Storm Cloud', weak: 'ice', resist: 'zap' }],
       boss: { id: 'dragon', em: '🐉', name: 'Grumpy Dragon', phases: [{ weak: 'ice', resist: 'fire' }, { weak: 'zap' }, { weak: 'fire', resist: 'ice' }] } },
   ],
   hero: [
-    { name: 'Green Plains', icon: '🌾', bg: 'meadow', hint: null, catch: 'starters',
+    { name: 'Green Plains', icon: '@mp:wheat', bg: 'meadow', hint: null, catch: 'starters',
       foes: [{ id: 'rat', em: '🐀', name: 'Giant Rat', weak: 'fire' }, { id: 'goblin', em: '👺', name: 'Goblin', weak: 'fire' }, { id: 'viper', em: '🐍', name: 'Viper', weak: 'ice' }, { id: 'cavebat', em: '🦇', name: 'Cave Bat', weak: 'zap' }],
       boss: { id: 'ogre', em: '👹', name: 'Ogre Chief', phases: [{ weak: 'fire' }, { weak: 'zap' }] } },
-    { name: 'Dark Forest', icon: '🌲', bg: 'forest', hint: 'fire', catch: ['drake'],
+    { name: 'Dark Forest', icon: '@mp:pine', bg: 'forest', hint: 'fire', catch: ['drake'],
       foes: [{ id: 'spider', em: '🕷️', name: 'Web Spider', weak: 'fire' }, { id: 'fungoid', em: '🍄', name: 'Fungoid', weak: 'fire', resist: 'ice' }, { id: 'crawler', em: '🐛', name: 'Crawler', weak: 'fire' }],
       boss: { id: 'treant', em: '🌳', name: 'Elder Treant', phases: [{ weak: 'fire', resist: 'ice' }, { weak: 'zap', resist: 'ice' }] } },
-    { name: 'Magma Mountain', icon: '🌋', bg: 'lava', hint: 'ice', catch: ['wolf'],
+    { name: 'Magma Mountain', icon: '@mp:volcano', bg: 'lava', hint: 'ice', catch: ['wolf'],
       foes: [{ id: 'salamander', em: '🦎', name: 'Salamander', weak: 'ice', resist: 'fire' }, { id: 'scorpion', em: '🦂', name: 'Lava Scorpion', weak: 'ice', resist: 'fire' }, { id: 'fireboar', em: '🐗', name: 'Fire Boar', weak: 'ice', resist: 'fire' }],
       boss: { id: 'magmadragon', em: '🐲', name: 'Magma Dragon', phases: [{ weak: 'ice', resist: 'fire' }, { weak: 'zap', resist: 'fire' }] } },
-    { name: 'Frost Caves', icon: '🧊', bg: 'snow', hint: 'fire', catch: ['lion'],
+    { name: 'Frost Caves', icon: '@mp:icecrystal', bg: 'snow', hint: 'fire', catch: ['lion'],
       foes: [{ id: 'skeleton', em: '💀', name: 'Frost Skeleton', weak: 'fire', resist: 'ice' }, { id: 'zombie', em: '🧟', name: 'Ice Zombie', weak: 'fire', resist: 'ice' }, { id: 'mammoth', em: '🦣', name: 'Mammoth', weak: 'fire', resist: 'ice' }],
       boss: { id: 'troll', em: '🧌', name: 'Frost Troll', phases: [{ weak: 'fire', resist: 'ice' }, { weak: 'zap', resist: 'ice' }] } },
-    { name: 'Sunken Ruins', icon: '🌊', bg: 'sea', hint: 'zap', catch: ['ninja'],
+    { name: 'Sunken Ruins', icon: '@mp:wave', bg: 'sea', hint: 'zap', catch: ['ninja'],
       foes: [{ id: 'shark', em: '🦈', name: 'Reef Shark', weak: 'zap', resist: 'fire' }, { id: 'squid', em: '🦑', name: 'Ink Squid', weak: 'zap', resist: 'fire' }, { id: 'rustbot', em: '🤖', name: 'Rust Bot', weak: 'zap' }],
       boss: { id: 'kraken', em: '🐙', name: 'Kraken', phases: [{ weak: 'zap', resist: 'fire' }, { weak: 'ice' }] } },
-    { name: 'Shadow Castle', icon: '🏰', bg: 'castle', hint: null, catch: ['ranger', 'bird'],
+    { name: 'Shadow Castle', icon: '@mp:castle', bg: 'castle', hint: null, catch: ['ranger', 'bird'],
       foes: [{ id: 'ghost', em: '👻', name: 'Phantom', weak: 'fire' }, { id: 'vamp', em: '🧛', name: 'Night Count', weak: 'fire', resist: 'ice' }, { id: 'darkmech', em: '🦾', name: 'Dark Mech', weak: 'zap' }, { id: 'rex', em: '🦖', name: 'Dino Knight', weak: 'ice' }],
       boss: { id: 'voidking', em: '👾', name: 'Void King', phases: [{ weak: 'ice' }, { weak: 'fire' }, { weak: 'zap' }] } },
   ],
@@ -1921,13 +2468,13 @@ const TXT = {
 
 /* ---------- mini-worlds ----------
  # wall/tree  ~ water/lava  . ground  , flowers (walkable)  P start  E exit forward  X exit back
- A B C people with quests  S shop  G gem  i lost item  M monster  c wild creature  T chest
+ A B C people with quests  D word helper (Red Panda)  S shop  G gem  i lost item  M monster  c wild creature  T chest
  H house  k guardian boss (blocks E)  = crystal gate  K act boss */
 const MAPS = {
   A0: [
     '###############',
     'XP..,..G#..,M.#',
-    '#..H...,#.....#',
+    '#..H...,#...D.#',
     '#.A..,.....T..#',
     '#..,..S..~~...#',
     '#.G......~~.M##',
@@ -1941,7 +2488,7 @@ const MAPS = {
     'X..,..G...#K..E',
     '#P.....M..#...#',
     '#..A..,...#=###',
-    '#..c..,..M....#',
+    '#..c..,..M..D.#',
     '#.~~~.....S...#',
     '#.~~~..G..T,.M#',
     '#..i...B...H..#',
@@ -1950,7 +2497,7 @@ const MAPS = {
   ],
   A2: [
     '###############',
-    '#....G..#.i..M#',
+    '#..D.G..#.i..M#',
     'X.P...,.#.....#',
     '#..~~~..#..T.M#',
     '#..~~~.A....G.#',
@@ -1964,7 +2511,7 @@ const MAPS = {
     '###############',
     '#.G...,..M...G#',
     'X.P..A....~~..#',
-    '#....,..M.~~..#',
+    '#..D.,..M.~~..#',
     '#.M...S.......#',
     '#..T..,..##=###',
     '#.....B..#K...#',
@@ -1975,38 +2522,47 @@ const MAPS = {
 };
 const AREA_MAP = ['A0', 'B1', 'A2', 'B3', 'A0', 'B1'];
 const BIOME = {
-  meadow: { obs: ['🌳', '🌳', '🪨', '🌳'], deco: ['🌼', '🌷', '🍀'] },
-  garden: { obs: ['🌸', '🌳', '🌺', '🌳'], deco: ['🌷', '🍓', '🌸'] },
-  forest: { obs: ['🌲', '🌲', '🍄', '🌲'], deco: ['🍂', '🌿', '🍄'] },
-  lava:   { obs: ['🪨', '🌋', '🪨', '🪨'], deco: ['🔥', '✨', '🪨'] },
-  snow:   { obs: ['🌲', '🏔️', '🪨', '🌲'], deco: ['❄️', '✨', '🌨️'] },
-  sea:    { obs: ['🌴', '🪨', '🌴', '🌴'], deco: ['🐚', '🫧', '🪸'] },
-  castle: { obs: ['🧱', '🗿', '🧱', '🧱'], deco: ['✨', '🕯️', '⭐'] },
+  cute: {
+    meadow: { obs: ['@ms:tree', '@ms:tree', '@ms:rock', '@ms:bush'], deco: ['@ms:daisy', '@ms:tulip', '@ms:clover'] },
+    garden: { obs: ['@ms:blossom', '@ms:tree', '@ms:bush', '@ms:blossom'], deco: ['@ms:tulip', '@ms:berry', '@ms:daisy:#ff8fc0'] },
+    lava:   { obs: ['@ms:lavarock', '@ms:volcano', '@ms:lavarock', '@ms:rock:#d9a08a'], deco: ['@ms:ember', '@ms:sparkle', '@ms:pebble'] },
+    snow:   { obs: ['@ms:snowpine', '@ms:iceblock', '@ms:rock:#dfe8f7', '@ms:snowpine'], deco: ['@ms:snowflake', '@ms:sparkle:#cfeeff', '@ms:snowpile'] },
+    sea:    { obs: ['@ms:palm', '@ms:rock:#e8d6b0', '@ms:palm', '@ms:sandcastle'], deco: ['@ms:shell', '@ms:bubble', '@ms:shell:#ff9ad5'] },
+    castle: { obs: ['@ms:brick', '@ms:statue', '@ms:brick', '@ms:brick'], deco: ['@ms:sparkle', '@ms:candle', '@ms:star'] },
+  },
+  hero: {
+    meadow: { obs: ['@mp:oak', '@mp:oak', '@mp:rock', '@mp:bush'], deco: ['@mp:flower', '@mp:flower:#ff8fc0', '@mp:clover'] },
+    forest: { obs: ['@mp:pine', '@mp:pine', '@mp:shroom', '@mp:deadtree'], deco: ['@mp:leaf', '@mp:fern', '@mp:minishroom'] },
+    lava:   { obs: ['@mp:lavarock', '@mp:volcano', '@mp:spike', '@mp:lavarock'], deco: ['@mp:ember', '@mp:sparkle:#ffb36b', '@mp:pebble'] },
+    snow:   { obs: ['@mp:snowpine', '@mp:icerock', '@mp:rock:#aab6c8', '@mp:snowpine'], deco: ['@mp:snowflake', '@mp:sparkle', '@mp:snowpile'] },
+    sea:    { obs: ['@mp:palm', '@mp:searock', '@mp:palm', '@mp:palm'], deco: ['@mp:shell', '@mp:bubble', '@mp:coral'] },
+    castle: { obs: ['@mp:brick', '@mp:statue', '@mp:brick', '@mp:brick'], deco: ['@mp:sparkle', '@mp:candle', '@mp:star'] },
+  },
 };
 
-// people with quests: A = story-problem helper (daily), B = lost items, C = monster trouble
+// people with quests: A = story-problem helper, B = lost items, C = monster trouble, D = word helper (Red Panda). All refresh after every rest.
 const NPCS = {
   cute: [
-    { A: ['👵', 'Granny Pom'], B: ['🧑‍🌾', 'Farmer Bo', '🍓', 'berries'], C: ['🐰', 'Bun Bun'], shop: ['🧸', 'Teddy'] },
-    { A: ['👩‍🍳', 'Chef Cherry'], B: ['🐿️', 'Nutty', '🌰', 'nuts'], C: ['🦉', 'Hoot'], shop: ['🧸', 'Teddy'] },
-    { A: ['👨‍🚒', 'Captain Ash'], B: ['🐢', 'Shelly', '💧', 'drops'], C: ['🐦', 'Chirp'], shop: ['🧸', 'Teddy'] },
-    { A: ['⛷️', 'Ski Sam'], B: ['🦌', 'Rudy', '🧤', 'mittens'], C: ['🐇', 'Snowy'], shop: ['🧸', 'Teddy'] },
-    { A: ['🧜‍♀️', 'Marina'], B: ['🐬', 'Flip', '🐚', 'shells'], C: ['🐠', 'Bubbles'], shop: ['🧸', 'Teddy'] },
-    { A: ['👸', 'Princess Pia'], B: ['🧚', 'Twinkle', '⭐', 'stars'], C: ['🧙‍♀️', 'Wanda'], shop: ['🧸', 'Teddy'] },
+    { A: ['@ms:v-pom', 'Granny Pom'], B: ['@ms:v-bo', 'Farmer Bo', '@ms:berry', 'berries'], C: ['@ms:v-bun', 'Bun Bun'], D: ['@ms:v-tia', 'Miss Tia'], shop: ['@ms:v-teddy', 'Teddy'] },
+    { A: ['@ms:v-cherry', 'Chef Cherry'], B: ['@ms:v-nutty', 'Nutty', '@ms:acorn', 'nuts'], C: ['@ms:v-hoot', 'Hoot'], D: ['@ms:v-tia', 'Miss Tia'], shop: ['@ms:v-teddy', 'Teddy'] },
+    { A: ['@ms:v-ash', 'Captain Ash'], B: ['@ms:v-shelly', 'Shelly', '@ms:drop', 'drops'], C: ['@ms:v-chirp', 'Chirp'], D: ['@ms:v-tia', 'Miss Tia'], shop: ['@ms:v-teddy', 'Teddy'] },
+    { A: ['@ms:v-sam', 'Ski Sam'], B: ['@ms:v-rudy', 'Rudy', '@ms:mitten', 'mittens'], C: ['@ms:v-snowy', 'Snowy'], D: ['@ms:v-tia', 'Miss Tia'], shop: ['@ms:v-teddy', 'Teddy'] },
+    { A: ['@ms:v-marina', 'Marina'], B: ['@ms:v-flip', 'Flip', '@ms:shell', 'shells'], C: ['@ms:v-bubbles', 'Bubbles'], D: ['@ms:v-tia', 'Miss Tia'], shop: ['@ms:v-teddy', 'Teddy'] },
+    { A: ['@ms:v-pia', 'Princess Pia'], B: ['@ms:v-twinkle', 'Twinkle', '@ms:star', 'stars'], C: ['@ms:v-wanda', 'Wanda'], D: ['@ms:v-tia', 'Miss Tia'], shop: ['@ms:v-teddy', 'Teddy'] },
   ],
   hero: [
-    { A: ['👴', 'Elder Rowan'], B: ['🧑‍🌾', 'Farmer Gil', '🥚', 'eggs'], C: ['💂', 'Guard Brom'], shop: ['🧔', 'Smith Doran'] },
-    { A: ['🧝‍♀️', 'Ranger Lyra'], B: ['🧙‍♂️', 'Hermit Oz', '🍄', 'mushrooms'], C: ['🪓', 'Woodsman Hal'], shop: ['🧔', 'Smith Doran'] },
-    { A: ['👷', 'Miner Dax'], B: ['🧑‍🔬', 'Alchemist Vee', '🔶', 'fire crystals'], C: ['💂‍♀️', 'Captain Rhea'], shop: ['🧔', 'Smith Doran'] },
-    { A: ['🧑‍🏫', 'Scholar Finn'], B: ['🦉', 'Owl Sage', '🧊', 'ice shards'], C: ['🏹', 'Hunter Bjorn'], shop: ['🧔', 'Smith Doran'] },
-    { A: ['🧜‍♂️', 'Triton'], B: ['🏴‍☠️', 'Captain Salt', '🪙', 'doubloons'], C: ['🤿', 'Diver Kai'], shop: ['🧔', 'Smith Doran'] },
-    { A: ['🤴', 'Prince Aldric'], B: ['👸', 'Queen Mira', '📜', 'scrolls'], C: ['💂', 'Royal Guard'], shop: ['🧔', 'Smith Doran'] },
+    { A: ['@mp:p-rowan', 'Elder Rowan'], B: ['@mp:p-gil', 'Farmer Gil', '@mp:egg', 'eggs'], C: ['@mp:p-brom', 'Guard Brom'], shop: ['@mp:p-doran', 'Smith Doran'] },
+    { A: ['@mp:p-lyra', 'Ranger Lyra'], B: ['@mp:p-oz', 'Hermit Oz', '@mp:minishroom', 'mushrooms'], C: ['@mp:p-hal', 'Woodsman Hal'], shop: ['@mp:p-doran', 'Smith Doran'] },
+    { A: ['@mp:p-dax', 'Miner Dax'], B: ['@mp:p-vee', 'Alchemist Vee', '@mp:firecrystal', 'fire crystals'], C: ['@mp:p-rhea', 'Captain Rhea'], shop: ['@mp:p-doran', 'Smith Doran'] },
+    { A: ['@mp:p-finn', 'Scholar Finn'], B: ['@mp:p-owl', 'Owl Sage', '@mp:iceshard', 'ice shards'], C: ['@mp:p-bjorn', 'Hunter Bjorn'], shop: ['@mp:p-doran', 'Smith Doran'] },
+    { A: ['@mp:p-triton', 'Triton'], B: ['@mp:p-salt', 'Captain Salt', '@it:coin', 'doubloons'], C: ['@mp:p-kai', 'Diver Kai'], shop: ['@mp:p-doran', 'Smith Doran'] },
+    { A: ['@mp:p-aldric', 'Prince Aldric'], B: ['@mp:p-mira', 'Queen Mira', '@mp:scroll', 'scrolls'], C: ['@mp:p-royal', 'Royal Guard'], shop: ['@mp:p-doran', 'Smith Doran'] },
   ],
 };
 // story-problem nouns, by area
 const STORY_ITEMS = {
-  cute: [['cookies', '🍪'], ['apples', '🍎'], ['eggs', '🥚'], ['snowballs', '⚪'], ['shells', '🐚'], ['stars', '⭐']],
-  hero: [['arrows', '🏹'], ['potions', '🧪'], ['bolts', '🔩'], ['torches', '🔥'], ['gold coins', '🪙'], ['shields', '🛡️']],
+  cute: [['cookies', '@ms:cookie'], ['apples', '@ms:apple'], ['eggs', '@ms:egg'], ['snowballs', '@ms:snowball'], ['shells', '@ms:shell'], ['stars', '@ms:star']],
+  hero: [['arrows', '@mp:sword'], ['potions', '@it:potion'], ['bolts', '@mp:hammer'], ['torches', '@mp:fire'], ['gold coins', '@it:coin'], ['shields', '@mp:shield']],
 };
 // gear: p = attack power, g = guard, el = +50% damage for heroes of that element, res = halves hits from that element, luck = +25% battle gold
 const GEAR = {
@@ -2067,6 +2623,11 @@ const MAKER = {
     names: ['Pom', 'Bop', 'Dot', 'Kit', 'Jem', 'Lulu', 'Mo', 'Pip', 'Sun', 'Bean', 'Fig', 'Nim'],
     moves: { fire: 'Glow', ice: 'Snow', zap: 'Zap' } },
 };
+// the keeper of each act's gate: beat it in the Gate Trial to open the gate without lighting every crystal
+const GATE_GUARD = {
+  hero: { id: 'golem', em: '@hm:golem', name: 'Crystal Golem' },
+  cute: { id: 'keeper', em: '@rp:keeper', name: 'Star Keeper' },
+};
 const ACT_NAMES = ['', 'Act I', 'Act II', 'Act III', 'World 2'];
 const HERO_NAMES = ['Rex', 'Kai', 'Zara', 'Blaze', 'Nova', 'Ash', 'Luna', 'Thor', 'Ivy', 'Max', 'Sage', 'Jet', 'Rook', 'Vex', 'Echo', 'Orion', 'Pike', 'Rune', 'Bolt', 'Fang'];
 
@@ -2099,11 +2660,11 @@ function h(tag, attrs, ...kids) {
   return el;
 }
 // any '@kind:id' art key inside text becomes a drawn picture
-const ART_RE = /@(hm|rp|rpg|it|rpi|cu):[A-Za-z0-9#_.-]+(?::[A-Za-z0-9#_.-]+)?/g;
+const ART_RE = /@(hm|rp|rpg|it|rpi|cu|mp|ms):[A-Za-z0-9#_-]+(?::[A-Za-z0-9#_-]+)?/g;
 function artImg(key) {
   const src = ART.url(key); if (!src) return document.createTextNode('');
   const img = document.createElement('img'); img.src = src; img.alt = ''; img.draggable = false;
-  img.className = 'art' + (/^@(hm|it)/.test(key) || /^@cu:cuh/.test(key) ? ' px' : '');
+  img.className = 'art' + (/^@(hm|it|mp)/.test(key) || /^@cu:cuh/.test(key) ? ' px' : '');
   return img;
 }
 function appendWithArt(el, str) {
@@ -2187,6 +2748,11 @@ function repairP(P) {
   } else P.g = Object.assign(f.g, old);
   P.g.items = Object.assign({ potion: 2, hipotion: 0, feather: 0 }, P.g.items || {});
   if (!P.g.v3) { if (P.id === 'redpanda' && !P.g.items.potion) P.g.items.potion = 2; P.g.v3 = true; }
+  P.g.actWins = P.g.actWins || {};
+  if (!P.g.v4) { // version 4: kids who already battled a lot can take the Gate Trial right away
+    const act = Math.min(3, P.act || 1); if ((P.g.wins || 0) >= 15 && !P.g.actWins[act]) P.g.actWins[act] = 8;
+    P.g.v4 = true;
+  }
   P.g.custom = P.g.custom || [];
   P.play = Object.assign(f.play, P.play || {});
   return P;
@@ -2225,9 +2791,11 @@ const Voice = {
   say(text, opts = {}) {
     return new Promise(resolve => {
       const S = G.P && G.P.settings;
-      if (!this.ok || !text || !S || !S.readAloud || (opts.auto && !S.autoRead)) return resolve();
+      text = String(text || '').replace(ART_RE, ' ').trim();
+      if (!this.ok || !text) return resolve();
+      if (!opts.force && (!S || !S.readAloud || (opts.auto && !S.autoRead))) return resolve();
       try { speechSynthesis.cancel(); } catch (e) { /* ignore */ }
-      const u = new SpeechSynthesisUtterance(String(text).replace(/[−×÷]/g, m => ' ' + SPOKEN[m] + ' '));
+      const u = new SpeechSynthesisUtterance(text.replace(/[−×÷]/g, m => ' ' + SPOKEN[m] + ' '));
       if (this.v) u.voice = this.v;
       u.lang = (this.v && this.v.lang) || 'en-US'; u.rate = opts.rate || (cute() ? 0.82 : 0.95); u.pitch = 1;
       let done = false; const fin = () => { if (done) return; done = true; clearTimeout(to); resolve(); };
@@ -2283,19 +2851,78 @@ const AudioWake = {
       if (!this.el) { this.el = new Audio(SILENT_CLIP); this.el.loop = true; this.el.setAttribute('playsinline', ''); this.el.preload = 'auto'; }
       if (this.el.paused) { const p = this.el.play(); if (p && p.catch) p.catch(() => {}); }
     } catch (e) { /* ignore */ }
+    Sfx.unlockPool();
     Voice.unlock();
   },
   sleep() { try { if (this.el && !this.el.paused) this.el.pause(); } catch (e) { /* ignore */ } },
 };
 ['pointerdown', 'touchend', 'click', 'keydown'].forEach(ev => document.addEventListener(ev, () => AudioWake.wake(), { capture: true, passive: true }));
 document.addEventListener('visibilitychange', () => { if (document.hidden) AudioWake.sleep(); });
+// every sound is a short list of notes: [freq, seconds, start, volume, wave, slide-to] or ['noise', seconds, volume]
+const SFX_NOTES = {
+  tap: () => [[880, 0.04, 0, 0.03]], blip: n => [[440 + n * 60, 0.09, 0, 0.05]], good: () => [[659, 0.09, 0], [988, 0.16, 0.08]],
+  oops: () => [[220, 0.18, 0, 0.06, 'sine']], whoosh: () => [[300, 0.18, 0, 0.025, 'sawtooth', 900]],
+  hit: () => [['noise', 0.12, 0.1], [220, 0.15, 0, 0.06, null, 70]], super: () => [['noise', 0.18, 0.13], [523, 0.08, 0], [784, 0.08, 0.07], [1046, 0.2, 0.14]],
+  enemy: () => [[160, 0.2, 0, 0.05, 'sawtooth', 60]], faint: () => [[392, 0.15, 0], [330, 0.15, 0.14], [262, 0.3, 0.28]],
+  win: () => [...[523, 659, 784, 1046].map((f, i) => [f, 0.14, i * 0.11]), [1318, 0.35, 0.46]], level: () => [392, 523, 659, 784].map((f, i) => [f, 0.1, i * 0.07]),
+  evolve: () => Array.from({ length: 10 }, (_, i) => [400 + i * 90, 0.08, i * 0.07, 0.05]), catch: () => [[784, 0.1, 0], [988, 0.1, 0.1], [1318, 0.28, 0.2]],
+  phase: () => [[110, 0.5, 0, 0.06, 'sawtooth', 220]], star: () => [784, 988, 1175, 1568].map((f, i) => [f, 0.16, i * 0.09]),
+  heal: () => [523, 659, 784, 1046, 1318].map((f, i) => [f, 0.18, i * 0.06, 0.06, 'sine']),
+};
 const Sfx = {
-  ctx: null,
+  ctx: null, stuckSince: 0, pool: [], poolI: 0, wavs: {}, last: 'none',
   init() {
     try {
-      if (!this.ctx) { const AC = window.AudioContext || window.webkitAudioContext; if (AC) this.ctx = new AC(); }
-      if (this.ctx && this.ctx.state !== 'running' && this.ctx.state !== 'closed') this.ctx.resume();
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!this.ctx && AC) this.ctx = new AC();
+      const c = this.ctx; if (!c) return;
+      if (c.state === 'running') { this.stuckSince = 0; return; }
+      if (c.state !== 'closed') { const p = c.resume(); if (p && p.catch) p.catch(() => {}); }
+      // some iPads leave Web Audio stuck ("suspended" or "interrupted"): start a fresh one inside the tap
+      if (!this.stuckSince) this.stuckSince = Date.now();
+      else if (Date.now() - this.stuckSince > 1500 && AC) {
+        try { c.close(); } catch (e) { /* ignore */ }
+        this.ctx = new AC(); this.stuckSince = Date.now();
+        try { const p = this.ctx.resume(); if (p && p.catch) p.catch(() => {}); } catch (e) { /* ignore */ }
+      }
     } catch (e) { this.ctx = null; }
+  },
+  ok() { return !!(this.ctx && this.ctx.state === 'running'); },
+  // backup path: plain <audio> elements, unlocked by a tap, playing tiny generated WAV files
+  unlockPool() {
+    if (this.pool.length) return;
+    try {
+      for (let i = 0; i < 3; i++) { const a = new Audio(SILENT_CLIP); a.setAttribute('playsinline', ''); a.volume = 1; const p = a.play(); if (p && p.then) p.then(() => a.pause()).catch(() => {}); this.pool.push(a); }
+    } catch (e) { this.pool = []; }
+  },
+  wav(notes) {
+    const sr = 22050; const len = Math.ceil(sr * Math.max(...notes.map(n => (n[0] === 'noise' ? n[1] : n[2] + n[1])), 0.05) + sr * 0.02);
+    const buf = new Float32Array(len);
+    for (const n of notes) {
+      if (n[0] === 'noise') { const end = Math.floor(n[1] * sr); for (let i = 0; i < end && i < len; i++) buf[i] += (Math.random() * 2 - 1) * (1 - i / end) * (n[2] || 0.1) * 2.2; continue; }
+      const [f, d, at, vol = 0.07, type, f2] = n; const st = Math.floor(at * sr), end = Math.floor(d * sr); let ph = 0;
+      const wave = type || (cute() ? 'triangle' : 'square');
+      for (let i = 0; i < end && st + i < len; i++) {
+        const t = i / end; const fr = f2 ? f * Math.pow(f2 / f, t) : f; ph += fr / sr; const x = ph % 1;
+        const v = wave === 'sine' ? Math.sin(2 * Math.PI * x) : wave === 'square' ? (x < 0.5 ? 1 : -1) : wave === 'sawtooth' ? 2 * x - 1 : 1 - 4 * Math.abs(x - 0.5);
+        buf[st + i] += v * vol * 3.2 * Math.pow(0.0015, t);
+      }
+    }
+    const bytes = new Uint8Array(44 + len); const dv = new DataView(bytes.buffer);
+    const str = (o, t) => { for (let i = 0; i < t.length; i++) bytes[o + i] = t.charCodeAt(i); };
+    str(0, 'RIFF'); dv.setUint32(4, 36 + len, true); str(8, 'WAVEfmt '); dv.setUint32(16, 16, true); dv.setUint16(20, 1, true); dv.setUint16(22, 1, true);
+    dv.setUint32(24, sr, true); dv.setUint32(28, sr, true); dv.setUint16(32, 1, true); dv.setUint16(34, 8, true); str(36, 'data'); dv.setUint32(40, len, true);
+    for (let i = 0; i < len; i++) bytes[44 + i] = Math.max(0, Math.min(255, Math.round(128 + 127 * Math.max(-1, Math.min(1, buf[i])))));
+    let bin = ''; for (let i = 0; i < bytes.length; i += 8192) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 8192));
+    return 'data:audio/wav;base64,' + btoa(bin);
+  },
+  htmlPlay(key, notes) {
+    try {
+      const uri = this.wavs[key] || (this.wavs[key] = this.wav(notes));
+      const a = this.pool.length ? this.pool[this.poolI++ % this.pool.length] : new Audio();
+      a.src = uri; const p = a.play(); if (p && p.catch) p.catch(() => {});
+      this.last = 'backup';
+    } catch (e) { /* ignore */ }
   },
   tone(f, d, type, vol = 0.07, at = 0, f2) {
     const c = this.ctx; if (!c) return;
@@ -2311,29 +2938,14 @@ const Sfx = {
     for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
     const s = c.createBufferSource(); const g = c.createGain(); g.gain.value = vol; s.buffer = b; s.connect(g).connect(c.destination); s.start();
   },
-  play(name, n = 0) {
-    if (!this.ctx || !G.P || !G.P.settings.sound) return;
-    if (this.ctx.state !== 'running') { try { this.ctx.resume(); } catch (e) { /* ignore */ } }
-    const tn = (f, d, at, v) => this.tone(f, d, null, v, at);
-    switch (name) {
-      case 'tap': tn(880, 0.04, 0, 0.03); break;
-      case 'blip': tn(440 + n * 60, 0.09, 0, 0.05); break;
-      case 'good': tn(659, 0.09, 0); tn(988, 0.16, 0.08); break;
-      case 'oops': this.tone(220, 0.18, 'sine', 0.06); break;
-      case 'whoosh': this.tone(300, 0.18, 'sawtooth', 0.025, 0, 900); break;
-      case 'hit': this.noise(0.12, 0.1); this.tone(220, 0.15, null, 0.06, 0, 70); break;
-      case 'super': this.noise(0.18, 0.13); tn(523, 0.08, 0); tn(784, 0.08, 0.07); tn(1046, 0.2, 0.14); break;
-      case 'enemy': this.tone(160, 0.2, 'sawtooth', 0.05, 0, 60); break;
-      case 'faint': tn(392, 0.15, 0); tn(330, 0.15, 0.14); tn(262, 0.3, 0.28); break;
-      case 'win': [523, 659, 784, 1046].forEach((f, i) => tn(f, 0.14, i * 0.11)); tn(1318, 0.35, 0.46); break;
-      case 'level': [392, 523, 659, 784].forEach((f, i) => tn(f, 0.1, i * 0.07)); break;
-      case 'evolve': for (let i = 0; i < 10; i++) tn(400 + i * 90, 0.08, i * 0.07, 0.05); break;
-      case 'catch': tn(784, 0.1, 0); tn(988, 0.1, 0.1); tn(1318, 0.28, 0.2); break;
-      case 'phase': this.tone(110, 0.5, 'sawtooth', 0.06, 0, 220); break;
-      case 'star': [784, 988, 1175, 1568].forEach((f, i) => tn(f, 0.16, i * 0.09)); break;
-      case 'heal': [523, 659, 784, 1046, 1318].forEach((f, i) => this.tone(f, 0.18, 'sine', 0.06, i * 0.06)); break;
-    }
+  notes(name, n = 0) { const f = SFX_NOTES[name]; return f ? f(n) : null; },
+  out(name, n = 0) {
+    const notes = this.notes(name, n); if (!notes) return;
+    if (this.ctx && this.ctx.state !== 'running') { try { this.ctx.resume(); } catch (e) { /* ignore */ } }
+    if (this.ok()) { this.last = 'webaudio'; for (const x of notes) { if (x[0] === 'noise') this.noise(x[1], x[2]); else this.tone(x[0], x[1], x[4], x[3], x[2], x[5]); } }
+    else this.htmlPlay(name + ':' + n + ':' + (cute() ? 'c' : 'h'), notes);
   },
+  play(name, n = 0) { if (!G.P || !G.P.settings.sound) return; this.out(name, n); },
 };
 
 /* ---------- shared bits ---------- */
@@ -2385,8 +2997,8 @@ function giveXp(c, xp, out) {
 function sprite(em, { stage = 0, elem = null, cls = '' } = {}) {
   const el = h('div', { class: `spr st${stage} ${cls}`, style: elem ? { '--glow': ELEM[elem].color } : null }, h('span', { class: 'em' }, em));
   if (!/^@(rp|cu:cur)/.test(String(em))) { // soft creatures draw their own star and crown
-    if (stage === 1) el.append(h('span', { class: 'badge-st' }, '⭐'));
-    if (stage === 2) el.append(h('span', { class: 'badge-st' }, '👑'));
+    if (stage === 1) el.append(h('span', { class: 'badge-st' }, '@mp:star'));
+    if (stage === 2) el.append(h('span', { class: 'badge-st' }, '@mp:crown'));
   }
   return el;
 }
@@ -2405,17 +3017,17 @@ const RED_PANDA_SVG = '<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx=
 
 function iconBtn(label, glyph, onclick, cls = '') { return h('button', { class: 'ib ' + cls, 'aria-label': label, title: label, onclick }, glyph); }
 function soundBtn() {
-  const b = iconBtn('Sound on or off', G.P && G.P.settings.sound ? '🔊' : '🔇', () => { G.P.settings.sound = !G.P.settings.sound; b.textContent = G.P.settings.sound ? '🔊' : '🔇'; Store.saveLocal(G.P); });
+  const b = iconBtn('Sound on or off', ic(G.P && G.P.settings.sound ? 'sound' : 'mute'), () => { G.P.settings.sound = !G.P.settings.sound; b.replaceChildren(artImg(ic(G.P.settings.sound ? 'sound' : 'mute'))); Store.saveLocal(G.P); if (G.P.settings.sound) Sfx.play('good'); });
   return b;
 }
-function gearBtn() { return iconBtn('Grown-ups', '⚙️', () => screenParent(), 'gear'); }
+function gearBtn() { return iconBtn('Grown-ups', ic('gear'), () => screenParent(), 'gear'); }
 const profName = id => (PROFILES.find(p => p.id === id) || {}).name || id;
-function homeBtn() { return iconBtn('Switch player', '🏠', () => { Voice.stop(); G.B = null; screenProfiles(); }); }
+function homeBtn() { return iconBtn('Switch player', ic('home'), () => { Voice.stop(); G.B = null; screenProfiles(); }); }
 
 /* ---------- replay: Red Panda can hear any line again ---------- */
 function replayBtn(text, el) {
   if (!cute() || !text) return null;
-  return h('button', { class: 'replay', 'aria-label': 'Hear it again', onclick: e => { e.stopPropagation(); Sfx.play('tap'); el ? readLine(el, text, false) : Voice.say(text); } }, '🔊');
+  return h('button', { class: 'replay', 'aria-label': 'Hear it again', onclick: e => { e.stopPropagation(); Sfx.play('tap'); el ? readLine(el, text, false) : Voice.say(text); } }, ic('sound'));
 }
 
 /* ---------- overlay cards ---------- */
@@ -2449,7 +3061,7 @@ function screenProfiles() {
   setScreen('profiles', h('div', { class: 'home' },
     h('div', { class: 'home-logo' }, h('span', null, 'Mathlings')),
     h('div', { class: 'home-cards' }, cards),
-    h('div', { class: 'home-foot' }, iconBtn('Grown-ups', '⚙️', () => screenParent(), 'gear'))));
+    h('div', { class: 'home-foot' }, iconBtn('Grown-ups', '@ms:gear', () => screenParent(), 'gear'))));
 }
 async function selectProfile(id) {
   Sfx.init(); Voice.unlock();
@@ -2465,14 +3077,14 @@ async function selectProfile(id) {
 }
 
 /* ---------- play time + sleepy creatures ---------- */
-function rollDay() { const d = E.dayKey(); if (G.P.play.day !== d) { G.P.play.day = d; G.P.play.ms = 0; if (keepsHp()) healAll(); } }
+function rollDay() { const d = E.dayKey(); if (G.P.play.day !== d) { G.P.play.day = d; G.P.play.ms = 0; G.P.play.cyc = (G.P.play.cyc || 0) + 1; if (keepsHp()) healAll(); } }
 const limitMs = () => (G.P.settings.sessionMin > 0 ? G.P.settings.sessionMin * 60000 : Infinity);
 const isAsleep = () => G.P.play.sleepUntil && Date.now() < G.P.play.sleepUntil;
 function goToSleep() {
   const r = G.P.settings.rest; let until;
   if (r === 'day') { const t = new Date(); t.setDate(t.getDate() + 1); t.setHours(4, 0, 0, 0); until = t.getTime(); }
   else until = Date.now() + parseFloat(r) * 3600e3;
-  G.P.play.sleepUntil = until; G.P.play.ms = 0; G.sleepy = false;
+  G.P.play.sleepUntil = until; G.P.play.ms = 0; G.P.play.cyc = (G.P.play.cyc || 0) + 1; G.sleepy = false;
   Store.save(G.P, true);
 }
 setInterval(() => {
@@ -2496,7 +3108,7 @@ function screenRest() {
   const title = h('div', { class: 'rest-title' }, rw(T().night));
   setScreen('rest', h('div', { class: 'rest' },
     h('div', { class: 'top' }, homeBtn(), h('div', { class: 'top-title' }, profName(P.id)), gearBtn()),
-    h('div', { class: 'rest-sky' }, h('div', { class: 'rest-moon' }, '🌙'), h('div', { class: 'rest-row' }, sleepers)),
+    h('div', { class: 'rest-sky' }, h('div', { class: 'rest-moon' }, ic('moon')), h('div', { class: 'rest-row' }, sleepers)),
     h('div', { class: 'rest-card win' }, title, h('p', null, rw(T().restMsg)),
       today.n ? h('p', { class: 'rest-count' }, rw(cute() ? `You did ${today.n} problems today!` : `${today.n} problems solved today.`)) : null,
       h('p', { class: 'rest-when' }, rw(when)))));
@@ -2539,7 +3151,7 @@ function nameHero(c) {
     const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win name-card', role: 'dialog', 'aria-modal': 'true' },
       cSprite(c, 'ov-spr'), h('div', { class: 'ov-title' }, `Name your ${cClass(c)}`),
       h('div', { class: 'ov-line' }, 'Choose carefully. A hero’s name is forever!'), inp,
-      h('div', { class: 'name-btns' }, h('button', { class: 'tool', onclick: () => { Sfx.play('tap'); inp.value = pick(HERO_NAMES.filter(n => !G.P.g.roster.some(o => o.nm === n))); } }, '🎲 Suggest'),
+      h('div', { class: 'name-btns' }, h('button', { class: 'tool', onclick: () => { Sfx.play('tap'); inp.value = pick(HERO_NAMES.filter(n => !G.P.g.roster.some(o => o.nm === n))); } }, ic('dice'), ' Suggest'),
         h('button', { class: 'bigbtn', onclick: done }, 'Done'))));
     ovRoot.append(ov); setTimeout(() => { try { inp.focus(); } catch (e) { /* ignore */ } }, 80);
   });
@@ -2567,7 +3179,7 @@ function screenTeam() {
         keepsHp() ? hpLine(hpOf(c), maxHp(c)) : null,
         h('div', { class: 'xpbar', title: 'Experience' }, h('i', { style: { width: Math.round((c.xp / xpNeed(c.lv)) * 100) + '%' } })),
         h('div', { class: 'ccard-move' }, rw(sp.move)),
-        h('span', { class: 'ccard-gear', role: 'button', tabindex: '0', onclick: e => { e.stopPropagation(); Sfx.play('tap'); gearMenu(c); } }, gearOf(c) ? `${gearOf(c).em} ${gearOf(c).name}` : (cute() ? '🎒 Gear' : '🎒 Equip')));
+        h('span', { class: 'ccard-gear', role: 'button', tabindex: '0', onclick: e => { e.stopPropagation(); Sfx.play('tap'); gearMenu(c); } }, gearOf(c) ? `${gearOf(c).em} ${gearOf(c).name}` : `${ic('bag')} ${cute() ? 'Gear' : 'Equip'}`));
     };
     const box = g.roster.filter(c => !inParty.has(c.u));
     body = h('div', { class: 'teambody' },
@@ -2576,7 +3188,7 @@ function screenTeam() {
       box.length ? h('div', { class: 'tlabel' }, rw(cute() ? 'More friends' : 'Reserves'), G.swapSel ? h('span', { class: 'tnote' }, rw(cute() ? ' Tap one on your team to swap.' : ' Now tap a party member to swap.')) : null) : null,
       box.length ? h('div', { class: 'tgrid' }, box.map(cardFor)) : null,
       h('div', { class: 'tcount' }, `${Object.keys(g.caught).filter(k => !k.startsWith('cu')).length} / 9 ${cute() ? 'friends' : 'heroes'}`),
-      g.custom.length < 3 ? h('div', { class: 'maker-row' }, h('button', { class: 'bigbtn alt maker-open', onclick: () => openMaker() }, cute() ? '✨ ' : '🛠️ ', rw(cute() ? 'Make a friend' : 'Create a hero'), ` (${3 - g.custom.length} left)`)) : null);
+      g.custom.length < 3 ? h('div', { class: 'maker-row' }, h('button', { class: 'bigbtn alt maker-open', onclick: () => openMaker() }, ic(cute() ? 'sparkle' : 'hammer'), ' ', rw(cute() ? 'Make a friend' : 'Create a hero'), ` (${3 - g.custom.length} left)`)) : null);
   }
   setScreen('team', h('div', { class: 'team' },
     h('div', { class: 'top' }, homeBtn(), h('div', { class: 'top-title' }, t.team), h('button', { class: 'ib wide', onclick: screenWorld }, rw(t.map + ' ›')), soundBtn(), gearBtn()),
@@ -2609,7 +3221,7 @@ function bagView() {
   const owned = GEAR.hero.filter(i => g.bag.includes(i.id));
   return h('div', { class: 'teambody bag' },
     h('div', { class: 'bag-head win' }, h('div', { class: 'bag-items' }, Object.keys(I).map(k => h('div', { class: 'bag-item' }, h('span', { class: 'bag-big' }, I[k].em), h('div', null, h('div', { class: 'tlabel' }, `${I[k].name} × ${g.items[k] || 0}`), h('div', { class: 'bag-sub' }, I[k].desc))))),
-      h('div', { class: 'bag-sub' }, 'Get more from quests, chests and shops, or rest at an inn 🛖.')),
+      h('div', { class: 'bag-sub' }, 'Get more from quests, chests and shops, or rest at an inn @mp:inn.')),
     h('div', { class: 'bag-list' }, rows),
     owned.length ? h('div', { class: 'tlabel' }, 'Gear') : null,
     owned.length ? h('div', { class: 'bag-gear' }, owned.map(i => { const who = g.roster.find(o => o.gear === i.id); return h('button', { class: 'gear-row', onclick: () => equipPicker(i).then(screenTeam) }, h('span', { class: 'shop-em' }, i.em), h('span', { class: 'shop-name' }, i.name), h('span', { class: 'shop-eff' }, effectText(i)), h('span', { class: 'gear-state' }, who ? cName(who) : 'Not equipped')); })) : null);
@@ -2627,7 +3239,7 @@ function monsterBook() {
     area.foes.concat([area.boss]).forEach(f => {
       const phases = f.phases || [{ weak: f.weak, resist: f.resist }];
       const seen = phases.some((_, i) => g.book[f.id + ':' + i]);
-      if (!seen) { rows.push(h('div', { class: 'brow unseen win' }, h('span', { class: 'bem' }, '❔'), h('span', { class: 'bname' }, '???'), h('span', { class: 'barea' }, area.name))); return; }
+      if (!seen) { rows.push(h('div', { class: 'brow unseen win' }, h('span', { class: 'bem' }, '@mp:question'), h('span', { class: 'bname' }, '???'), h('span', { class: 'barea' }, area.name))); return; }
       const info = phases.map((p, i) => {
         const k = g.book[f.id + ':' + i] || {};
         return h('span', { class: 'bphase' }, phases.length > 1 ? `Form ${i + 1}: ` : '', 'Weak ', k.weak ? ELEM[p.weak].icon : '?', p.resist ? [' · Resists ', k.resist ? ELEM[p.resist].icon : '?'] : '');
@@ -2652,11 +3264,11 @@ const OPCLS = { '+': 'plus', '-': 'minus', 'x': 'times', '/': 'div' };
 const dmgTarget = () => (cute() ? 6 : 40);
 function makeFoe(def, kind) {
   const g = G.P.g; const tgt = dmgTarget();
-  const hpMul = kind === 'k' ? 11 : kind === 'c' ? 3.5 : 5;
+  const hpMul = kind === 'k' ? 11 : kind === 't' ? 8 : kind === 'c' ? 3.5 : 5;
   const max = Math.round(tgt * hpMul * (1 + 0.15 * (g.world - 1)));
   const base = cute() ? 3 + g.area * 0.8 : 3 + g.area;
   const atk = Math.max(1, Math.round((base + (g.world - 1) * 2) * (kind === 'k' ? 1.25 : 1) * (cute() ? 1 : 1.3)));
-  const f = { id: def.id, em: def.em, name: (g.world > 1 && kind !== 'c' ? (cute() ? 'Big ' : 'Mega ') : '') + def.name, weak: def.weak || null, resist: def.resist || null, atkEl: def.resist || null, hp: max, max, atk, boss: kind === 'k', phase: 0 };
+  const f = { id: def.id, em: def.em, name: (g.world > 1 && kind !== 'c' ? (cute() ? 'Big ' : 'Mega ') : '') + def.name, weak: def.weak || null, resist: def.resist || null, atkEl: def.resist || null, hp: max, max, atk, boss: kind === 'k' || kind === 't', phase: 0 };
   if (def.phases) { f.phases = def.phases; f.weak = def.phases[0].weak; f.resist = def.phases[0].resist || null; f.atkEl = f.resist; }
   const k = f.id + ':0'; g.book[k] = Object.assign(g.book[k] || {}, { seen: 1 });
   return f;
@@ -2669,25 +3281,26 @@ function catchSpecies(area) {
 function startBattle(o) {
   Sfx.play('tap'); W.walkId++;
   if (keepsHp() && party().every(c => hpOf(c) <= 0)) {
-    talk('🛏️', 'Innkeeper', 'Your party is too hurt to fight! Use a potion from your bag 🎒, or rest at the inn 🛖.');
+    talk(...INNKEEPER, `Your party is too hurt to fight! Use a potion from your bag ${ic('bag')}, or rest at the inn ${ic('inn')}.`);
     return;
   }
   let foe;
   if (o.type === 'c') { const sp = spById(o.catchSp); foe = makeFoe({ id: 'wild-' + sp.id, em: sp.em, name: sp.names[0], weak: TYPE_WEAK[sp.e], resist: sp.e }, 'c'); }
   else foe = makeFoe(o.def, o.type);
   const hp = {}; party().forEach(c => { hp[c.u] = keepsHp() ? hpOf(c) : maxHp(c); });
-  G.B = { type: o.type, o, foe, hp, catchSp: o.catchSp || null, rewards: [], events: [], stats: { n: 0, c: 0 }, phase: 'intro', purpose: 'attack', gems: 0 };
+  const lit0 = G.P.g.world === 1 ? new Set(gateBits(actOf(G.P.g.area)).filter(b => b.lit).map(b => b.id)) : new Set();
+  G.B = { type: o.type, o, foe, hp, catchSp: o.catchSp || null, rewards: [], events: [], stats: { n: 0, c: 0 }, phase: 'intro', purpose: 'attack', gems: 0, lit0, words: 0 };
   screenBattle();
   introBattle();
 }
 function battleGems(type) {
   const act = actOf(G.P.g.area) + (G.P.g.world - 1) * 3;
   const base = cute() ? 3 + act : 6 + 3 * act;
-  return type === 'k' ? base * 3 : base;
+  return type === 'k' ? base * 3 : type === 't' ? base * 2 : base;
 }
 async function introBattle() {
   const B = G.B; const t = T();
-  const line = type => (B.type === 'k' ? t.boss + ' ' : '') + (B.type === 'c' ? (cute() ? `${B.foe.name} is shy!` : `A wild ${B.foe.name} appears!`) : t.grumpy(B.foe.name));
+  const line = type => (B.type === 't' ? (cute() ? 'Star Test! ' : 'Gate Trial! ') : B.type === 'k' ? t.boss + ' ' : '') + (B.type === 'c' ? (cute() ? `${B.foe.name} is shy!` : `A wild ${B.foe.name} appears!`) : t.grumpy(B.foe.name));
   setMsg(line()); if (B.foe.boss) Sfx.play('phase');
   await readLine($('.panel'), line(), true);
   await wait(cute() ? 300 : 900);
@@ -2792,7 +3405,12 @@ function chooseAttack(u) { if (G.B.phase !== 'menu') return; Sfx.play('tap'); G.
 
 async function nextProblem() {
   const B = G.B;
-  Object.assign(B, { prob: E.pickProblem(G.P), typed: '', tries: 0, assisted: false, recorded: false, mode: 'answer', phase: 'problem', tFirst: 0 });
+  // some of Red Panda's turns are sight-word turns (never two in a row)
+  const S = G.P.settings;
+  if (cute() && S.words && B.purpose === 'attack' && !B.lastWord && Math.random() < (S.wordRate || 0.35)) { B.lastWord = true; return nextWord(); }
+  B.lastWord = false;
+  const prob = B.type === 't' ? E.pickFrom(G.P, E.actSkills(G.P, actOf(G.P.g.area))) : E.pickProblem(G.P);
+  Object.assign(B, { prob, typed: '', tries: 0, assisted: false, recorded: false, mode: 'answer', phase: 'problem', tFirst: 0 });
   renderProblem();
   B.t0 = performance.now();
   if (G.P.settings.autoRead) {
@@ -2812,12 +3430,12 @@ function exprEl(pr, typed, big = true) {
 }
 function renderProblem(note) {
   const B = G.B; const pr = B.prob;
-  const who = B.purpose === 'catch' ? (cute() ? 'Solve to make a friend!' : 'Solve it to recruit!') : (() => { const c = byU(B.attacker); return `${cName(c)}: ${spById(c.sp).move}` + ((B.streak || 0) >= 2 ? `  🔥×${B.streak}` : ''); })();
+  const who = B.purpose === 'catch' ? (cute() ? 'Solve to make a friend!' : 'Solve it to recruit!') : (() => { const c = byU(B.attacker); return `${cName(c)}: ${spById(c.sp).move}` + ((B.streak || 0) >= 2 ? `  ${ic('fire')}×${B.streak}` : ''); })();
   const noteEl = h('div', { class: 'pnote' + (note ? ' alert' : '') }, rw(note || who));
   const left = h('div', { class: 'pleft' }, noteEl, exprEl(pr, B.typed),
     h('div', { class: 'ptools' },
-      h('button', { class: 'tool', 'aria-label': 'Read it to me', onclick: () => Voice.say(pr.say) }, '🔊'),
-      h('button', { class: 'tool', onclick: helpTap }, '💡 ', rw(cute() ? 'Help' : 'Hint')),
+      h('button', { class: 'tool', 'aria-label': 'Read it to me', onclick: () => Voice.say(pr.say) }, ic('sound')),
+      h('button', { class: 'tool', onclick: helpTap }, ic('bulb'), ' ', rw(cute() ? 'Help' : 'Hint')),
       B.purpose === 'attack' && B.mode === 'answer' && !B.recorded ? h('button', { class: 'tool ghost', onclick: () => { Sfx.play('tap'); showMenu(); } }, rw(cute() ? 'Back' : 'Change')) : null));
   setPanel('problem', h('div', { class: 'pprob' }, left, numpad(padKey, true)));
   G.pad = padKey;
@@ -2894,12 +3512,13 @@ function popText(atEl, text, cls = '') {
   const el = h('div', { class: 'pop ' + cls }, text); el.style.left = p.x + 'px'; el.style.top = p.y + 'px';
   $('.fx').append(el); setTimeout(() => el.remove(), 1500);
 }
-function hearts(atEl) { for (let i = 0; i < 7; i++) setTimeout(() => popText(atEl, pick(['💖', '💗', '✨', '💜']), 'heart h' + i), i * 90); }
+function hearts(atEl) { for (let i = 0; i < 7; i++) setTimeout(() => popText(atEl, pick([ic('heart'), ic('heart', '#ff9ad5'), ic('sparkle'), ic('heart', '#c08bff')]), 'heart h' + i), i * 90); }
 
 async function doAttack(q) {
   const B = G.B, f = B.foe, c = byU(B.attacker), sp = spById(c.sp);
-  const base = Math.max(1, B.prob.ans);
-  const pow = E.power(B.prob.skill, dmgTarget());
+  const isWord = !!B.prob.isWord;
+  const base = isWord ? dmgTarget() : Math.max(1, B.prob.ans);
+  const pow = isWord ? 1 : E.power(B.prob.skill, dmgTarget());
   const mult = sp.e === f.weak ? 2 : sp.e === f.resist ? 0.5 : 1;
   const gear = gearOf(c); const gp = (gear && gear.p) || 0;
   const charm = gear && gear.el === sp.e ? 1.5 : 1;
@@ -2926,9 +3545,9 @@ async function doAttack(q) {
   anim(foeEl, 'hurt', 480);
   if (mult === 2) anim($('.field'), 'quake', 420);
   // the answer is the hit: Red Panda sees her answer, Gothax sees the power math behind it
-  const label = cute() ? String(base) : (q === 1 && m > 1 && Number.isInteger(m) ? `${base} × ${m} = ${base * m}${bonus > 0 ? ' +' + bonus : ''}` : String(dmg));
+  const label = isWord ? B.prob.word : cute() ? String(base) : (q === 1 && m > 1 && Number.isInteger(m) ? `${base} × ${m} = ${base * m}${bonus > 0 ? ' +' + bonus : ''}` : String(dmg));
   popText(foeEl, label, mult === 2 ? 'dmg big' : 'dmg');
-  if (cute() && m >= 2 && q === 1) setTimeout(() => popText(foeEl, '×' + m, 'tagpop combo'), 120);
+  if (cute() && m >= 2 && q === 1 && !isWord) setTimeout(() => popText(foeEl, '×' + m, 'tagpop combo'), 120);
   if (combo > 1) { setTimeout(() => popText(foeEl, `Combo ×${B.streak}!`, 'tagpop combo2'), 320); Sfx.play('star'); }
   if (charm > 1) setTimeout(() => popText(meEl, ELEM[sp.e].icon + '+', 'tagpop'), 150);
   if (mult === 2) { setTimeout(() => popText(foeEl, T().super, 'tagpop'), 200); discover(f, 'weak'); }
@@ -2981,13 +3600,13 @@ function catchPhase() {
   const sp = spById(B.catchSp); const foeEl = $('.foe-spr'); foeEl.classList.remove('cheer', 'poof'); foeEl.classList.add('friendly');
   const txt = cute() ? `${sp.names[0]} wants to be your friend!` : `${sp.names[0]} wants to join your party!`;
   const prompt = h('div', { class: 'prompt' }, rw(txt));
-  setPanel('menu', h('div', { class: 'pmenu' }, prompt, h('button', { class: 'bigbtn catchbtn', onclick: () => { Sfx.play('tap'); nextProblem(); } }, cute() ? '💖 ' : '🛡️ ', rw(T().catchIt))));
+  setPanel('menu', h('div', { class: 'pmenu' }, prompt, h('button', { class: 'bigbtn catchbtn', onclick: () => { Sfx.play('tap'); nextProblem(); } }, cute() ? ic('heart') : ic('shield'), ' ', rw(T().catchIt))));
   readLine(prompt, txt);
 }
 async function doCatch() {
   const B = G.B; const sp = spById(B.catchSp); const foeEl = $('.foe-spr');
   setMsg(cute() ? 'Here you go!' : 'Recruiting...');
-  await projectile($('.party .spr'), foeEl, cute() ? '💖' : '🔷');
+  await projectile($('.party .spr'), foeEl, cute() ? ic('heart') : ic('crystal'));
   Sfx.play('catch'); foeEl.classList.add('caught'); hearts(foeEl); await wait(900);
   const c = addCreature(sp.id); B.rewards.push({ type: 'joined', c });
   const msg = T().joined(sp.names[0]); setMsg(msg); await readLine($('.panel'), msg, true); await wait(900);
@@ -3003,7 +3622,7 @@ async function lose() {
 async function endBattle(won) {
   const B = G.B; const g = G.P.g;
   syncHp();
-  if (won) { g.gems += B.gems || 0; g.wins++; if (B.o.onWin) B.o.onWin(); }
+  if (won) { g.gems += B.gems || 0; g.wins++; const act = actOf(g.area); g.actWins = g.actWins || {}; g.actWins[act] = (g.actWins[act] || 0) + 1; if (B.o.onWin) B.o.onWin(); }
   if (won && B.type === 'k' && keepsHp()) { healAll(); B.healed = true; }
   Store.save(G.P, true);
   G.B = null;
@@ -3018,14 +3637,26 @@ async function showRewards(B) {
   leveled.forEach(c => lines.push(t.levelUp(cName(c)) + ` Lv ${c.lv}`));
   B.events.filter(e => e.type === 'start').forEach(e => lines.push(t.started(E.SK[e.skill].kid)));
   const rightTxt = cute() ? `${B.stats.c} right the first time!` : `${B.stats.c} of ${B.stats.n} correct on the first try.`;
+  const words = B.events.filter(e => e.type === 'word').map(e => e.word);
   if (B.healed) lines.push('Your whole party is fully healed!');
-  if (lines.length) { Sfx.play('level'); await card({ big: '🎉', title: t.happy, lines: [rightTxt, `+${B.gems || 0} ${CUR().em}`, ...lines], say: t.happy }); }
+  if (lines.length) { Sfx.play('level'); await card({ big: ic('party'), title: t.happy, lines: [rightTxt, `+${B.gems || 0} ${CUR().em}`, ...lines], say: t.happy }); }
+  if (words.length) await learnedWordsCard(words);
   for (const e of B.events.filter(e => e.type === 'mastered')) {
     const name = E.SK[e.skill].kid; const title = e.placed ? t.placed(name) : t.mastered(name);
     party().forEach(m => giveXp(m, 25, []));
-    const act = actOf(G.P.g.area); const ids = E.actSkills(G.P, act); const lit = ids.filter(id => G.P.skills[id].st === 'mastered').length;
-    const meter = ids.includes(e.skill) && G.P.g.world === 1 ? (cute() ? `Star Gate: ${lit} of ${ids.length} stars!` : `Crystal Gate: ${lit} of ${ids.length} crystals lit.`) : null;
-    Sfx.play('star'); await card({ big: '⭐', title, lines: [meter, cute() ? 'Your friends got extra stars!' : 'Your party gains bonus experience!'].filter(Boolean), say: title, cls: 'star' });
+    const act = actOf(G.P.g.area); const bits = gateBits(act); const lit = bits.filter(b => b.lit).length;
+    const meter = bits.some(b => b.id === e.skill) && G.P.g.world === 1 ? (cute() ? `Star Gate: ${lit} of ${bits.length} stars!` : `Crystal Gate: ${lit} of ${bits.length} crystals lit.`) : null;
+    Sfx.play('star'); await card({ big: ic('star'), title, lines: [meter, cute() ? 'Your friends got extra stars!' : 'Your party gains bonus experience!'].filter(Boolean), say: title, cls: 'star' });
+  }
+  // crystals that lit up this battle (before full mastery)
+  if (G.P.g.world === 1) {
+    const done = new Set(B.events.filter(e => e.type === 'mastered').map(e => e.skill));
+    const bits = gateBits(actOf(G.P.g.area)); const lit = bits.filter(b => b.lit).length;
+    for (const b of bits.filter(b => b.lit && !B.lit0.has(b.id) && !done.has(b.id))) {
+      Sfx.play('star');
+      const title = cute() ? 'A star lit up!' : 'A crystal lit up!';
+      await card({ big: crystalEl(b), title, lines: [b.label, cute() ? `Star Gate: ${lit} of ${bits.length} stars!` : `Crystal Gate: ${lit} of ${bits.length} crystals lit.`], say: title, cls: 'star' });
+    }
   }
   for (const r of B.rewards.filter(r => r.type === 'evolve')) {
     Sfx.play('evolve'); const title = t.evolve(r.from, r.to);
@@ -3206,6 +3837,78 @@ function numberLine({ from, to }) {
     <text x="${mid}" y="24" class="nl-d">${to < from ? '−' : '+'}${Math.abs(from - to)}</text></svg>` });
 }
 
+/* ---------- sight-word turns (Red Panda) ---------- */
+// hear2 / hear3: the game says the word and she finds it. read: she reads it first (no sound), then finds the speaker that says it.
+function wordWidget(wq, { onFirst, onDone, note }) {
+  let tries = 0, first = true, sel = null, busy = false;
+  G.wq = wq;
+  const read = wq.mode === 'read';
+  const say = w => Voice.say(w, { rate: 0.72, force: true });
+  const intro = async () => { if (read) await Voice.say('Read this word. Then find it!', { force: true }); else { await Voice.say('Find this word.', { force: true }); await wait(120); say(wq.word); } };
+  const msg = h('div', { class: 'wmsg' }, rw(note || ''));
+  const tell = t => { msg.replaceChildren(rw(t)); Voice.say(t, { force: true }); };
+  const ok = h('button', { class: 'bigbtn wok', disabled: true, onclick: () => { if (sel) choose(sel); } }, rw('That one!'));
+  const btns = wq.choices.map((w, i) => {
+    const b = h('button', { class: 'wcard' + (read ? ' snd s' + i : ''), 'data-w': w, 'aria-label': read ? 'Hear choice ' + (i + 1) : w, onclick: () => {
+      if (busy) return; Sfx.play('tap');
+      if (read) { btns.forEach(x => x.classList.remove('sel')); b.classList.add('sel'); sel = w; ok.disabled = false; say(w); return; }
+      choose(w);
+    } }, read ? [ic('sound'), h('span', { class: 'wnum' }, String(i + 1))] : w);
+    return b;
+  });
+  const reveal = () => { btns.forEach(b => { if (read) b.replaceChildren(b.dataset.w); b.classList.toggle('hint', b.dataset.w === wq.word); }); };
+  function choose(w) {
+    if (busy) return;
+    const right = w === wq.word;
+    if (first) { first = false; onFirst(right); }
+    if (right) {
+      busy = true; Sfx.play('good');
+      btns.forEach(b => b.classList.toggle('right', b.dataset.w === w));
+      say(wq.word); setTimeout(() => onDone(tries), 650); return;
+    }
+    tries++; Sfx.play('oops'); const b = btns.find(x => x.dataset.w === w); anim(b, 'nope', 400);
+    if (read) { btns.forEach(x => x.classList.remove('sel')); sel = null; ok.disabled = true; }
+    if (tries >= 2) { reveal(); tell(`This one says ${wq.word}. Tap it!`); }
+    else tell(read ? 'Not that one. Listen again!' : `That says ${w}. Find ${wq.word}!`);
+  }
+  const head = read
+    ? h('div', { class: 'whead' }, h('div', { class: 'wprompt' }, rw('Read it!')), h('div', { class: 'wbig' }, wq.word))
+    : h('div', { class: 'whead' }, h('div', { class: 'wprompt' }, rw('Find:')), h('button', { class: 'wsay', 'aria-label': 'Hear the word', onclick: () => { Sfx.play('tap'); say(wq.word); } }, ic('sound')));
+  const el = h('div', { class: 'wword' + (read ? ' read' : '') }, head, h('div', { class: 'wchoices n' + btns.length }, btns), read ? ok : null, msg);
+  setTimeout(intro, 80);
+  return el;
+}
+function nextWord() {
+  const B = G.B; const wq = E.pickWord(G.P);
+  Object.assign(B, { prob: { isWord: true, word: wq.word, wq, ans: 0 }, typed: '', tries: 0, assisted: false, recorded: false, mode: 'word', phase: 'problem' });
+  const c = byU(B.attacker); const who = `${cName(c)}: ${spById(c.sp).move}`;
+  const back = h('button', { class: 'tool ghost wback', onclick: () => { if (B.recorded) return; Sfx.play('tap'); Voice.stop(); showMenu(); } }, rw('Back'));
+  const w = wordWidget(wq, {
+    note: who,
+    onFirst: right => { B.recorded = true; back.remove(); B.events.push(...E.recordWord(G.P, wq, right)); B.stats.n++; if (right) B.stats.c++; B.words++; },
+    onDone: tries => { const q = tries === 0 ? 1 : tries === 1 ? 0.5 : 0; B.streak = q === 1 ? (B.streak || 0) + 1 : 0; B.tries = tries; finishProblem(q); },
+  });
+  setPanel('word', h('div', { class: 'pword' }, w, back));
+}
+async function learnedWordsCard(words) {
+  Sfx.play('star');
+  const title = words.length > 1 ? 'You can read new words!' : 'You can read a new word!';
+  await card({ big: ic('book'), title, lines: [h('div', { class: 'wlearned' }, words.map(w => h('button', { class: 'wcard sm', onclick: () => Voice.say(w, { rate: 0.72, force: true }) }, w)))], say: title + ' ' + words.join(', '), cls: 'star' });
+}
+// Miss Tia's word quest: three words in a row, outside battle
+function wordQuest(npc, idx) {
+  return new Promise(resolve => {
+    const wq = E.pickWord(G.P); const learned = [];
+    const w = wordWidget(wq, {
+      onFirst: right => { learned.push(...E.recordWord(G.P, wq, right)); },
+      onDone: async () => { ov.remove(); Store.saveLocal(G.P); if (learned.length) await learnedWordsCard(learned.map(e => e.word)); resolve(); },
+    });
+    const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win story wquest', role: 'dialog', 'aria-modal': 'true' },
+      h('div', { class: 'story-head' }, h('span', { class: 'talk-face sm' }, npc[0]), h('div', null, h('div', { class: 'talk-name' }, npc[1]), h('div', { class: 'story-n' }, `${idx + 1} / 3`))), w));
+    ovRoot.append(ov);
+  });
+}
+
 /* ---------- walkable mini-worlds ---------- */
 const DIRS = [[1, 0], [-1, 0], [0, 1], [0, -1]];
 const W = { t: 48, walkId: 0, rows: null, ents: [], busy: false };
@@ -3213,7 +3916,15 @@ const actOf = ai => Math.floor(ai / 2) + 1;
 const curAct = () => Math.min(3, G.P.act || 1);
 const gearOf = c => (c && c.gear ? GEAR[G.theme].find(i => i.id === c.gear) || null : null);
 const npcOf = (ai, role) => NPCS[G.theme][ai][role];
-const qState = (ai, role) => (G.P.g.q[ai + role] = G.P.g.q[ai + role] || { st: 'new', n: 0, day: '' });
+// quests come back after every rest (and every new day): a finished quest from an earlier rest turns into a new one
+const cyc = () => G.P.play.cyc || 0;
+function qState(ai, role) {
+  const q = (G.P.g.q[ai + role] = G.P.g.q[ai + role] || { st: 'new', n: 0, cyc: -1 });
+  if (q.st === 'done' && q.cyc !== cyc()) { q.st = 'new'; q.n = 0; }
+  if ((role === 'A' || role === 'D') && q.st === 'active') q.st = 'new';
+  return q;
+}
+const TRIAL_WINS = 8; // battles won in an act before the Gate Trial is offered
 const isGateArea = ai => ai % 2 === 1;
 
 function mapRows(ai) {
@@ -3222,8 +3933,8 @@ function mapRows(ai) {
   return rows;
 }
 function aState(ai) {
-  const g = G.P.g; const s = (g.maps[ai] = g.maps[ai] || { day: '', gems: [], chest: false, mons: {}, items: [] });
-  const d = E.dayKey(); if (s.day !== d) { s.day = d; s.gems = []; }
+  const g = G.P.g; const s = (g.maps[ai] = g.maps[ai] || { cyc: -1, gems: [], chest: false, mons: {}, items: [] });
+  if (s.cyc !== cyc()) { s.cyc = cyc(); s.gems = []; s.chest = false; } // coins and chests come back after a rest too
   return s;
 }
 function findChar(rows, ch) { for (let y = 0; y < rows.length; y++) for (let x = 0; x < rows[y].length; x++) if (rows[y][x] === ch) return { x, y }; return null; }
@@ -3240,19 +3951,19 @@ function buildEnts(ai) {
   const qB = qState(ai, 'B');
   rows.forEach((r, y) => r.forEach((c, x) => {
     const id = x + ',' + y;
-    if ('ABC'.includes(c)) { const n = npcOf(ai, c); ents.push({ kind: 'npc', role: c, x, y, em: n[0], name: n[1], block: true }); }
-    else if (c === 'S') ents.push({ kind: 'shop', x, y, em: '🏪', block: true });
+    if ('ABC'.includes(c) || (c === 'D' && npcOf(ai, 'D'))) { const n = npcOf(ai, c); ents.push({ kind: 'npc', role: c, x, y, em: n[0], name: n[1], block: true }); }
+    else if (c === 'S') ents.push({ kind: 'shop', x, y, em: ic('shop'), block: true });
     else if (c === 'G' && !s.gems.includes(id)) ents.push({ kind: 'gem', x, y, em: CUR().em, id });
-    else if (c === 'H' && !cute()) ents.push({ kind: 'inn', x, y, em: '🛖', block: true });
+    else if (c === 'H' && !cute()) ents.push({ kind: 'inn', x, y, em: '@mp:inn', block: true });
     else if (c === 'i' && qB.st === 'active' && !s.items.includes(id)) ents.push({ kind: 'item', x, y, em: npcOf(ai, 'B')[2], id });
     else if (c === 'M') { const foe = area.foes[mi++ % area.foes.length]; if (!(s.mons[id] > now)) ents.push({ kind: 'mon', x, y, em: foe.em, foe, id, block: true }); }
     else if (c === 'c') { const sp = catchSpecies(area); if (sp) ents.push({ kind: 'wild', x, y, em: spById(sp).em, sp, block: true }); }
-    else if (c === 'T' && !s.chest) ents.push({ kind: 'chest', x, y, em: cute() ? '🎁' : '🧰', block: true });
+    else if (c === 'T' && !s.chest) ents.push({ kind: 'chest', x, y, em: cute() ? '@ms:gift' : '@mp:chest', block: true });
     else if (c === 'k' && !g.beaten[ai]) ents.push({ kind: 'guard', x, y, em: area.boss.em, block: true });
-    else if (c === '=' && !gateOpen(ai)) ents.push({ kind: 'gate', x, y, em: cute() ? '🌟' : '🔮', block: true });
+    else if (c === '=' && !gateOpen(ai)) ents.push({ kind: 'gate', x, y, em: ic('gate'), block: true });
     else if (c === 'K' && !g.beaten[ai]) ents.push({ kind: 'boss', x, y, em: area.boss.em, block: true });
-    else if (c === 'E') ents.push({ kind: 'exit', dir: 1, x, y, em: '➡️' });
-    else if (c === 'X') ents.push({ kind: 'exit', dir: -1, x, y, em: '⬅️' });
+    else if (c === 'E') ents.push({ kind: 'exit', dir: 1, x, y, em: ic('exit') });
+    else if (c === 'X') ents.push({ kind: 'exit', dir: -1, x, y, em: ic('exitl') });
   }));
   return ents;
 }
@@ -3260,6 +3971,7 @@ const entAt = (x, y) => W.ents.find(e => e.x === x && e.y === y);
 function walkable(x, y) {
   const r = W.rows[y]; if (!r || x < 0 || x >= r.length) return false;
   const c = r[x]; if (c === '#' || c === '~' || c === 'H') return false;
+  if (c === 'D' && !cute()) return true;
   const e = entAt(x, y); return !(e && e.block);
 }
 function bfs(from, goals) {
@@ -3287,21 +3999,22 @@ function screenWorld() {
   W.rows = mapRows(ai);
   if (!g.pos || g.pos.a !== ai) g.pos = spawnAt(ai, 'back');
   W.ents = buildEnts(ai);
-  const bio = BIOME[area.bg] || BIOME.meadow;
+  const bios = BIOME[cute() ? 'cute' : 'hero']; const bio = bios[area.bg] || bios.meadow;
   const tiles = [];
   W.rows.forEach((r, y) => r.forEach((c, x) => {
     const hsh = (x * 7 + y * 13) % 4;
     let cls = 't-g', inner = '';
     if (c === '#') { cls = 't-w'; inner = bio.obs[hsh]; }
     else if (c === '~') cls = 't-water';
-    else if (c === 'H') { cls = cute() ? 't-w' : 't-g'; inner = cute() ? '🏡' : ''; }
+    else if (c === 'H') { cls = cute() ? 't-w' : 't-g'; inner = cute() ? '@ms:house' : ''; }
     else if (c === ',') { cls = 't-g'; inner = bio.deco[hsh % bio.deco.length]; }
     else if (hsh === 0) cls = 't-g alt';
-    tiles.push(h('div', { class: 'tile ' + cls + (c === ',' ? ' tdeco' : '') }, inner));
+    tiles.push(h('div', { class: 'tile ' + cls + (c === ',' ? ' tdeco' : '') + (c === 'H' && cute() ? ' thouse' : '') }, inner));
   }));
+  const gtx = ART.url(ic('g-' + area.bg)), wtx = ART.url(ic('w-' + area.bg));
   const ents = W.ents.map(entEl);
-  const av = h('div', { class: 'ent avatar', style: { left: `calc(var(--t) * ${g.pos.x})`, top: `calc(var(--t) * ${g.pos.y})` } }, party()[0] ? cSprite(party()[0], 'av-spr') : '🙂');
-  const map = h('div', { class: `wmap bg-${area.bg}`, role: 'application', 'aria-label': 'Map. Tap where to go.' }, h('div', { class: 'wtiles', style: { 'grid-template-columns': `repeat(${W.rows[0].length}, var(--t))` } }, tiles), ents, av);
+  const av = h('div', { class: 'ent avatar', style: { left: `calc(var(--t) * ${g.pos.x})`, top: `calc(var(--t) * ${g.pos.y})` } }, party()[0] ? cSprite(party()[0], 'av-spr') : ic('question'));
+  const map = h('div', { class: `wmap bg-${area.bg}`, role: 'application', 'aria-label': 'Map. Tap where to go.', style: { '--gtx': gtx ? `url("${gtx}")` : 'none', '--wtx': wtx ? `url("${wtx}")` : 'none' } }, h('div', { class: 'wtiles', style: { 'grid-template-columns': `repeat(${W.rows[0].length}, var(--t))` } }, tiles), ents, av);
   map.addEventListener('click', e => {
     const rc = map.getBoundingClientRect(); const x = Math.floor((e.clientX - rc.left) / W.t), y = Math.floor((e.clientY - rc.top) / W.t);
     tapTile(x, y);
@@ -3317,7 +4030,7 @@ async function ensureNames() {
   if (cute() || G.naming || G.screen !== 'world') return;
   const todo = G.P.g.roster.filter(c => !c.named); if (!todo.length) return;
   G.naming = true;
-  await card({ big: '✍️', title: 'Your heroes need names!', lines: ['Give each hero a name. Choose carefully: names are forever.'] });
+  await card({ big: ic('pencil'), title: 'Your heroes need names!', lines: ['Give each hero a name. Choose carefully: names are forever.'] });
   for (const c of todo) await nameHero(c);
   G.naming = false; if (G.screen === 'world') screenWorld();
 }
@@ -3327,16 +4040,17 @@ function rewardPop(text) {
   map.append(el); Sfx.play('catch'); setTimeout(() => el.remove(), 2600);
 }
 const rewardText = r => `+${r.gold} ${CUR().em}` + (r.pot ? `   +${r.pot} ${ITEMS[G.theme].potion.em}` : '');
+const INNKEEPER = ['@mp:p-inn', 'Innkeeper'];
 function grant(r) { addGems(r.gold); if (r.pot) addPotions(r.pot); }
 async function innTalk() {
   const g = G.P.g; const cost = 20 * curAct();
-  if (!g.roster.some(c => hpOf(c) < maxHp(c))) return talk('🛏️', 'Innkeeper', 'Your party looks well rested! Come back when you need a bed.');
+  if (!g.roster.some(c => hpOf(c) < maxHp(c))) return talk(...INNKEEPER, 'Your party looks well rested! Come back when you need a bed.');
   const can = g.gems >= cost;
-  const ok = await talk('🛏️', 'Innkeeper', can ? `A warm bed heals your whole party. Stay the night for ${cost} gold?` : 'You’re short on gold, but you look tired. Rest here free tonight!', [{ label: 'Rest', value: true }, { label: 'No thanks', value: false, alt: true }]);
+  const ok = await talk(...INNKEEPER, can ? `A warm bed heals your whole party. Stay the night for ${cost} gold?` : 'You’re short on gold, but you look tired. Rest here free tonight!', [{ label: 'Rest', value: true }, { label: 'No thanks', value: false, alt: true }]);
   if (!ok) return;
   if (can) g.gems -= cost;
   healAll(); Store.save(G.P, true); refreshWorldBits();
-  Sfx.play('heal'); rewardPop('❤️ All healed!');
+  Sfx.play('heal'); rewardPop(ic('heart') + ' All healed!');
 }
 function sizeWorld() {
   const wrap = $('.wwrap'), map = $('.wmap'); if (!wrap || !map) return;
@@ -3351,13 +4065,14 @@ window.addEventListener('resize', () => { if (G.screen === 'world') sizeWorld();
 function entEl(e) {
   let bub = null;
   if (e.kind === 'npc') { const st = npcBubble(e.role); if (st) bub = h('span', { class: 'bub ' + st }, st === 'new' ? '!' : st === 'ready' ? '?' : '…'); }
-  if (e.kind === 'exit') { const locked = e.dir === 1 && !G.P.g.beaten[G.P.g.area]; if (locked) bub = h('span', { class: 'lockb' }, '🔒'); }
+  if (e.kind === 'exit') { const locked = e.dir === 1 && !G.P.g.beaten[G.P.g.area]; if (locked) bub = h('span', { class: 'lockb' }, ic('lock')); }
   return h('div', { class: `ent e-${e.kind}`, 'data-k': e.x + ',' + e.y, style: { left: `calc(var(--t) * ${e.x})`, top: `calc(var(--t) * ${e.y})` } }, h('span', { class: 'eem' }, e.em), bub,
-    (e.kind === 'boss' || e.kind === 'guard') ? h('span', { class: 'crown' }, '👑') : null);
+    (e.kind === 'boss' || e.kind === 'guard') ? h('span', { class: 'crown' }, ic('crown')) : null,
+    e.kind === 'gate' && trialReady(G.P.g.area) ? h('span', { class: 'bub ready' }, '!') : null);
 }
 function npcBubble(role) {
   const ai = G.P.g.area; const q = qState(ai, role);
-  if (role === 'A') return q.day === E.dayKey() ? null : 'new';
+  if (role === 'A' || role === 'D') return q.st === 'done' ? null : 'new';
   if (q.st === 'new') return 'new';
   if (q.st === 'active') return q.n >= 3 ? 'ready' : 'busy';
   return null;
@@ -3366,24 +4081,24 @@ function worldTop(ai) {
   const g = G.P.g; const area = AREAS[G.theme][ai];
   const act = actOf(ai);
   const skills = g.world === 1 ? E.actSkills(G.P, act) : [];
-  const meter = skills.length ? h('div', { class: 'meter', title: 'Skills to open the gate' }, skills.map(id => h('i', { class: G.P.skills[id].st === 'mastered' ? 'on' : '' }, cute() ? (G.P.skills[id].st === 'mastered' ? '★' : '☆') : '◆'))) : null;
+  const meter = skills.length ? h('button', { class: 'meter', title: cute() ? 'Star Gate' : 'Crystal Gate', 'aria-label': 'Gate progress', onclick: () => gateInfo(act) }, gateBits(act).map(b => crystalEl(b))) : null;
   const pct = Math.min(100, (G.P.play.ms / limitMs()) * 100);
   const activeQ = ['B', 'C'].filter(r => qState(ai, r).st === 'active').length;
   return h('div', { class: 'top wtop' }, homeBtn(),
     h('div', { class: 'top-title' }, h('span', { class: 'banner-icon' }, area.icon), ' ', rw(area.name), h('span', { class: 'actlbl' }, g.world > 1 ? `World ${g.world}` : ACT_NAMES[act])),
     meter,
     h('div', { class: 'gems', title: CUR().title }, CUR().em + ' ', h('b', null, g.gems)),
-    h('button', { class: 'ib', 'aria-label': 'Quests', title: 'Quests', onclick: questLog }, '📜', activeQ ? h('span', { class: 'ibadge' }, activeQ) : null),
-    !cute() ? h('button', { class: 'ib', 'aria-label': 'Bag', title: 'Bag', onclick: () => { G.teamTab = 'items'; screenTeam(); } }, '🎒', h('span', { class: 'ibadge pot' }, potions())) : null,
+    h('button', { class: 'ib', 'aria-label': 'Quests', title: 'Quests', onclick: questLog }, ic('scroll'), activeQ ? h('span', { class: 'ibadge' }, activeQ) : null),
+    !cute() ? h('button', { class: 'ib', 'aria-label': 'Bag', title: 'Bag', onclick: () => { G.teamTab = 'items'; screenTeam(); } }, ic('bag'), h('span', { class: 'ibadge pot' }, potions())) : null,
     h('button', { class: 'ib wide', onclick: screenTeam }, rw(T().team)),
-    h('div', { class: 'moon', title: 'Play time today' }, '🌙', h('div', { class: 'moonbar' }, h('i', { style: { width: pct + '%' } }))),
+    h('div', { class: 'moon', title: 'Play time today' }, ic('moon'), h('div', { class: 'moonbar' }, h('i', { style: { width: pct + '%' } }))),
     soundBtn(), gearBtn());
 }
 function worldBottom(ai) {
   const bits = [];
   const qB = qState(ai, 'B'), qC = qState(ai, 'C');
   if (qB.st === 'active') bits.push(h('span', { class: 'qt' }, npcOf(ai, 'B')[2], ` ${Math.min(3, qB.n)}/3`));
-  if (qC.st === 'active') bits.push(h('span', { class: 'qt' }, cute() ? '😠' : '⚔️', ` ${Math.min(3, qC.n)}/3`));
+  if (qC.st === 'active') bits.push(h('span', { class: 'qt' }, AREAS[G.theme][ai].foes[0].em, ` ${Math.min(3, qC.n)}/3`));
   return h('div', { class: 'wbottom' },
     h('button', { class: 'pstrip win', onclick: () => { G.teamTab = 'team'; screenTeam(); } }, party().map(c => h('div', { class: 'pmini' + (keepsHp() && hpOf(c) <= 0 ? ' out' : '') }, cSprite(c), h('div', { class: 'pmini-lv' }, keepsHp() ? cName(c) : 'Lv ' + c.lv),
       keepsHp() ? h('div', { class: 'minihp' + (hpOf(c) / maxHp(c) < 0.3 ? ' low' : '') }, h('i', { style: { width: (hpOf(c) / maxHp(c) * 100) + '%' } })) : null))),
@@ -3393,7 +4108,7 @@ async function areaIntro(ai) {
   const area = AREAS[G.theme][ai]; const lines = [];
   if (area.hint) lines.push(cute() ? `${T().bring} ${ELEM[area.hint].icon} ${ELEM[area.hint].cute}!` : `Scouts say: monsters here fear ${ELEM[area.hint].icon} ${ELEM[area.hint].hero}.`);
   if (ai === 0 && G.P.g.world === 1) lines.push(cute() ? 'Tap to walk. Talk to friends with !' : 'Tap to move. Talk to anyone with a ! above them.');
-  if (isGateArea(ai) && G.P.g.world === 1) lines.push(cute() ? 'Learn your stars to open the Star Gate!' : 'Master this act’s skills to open the Crystal Gate.');
+  if (isGateArea(ai) && G.P.g.world === 1) lines.push(cute() ? 'Light up the stars to open the Star Gate!' : 'Charge this act’s crystals to open the Crystal Gate.');
   if (ai % 2 === 0 && ai > 0 && G.P.g.world === 1) { const news = E.actSkills(G.P, actOf(ai)).map(id => E.SK[id].kid); lines.push((cute() ? 'New here: ' : 'New skills here: ') + news.join(', ')); }
   await card({ big: area.icon, title: (G.P.g.world === 1 ? ACT_NAMES[actOf(ai)] + ': ' : '') + area.name, lines, say: area.name });
 }
@@ -3453,7 +4168,7 @@ async function finishWorld() {
   const g = G.P.g; Sfx.play('win');
   g.world++; g.area = 0; g.pos = null; g.beaten = {}; g.gates = {}; g.seen = {};
   G.P.act = 4; const ev = E.refresh(G.P); Store.save(G.P, true);
-  await card({ big: '🏆', title: cute() ? 'You did it! You saved Rainbow Land!' : 'The realm is saved! World 2 begins.', lines: [cute() ? 'New friends and new math are waiting!' : 'Tougher monsters, new skills, same heroes.', ...ev.map(x => T().started(E.SK[x.skill].kid))], say: cute() ? 'You did it!' : 'The realm is saved!' });
+  await card({ big: ic('trophy'), title: cute() ? 'You did it! You saved Rainbow Land!' : 'The realm is saved! World 2 begins.', lines: [cute() ? 'New friends and new math are waiting!' : 'Tougher monsters, new skills, same heroes.', ...ev.map(x => T().started(E.SK[x.skill].kid))], say: cute() ? 'You did it!' : 'The realm is saved!' });
   screenWorld();
 }
 
@@ -3491,17 +4206,43 @@ async function interact(e) {
     if (ok) startBattle({ type: 'k', def: area.boss, onWin: () => { g.beaten[ai] = true; }, after: () => actComplete(ai) });
   }
 }
-async function gateTalk(ai, e) {
-  const act = actOf(ai); const ids = E.actSkills(G.P, act);
+// the gate: one crystal (star) per skill of the act, plus a word star for Red Panda
+function gateBits(act) {
+  const P = G.P; const bits = E.actSkills(P, act).map(id => ({ id, label: E.SK[id].kid, fill: E.chargeOf(P, id), lit: E.charged(P, id), soon: !['learning', 'mastered'].includes(P.skills[id].st) }));
+  if (P.settings.words) { const w = E.wordStats(P).byAct[act - 1]; const need = Math.ceil(w.n * 0.7); bits.push({ id: 'words', label: cute() ? `Words: ${Math.min(w.known, need)} of ${need}` : `Sight words ${w.known}/${need}`, fill: Math.min(1, w.known / need), lit: E.wordCharged(P, act), word: true }); }
+  return bits;
+}
+function crystalEl(b) {
+  return h('i', { class: 'cry' + (b.lit ? ' on' : '') + (b.word ? ' wd' : ''), style: { '--f': Math.round(b.fill * 100) + '%' } }, b.word ? ic('book') : ic(cute() ? 'star' : 'crystal'));
+}
+const actWins = act => (G.P.g.actWins && G.P.g.actWins[act]) || 0;
+function trialReady(ai) { return isGateArea(ai) && G.P.g.world === 1 && !gateOpen(ai) && !E.gateReady(G.P, actOf(ai)) && actWins(actOf(ai)) >= TRIAL_WINS; }
+function gateInfo(act) {
+  const bits = gateBits(act); const lit = bits.filter(b => b.lit).length;
+  const lines = bits.map(b => h('div', { class: 'gate-sk' + (b.lit ? ' on' : '') }, crystalEl(b), ' ', rw(b.label), h('span', { class: 'gate-pct' }, b.lit ? (cute() ? 'Lit!' : 'Lit') : b.soon ? (cute() ? 'Soon' : 'Coming up') : Math.round(b.fill * 100) + '%')));
   const name = cute() ? 'Star Gate' : 'Crystal Gate';
-  if (gateOpen(ai) || G.P.g.world > 1 || E.actDone(G.P, act)) {
-    G.P.g.gates[ai] = true; Sfx.play('star'); removeEnt(e); Store.save(G.P, true);
-    await card({ big: e.em, title: cute() ? 'The Star Gate opens!' : 'The Crystal Gate opens!', lines: [cute() ? 'You learned all the stars!' : 'All crystals are lit. The boss awaits.'], say: cute() ? 'The Star Gate opens!' : 'The Crystal Gate opens!', cls: 'star' });
+  const left = TRIAL_WINS - actWins(act);
+  const tip = cute() ? (left > 0 ? `Win ${left} more battles to try the Star Test!` : 'You can take the Star Test at the gate!') : (left > 0 ? `Win ${left} more battles and the Gate Trial opens.` : 'The Gate Trial is open: talk to the gate.');
+  return card({ big: ic('gate'), title: `${name}: ${lit} of ${bits.length}`, lines: [...lines, cute() ? 'Win battles to fill them up!' : 'Every correct answer charges the crystals.', tip], say: cute() ? `The Star Gate. ${lit} of ${bits.length} stars.` : `${name}. ${lit} of ${bits.length} crystals lit.` });
+}
+async function gateTalk(ai, e) {
+  const act = actOf(ai); const g = G.P.g;
+  if (gateOpen(ai) || g.world > 1 || E.gateReady(G.P, act)) return openGate(ai, e);
+  if (trialReady(ai)) {
+    const guard = GATE_GUARD[G.theme];
+    const ok = await talk(guard.em, guard.name, cute() ? 'Hi! I keep the Star Gate. Win a star test with me, and it opens!' : 'I guard the Crystal Gate. Pass my trial, a battle with every kind of problem from this act, and it opens.',
+      [{ label: cute() ? 'Yes!' : 'Begin the trial', value: true }, { label: cute() ? 'Not yet' : 'Not yet', value: false, alt: true }]);
+    if (ok) startBattle({ type: 't', def: guard, onWin: () => { g.gates[ai] = true; }, after: () => { if (G.screen !== 'world') return; const ent = W.ents.find(x => x.kind === 'gate'); if (ent) removeEnt(ent); return gateOpened(); } });
     return;
   }
-  const lines = ids.map(id => h('div', { class: 'gate-sk' + (G.P.skills[id].st === 'mastered' ? ' on' : '') }, h('span', null, G.P.skills[id].st === 'mastered' ? (cute() ? '★' : '◆') : (cute() ? '☆' : '◇')), ' ', rw(E.SK[id].kid)));
-  const done = ids.filter(id => G.P.skills[id].st === 'mastered').length;
-  await card({ big: e.em, title: `${name}: ${done} of ${ids.length}`, lines: [...lines, cute() ? 'Win battles and help friends to learn them!' : 'Battles and quests charge the crystals. Keep training!'], say: cute() ? `The Star Gate. ${done} of ${ids.length} stars.` : `${name}. ${done} of ${ids.length} crystals lit.` });
+  await gateInfo(act);
+}
+async function openGate(ai, e) {
+  G.P.g.gates[ai] = true; Sfx.play('star'); removeEnt(e); Store.save(G.P, true);
+  await gateOpened();
+}
+function gateOpened() {
+  return card({ big: ic('gate'), title: cute() ? 'The Star Gate opens!' : 'The Crystal Gate opens!', lines: [cute() ? 'All the stars are shining!' : 'The crystals blaze. The boss awaits.'], say: cute() ? 'The Star Gate opens!' : 'The Crystal Gate opens!', cls: 'star' });
 }
 async function actComplete(ai) {
   if (G.P.g.world > 1) return;
@@ -3509,18 +4250,27 @@ async function actComplete(ai) {
   const ev = E.refresh(G.P); Store.save(G.P, true);
   if (act >= 3) return;
   Sfx.play('win');
-  await card({ big: '🎉', title: cute() ? `${ACT_NAMES[act + 1]} is open!` : `${ACT_NAMES[act]} complete! ${ACT_NAMES[act + 1]} begins.`, lines: ev.map(x => T().started(E.SK[x.skill].kid)), say: cute() ? `${ACT_NAMES[act + 1]} is open!` : `${ACT_NAMES[act + 1]} begins.` });
+  await card({ big: ic('party'), title: cute() ? `${ACT_NAMES[act + 1]} is open!` : `${ACT_NAMES[act]} complete! ${ACT_NAMES[act + 1]} begins.`, lines: ev.map(x => T().started(E.SK[x.skill].kid)), say: cute() ? `${ACT_NAMES[act + 1]} is open!` : `${ACT_NAMES[act + 1]} begins.` });
 }
 
 async function npcTalk(role) {
-  const g = G.P.g; const ai = g.area; const n = npcOf(ai, role); const q = qState(ai, role); const today = E.dayKey();
-  const rA = { gold: cute() ? 12 : 30, pot: 1 }, rB = { gold: cute() ? 15 : 35, pot: 0 }, rC = { gold: cute() ? 15 : 35, pot: 0 };
+  const g = G.P.g; const ai = g.area; const n = npcOf(ai, role); const q = qState(ai, role);
+  const rA = { gold: cute() ? 12 : 30, pot: 1 }, rB = { gold: cute() ? 15 : 35, pot: 0 }, rC = { gold: cute() ? 15 : 35, pot: 0 }, rD = { gold: 12, pot: 0 };
+  if (role === 'D') {
+    if (q.st === 'done') return talk(n[0], n[1], 'Good reading! Come back after you rest!');
+    const ok = await talk(n[0], n[1], 'Hi! Can you find my words?', [{ label: 'Yes!', value: true }, { label: 'Not now', value: false, alt: true }]);
+    if (!ok) return;
+    for (let i = 0; i < 3; i++) await wordQuest(n, i);
+    q.st = 'done'; q.cyc = cyc(); Sfx.play('win'); Store.save(G.P, true);
+    await talk(n[0], n[1], `You can read! Here are ${rD.gold} gems!`);
+    grant(rD); Store.save(G.P, true); refreshWorldBits(); rewardPop(rewardText(rD)); return;
+  }
   if (role === 'A') {
-    if (q.day === today) return talk(n[0], n[1], cute() ? 'Thank you! Come back tomorrow!' : 'Thank you, friend. I may need help again tomorrow.');
+    if (q.st === 'done') return talk(n[0], n[1], cute() ? 'Thank you! Come back after you rest!' : 'Thank you, friend. Come back after you rest; I may need help again.');
     const ok = await talk(n[0], n[1], cute() ? 'Hi! Can you help me count?' : 'Ah, a hero! I have a few problems that need a clever mind. Will you help?', [{ label: cute() ? 'Yes!' : 'I’ll help', value: true }, { label: cute() ? 'Not now' : 'Later', value: false, alt: true }]);
     if (!ok) return;
     for (let i = 0; i < 3; i++) await storyProblem(ai, n, i);
-    q.day = today; q.st = 'done'; Sfx.play('win'); Store.save(G.P, true);
+    q.st = 'done'; q.cyc = cyc(); Sfx.play('win'); Store.save(G.P, true);
     await talk(n[0], n[1], cute() ? `Yay! Here are ${rA.gold} gems and a jam!` : `Splendid work! Take ${rA.gold} gold and a potion.`);
     grant(rA); Store.save(G.P, true); refreshWorldBits(); rewardPop(rewardText(rA)); return;
   }
@@ -3531,9 +4281,9 @@ async function npcTalk(role) {
       if (!ok) return;
       q.st = 'active'; q.n = 0; aState(ai).items = []; Store.save(G.P); return screenWorld();
     }
-    if (q.st === 'active' && q.n >= 3) { q.st = 'done'; Sfx.play('win'); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `My ${item}! Thank you! Here are ${rB.gold} gems!` : `You found them! Here are ${rB.gold} gold for your trouble.`); grant(rB); Store.save(G.P, true); screenWorld(); rewardPop(rewardText(rB)); return; }
+    if (q.st === 'active' && q.n >= 3) { q.st = 'done'; q.cyc = cyc(); Sfx.play('win'); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `My ${item}! Thank you! Here are ${rB.gold} gems!` : `You found them! Here are ${rB.gold} gold for your trouble.`); grant(rB); Store.save(G.P, true); screenWorld(); rewardPop(rewardText(rB)); return; }
     if (q.st === 'active') return talk(n[0], n[1], cute() ? `Find ${3 - q.n} more ${em}!` : `Still ${3 - q.n} ${item} out there. Look around!`);
-    return talk(n[0], n[1], cute() ? 'Thank you, friend!' : 'Thanks again, hero.');
+    return talk(n[0], n[1], cute() ? 'Thank you, friend! Come back after you rest!' : 'Thanks again, hero. Check back after you rest.');
   }
   if (role === 'C') {
     if (q.st === 'new') {
@@ -3541,9 +4291,9 @@ async function npcTalk(role) {
       if (!ok) return;
       q.st = 'active'; q.n = 0; Store.save(G.P); return refreshWorldBits();
     }
-    if (q.st === 'active' && q.n >= 3) { q.st = 'done'; Sfx.play('win'); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `So happy now! Here are ${rC.gold} gems!` : `The raids have stopped! Take ${rC.gold} gold.`); grant(rC); Store.save(G.P, true); refreshWorldBits(); rewardPop(rewardText(rC)); return; }
+    if (q.st === 'active' && q.n >= 3) { q.st = 'done'; q.cyc = cyc(); Sfx.play('win'); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `So happy now! Here are ${rC.gold} gems!` : `The raids have stopped! Take ${rC.gold} gold.`); grant(rC); Store.save(G.P, true); refreshWorldBits(); rewardPop(rewardText(rC)); return; }
     if (q.st === 'active') return talk(n[0], n[1], cute() ? `Cheer up ${3 - q.n} more!` : `${3 - q.n} more to go. Tap a monster to fight it.`);
-    return talk(n[0], n[1], cute() ? 'It is so nice here now!' : 'Peace at last, thanks to you.');
+    return talk(n[0], n[1], cute() ? 'It is so nice here now! Come back after you rest!' : 'Peace at last, thanks to you. Check back after you rest.');
   }
 }
 function refreshWorldBits() {
@@ -3557,16 +4307,17 @@ function questLog() {
   const g = G.P.g; const lines = [];
   AREAS[G.theme].forEach((area, ai) => {
     if (ai > g.area && !g.seen[ai]) return;
-    ['A', 'B', 'C'].forEach(r => {
-      const q = qState(ai, r); const n = npcOf(ai, r);
+    ['A', 'B', 'C', 'D'].forEach(r => {
+      const n = npcOf(ai, r); if (!n) return; const q = qState(ai, r);
       let txt = null;
-      if (r === 'A' && q.day !== E.dayKey() && ai === g.area) txt = cute() ? `${n[1]} needs help counting.` : `${n[1]} needs help with some problems.`;
+      if (r === 'A' && q.st !== 'done' && ai === g.area) txt = cute() ? `${n[1]} needs help counting.` : `${n[1]} needs help with some problems.`;
+      if (r === 'D' && q.st !== 'done' && ai === g.area) txt = `${n[1]} has words for you.`;
       if (r === 'B' && q.st === 'active') txt = `${n[1]}: find ${n[2]} ${Math.min(3, q.n)}/3`;
       if (r === 'C' && q.st === 'active') txt = `${n[1]}: ${cute() ? 'cheer up' : 'defeat'} monsters ${Math.min(3, q.n)}/3`;
       if (txt) lines.push(h('div', { class: 'qline' }, h('span', { class: 'qface' }, n[0]), rw(txt), h('span', { class: 'qarea' }, area.icon)));
     });
   });
-  card({ big: '📜', title: cute() ? 'Jobs' : 'Quests', lines: lines.length ? lines : [cute() ? 'Talk to friends with ! to get jobs.' : 'Talk to anyone with a ! to get a quest.'] });
+  card({ big: ic('scroll'), title: cute() ? 'Jobs' : 'Quests', lines: lines.length ? lines : [cute() ? 'Talk to friends with ! to get jobs.' : 'Talk to anyone with a ! to get a quest.'], say: cute() ? 'Jobs' : null });
 }
 
 /* ---------- story problems ---------- */
@@ -3606,7 +4357,7 @@ function storyProblem(ai, npc, idx) {
     const textEl = h('div', { class: 'story-text' }, rw(st.text));
     const record = first => { if (recorded) return; recorded = true; E.recordAnswer(G.P, pr, { first, untimed: true }); };
     const showEq = () => { eqSlot.replaceChildren(exprEl(pr, '', false)); };
-    const helpBtn = h('button', { class: 'tool', onclick: async () => { Sfx.play('tap'); record(false); assisted = true; showEq(); G.pad = null; await runHelp(pr); G.pad = key; msg.replaceChildren(rw(T().nowYou)); } }, '💡 ', rw(cute() ? 'Help' : 'Hint'));
+    const helpBtn = h('button', { class: 'tool', onclick: async () => { Sfx.play('tap'); record(false); assisted = true; showEq(); G.pad = null; await runHelp(pr); G.pad = key; msg.replaceChildren(rw(T().nowYou)); } }, ic('bulb'), ' ', rw(cute() ? 'Help' : 'Hint'));
     const key = k => {
       if (k === 'ok') {
         if (!typed) return;
@@ -3628,7 +4379,7 @@ function storyProblem(ai, npc, idx) {
       h('div', { class: 'story-body' },
         h('div', { class: 'story-left' }, textEl, st.pics ? h('div', { class: 'pics' }, st.pics) : null, eqSlot,
           h('div', { class: 'story-ans' }, rw(cute() ? 'Answer:' : 'Answer:'), box), msg,
-          h('div', { class: 'ptools' }, h('button', { class: 'tool', 'aria-label': 'Read it to me', onclick: () => readLine(textEl, st.text, false) }, '🔊'), helpBtn)),
+          h('div', { class: 'ptools' }, h('button', { class: 'tool', 'aria-label': 'Read it to me', onclick: () => readLine(textEl, st.text, false) }, ic('sound')), helpBtn)),
         numpad(key))));
     ovRoot.append(ov); G.pad = key;
     readLine(textEl, st.text);
@@ -3637,7 +4388,7 @@ function storyProblem(ai, npc, idx) {
 
 /* ---------- shop + gear ---------- */
 function effectText(i) {
-  return [i.p ? `💥 +${Math.round(i.p * 100)}%` : null, i.g ? `🛡️ +${Math.round(i.g * 100)}%` : null,
+  return [i.p ? `${ic('boom')} +${Math.round(i.p * 100)}%` : null, i.g ? `${ic('shield')} +${Math.round(i.g * 100)}%` : null,
     i.el ? `${ELEM[i.el].icon} hits +50%` : null, i.res ? `${ELEM[i.res].icon} hurts ½` : null, i.luck ? `${CUR().em} +25%` : null].filter(Boolean).join('  ');
 }
 function openShop() {
@@ -3689,7 +4440,7 @@ function gearMenu(c) {
       const on = c.gear === i.id; const who = g.roster.find(o => o.gear === i.id && o !== c);
       return h('button', { class: 'gear-row' + (on ? ' on' : ''), onclick: () => { g.roster.forEach(o => { if (o.gear === i.id) o.gear = null; }); c.gear = on ? null : i.id; Sfx.play('good'); Store.save(G.P); ov.remove(); screenTeam(); } },
         h('span', { class: 'shop-em' }, i.em), h('span', { class: 'shop-name' }, rw(i.name)), h('span', { class: 'shop-eff' }, effectText(i)), h('span', { class: 'gear-state' }, on ? (cute() ? 'On!' : 'Equipped') : who ? `(${cName(who)})` : ''));
-    })) : h('div', { class: 'ov-line' }, rw(cute() ? 'Buy gear at the shop 🏪 with gems!' : 'Buy gear at a shop 🏪 with gold.')),
+    })) : h('div', { class: 'ov-line' }, rw(cute() ? `Buy gear at the shop ${ic('shop')} with gems!` : `Buy gear at a shop ${ic('shop')} with gold.`)),
     h('button', { class: 'bigbtn', onclick: () => { Sfx.play('tap'); ov.remove(); } }, rw(T().ok))));
   ovRoot.append(ov);
 }
@@ -3787,7 +4538,7 @@ function renderParent() {
       backupCard(null))));
   }
   setScreen('parent', h('div', { class: 'pd' }, head, h('main', { class: 'pd-main' },
-    sync, reportCard(P), overview(P), activity(P), skillsCard(P), factsCard(P), troubleCard(P), P.id === 'hamstey' ? namesCard(P) : null, backupCard(P), settingsCard(P), aboutCard())));
+    sync, reportCard(P), overview(P), P.settings.words ? wordsCard(P) : null, activity(P), skillsCard(P), factsCard(P), troubleCard(P), P.id === 'hamstey' ? namesCard(P) : null, backupCard(P), soundCard(P), settingsCard(P), aboutCard())));
 }
 function overview(P) {
   const today = P.log[E.dayKey()] || { n: 0, c: 0 };
@@ -3799,18 +4550,24 @@ function overview(P) {
   const asleep = P.play.sleepUntil && Date.now() < P.play.sleepUntil;
   return h('section', { class: 'pd-card' },
     h('div', { class: 'tiles' },
-      tile('Today', `${today.n} problems`, `${mins} min played${asleep ? ' · team is resting' : ''}`),
+      tile('Today', `${today.n} problems`, `${today.wn ? `${today.wn} word turns · ` : ''}${mins} min played${asleep ? ' · team is resting' : ''}`),
       tile('Last 7 days', `${wn} problems`, wn ? `${pctS(wc / wn)} right on the first try` : 'No play yet'),
       tile('Skills mastered', `${mastered} of ${E.SKILLS.length}`, null),
       tile('Story', P.g.world > 1 ? `World ${P.g.world}` : ACT_NAMES[Math.min(3, P.act || 1)], actLine(P)),
       tile('Practicing now', learning.length ? learning.join(', ') : '–', null)));
 }
 function moneyLine(P) { const it = P.g.items || {}; return P.id === 'hamstey' ? `${P.g.gems} gold · ${it.potion || 0} potions` : `${P.g.gems} gems · ${it.potion || 0} jams`; }
+function gateCount(P) {
+  const act = Math.min(3, P.act || 1); const ids = E.actSkills(P, act);
+  let lit = ids.filter(id => E.charged(P, id)).length, n = ids.length;
+  if (P.settings.words) { n++; if (E.wordCharged(P, act)) lit++; }
+  const wins = (P.g.actWins && P.g.actWins[act]) || 0;
+  return { lit, n, wins, trial: wins >= 8 };
+}
 function actLine(P) {
   if (P.g.world > 1) return moneyLine(P);
-  const act = Math.min(3, P.act || 1); const ids = E.actSkills(P, act);
-  const lit = ids.filter(id => P.skills[id].st === 'mastered').length;
-  return `Gate: ${lit} of ${ids.length} skills mastered · ${moneyLine(P)}`;
+  const c = gateCount(P);
+  return `Gate: ${c.lit} of ${c.n} lit${c.trial ? ' · Gate Trial open' : ` · trial after ${8 - c.wins} more wins`} · ${moneyLine(P)}`;
 }
 function activity(P) {
   const days = []; for (let i = 13; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); days.push({ d, l: P.log[E.dayKey(d.getTime())] || { n: 0, c: 0 } }); }
@@ -3892,16 +4649,19 @@ function settingsCard(P) {
       chk(`s-auto-${P.id}`, 'Read everything automatically', 'autoRead', 'Best for early readers.'),
       chk(`s-retry-${P.id}`, 'One retry before help', 'retryFirst', 'Forgives mis-taps. Off means help opens on the first miss.'),
       chk(`s-timed-${P.id}`, 'Speed counts toward mastery', 'timed', 'Off means a skill is mastered by getting answers right, at any speed. Times are still shown in the report.'),
-      chk(`s-snd-${P.id}`, 'Sound effects', 'sound')),
+      chk(`s-snd-${P.id}`, 'Sound effects', 'sound'),
+      chk(`s-words-${P.id}`, 'Sight words', 'words', 'Word turns in battles, Miss Tia’s word quest, and a word star on each gate.'),
+      sel(`s-wrate-${P.id}`, 'How often word turns come up', 'wordRate', [[0.2, 'Now and then'], [0.35, 'About 1 in 3 turns'], [0.5, 'About half']], null)),
     h('div', { class: 'acts' },
       h('button', { class: 'act', onclick: () => { P.play.sleepUntil = 0; P.play.ms = 0; pdSave(P); renderParent(); } }, 'Wake the team now'),
-      P.g.world === 1 && !P.g.gates[Math.min(3, P.act || 1) * 2 - 1] ? h('button', { class: 'act', title: 'Lets them fight the act boss without mastering every skill', onclick: () => { P.g.gates[Math.min(3, P.act || 1) * 2 - 1] = true; pdSave(P); renderParent(); } }, `Open the ${ACT_NAMES[Math.min(3, P.act || 1)]} gate`) : null,
+      P.g.world === 1 && !P.g.gates[Math.min(3, P.act || 1) * 2 - 1] ? h('button', { class: 'act', title: 'Lets them fight the act boss without lighting every crystal', onclick: () => { P.g.gates[Math.min(3, P.act || 1) * 2 - 1] = true; pdSave(P); renderParent(); } }, `Open the ${ACT_NAMES[Math.min(3, P.act || 1)]} gate`) : null,
       resetBtn));
 }
 function aboutCard() {
   return h('section', { class: 'pd-card about' }, h('h2', null, 'How the game adapts'),
     h('p', null, 'Every fact (like 7 + 5 or 6 × 8) has its own record. Missed facts come back within a few problems, shaky ones show up often, and solid ones return less and less: spaced repetition. About a quarter of problems review mastered skills so they stay fresh, and new facts come in a few at a time.'),
-    h('p', null, 'Each area is a small map with monsters, gems, a shop and three quests. The story-problem helper repeats daily; those answers count toward accuracy but never toward speed, since reading takes time. Each act ends at a gate that opens only when that act’s skills are mastered, and new problem types wait for their act.'),
+    h('p', null, 'Each area is a small map with monsters, coins or gems, a chest, a shop and quests (plus Miss Tia’s word quest for Red Panda). Quests, coins and chests come back after every rest. Story-problem answers count toward accuracy but never toward speed, since reading takes time.'),
+    h('p', null, 'Each act ends at a gate with one crystal (star) per skill. A crystal fills as they practice and lights at about 80% right with enough tries, before full mastery. After 8 battle wins in an act, the Gate Trial opens: beat the gate guardian in a battle that mixes every kind of problem from the act, and the gate opens. Skills keep being practiced until truly mastered.'),
     h('p', null, 'The answer is the attack damage, and hitting the enemy’s weakness doubles it. A wrong answer opens a step-by-step breakdown (dots, ten-frames, arrays, tens and ones) and then they try again for half damage.'),
     h('p', null, 'When progress saves to your Claude account, you can ask Claude in the chat how either kid is doing and it can read these records.'));
 }
@@ -3910,8 +4670,8 @@ function aboutCard() {
 function pName(P) { return profName(P.id); }
 function storyLine(P) {
   if (P.g.world > 1) return `World ${P.g.world}`;
-  const act = Math.min(3, P.act || 1); const ids = E.actSkills(P, act); const lit = ids.filter(id => P.skills[id].st === 'mastered').length;
-  return `${ACT_NAMES[act]}, ${lit} of ${ids.length} gate skills mastered`;
+  const act = Math.min(3, P.act || 1); const c = gateCount(P);
+  return `${ACT_NAMES[act]}, ${c.lit} of ${c.n} gate ${P.settings.words ? 'stars' : 'crystals'} lit`;
 }
 function trendLine(r) {
   const w = r.trend.week, pv = r.trend.prev;
@@ -3938,6 +4698,9 @@ function reportText(P) {
   (r.working.length ? r.working : [{ title: 'Nothing in progress (waiting for the next act)', pct: null, needs: [] }]).forEach(x => L.push(`- ${x.title}${x.pct != null ? `: ${x.pct}% of the way` : ''}${x.needs.length ? ` (needs ${x.needs.join('; ')})` : ''}`));
   L.push('', 'Needs practice');
   (r.struggles.length ? r.struggles : [{ title: 'Nothing stands out right now', detail: '', examples: [], tip: '' }]).forEach(x => L.push(`- ${x.title}${x.detail ? ': ' + x.detail : ''}${x.examples.length ? `. Examples: ${x.examples.join(', ')}` : ''}${x.tip ? `. Tip: ${x.tip}` : ''}`));
+  if (P.settings.words) { const w = E.wordStats(P); const wk = weekWords(P);
+    L.push('', 'Sight words', `- Knows ${w.known.length} of ${w.total} (${w.known.join(', ') || 'none yet'})`, `- Learning: ${w.learning.join(', ') || 'none'}`, w.tricky.length ? `- Tricky: ${w.tricky.join(', ')}` : '- Tricky: none',
+      wk.n ? `- Last 7 days: ${wk.n} word turns, ${pctS(wk.c / wk.n)} right the first time` : '- No word turns in the last 7 days'); }
   return L.join('\n');
 }
 async function copyText(text, statusEl, ok) {
@@ -4035,13 +4798,53 @@ function namesCard(P) {
     rows.length ? h('div', { class: 'nm-list' }, rows) : h('p', { class: 'pd-help' }, 'No heroes yet.'), status);
 }
 
+/* ---------- sight words (Red Panda) ---------- */
+function weekWords(P) { let n = 0, c = 0; for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() - i); const l = P.log[E.dayKey(d.getTime())]; if (l && l.wn) { n += l.wn; c += l.wc || 0; } } return { n, c }; }
+function wordsCard(P) {
+  const w = E.wordStats(P); const F = P.wf || {}; const wk = weekWords(P);
+  const chip = word => { const st = F[word]; const cls = !st ? 'unseen' : st.b >= 3 ? 'mastered' : st.b === 0 ? 'weak' : 'learning';
+    return h('span', { class: 'wchip f-' + cls, title: st ? `${word}: ${st.c} of ${st.n} right the first time` : `${word}: not yet` }, word); };
+  const acts = w.byAct.map(a => h('div', { class: 'wact' }, h('div', { class: 'wact-h' }, a.act <= 3 ? `${ACT_NAMES[a.act]} words` : 'After the last act (primer list)', h('span', null, `${a.known} of ${a.n} known`)),
+    h('div', { class: 'wchips' }, E.WORDS[a.act].map(chip))));
+  return h('section', { class: 'pd-card' }, h('h2', null, 'Sight words'),
+    h('p', { class: 'pd-help' }, `Knows ${w.known.length} of ${w.total} words. ` + (wk.n ? `Last 7 days: ${wk.n} word turns, ${pctS(wk.c / wk.n)} right the first time.` : 'No word turns yet.') +
+      (w.tricky.length ? ` Tricky lately: ${w.tricky.slice(0, 6).join(', ')}.` : '')),
+    h('p', { class: 'pd-help' }, 'Dolch pre-primer words, a few at a time, in battles and from Miss Tia on each map. First she hears a word and finds it, then she reads it with no sound and picks the speaker that says it. A word counts as known after she gets it right on three spaced turns, including one read-first turn. A missed word starts over and comes back sooner.'),
+    acts, h('div', { class: 'legend' }, [['unseen', 'Not yet'], ['weak', 'Missed last time'], ['learning', 'Learning'], ['mastered', 'Known']].map(([k, n]) => h('span', null, h('i', { class: 'f-' + k }), n))));
+}
+
+/* ---------- sound check ---------- */
+function soundCard(P) {
+  const out = h('div', { class: 'snd-out', role: 'status' });
+  const run = async () => {
+    AudioWake.wake(); Sfx.init(); await wait(250);
+    const st = Sfx.ctx ? Sfx.ctx.state : 'not available';
+    Sfx.last = 'none'; Sfx.out('win');
+    const path = Sfx.last;
+    const vs = Voice.ok ? (speechSynthesis.getVoices() || []).filter(v => /^en/i.test(v.lang)) : [];
+    const session = navigator.audioSession ? navigator.audioSession.type : 'not supported (older iPadOS)';
+    const lines = [
+      `Beeps: ${path === 'webaudio' ? 'played normally' : path === 'backup' ? `the normal sound engine is stuck (${st}), so the backup player was used` : 'could not play'}.`,
+      `Voice: ${Voice.ok ? `${vs.length} English voice${vs.length === 1 ? '' : 's'} found, using ${Voice.v ? Voice.v.name : 'the default voice'}` : 'speech is not available in this browser'}.`,
+      `Sound mode: ${session}${session === 'playback' ? ' (plays even with the ring/silent switch on)' : ''}.`,
+      `This kid's settings: sound effects ${P.settings.sound ? 'on' : 'OFF'}, read aloud ${P.settings.readAloud ? 'on' : 'OFF'}${P.settings.autoRead ? ', reads automatically' : ', reads only when tapped'}.`,
+    ];
+    out.replaceChildren(...lines.map(l => h('div', null, l)), h('div', { class: 'pd-help' }, 'Heard nothing? Turn the volume up with the side buttons, check Control Center for silent mode and a Bluetooth speaker or headphones, then tap Test sound again.'));
+    await wait(1100);
+    Voice.say('Sound check. Can you hear me?', { force: true });
+  };
+  return h('section', { class: 'pd-card' }, h('h2', null, 'Sound check'),
+    h('p', { class: 'pd-help' }, 'Plays a chime and a spoken line on this iPad, then shows what worked. Run it on the iPad that is quiet.'),
+    h('div', { class: 'acts' }, h('button', { class: 'act', onclick: run }, 'Test sound')), out);
+}
+
 /* ---------- boot ---------- */
 Voice.init();
 try { if (!IS_ARTIFACT && navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) { /* not supported */ }
 Store.init();
 PROFILES.forEach(p => Store.fetchRemote(p.id).then(() => { if (G.screen === 'profiles') screenProfiles(); }));
 screenProfiles();
-window.__mathlings = { G, Engine, freshProfile, repairP, runHelp, openMaker, Store };
+window.__mathlings = { G, ART, Engine, wordQuest, startBattle, gateTalk, screenWorld, screenTeam, nextWord,  freshProfile, repairP, runHelp, openMaker, Store };
 
 })();
 </script>
