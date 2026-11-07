@@ -2182,7 +2182,7 @@ const ART = (() => {
     cupcake: { shape: 'cupcake', c: '#ff9ac4' },
     jellyking: { shape: 'jelly', c: '#5fd3c6', x: ['crown'] },
     // new friends
-    gemmy: { shape: 'bean', c: '#dcefff', b: '#ffffff', a: '#ffc7dd', ears: 'bunny', nose: 1, x: ['snow'], acc: ['foregem'] },
+    jewel: { shape: 'bean', c: '#dcefff', b: '#ffffff', a: '#ffc7dd', ears: 'bunny', nose: 1, x: ['snow'], acc: ['foregem'] },
     cloudy: { shape: 'puffy', c: '#f7faff', b: '#ffffff', a: '#c4d4f0', ec: '#c4d4f0', tail: 'bolt', nose: 1, acc: ['floppy', 'bolttuft'] },
     gumdrop: { shape: 'gumdrop', c: '#ffa04a', b: '#ffe0bf', a: '#ffd0a8', ears: 'cat', x: ['flame'], acc: ['sugar'] },
   });
@@ -3011,7 +3011,7 @@ const SPECIES = {
     { id: 'buzz',  e: 'zap',  em: '🐝', names: ['Buzz', 'Big Buzz', 'Super Buzz'], move: 'Buzz' },
     { id: 'slush', e: 'ice',  em: '🦭', names: ['Slush', 'Big Slush', 'Super Slush'], move: 'Splash' },
     { id: 'star',  e: 'zap',  em: '🦄', names: ['Star', 'Big Star', 'Super Star'], move: 'Shine' },
-    { id: 'gemmy', e: 'ice',  em: '💎', names: ['Gemmy', 'Big Gemmy', 'Super Gemmy'], move: 'Gem' },
+    { id: 'jewel', e: 'ice',  em: '💎', names: ['Jewel', 'Big Jewel', 'Super Jewel'], move: 'Gem' },
     { id: 'cloudy', e: 'zap', em: '☁️', names: ['Cloudy', 'Big Cloudy', 'Super Cloudy'], move: 'Rain' },
     { id: 'gumdrop', e: 'fire', em: '🍬', names: ['Gumdrop', 'Big Gumdrop', 'Super Gumdrop'], move: 'Pop' },
   ],
@@ -3053,7 +3053,7 @@ const AREAS = {
       foes: [{ id: 'boo', em: '👻', name: 'Boo', weak: 'fire' }, { id: 'bat', em: '🦇', name: 'Bat', weak: 'zap' }, { id: 'cloud', em: '🌩️', name: 'Storm Cloud', weak: 'ice', resist: 'zap' }],
       boss: { id: 'dragon', em: '🐉', name: 'Grumpy Dragon', phases: [{ weak: 'ice', resist: 'fire' }, { weak: 'zap' }, { weak: 'fire', resist: 'ice' }] } },
     // side areas: one per act, reached from the act's first area
-    { name: 'Sparkle Cave', icon: '@ms:crystals', bg: 'cave', hint: null, catch: ['gemmy'], side: true, parent: 0, mat: 'shiny', entry: '@ms:caveentry', node: '@ms:gemnode',
+    { name: 'Sparkle Cave', icon: '@ms:crystals', bg: 'cave', hint: null, catch: ['jewel'], side: true, parent: 0, mat: 'shiny', entry: '@ms:caveentry', node: '@ms:gemnode',
       foes: [{ id: 'mole', em: '', name: 'Mole', weak: 'ice' }, { id: 'glowworm', em: '', name: 'Glow Worm', weak: 'fire' }, { id: 'rockbug', em: '', name: 'Rock Bug', weak: 'zap' }],
       boss: { id: 'crystalcrab', em: '', name: 'Crystal Crab', phases: [{ weak: 'zap' }, { weak: 'fire' }] } },
     { name: 'Cloud Town', icon: '@ms:cloudpuff', bg: 'clouds', hint: null, catch: ['cloudy'], side: true, parent: 2, mat: 'fluff', entry: '@ms:beanstalk', node: '@ms:fluffnode',
