@@ -987,6 +987,99 @@ img.art.px { image-rendering: pixelated; image-rendering: crisp-edges; }
 }
 @media (orientation: portrait) { .wtop .top-title { flex: 1 1 0; min-width: 70px; } }
 
+/* ---------- version 5: side areas, group fights, big moves, crafting ---------- */
+.t-cute .bg-cave { background: linear-gradient(180deg, #b9a8d6 0%, #d8cdee 42%, #c9bce0 42%, #b5a6d1 100%); }
+.t-cute .bg-clouds { background: linear-gradient(180deg, #a9dcff 0%, #e6f5ff 42%, #ffffff 42%, #e3f0ff 100%); }
+.t-cute .bg-candy { background: linear-gradient(180deg, #ffd6ec 0%, #fff0f7 42%, #ffd0e6 42%, #ffc2a8 100%); }
+.t-hero .bg-cave { background: linear-gradient(180deg, #0d0a18 0%, #2a2440 45%, #3b3550 45%, #1b1628 100%); }
+.t-hero .bg-clouds { background: linear-gradient(180deg, #3d6ad0 0%, #9fd0ff 45%, #e8f2fc 45%, #b9d3ee 100%); }
+.t-hero .bg-ship { background: linear-gradient(180deg, #021a33 0%, #0b4b80 45%, #8a5a34 45%, #5a3a22 100%); }
+.t-cute .bg-cave .t-g { background-color: #ddd2ec; } .t-cute .bg-cave .t-g.alt { background-color: #d5c9e6; } .t-cute .bg-cave .t-w { background-color: #cdc0df; } .t-cute .bg-cave .t-water { background-color: #6f86c8; }
+.t-cute .bg-clouds .t-g { background-color: #f2f7ff; } .t-cute .bg-clouds .t-g.alt { background-color: #e9f2ff; } .t-cute .bg-clouds .t-w { background-color: #e2edfc; } .t-cute .bg-clouds .t-water { background-color: #d6ecff; }
+.t-cute .bg-candy .t-g { background-color: #ffe1ef; } .t-cute .bg-candy .t-g.alt { background-color: #fff0d9; } .t-cute .bg-candy .t-w { background-color: #ffd5e7; } .t-cute .bg-candy .t-water { background-color: #9a6248; }
+.t-hero .bg-cave .t-g { background-color: #4a4150; } .t-hero .bg-cave .t-g.alt { background-color: #433b49; } .t-hero .bg-cave .t-w { background-color: #3a333f; } .t-hero .bg-cave .t-water { background-color: #1e3050; }
+.t-hero .bg-clouds .t-g { background-color: #c9dcf2; } .t-hero .bg-clouds .t-g.alt { background-color: #c0d4ed; } .t-hero .bg-clouds .t-w { background-color: #b5cbe6; } .t-hero .bg-clouds .t-water { background-color: #9fd0ff; }
+.t-hero .bg-ship .t-g { background-color: #9a6a3a; } .t-hero .bg-ship .t-g.alt { background-color: #8f6136; } .t-hero .bg-ship .t-w { background-color: #7d5430; } .t-hero .bg-ship .t-water { background-color: #0b4b80; }
+.t-cute .world.bg-cave { background: linear-gradient(180deg, #e3dcf2, #f4ecff); }
+.t-cute .world.bg-clouds { background: linear-gradient(180deg, #d6efff, #ffffff); }
+.t-cute .world.bg-candy { background: linear-gradient(180deg, #ffe3f1, #fff1d6); }
+.e-portal .eem img.art { width: 1.15em; height: 1.15em; }
+.e-portal .eem { animation: beckon2 1.6s ease-in-out infinite; }
+.e-node .eem { animation: sparkle 1.8s ease-in-out infinite; }
+.e-sboss .eem { font-size: 1.12em; animation: wiggle 2.2s ease-in-out infinite; filter: drop-shadow(0 0 8px rgba(255, 190, 60, .7)); }
+.e-crafter .eem { animation: bob 2.6s ease-in-out infinite; }
+.e-crafter .eem img.art, .e-sboss .eem img.art { width: 1.08em; height: 1.08em; }
+/* group fights */
+.foes { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-items: center; justify-items: center; gap: 6px; min-width: 0; height: 100%; }
+.foes.n1 { display: grid; grid-auto-flow: row; }
+.foes.n2 .foe-card, .foes.n3 .foe-card { min-width: 0; width: 100%; padding: 4px 8px; gap: 3px; }
+.foes.n2 .foe-name, .foes.n3 .foe-name { font-size: clamp(14px, 1.8vw, 20px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t-hero .foes.n2 .foe-name, .t-hero .foes.n3 .foe-name { font-size: clamp(8px, 1vw, 11px); }
+.foes.n2 .foe-tags, .foes.n3 .foe-tags { font-size: 14px; gap: 2px 6px; }
+.t-hero .foes.n2 .foe-tags, .t-hero .foes.n3 .foe-tags { font-size: 17px; }
+.foes.n2 .foe-hp, .foes.n3 .foe-hp { height: 14px; }
+.t-hero .foes.n2 .foe-hp b, .t-hero .foes.n3 .foe-hp b { font-size: 13px; line-height: 14px; }
+.foes.n2 .foe-spr { font-size: clamp(70px, 16vmin, 150px); }
+.foes.n3 .foe-spr { font-size: clamp(56px, 12.5vmin, 118px); }
+.foe { position: relative; width: 100%; transition: opacity .5s, filter .5s; }
+.foe.down { opacity: .25; filter: grayscale(1); pointer-events: none; }
+.foe.pickme { cursor: pointer; }
+.foe.pickme .foe-spr { animation: beckon2 1s ease-in-out infinite; filter: drop-shadow(0 0 10px var(--accent)); }
+.atk.pick.target .atk-em { font-size: clamp(30px, 5vmin, 46px); }
+/* power meter + big moves */
+.power { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; padding: 4px 10px; width: min(260px, 100%); }
+.power-ic img.art { width: 26px; height: 26px; }
+.power-bar { height: 12px; border-radius: 6px; background: color-mix(in srgb, var(--ink) 15%, transparent); overflow: hidden; }
+.t-hero .power-bar { border-radius: 0; background: #0b1462; }
+.power-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffd23f, #ff7a3d); transition: width .5s; }
+.power b { font-family: var(--font-d); font-size: 13px; color: var(--accent); }
+.t-hero .power b { font-size: 9px; }
+.power.ready { box-shadow: 0 0 0 3px #ffd23f, 0 0 16px #ffd23f; }
+.power.full { animation: popin .5s ease-out; }
+.atk.bmready { box-shadow: 0 0 0 3px #ffd23f, 0 0 14px #ffd23f; }
+.bm-badge { position: absolute; top: 4px; right: 6px; }
+.bm-badge img.art { width: 24px; height: 24px; }
+.atk { position: relative; }
+.atk.bigmove { border-color: #ffd23f; background: color-mix(in srgb, #ffd23f 18%, var(--panel2)); }
+.t-hero .atk.bigmove { background: #2a1f5e; }
+.expr.chal { font-size: clamp(34px, 6vmin, 62px); }
+.t-hero .panel .expr.chal { font-size: clamp(40px, 7.4vmin, 78px); }
+.bigflash { animation: bigflash .7s ease-out; }
+@keyframes bigflash { 30% { filter: brightness(1.8) saturate(1.4); } }
+.pop.drop { margin-top: 3.4em; }
+/* crafting */
+.craft-mats { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; padding: 6px 0; }
+.cmat { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--ink) 8%, transparent); font-family: var(--font-d); }
+.t-hero .cmat { border-radius: 4px; background: #0b1462; font-size: 12px; }
+.cmat img.art { width: 26px; height: 26px; }
+.cmat b { font-size: 20px; } .t-hero .cmat b { font-size: 14px; }
+.cmat small { font-family: var(--font-b); font-size: 14px; color: var(--muted); }
+.t-hero .cmat small { font-size: 16px; }
+.craft-need { font-size: 18px; margin-top: 2px; } .t-hero .craft-need { font-size: 20px; }
+.craft-need img.art { width: 22px; height: 22px; vertical-align: -0.35em; }
+.shop-row.craft.ready { box-shadow: inset 0 0 0 3px #3ddc84; }
+.team-mats { justify-content: flex-start; margin-top: 10px; }
+.team-mats .tlabel { margin: 0 6px 0 0; }
+@media (orientation: portrait) {
+  .foes { grid-auto-flow: column; }
+  .foes.n3 .foe-spr { font-size: clamp(56px, 14vmin, 110px); }
+  .power { justify-self: center; }
+}
+/* v5 fixes: cards fit the screen, shop/crafter keep the exit button visible */
+.ov { grid-template-columns: minmax(0, 1fr); }
+.ov-card { max-width: 100%; box-sizing: border-box; }
+.ov-card.shop { display: flex; flex-direction: column; max-height: 100%; overflow: hidden; }
+.ov-card.shop > .shop-list { overflow-y: auto; min-height: 0; flex: 1 1 auto; padding: 2px 4px 2px 2px; -webkit-overflow-scrolling: touch; }
+.ov-card.shop > .bigbtn.alt { flex: 0 0 auto; align-self: center; }
+.ov-card.shop > * { flex-shrink: 0; }
+.ov-card.shop > .shop-list { flex-shrink: 1; }
+.craft-later { color: var(--muted); font-size: 16px; text-align: center; padding: 4px; }
+.expr.chal .opword { display: none; }
+.foes.n3 .foe-card { padding: 3px 6px; }
+.foes.n3 .foe-tags .tag { padding: 0 4px; }
+.t-hero .foes.n3 .foe-name { font-size: clamp(7px, .85vw, 10px); }
+@media (orientation: landscape) { .foes.n3 { margin-right: 6px; } .foes.n3 .foe { max-width: 100%; overflow: hidden; } }
+
 </style>
 </head>
 <body>
@@ -1439,7 +1532,7 @@ const ART = (() => {
   const setCustomResolver = fn => { customResolver = fn; };
   const extra = {};
   const register = (kind, fn) => { extra[kind] = fn; };
-  return { url, setCustomResolver, register, raster, pixelURL, rpSVG, hm, rp, item, rpItem, HM_SPEC, RP_SPEC, HT, SHAPES, IT, RPI, OL };
+  return { url, setCustomResolver, register, raster, pixelURL, rpSVG, hm, rp, item, rpItem, HM_SPEC, RP_SPEC, HT, SHAPES, IT, RPI, OL, ACC, TAILS };
 })();
 
 /* Map art: scenery, buildings, townspeople, items and icons, drawn in code.
@@ -1561,7 +1654,7 @@ const ART = (() => {
     castle: [['R', 0, 0, 16, 16, '#241a3d'], ['L', 1, 4, 5, 4, '#4a3a75'], ['L', 9, 10, 14, 10, '#4a3a75'], ['P', 12, 3, '#b06cff']],
     water: c => [['R', 0, 0, 16, 16, c], ['L', 1, 4, 3, 3, '#ffffff55'], ['L', 4, 3, 6, 4, '#ffffff55'], ['L', 9, 10, 11, 9, '#ffffff55'], ['L', 12, 9, 14, 10, '#ffffff55'], ['P', 7, 13, '#ffffff33']],
   };
-  const WATER_C = { meadow: '#2156b8', forest: '#3e3f1e', snow: '#6fa8dc', sea: '#0b4b80' };
+  const WATER_C = { meadow: '#2156b8', forest: '#3e3f1e', snow: '#6fa8dc', sea: '#0b4b80', cave: '#1e3050', clouds: '#9fd0ff', ship: '#0b4b80' };
 
   /* ---------- pixel townspeople (24 x 24, facing you) ---------- */
   function person(o) {
@@ -1638,7 +1731,7 @@ const ART = (() => {
     inn: { hair: '#8a5a2b', stache: '#6b3f1f', top: '#4caf50', apron: 1, legs: '#5a4632', item: 'mug' },
   };
   function pixelArt(id, color) {
-    if (id.startsWith('p-')) { const k = id.slice(2); if (k === 'owl') return px(owl(), 24); return PEOPLE[k] ? px(person(PEOPLE[k]), 24) : null; }
+    if (id.startsWith('p-')) { const k = id.slice(2); if (k === 'owl') return px(owl(), 24); const d = PEOPLE[k]; if (!d) return null; return px(typeof d === 'function' ? d(person) : person(d), 24); }
     if (id === 'shop') return px(shopOps(), 24);
     if (id === 'inn') return px(innOps(), 24);
     if (id.startsWith('g-')) return rawURL(16, GROUND[id.slice(2)] || GROUND.meadow);
@@ -1732,6 +1825,8 @@ const ART = (() => {
     book: () => `<path d="M10 22Q30 14 50 24Q70 14 90 22V84Q70 76 50 86Q30 76 10 84Z" fill="#fff6ec"/><path d="M50 24V86" /><path d="M10 22V84Q30 76 50 86" fill="none"/><path d="M20 38Q32 34 42 38M58 38Q68 34 80 38M20 52Q32 48 42 52M58 52Q68 48 80 52" fill="none" stroke-width="3"/>`,
     shop2: () => `<rect x="12" y="52" width="76" height="38" rx="6" fill="#fff6ec"/><path d="M6 22H94V44H6Z" fill="#ff8fb8"/>`,
   };
+  // soft water tiles: [base, wave highlight]
+  const SOFT_WATER = { default: ['#8fd8f5', '#ffffff'], lava: ['#ff8a4f', '#ffd23f'], castle: ['#b08ae6', '#ffffff'], cave: ['#6f86c8', '#cfe0ff'], clouds: ['#d6ecff', '#ffffff'], candy: ['#9a6248', '#d9a58a'] };
   // townspeople in Red Panda's world: friendly animal villagers
   const VILLAGERS = {
     pom: { shape: 'round', c: '#f3eefa', b: '#ffffff', a: '#ffd6e7', ears: 'round', nose: 1, acc: ['bun', 'glasses'] },
@@ -1759,15 +1854,532 @@ const ART = (() => {
     if (id.startsWith('v-')) { const v = VILLAGERS[id.slice(2)]; return v ? ART.rpSVG(v, 0, false) : null; }
     if (id.startsWith('g-')) return null;
     if (id.startsWith('w-')) {
-      const lava = id === 'w-lava', castle = id === 'w-castle';
-      const base = lava ? '#ff8a4f' : castle ? '#b08ae6' : '#8fd8f5', hi = lava ? '#ffd23f' : '#ffffff';
+      const [base, hi] = SOFT_WATER[id.slice(2)] || SOFT_WATER.default;
       return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="${base}"/><path d="M8 34Q20 24 32 34T56 34M48 72Q60 62 72 72T96 72" fill="none" stroke="${hi}" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/></svg>`);
     }
     const f = S[id]; return f ? svg(f(color)) : null;
   }
   ART.register('mp', (id, color) => pixelArt(id, color));
   ART.register('ms', (id, color) => softArt(id, color));
-  ART.MAPART = { P, S, PEOPLE, VILLAGERS };
+  ART.MAPART = { P, S, PEOPLE, VILLAGERS, GROUND, WATER, WATER_C, SOFT_WATER, person, mirror, rawURL, px, svg };
+})();
+
+/* Version 5 art: side areas (cave, cloud kingdom, sunken ship / candy volcano), new monsters, recruits,
+   townspeople, crafters, entrances, gather spots, materials and crafted gear. Extends ART / ART.MAPART. */
+(() => {
+  const K = '#160d24', W = '#f4f6ff', GOLD = '#ffcf3f', STEEL = '#c9ced8', DARKS = '#5b6474', RED = '#ff3b3b', YEL = '#ffd23f', BROWN = '#8a5a2b', SKIN = '#f5c9a0', SKIN2 = '#d9a074';
+  const OL = ART.OL, M = ART.MAPART;
+  // an SVG element closed with </tag> keeps its own fill inside a SHAPES body (rpSVG only paints elements that end in "/>")
+  const X = (tag, attrs) => `<${tag} ${attrs}></${tag}>`;
+
+  /* =====================================================================
+     Hamstey Man: pixel monsters, bosses and heroes (24 x 24, facing right)
+     ===================================================================== */
+  Object.assign(ART.HT, {
+    mole: p => [
+      ['R', 3, 18, 4, 4, p.a], ['L', 2, 22, 6, 22, p.b],
+      ['E', 10, 15, 8, 6, p.a], ['T', [[13, 10], [22, 12], [23, 14], [14, 20]], p.a],
+      ['E', 9, 19, 5, 2, '#c49a74'],
+      ['E', 6, 10, 2, 1, p.c], ['E', 10, 9, 2, 1, '#a3a9b8'], ['P', 5, 9, '#c4c9d4'],
+      ['R', 22, 12, 2, 3, '#ff8fb0'], ['P', 22, 12, '#ffd0dc'],
+      ['R', 16, 12, 2, 1, K], ['L', 20, 16, 22, 15, K],
+      ['R', 12, 17, 4, 3, p.a], ['E', 16, 19, 3, 3, '#ffb3c7'],
+      ['L', 18, 16, 21, 14, p.b], ['L', 19, 18, 23, 18, p.b], ['L', 19, 20, 23, 21, p.b], ['L', 17, 22, 19, 23, p.b],
+    ],
+    slime: p => [
+      ['T', [[5, 14], [7, 3], [11, 12]], p.b], ['T', [[10, 11], [13, 0], [16, 11]], p.b], ['T', [[15, 13], [19, 5], [20, 14]], p.b],
+      ['E', 12, 16, 9, 7, p.a], ['R', 3, 18, 19, 5, p.a],
+      ['L', 8, 6, 8, 10, '#ecdcff'], ['L', 13, 3, 13, 9, '#ecdcff'], ['P', 18, 9, '#ecdcff'],
+      ['R', 6, 14, 1, 3, '#e6fffa'], ['P', 7, 13, '#e6fffa'],
+      ['R', 13, 14, 2, 3, K], ['R', 18, 14, 2, 3, K], ['P', 13, 14, W], ['P', 18, 14, W],
+      ['R', 15, 19, 3, 1, K], ['T', [[6, 21], [8, 18], [9, 21]], p.b],
+    ],
+    beetle: p => [
+      ['L', 6, 17, 4, 22, p.c], ['L', 10, 18, 10, 22, p.c], ['L', 14, 17, 16, 22, p.c],
+      ['L', 20, 12, 23, 8, p.c], ['L', 19, 12, 19, 7, p.c], ['P', 23, 7, p.b], ['P', 19, 6, p.b],
+      ['E', 20, 15, 3, 2, p.c], ['P', 23, 17, p.c],
+      ['E', 10, 12, 8, 6, p.a], ['L', 3, 15, 17, 15, '#1c1530'],
+      ['R', 5, 9, 2, 2, p.b], ['R', 10, 7, 2, 2, p.b], ['R', 14, 10, 2, 2, p.b], ['R', 8, 12, 2, 2, p.b], ['P', 12, 13, p.b], ['P', 4, 13, p.b],
+      ['R', 21, 14, 2, 1, p.b],
+    ],
+    wyrm: p => [
+      ['T', [[2, 19], [1, 13], [6, 18]], p.c], ['T', [[6, 18], [6, 12], [9, 17]], '#b06cff'],
+      ['T', [[7, 15], [8, 9], [11, 14]], p.c], ['T', [[11, 14], [12, 8], [14, 13]], '#b06cff'],
+      ['T', [[13, 9], [9, 6], [13, 7]], p.c], ['T', [[16, 3], [13, 0], [17, 2]], '#b06cff'],
+      ['L', 0, 16, 1, 20, p.a, 2], ['E', 11, 20, 10, 3, p.a], ['E', 12, 16, 7, 3, p.a], ['E', 15, 11, 3, 4, p.a],
+      ['L', 3, 23, 18, 23, p.b], ['L', 7, 19, 17, 19, p.b], ['L', 17, 9, 17, 14, p.b],
+      ['P', 6, 20, '#6b7080'], ['P', 10, 21, '#6b7080'], ['P', 14, 20, '#6b7080'], ['P', 10, 16, '#6b7080'], ['P', 14, 16, '#6b7080'], ['P', 14, 11, '#6b7080'],
+      ['E', 17, 5, 3, 3, p.a], ['T', [[16, 2], [23, 4], [23, 6], [17, 7]], p.a], ['T', [[16, 8], [22, 9], [21, 11], [16, 11]], p.a],
+      ['T', [[18, 7], [23, 7], [22, 8], [17, 8]], '#c0392b'], ['P', 20, 7, W], ['P', 22, 7, W], ['P', 19, 9, W], ['P', 21, 9, W],
+      ['R', 17, 4, 2, 1, YEL], ['L', 16, 3, 19, 3, K], ['P', 22, 4, K],
+    ],
+    harpy: p => [
+      ['T', [[7, 16], [0, 21], [2, 23], [9, 19]], p.b],
+      ['T', [[9, 11], [17, 11], [6, 0], [3, 2]], p.b],
+      ['L', 10, 19, 10, 22, '#ffb02f'], ['L', 13, 19, 13, 22, '#ffb02f'], ['R', 9, 22, 3, 1, '#ffb02f'], ['R', 12, 22, 3, 1, '#ffb02f'],
+      ['E', 11, 14, 5, 5, p.a], ['E', 12, 16, 3, 3, '#d4def0'],
+      ['T', [[14, 5], [10, 1], [16, 4]], p.b], ['E', 16, 8, 4, 4, p.a],
+      ['T', [[19, 6], [23, 8], [22, 11], [20, 10]], '#ffb02f'],
+      ['R', 17, 7, 2, 2, p.c], ['P', 18, 8, K], ['L', 16, 5, 19, 6, K],
+      ['T', [[5, 14], [14, 12], [9, 4], [1, 4], [2, 7], [1, 9], [3, 11]], p.a], ['L', 3, 7, 9, 8, p.b], ['L', 3, 10, 10, 11, p.b], ['P', 2, 5, '#a8b8d8'],
+    ],
+    stormcloud: p => [
+      ['T', [[9, 14], [5, 19], [8, 19], [6, 23], [12, 17], [9, 17], [11, 14]], p.c],
+      ['T', [[16, 14], [13, 19], [16, 19], [14, 23], [20, 17], [17, 17], [18, 14]], p.c],
+      ['E', 6, 10, 5, 4, p.a], ['E', 12, 7, 6, 6, p.a], ['E', 18, 9, 5, 5, p.a], ['E', 12, 12, 10, 3, p.a],
+      ['E', 12, 14, 8, 1, p.b], ['E', 9, 4, 2, 1, '#8a90a8'],
+      ['R', 10, 8, 3, 3, W], ['R', 15, 8, 3, 3, W], ['R', 11, 9, 2, 2, K], ['R', 16, 9, 2, 2, K],
+      ['L', 9, 6, 12, 7, K], ['L', 19, 6, 16, 7, K],
+      ['L', 12, 13, 16, 13, K], ['P', 11, 14, K], ['P', 17, 14, K],
+    ],
+    ray: p => [
+      ['L', 0, 12, 8, 12, p.b], ['P', 0, 11, p.b],
+      ['T', [[5, 12], [6, 7], [8, 2], [11, 0], [13, 2], [20, 11]], p.a], ['T', [[5, 12], [6, 17], [8, 22], [11, 23], [13, 21], [20, 13]], p.a],
+      ['E', 14, 12, 6, 3, p.a],
+      ['T', [[18, 10], [23, 7], [22, 11]], p.a], ['T', [[18, 14], [23, 17], [22, 13]], p.a],
+      ['L', 9, 3, 14, 10, p.b], ['L', 9, 21, 14, 14, p.b], ['L', 8, 12, 16, 12, p.b],
+      ['P', 9, 7, W], ['P', 11, 5, W], ['P', 9, 17, W], ['P', 11, 19, W],
+      ['R', 19, 10, 2, 2, W], ['R', 19, 13, 2, 2, W], ['P', 20, 11, K], ['P', 20, 13, K], ['L', 18, 9, 21, 10, K], ['L', 18, 15, 21, 14, K],
+    ],
+    giant: p => [
+      ['L', 21, 9, 21, 20, BROWN, 2], ['E', 21, 5, 2, 4, '#a0703a'], ['P', 20, 2, '#c8925a'], ['P', 23, 4, '#c8925a'], ['P', 20, 7, '#c8925a'],
+      ['R', 6, 19, 4, 3, p.b], ['R', 14, 19, 4, 3, p.b], ['R', 5, 22, 5, 2, '#3a4a7a'], ['R', 14, 22, 5, 2, '#3a4a7a'],
+      ['R', 4, 10, 16, 10, p.b], ['R', 4, 17, 16, 1, p.c],
+      ['R', 1, 11, 3, 8, p.a], ['R', 20, 11, 3, 5, p.a], ['R', 19, 15, 4, 3, p.a], ['R', 1, 18, 3, 2, p.a],
+      ['E', 12, 6, 5, 4, p.a],
+      ['E', 7, 3, 2, 2, W], ['E', 12, 1, 3, 1, W], ['E', 17, 3, 2, 2, W], ['E', 10, 2, 1, 1, W], ['E', 14, 2, 1, 1, W],
+      ['R', 9, 6, 2, 1, K], ['R', 14, 6, 2, 1, K], ['L', 8, 4, 10, 5, K], ['L', 16, 4, 14, 5, K],
+      ['E', 8, 11, 3, 2, W], ['E', 16, 11, 3, 2, W], ['E', 12, 12, 4, 3, W], ['E', 12, 15, 2, 2, W], ['R', 10, 9, 5, 1, '#9fb4dc'],
+    ],
+    crab: p => [
+      ['L', 6, 18, 2, 22, p.a], ['L', 9, 19, 7, 23, p.a], ['L', 13, 19, 14, 23, p.a], ['L', 16, 18, 19, 22, p.a],
+      ['L', 5, 14, 3, 9, p.a, 2], ['E', 3, 6, 3, 3, p.a], ['X', 2, 2, 2, 3], ['P', 1, 4, '#ff9f8a'],
+      ['E', 11, 15, 7, 5, p.a], ['E', 11, 18, 5, 1, '#ff9f8a'],
+      ['E', 11, 9, 5, 4, STEEL], ['R', 6, 10, 11, 2, STEEL], ['R', 8, 11, 7, 1, '#8a93a6'], ['R', 10, 3, 3, 3, p.c], ['P', 9, 4, p.c],
+      ['R', 12, 13, 2, 2, W], ['R', 15, 13, 2, 2, W], ['P', 13, 14, K], ['P', 16, 14, K], ['L', 11, 12, 13, 12, K], ['L', 15, 12, 17, 12, K],
+      ['L', 13, 17, 15, 17, K],
+      ['L', 17, 15, 19, 15, p.a, 2], ['E', 20, 15, 2, 2, p.a],
+      ['L', 21, 3, 21, 11, W], ['R', 19, 12, 5, 1, GOLD], ['P', 21, 13, BROWN],
+    ],
+    eel: p => [
+      ['T', [[0, 13], [3, 16], [3, 19], [0, 21]], p.b],
+      ['E', 3, 17, 2, 2, p.a], ['E', 6, 18, 2, 2, p.a], ['E', 9, 18, 2, 2, p.a], ['E', 12, 16, 2, 2, p.a], ['E', 14, 13, 2, 2, p.a], ['E', 16, 11, 2, 2, p.a],
+      ['L', 2, 15, 5, 16, p.b], ['L', 5, 16, 10, 16, p.b], ['L', 10, 16, 12, 14, p.b], ['L', 12, 14, 14, 11, p.b], ['L', 14, 11, 16, 9, p.b],
+      ['T', [[4, 15], [6, 12], [9, 15]], p.b], ['T', [[10, 14], [11, 11], [13, 12]], p.b],
+      ['L', 4, 20, 10, 20, '#f2ffa8'], ['L', 12, 18, 15, 15, '#f2ffa8'],
+      ['P', 6, 18, '#6f9a2e'], ['P', 9, 17, '#6f9a2e'], ['P', 12, 16, '#6f9a2e'], ['P', 14, 13, '#6f9a2e'],
+      ['E', 19, 9, 4, 3, p.a], ['L', 15, 7, 18, 6, p.b], ['T', [[16, 7], [16, 3], [19, 6]], p.b], ['T', [[16, 13], [19, 15], [16, 16]], p.b],
+      ['L', 17, 11, 23, 10, K], ['P', 21, 11, W], ['P', 18, 12, '#f2ffa8'], ['P', 19, 12, '#f2ffa8'],
+      ['R', 19, 7, 2, 2, W], ['P', 20, 8, K], ['L', 18, 6, 21, 7, K],
+      ['L', 5, 11, 7, 9, p.c], ['L', 7, 9, 6, 7, p.c], ['L', 6, 7, 8, 5, p.c],
+      ['L', 17, 21, 19, 19, p.c], ['L', 19, 19, 18, 17, p.c], ['P', 11, 8, W], ['P', 2, 11, W], ['P', 22, 15, W], ['L', 22, 4, 23, 2, p.c], ['P', 13, 22, W],
+    ],
+    gpirate: p => [
+      ['L', 21, 12, 21, 7, STEEL, 2], ['L', 21, 7, 23, 3, STEEL], ['P', 22, 6, STEEL],
+      ['E', 11, 12, 7, 7, p.a], ['R', 4, 12, 15, 8, p.a], ['T', [[4, 19], [19, 19], [16, 23], [12, 20], [8, 23]], p.a],
+      ['L', 17, 14, 20, 14, p.a, 2], ['R', 19, 12, 4, 1, GOLD], ['R', 20, 14, 2, 1, BROWN],
+      ['T', [[2, 7], [20, 7], [17, 2], [5, 2]], K], ['R', 7, 1, 9, 2, K], ['R', 10, 3, 3, 2, W], ['L', 3, 7, 19, 7, '#3a2a4a'],
+      ['R', 8, 9, 2, 3, K], ['R', 13, 9, 2, 3, K], ['P', 8, 9, W], ['P', 13, 9, W],
+      ['P', 9, 14, K], ['R', 10, 15, 4, 1, K], ['P', 14, 14, K],
+    ],
+    gcaptain: p => [
+      ['T', [[5, 18], [19, 18], [18, 23], [14, 20], [11, 23], [8, 20], [4, 23]], p.a],
+      ['R', 4, 10, 16, 10, p.b], ['T', [[4, 19], [2, 23], [8, 20]], p.b], ['T', [[20, 19], [22, 23], [16, 20]], p.b],
+      ['T', [[9, 10], [15, 10], [12, 15]], p.a], ['L', 9, 10, 12, 16, GOLD], ['L', 15, 10, 12, 16, GOLD],
+      ['P', 9, 16, GOLD], ['P', 15, 16, GOLD], ['P', 9, 18, GOLD], ['P', 15, 18, GOLD], ['R', 4, 15, 16, 1, '#1f2a55'],
+      ['R', 1, 11, 3, 7, p.b], ['R', 20, 11, 3, 6, p.b], ['R', 1, 17, 3, 1, GOLD], ['R', 20, 16, 3, 1, GOLD],
+      ['R', 1, 18, 3, 2, p.a], ['L', 21, 17, 21, 20, STEEL], ['P', 22, 21, STEEL], ['P', 23, 20, STEEL], ['P', 23, 19, STEEL],
+      ['E', 12, 6, 5, 4, p.a], ['E', 12, 10, 3, 1, p.a],
+      ['T', [[2, 5], [22, 5], [18, 0], [6, 0]], K], ['R', 3, 5, 18, 1, GOLD], ['R', 11, 1, 2, 2, W],
+      ['R', 9, 6, 2, 2, p.c], ['R', 14, 6, 2, 2, p.c], ['L', 8, 5, 10, 6, K], ['L', 16, 5, 14, 6, K], ['R', 10, 9, 4, 1, K],
+    ],
+    // heroes
+    dwarf: p => [
+      ['L', 21, 6, 21, 22, BROWN, 2], ['T', [[23, 2], [23, 11], [21, 9], [21, 4]], STEEL], ['P', 20, 5, STEEL],
+      ['R', 7, 19, 4, 3, '#5a4632'], ['R', 13, 19, 4, 3, '#5a4632'], ['R', 6, 22, 5, 2, K], ['R', 13, 22, 5, 2, K],
+      ['R', 5, 12, 14, 8, p.a], ['R', 5, 17, 14, 1, BROWN], ['R', 11, 17, 2, 1, GOLD],
+      ['R', 3, 12, 2, 6, p.a], ['R', 19, 12, 2, 4, p.a], ['R', 3, 18, 2, 2, SKIN], ['R', 19, 15, 3, 2, SKIN],
+      ['E', 12, 8, 5, 4, SKIN],
+      ['L', 6, 5, 3, 1, '#f2e3c0', 2], ['L', 17, 5, 19, 1, '#f2e3c0', 2],
+      ['E', 12, 5, 6, 3, STEEL], ['R', 6, 6, 13, 2, STEEL], ['R', 11, 3, 2, 4, '#8a93a6'],
+      ['P', 10, 9, K], ['P', 14, 9, K], ['R', 8, 8, 3, 1, p.b], ['R', 14, 8, 3, 1, p.b],
+      ['E', 12, 14, 5, 4, p.b], ['R', 7, 11, 11, 2, p.b], ['R', 11, 10, 2, 2, '#e8a080'], ['R', 9, 12, 7, 1, '#b8321e'],
+      ['P', 12, 17, '#ffd23f'],
+      p.stage >= 2 ? ['T', [[9, 0], [15, 0], [16, 2], [8, 2]], GOLD] : null,
+    ],
+    pegasus: p => [
+      ['T', [[5, 12], [0, 14], [1, 21], [6, 15]], p.c],
+      ['R', 5, 16, 2, 6, p.a], ['R', 8, 16, 2, 6, p.a], ['R', 12, 16, 2, 6, p.a], ['R', 15, 16, 2, 6, p.a],
+      ['R', 5, 22, 2, 1, GOLD], ['R', 8, 22, 2, 1, GOLD], ['R', 12, 22, 2, 1, GOLD], ['R', 15, 22, 2, 1, GOLD],
+      ['E', 10, 14, 7, 4, p.a],
+      ['T', [[13, 13], [16, 5], [20, 6], [18, 14]], p.a],
+      ['E', 19, 6, 3, 2, p.a], ['R', 19, 6, 4, 3, p.a], ['T', [[17, 4], [18, 1], [19, 4]], p.a],
+      ['L', 16, 3, 14, 11, p.c, 2], ['P', 18, 3, p.c],
+      ['P', 19, 6, K], ['P', 22, 8, '#a8b0c8'],
+      ['T', [[7, 13], [15, 12], [12, 6], [8, 1], [2, 0], [1, 2], [3, 4], [2, 6], [4, 8], [3, 10], [5, 11]], p.b],
+      ['L', 4, 4, 11, 10, '#a8c4e8'], ['L', 4, 7, 9, 11, '#a8c4e8'], ['L', 5, 2, 12, 8, W],
+      ['L', 7, 15, 8, 16, YEL], ['L', 8, 16, 7, 17, YEL],
+      ...(p.stage >= 2 ? [['R', 17, 2, 5, 2, GOLD], ['P', 17, 1, GOLD], ['P', 19, 0, GOLD], ['P', 21, 1, GOLD]] : []),
+    ],
+    tide: p => [
+      ['L', 20, 5, 20, 22, GOLD], ['L', 18, 1, 18, 5, GOLD], ['L', 22, 1, 22, 5, GOLD], ['L', 20, 0, 20, 5, GOLD], ['R', 18, 5, 5, 1, GOLD],
+      ['R', 8, 18, 3, 5, p.b], ['R', 13, 18, 3, 5, p.b], ['R', 7, 22, 4, 2, K], ['R', 13, 22, 4, 2, K],
+      ['R', 7, 11, 10, 8, p.a], ['R', 9, 12, 6, 5, p.b], ['T', [[12, 12], [14, 14], [12, 16], [10, 14]], p.c], ['P', 12, 13, '#bff5e8'], ['R', 7, 17, 10, 1, GOLD],
+      ['R', 5, 12, 2, 6, p.a], ['R', 17, 12, 2, 6, p.a], ['R', 4, 11, 4, 2, p.c], ['R', 16, 11, 4, 2, p.c], ['R', 5, 17, 2, 2, SKIN], ['R', 17, 16, 3, 2, SKIN],
+      ['T', [[7, 4], [10, 0], [17, 0], [15, 4]], p.c], ['L', 11, 1, 15, 1, '#7fe3c8'],
+      ['E', 12, 7, 5, 5, p.a], ['R', 8, 7, 9, 2, '#1f2a4a'], ['P', 10, 7, '#7fe3ff'], ['P', 14, 7, '#7fe3ff'], ['L', 7, 10, 17, 10, p.b],
+      ...(p.stage >= 2 ? [['R', 9, 1, 6, 2, GOLD], ['P', 9, 0, GOLD], ['P', 12, 0, GOLD], ['P', 14, 0, GOLD]] : []),
+    ],
+  });
+  Object.assign(ART.HM_SPEC, {
+    rockmole: ['mole', '#9a6b4a', '#f2e3c0', '#8d93a3'],
+    crysslime: ['slime', '#3fcfb8', '#b06cff', W],
+    glowbeetle: ['beetle', '#3a2f5a', '#fff36b', '#241c3a'],
+    cavewyrm: ['wyrm', '#8a8f9c', '#c9c3b0', '#7fe3ff'],
+    harpy: ['harpy', '#7088b0', '#4a5f8a', '#ffd23f'],
+    thunderpuff: ['stormcloud', '#5f6680', '#454b63', '#ffd23f'],
+    skyray: ['ray', '#8fd0ff', '#4f8fd0', W],
+    cloudgiant: ['giant', '#cfe0ff', '#5f7fc8', '#ffcf3f'],
+    crabknight: ['crab', '#e8503a', STEEL, '#3f7fd9'],
+    volteel: ['eel', '#b8e04a', '#5a9a2e', '#ffe14a'],
+    ghostpirate: ['gpirate', '#d4f5ea'],
+    ghostcaptain: ['gcaptain', '#cfeee6', '#2f3f7a', '#5be7ff'],
+    dwarf: ['dwarf', '#a0522d', '#e8452b', '#ffd23f'],
+    pegasus: ['pegasus', W, '#cfe6ff', '#ffd23f'],
+    tideknight: ['tide', '#2f6fd0', '#7fc8ff', '#2ab3a0'],
+  });
+
+  /* =====================================================================
+     Red Panda: soft shapes, tails and accessories for new monsters, friends and villagers
+     ===================================================================== */
+  // spiral for lollipops (half circles that grow)
+  const spiral = (cx, cy, n, step) => { let d = `M${cx} ${cy}`, x = cx; for (let k = 1; k <= n; k++) { const r = k * step / 2; x = k % 2 ? x + 2 * r : x - 2 * r; d += `A${r} ${r} 0 0 1 ${x} ${cy}`; } return d; };
+  const scallop = (cx, cy, r, n, bump) => { let d = ''; for (let i = 0; i <= n; i++) { const a = (i / n) * Math.PI * 2 - Math.PI / 2; const x = cx + r * Math.cos(a), y = cy + r * Math.sin(a); d += i ? `A${bump} ${bump} 0 0 1 ${x.toFixed(1)} ${y.toFixed(1)}` : `M${x.toFixed(1)} ${y.toFixed(1)}`; } return d + 'Z'; };
+  Object.assign(ART.SHAPES, {
+    worm: {
+      body: X('circle', 'cx="13" cy="84" r="15" fill="#fff36b" opacity=".4" stroke="none"') + X('circle', 'cx="13" cy="84" r="9" fill="#fff36b"') +
+        '<circle cx="26" cy="82" r="11"/><circle cx="40" cy="74" r="14"/><circle cx="60" cy="48" r="27"/>',
+      f: [60, 50], ears: [[44, 26], [76, 26]], top: 21, tail: [86, 70], belly: null,
+    },
+    dome: {
+      body: X('path', 'd="M26 80L16 94M40 86L36 98M60 86L64 98M74 80L84 94" fill="none" stroke-width="6"') + '<ellipse cx="50" cy="62" rx="36" ry="28"/>',
+      f: [50, 68], ears: [[30, 40], [70, 40]], top: 34, tail: [86, 74], belly: null,
+    },
+    crabby: {
+      body: X('path', 'd="M24 72L8 82L6 94M28 80L18 96M76 72L92 82L94 94M72 80L82 96" fill="none" stroke-width="11"') +
+        X('path', 'd="M24 72L8 82L6 94M28 80L18 96M76 72L92 82L94 94M72 80L82 96" fill="none" stroke="#ff8fb0" stroke-width="5"') +
+        X('path', 'd="M24 48L28 18L40 8L46 42Z" fill="#c9b4ff"') + X('path', 'd="M42 42V8L52 -2L62 8V42Z" fill="#9fe6ff"') + X('path', 'd="M58 42L62 12L74 18L78 48Z" fill="#ffc2ec"') +
+        X('path', 'd="M51 4V36M31 16L36 40M66 18L70 42" stroke="#fff" stroke-width="3.5" stroke-opacity=".8"') +
+        '<path d="M22 58C10 64 -2 54 2 38C4 30 10 26 14 26L18 38L22 28C30 32 32 50 22 58Z"/><path d="M78 58C90 64 102 54 98 38C96 30 90 26 86 26L82 38L78 28C70 32 68 50 78 58Z"/>' +
+        '<ellipse cx="50" cy="64" rx="36" ry="25"/>',
+      f: [50, 62], ears: [[30, 44], [70, 44]], top: 40, tail: [88, 72], belly: [50, 76, 22, 9],
+    },
+    drop: {
+      body: '<path d="M50 4C62 26 84 42 84 64C84 82 70 94 50 94C30 94 16 82 16 64C16 42 38 26 50 4Z"/>' + X('ellipse', 'cx="30" cy="62" rx="5" ry="10" fill="#fff" opacity=".6" stroke="none"') + X('circle', 'cx="36" cy="44" r="3.5" fill="#fff" opacity=".7" stroke="none"'),
+      f: [52, 64], ears: [[34, 40], [66, 40]], top: 22, tail: [82, 78], belly: null,
+    },
+    swirl: {
+      body: X('path', 'd="M58 78C84 94 104 76 98 58C94 44 78 46 78 58C78 66 88 67 89 60" fill="none" stroke-width="15"') +
+        X('path', 'd="M58 78C84 94 104 76 98 58C94 44 78 46 78 58C78 66 88 67 89 60" fill="none" stroke="#e2d6ff" stroke-width="7"') +
+        X('path', 'd="M46 24C40 8 58 0 64 10C68 18 58 22 55 16" fill="none" stroke-width="12"') + X('path', 'd="M46 24C40 8 58 0 64 10C68 18 58 22 55 16" fill="none" stroke="#f6f2ff" stroke-width="5"') +
+        X('path', 'd="M-2 44H10M0 62H8M2 80H12" fill="none" stroke-width="9"') + X('path', 'd="M-2 44H10M0 62H8M2 80H12" fill="none" stroke="#e2d6ff" stroke-width="3.5"') +
+        '<path d="M14 58C14 36 30 22 50 22C72 22 86 38 86 56C86 76 70 88 50 88C28 88 14 78 14 58Z"/>' +
+        X('path', 'd="M24 74Q40 84 58 78M30 32Q40 26 50 28" fill="none" stroke="#c9b4ff" stroke-width="4"'),
+      f: [50, 56], ears: [[32, 34], [68, 34]], top: 24, tail: [86, 72], belly: null,
+    },
+    owl: {
+      body: '<path d="M50 18C74 18 82 42 82 62C82 82 68 92 50 92C32 92 18 82 18 62C18 42 26 18 50 18Z"/>' +
+        X('circle', 'cx="38" cy="50" r="12.5" fill="#f2ecff" stroke-width="2.5"') + X('circle', 'cx="62" cy="50" r="12.5" fill="#f2ecff" stroke-width="2.5"'),
+      f: [50, 50], ears: [[32, 26], [68, 26]], top: 20, tail: [80, 76], belly: [50, 77, 17, 12],
+    },
+    gummy: {
+      body: '<ellipse cx="33" cy="89" rx="12" ry="9"/><ellipse cx="67" cy="89" rx="12" ry="9"/><ellipse cx="22" cy="64" rx="9" ry="13" transform="rotate(35 22 64)"/><ellipse cx="78" cy="64" rx="9" ry="13" transform="rotate(-35 78 64)"/>' +
+        '<ellipse cx="50" cy="70" rx="25" ry="22"/><circle cx="50" cy="40" r="25"/>' +
+        X('ellipse', 'cx="36" cy="30" rx="4.5" ry="7.5" fill="#fff" opacity=".55" stroke="none" transform="rotate(25 36 30)"') + X('ellipse', 'cx="34" cy="70" rx="3.5" ry="7" fill="#fff" opacity=".45" stroke="none"'),
+      f: [50, 42], ears: [[31, 19], [69, 19]], top: 15, tail: [76, 82], belly: [52, 74, 13, 11],
+    },
+    lolly: {
+      body: X('rect', 'x="44" y="72" width="12" height="28" rx="5" fill="#fff6ec"') + '<circle cx="50" cy="42" r="37"/>' +
+        X('path', `d="${spiral(50, 42, 7, 9)}" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="7" stroke-linecap="round"`) +
+        X('circle', 'cx="50" cy="42" r="37" fill="none"'),
+      f: [50, 46], ears: [[30, 16], [70, 16]], top: 6, tail: [88, 60], belly: null,
+    },
+    cupcake: {
+      body: X('path', 'd="M16 60H84L74 96H26Z" fill="#ffd6a5"') + X('path', 'd="M30 62L35 94M42 62L44 94M58 62L56 94M70 62L65 94" fill="none" stroke="#e8ae72" stroke-width="3.5"') +
+        '<path d="M12 62C4 50 14 36 28 38C28 22 44 14 56 22C66 14 84 22 80 38C92 38 98 54 88 62C80 70 72 60 62 66C54 70 46 60 38 66C30 70 22 60 12 62Z"/>' +
+        X('path', 'd="M32 34l6 -3M58 30l5 4M72 46l6 -2M22 50l4 4M46 44l6 1" fill="none" stroke-width="4.5"') +
+        X('path', 'd="M32 34l6 -3" fill="none" stroke="#7fd6ff" stroke-width="2.4"') + X('path', 'd="M58 30l5 4" fill="none" stroke="#ffd23f" stroke-width="2.4"') + X('path', 'd="M72 46l6 -2" fill="none" stroke="#7ad86a" stroke-width="2.4"') + X('path', 'd="M22 50l4 4" fill="none" stroke="#c08bff" stroke-width="2.4"') + X('path', 'd="M46 44l6 1" fill="none" stroke="#7fd6ff" stroke-width="2.4"') +
+        X('path', 'd="M50 14Q52 4 60 2" fill="none" stroke-width="3.5"') + X('circle', 'cx="50" cy="16" r="8" fill="#ff4d6d"') + X('circle', 'cx="47" cy="13" r="2.5" fill="#fff" stroke="none"'),
+      f: [50, 77], ears: [[32, 32], [68, 32]], top: 18, tail: [84, 82], belly: null,
+    },
+    jelly: {
+      body: X('ellipse', 'cx="50" cy="90" rx="47" ry="9" fill="#fff6ec"') +
+        '<path d="M12 86C12 58 16 26 50 24C84 26 88 58 88 86C78 92 68 84 59 90C51 95 45 86 37 90C28 94 20 84 12 86Z"/>' +
+        X('path', 'd="M16 54Q50 64 84 54M30 30Q28 56 30 84M70 30Q72 56 70 84" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="4"') +
+        X('ellipse', 'cx="24" cy="50" rx="4.5" ry="11" fill="#fff" opacity=".6" stroke="none"'),
+      f: [50, 62], ears: [[32, 34], [68, 34]], top: 26, tail: [88, 78], belly: null,
+    },
+    gumdrop: {
+      body: '<path d="M12 90C10 58 24 22 50 22C76 22 90 58 88 90C70 97 30 97 12 90Z"/>' + X('ellipse', 'cx="28" cy="46" rx="4.5" ry="9" fill="#fff" opacity=".5" stroke="none" transform="rotate(20 28 46)"'),
+      f: [50, 56], ears: [[32, 32], [68, 32]], top: 22, tail: [84, 84], belly: [50, 80, 18, 9],
+    },
+    sheep: {
+      body: `<path d="${scallop(50, 62, 33, 14, 9)}"/>` + X('ellipse', 'cx="50" cy="52" rx="21" ry="18" fill="#ffe7d3"'),
+      f: [50, 52], ears: [[30, 40], [70, 40]], top: 26, tail: [84, 74], belly: null,
+    },
+    puffy: {
+      body: `<path d="${scallop(50, 60, 32, 11, 9)}"/>`,
+      f: [50, 58], ears: [[30, 36], [70, 36]], top: 27, tail: [82, 78], belly: [50, 77, 15, 9],
+    },
+  });
+  Object.assign(ART.TAILS, {
+    puff: (x, y, c, w) => `<circle cx="${x + 2}" cy="${y - 2}" r="9" fill="${w}"/>`,
+    bolt: (x, y) => `<path d="M${x - 8} ${y + 2}L${x + 4} ${y - 10}L${x + 2} ${y - 2}L${x + 12} ${y - 14}L${x + 8} ${y - 26}L${x + 20} ${y - 12}L${x + 10} ${y - 8}L${x + 12} ${y}Z" fill="#ffd23f"/>`,
+    // a rainbow mane around the head (drawn behind the ears) plus a little striped tail
+    rainbow: (x, y) => {
+      const cols = ['#ff8fa3', '#ffb36b', '#ffe066', '#8fe08f', '#7fc8ff', '#c49bff', '#ff9ad5'];
+      let s = `<path d="M${x - 6} ${y}C${x + 8} ${y + 2} ${x + 16} ${y - 10} ${x + 10} ${y - 20}" fill="none" stroke="${OL}" stroke-width="13" stroke-linecap="round"/>`;
+      s += `<path d="M${x - 6} ${y}C${x + 8} ${y + 2} ${x + 16} ${y - 10} ${x + 10} ${y - 20}" fill="none" stroke="#ffe066" stroke-width="6" stroke-linecap="round"/>`;
+      // seven rainbow tufts fanned around the head
+      cols.forEach((c, i) => { const a = (-200 + i * 36.7) * Math.PI / 180, cx = 50 + 34 * Math.cos(a), cy = 58 + 32 * Math.sin(a), r = (a * 180 / Math.PI) + 90;
+        s += `<ellipse cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" rx="12" ry="16" fill="${c}" transform="rotate(${r.toFixed(1)} ${cx.toFixed(1)} ${cy.toFixed(1)})"/>`; });
+      return s;
+    },
+  });
+  Object.assign(ART.ACC, {
+    pinknose: o => `<ellipse cx="${o.fx}" cy="${o.fy + 4}" rx="7" ry="5" fill="#ff8fb8" stroke-width="2.6"/><ellipse cx="${o.fx - 2}" cy="${o.fy + 2.5}" rx="2" ry="1.4" fill="#fff" opacity=".8" stroke="none"/>`,
+    moleclaws: o => [o.fx - 22, o.fx + 22].map(x => `<ellipse cx="${x}" cy="${o.fy + 30}" rx="10" ry="8" fill="#ffc2cf" stroke-width="3"/><path d="M${x - 6} ${o.fy + 34}v6M${x} ${o.fy + 35}v6M${x + 6} ${o.fy + 34}v6" stroke-width="3"/>`).join(''),
+    hardhat: o => `<path d="M24 ${o.T + 10}Q24 ${o.T - 20} 50 ${o.T - 20}Q76 ${o.T - 20} 76 ${o.T + 10}Z" fill="#ffd23f"/><rect x="18" y="${o.T + 4}" width="64" height="9" rx="4" fill="#ffc21f"/><path d="M50 ${o.T - 19}V${o.T + 4}" stroke-width="2.5"/><circle cx="50" cy="${o.T - 4}" r="6" fill="#fff6c4"/>`,
+    hairbow: o => `<g transform="translate(${o.s.bx || 68} ${o.T + 2}) rotate(15)"><path d="M0 0L-15 -10V10Z" fill="${o.s.bwc || '#ff6fa8'}"/><path d="M0 0L15 -10V10Z" fill="${o.s.bwc || '#ff6fa8'}"/><circle r="5" fill="${o.s.bwc2 || '#ff9ac4'}"/></g>`,
+    glowtips: o => `<circle cx="32" cy="${o.T - 14}" r="11" fill="#fff36b" opacity=".45" stroke="none"/><circle cx="68" cy="${o.T - 14}" r="11" fill="#fff36b" opacity=".45" stroke="none"/><circle cx="32" cy="${o.T - 14}" r="5" fill="#fff36b" stroke-width="2.5"/><circle cx="68" cy="${o.T - 14}" r="5" fill="#fff36b" stroke-width="2.5"/>`,
+    floppy: o => `<ellipse cx="${o.fx - 25}" cy="${o.fy - 3}" rx="8" ry="15" fill="${o.s.ec || o.a}" transform="rotate(18 ${o.fx - 25} ${o.fy - 3})"/><ellipse cx="${o.fx + 25}" cy="${o.fy - 3}" rx="8" ry="15" fill="${o.s.ec || o.a}" transform="rotate(-18 ${o.fx + 25} ${o.fy - 3})"/>`,
+    rosy: o => `<ellipse cx="${o.fx - 19}" cy="${o.fy + 9}" rx="7" ry="4.5" fill="#ff7fae" opacity=".75" stroke="none"/><ellipse cx="${o.fx + 19}" cy="${o.fy + 9}" rx="7" ry="4.5" fill="#ff7fae" opacity=".75" stroke="none"/>`,
+    crest: o => `<path d="M48 ${o.T + 4}C44 ${o.T - 10} 50 ${o.T - 18} 56 ${o.T - 16}C52 ${o.T - 10} 54 ${o.T - 4} 52 ${o.T + 4}Z" fill="${o.s.crc || o.c}"/>`,
+    dots: o => [[24, 70, '#7fc8ff'], [76, 72, '#ffd23f'], [32, 86, '#8fe08f'], [66, 86, '#c49bff'], [50, 90, '#ff8fa3'], [22, 54, '#ffb36b'], [78, 54, '#8fe08f']].map(([x, y, c]) => `<circle cx="${x}" cy="${y}" r="4" fill="${c}" stroke-width="2"/>`).join(''),
+    sugar: () => [[22, 70, -30, '#7fd6ff'], [78, 70, 30, '#ffe066'], [30, 46, 20, '#ff8fc0'], [70, 44, -20, '#8fe08f'], [38, 86, 0, '#c49bff'], [62, 86, 60, '#ff8fc0']].map(([x, y, r, c]) => `<rect x="${x - 5}" y="${y - 2}" width="10" height="4.5" rx="2.2" fill="${c}" stroke-width="1.8" transform="rotate(${r} ${x} ${y})"/>`).join(''),
+    foregem: o => `<path d="M${o.fx} ${o.fy - 29}L${o.fx + 7} ${o.fy - 21}L${o.fx} ${o.fy - 13}L${o.fx - 7} ${o.fy - 21}Z" fill="${o.s.gc || '#7fe3ff'}" stroke-width="2.8"/><path d="M${o.fx - 2} ${o.fy - 24}l2 -2" stroke="#fff" stroke-width="2.4"/>`,
+    gemshell: o => `<path d="M26 44L30 16L42 38Z" fill="#c9b4ff"/><path d="M42 38L50 8L58 38Z" fill="#9fe6ff"/><path d="M58 38L70 16L74 44Z" fill="#ffc2ec"/>` +
+      `<path d="M15 58C14 40 30 33 50 33C70 33 86 40 85 58C68 51 32 51 15 58Z" fill="${o.s.shc || '#b9a6ff'}"/><path d="M30 52L38 38M50 49V35M70 52L62 38" fill="none" stroke-width="2.4"/><path d="M50 12V30" stroke="#fff" stroke-width="3" stroke-opacity=".8"/><ellipse cx="30" cy="44" rx="4" ry="2.5" fill="#fff" opacity=".7" stroke="none"/>`,
+    tinywings: () => [0, 1].map(m => { const f = x => (m ? 100 - x : x);
+      return `<path d="M${f(36)} 46C${f(30)} 30 ${f(18)} 22 ${f(4)} 24C${f(6)} 30 ${f(10)} 32 ${f(14)} 32C${f(10)} 36 ${f(12)} 40 ${f(18)} 40C${f(16)} 44 ${f(22)} 48 ${f(28)} 48Z" fill="#ffffff"/>`; }).join(''),
+    spout: o => `<path d="M50 ${o.T + 2}V${o.T - 8}" stroke="#a9dcff" stroke-width="6"/><path d="M50 ${o.T - 8}Q42 ${o.T - 20} 34 ${o.T - 14}M50 ${o.T - 8}Q58 ${o.T - 20} 66 ${o.T - 14}" fill="none" stroke="#a9dcff" stroke-width="5"/><circle cx="33" cy="${o.T - 14}" r="4" fill="#d8f3ff" stroke-width="2"/><circle cx="67" cy="${o.T - 14}" r="4" fill="#d8f3ff" stroke-width="2"/>`,
+    bolttuft: o => `<path d="M${o.fx + 4} ${o.T - 2}L${o.fx - 6} ${o.T + 10}H${o.fx + 1}L${o.fx - 4} ${o.T + 20}L${o.fx + 10} ${o.T + 6}H${o.fx + 3}L${o.fx + 9} ${o.T - 2}Z" fill="#ffd23f" stroke-width="2.5"/>`,
+  });
+  Object.assign(ART.RP_SPEC, {
+    // Crystal Caverns
+    mole: { shape: 'round', c: '#9a6b4f', b: '#dcbc9c', a: '#ffb3c7', acc: ['pinknose', 'moleclaws'] },
+    glowworm: { shape: 'worm', c: '#8fdc6a', a: '#fff36b', x: ['antenna'] },
+    rockbug: { shape: 'dome', c: '#aaa6bc', a: '#c9b4ff', x: ['antenna'], acc: ['gemshell'], shc: '#b9a6ff' },
+    crystalcrab: { shape: 'crabby', c: '#ff8fb0', b: '#ffd3e0' },
+    // Cloud Kingdom
+    drip: { shape: 'drop', c: '#7fc0ff' },
+    gusty: { shape: 'swirl', c: '#f6f2ff' },
+    owlet: { shape: 'owl', c: '#a58bdc', b: '#e6dcff', a: '#e6dcff', ears: 'cat', x: ['beak', 'wings'], wc: '#8a6fc8' },
+    skywhale: { shape: 'blob', c: '#8cc4ff', b: '#eaf6ff', tail: 'fin', acc: ['spout', 'tinywings'] },
+    // Candy Volcano
+    gummy: { shape: 'gummy', c: '#ff5a6a', b: '#ff98a3', a: '#ff98a3', ears: 'bear' },
+    lolly: { shape: 'lolly', c: '#ff7ab8' },
+    cupcake: { shape: 'cupcake', c: '#ff9ac4' },
+    jellyking: { shape: 'jelly', c: '#5fd3c6', x: ['crown'] },
+    // new friends
+    gemmy: { shape: 'bean', c: '#dcefff', b: '#ffffff', a: '#ffc7dd', ears: 'bunny', nose: 1, x: ['snow'], acc: ['foregem'] },
+    cloudy: { shape: 'puffy', c: '#f7faff', b: '#ffffff', a: '#c4d4f0', ec: '#c4d4f0', tail: 'bolt', nose: 1, acc: ['floppy', 'bolttuft'] },
+    gumdrop: { shape: 'gumdrop', c: '#ffa04a', b: '#ffe0bf', a: '#ffd0a8', ears: 'cat', x: ['flame'], acc: ['sugar'] },
+  });
+
+  /* =====================================================================
+     Red Panda villagers
+     ===================================================================== */
+  Object.assign(M.VILLAGERS, {
+    molly: { shape: 'round', c: '#a57c5f', b: '#e6cdb4', a: '#ffb3c7', acc: ['pinknose', 'hardhat', 'moleclaws'] },
+    betty: { shape: 'round', c: '#b49ae6', b: '#efe6ff', a: '#ffc7ef', ears: 'bat', x: ['wings'], wc: '#9b7fd1', acc: ['hairbow'], bx: 66 },
+    glow: { shape: 'bean', c: '#8a94ff', b: '#fff36b', a: '#fff36b', x: ['bwings', 'antenna'], acc: ['glowtips'] },
+    bea: { shape: 'sheep', c: '#ffffff', a: '#ffe7d3', ec: '#ffe7d3', acc: ['floppy', 'chefhat', 'apron'] },
+    kiki: { shape: 'cloud', c: '#fff7fb', acc: ['rosy', 'flowerhair'] },
+    bell: { shape: 'round', c: '#ffd84a', b: '#fff4c4', x: ['beak', 'wings'], wc: '#ffc22e', acc: ['crest', 'hairbow'], crc: '#ffc22e', bx: 70 },
+    ray: { shape: 'round', c: '#fff6fb', b: '#ffffff', a: '#ffc7dd', ears: 'cat', tail: 'rainbow', nose: 1, x: ['whiskers'] },
+    cocoa: { shape: 'round', c: '#9a6340', b: '#e3bf98', a: '#e3bf98', ears: 'bear', nose: 1, acc: ['scarf'], sfc: '#ff8fc0' },
+    sprinkles: { shape: 'bean', c: '#ffc7e0', b: '#fff0f7', a: '#ffffff', ears: 'bunny', nose: 1, acc: ['dots'] },
+    taffy: { shape: 'round', c: '#ffb06b', b: '#fff1e0', a: '#fff1e0', ears: 'fox', tail: 'fluffy', nose: 1, acc: ['bowtie'], btc: '#7fd6ff' },
+  });
+
+  /* =====================================================================
+     Hamstey Man townspeople (24 x 24, facing you)
+     ===================================================================== */
+  const lantern = (x = 19, y = 15) => [['R', x + 1, y - 2, 1, 2, DARKS], ['R', x, y, 4, 1, DARKS], ['R', x, y + 1, 4, 4, '#ffd23f'], ['R', x, y + 5, 4, 1, DARKS], ['R', x + 1, y + 2, 1, 2, W]];
+  Object.assign(M.PEOPLE, {
+    tobb: person => [...person({ hat: 'miner', hatOnly: 1, top: '#a0703a', arms: '#3f6fb0', legs: '#4a4a6a', beard: W, belt: '#5a3a22', item: 'pick' }),
+      ['R', 7, 6, 1, 4, W], ['R', 17, 6, 1, 4, W], ['R', 9, 7, 2, 1, W], ['R', 14, 7, 2, 1, W]],
+    lia: person => [...person({ goggles: 1, long: 1, hair: '#3a2a4a', top: '#f2e3c0', legs: '#4a4a6a', skin: '#f8d8b8' }),
+      ['R', 9, 15, 7, 6, '#3f7fd9'], ['R', 10, 13, 5, 2, '#3f7fd9'], ['R', 11, 17, 3, 2, '#2a5bb0'],
+      ['T', [[20, 14], [18, 17], [20, 21], [22, 17]], '#5be7ff'], ['P', 19, 17, W]],
+    orm: person => [...person({ hat: 'helm', hatOnly: 1, top: '#5a6a4a', armor: 1, legs: '#4a4a3a', stache: '#2b2b3a', skin: SKIN2 }), ...lantern()],
+    bruna: person => [...person({ hair: '#d8452b', top: '#c8925a', arms: '#c8925a', legs: '#5a4632', item: 'hammer' }),
+      ['R', 9, 14, 7, 8, '#7a4b2a'], ['L', 9, 13, 10, 13, '#7a4b2a'], ['L', 15, 13, 16, 13, '#7a4b2a'], ['R', 11, 16, 3, 2, '#5a3a22'],
+      ['R', 5, 8, 2, 9, '#d8452b'], ['R', 18, 8, 2, 9, '#d8452b'], ['R', 5, 12, 2, 1, '#a8321e'], ['R', 18, 12, 2, 1, '#a8321e'], ['R', 5, 17, 2, 1, GOLD], ['R', 18, 17, 2, 1, GOLD]],
+    nimbus: person => [...person({ hat: 'wizard', hat2: '#8fd0ff', hatOnly: 1, robe: 1, top: '#f4f6ff', beard: '#c9d6e8', item: 'staff', gem: '#bfe9ff', belt: '#8fd0ff' }), ['P', 12, 2, W]],
+    rory: person => [...person({ hatOnly: 1, top: '#8a5a2b', arms: '#8a5a2b', legs: '#4a4a6a' }),
+      ['E', 12, 4, 6, 2, '#6b3f1f'], ['R', 6, 4, 2, 6, '#6b3f1f'], ['R', 17, 4, 2, 6, '#6b3f1f'],
+      ['R', 7, 5, 11, 1, '#3a2a1a'], ['R', 9, 4, 3, 2, '#7fd6ff'], ['R', 13, 4, 3, 2, '#7fd6ff'], ['P', 9, 4, W], ['P', 13, 4, W],
+      ['R', 8, 13, 9, 1, '#f2e3c0'], ['R', 8, 12, 9, 2, RED], ['L', 16, 13, 21, 10, RED, 2], ['P', 22, 9, RED]],
+    vale: person => [...person({ hat: 'helm', hatOnly: 1, top: '#c9ced8', armor: 1, legs: '#8a93a6', cape: '#5aa9ff' }),
+      ['T', [[6, 5], [2, 1], [3, 7]], W], ['T', [[18, 5], [21, 1], [21, 6]], W],
+      ['L', 22, 7, 22, 22, '#a0703a'], ['T', [[22, 0], [20, 7], [23, 7]], STEEL], ['R', 20, 17, 3, 1, GOLD]],
+    jory: person => [...person({ hair: '#6b3f1f', top: W, arms: W, legs: '#3f5fc0' }),
+      ['L', 8, 14, 16, 14, '#3f5fc0'], ['L', 8, 16, 16, 16, '#3f5fc0'], ['L', 8, 18, 16, 18, '#3f5fc0'], ['R', 6, 14, 2, 1, '#3f5fc0'], ['R', 17, 14, 2, 1, '#3f5fc0'], ['R', 6, 16, 2, 1, '#3f5fc0'], ['R', 17, 16, 2, 1, '#3f5fc0'],
+      ['E', 12, 4, 6, 2, RED], ['R', 6, 4, 13, 2, RED], ['L', 18, 5, 20, 8, RED], ['P', 20, 6, RED], ['P', 9, 3, W], ['P', 13, 4, W], ['P', 16, 3, W]],
+    coralie: person => [...person({ robe: 1, long: 1, hair: '#2ab3a0', top: '#9a5fd0' }),
+      ['X', 4, 20, 17, 4], ['X', 8, 18, 9, 2],
+      ['R', 8, 17, 9, 2, '#3fbf9a'], ['R', 9, 19, 7, 1, '#3fbf9a'], ['R', 10, 20, 5, 1, '#3fbf9a'], ['R', 11, 21, 3, 1, '#3fbf9a'],
+      ['T', [[12, 21], [17, 19], [19, 23], [13, 23]], '#7fe3c8'], ['T', [[12, 21], [6, 22], [8, 23], [12, 23]], '#7fe3c8'],
+      ['P', 10, 18, '#7fe3c8'], ['P', 13, 18, '#7fe3c8'], ['P', 12, 20, '#7fe3c8'], ['P', 15, 18, '#7fe3c8'], ['R', 8, 17, 9, 1, '#7a3fb0'], ['R', 15, 3, 2, 2, '#ffb38a']],
+    gus: person => [...person({ hatOnly: 1, top: '#ffd23f', arms: '#ffd23f', legs: '#3a4a6a', beard: '#9aa3b5' }),
+      ['E', 12, 3, 5, 2, '#ffc21f'], ['R', 5, 5, 15, 1, '#ffc21f'], ['R', 6, 5, 3, 4, '#ffc21f'], ['R', 16, 5, 3, 4, '#ffc21f'],
+      ['P', 12, 16, DARKS], ['P', 12, 18, DARKS], ...lantern()],
+  });
+
+  /* =====================================================================
+     Pixel scenery, entrances, gather spots, effects (16 x 16)
+     ===================================================================== */
+  Object.assign(M.P, {
+    // Crystal Caverns
+    stalagmite: () => [['T', [[1, 15], [5, 4], [9, 15]], '#9a8f86'], ['T', [[7, 15], [11, 0], [15, 15]], '#857a72'], ['L', 10, 3, 9, 12, '#b8aea4'], ['L', 4, 7, 3, 13, '#b8aea4'], ['P', 12, 9, '#6b6058']],
+    cavewall: () => [['T', [[0, 15], [0, 3], [3, 1], [7, 2], [10, 0], [14, 2], [15, 4], [15, 15]], '#6b6058'], ['E', 4, 6, 3, 2, '#7d7168'], ['E', 11, 10, 3, 2, '#7d7168'],
+      ['L', 0, 9, 7, 8, '#3a322c'], ['L', 7, 8, 9, 12, '#3a322c'], ['L', 9, 12, 15, 13, '#3a322c'], ['L', 8, 3, 9, 6, '#3a322c'], ['P', 3, 5, '#9a8f86'], ['P', 10, 9, '#9a8f86'], ['P', 13, 4, '#b06cff']],
+    crystals: () => [['E', 8, 14, 7, 2, '#5b5466'], ['T', [[2, 15], [3, 6], [5, 4], [7, 15]], '#b06cff'], ['T', [[6, 15], [7, 3], [9, 0], [11, 3], [11, 15]], '#5be7ff'], ['T', [[10, 15], [11, 8], [13, 6], [15, 15]], '#ff8fd8'],
+      ['L', 9, 2, 9, 12, W], ['L', 4, 7, 4, 12, '#e0c4ff'], ['L', 12, 9, 12, 13, '#ffd0f0']],
+    glowshroom: () => [['R', 4, 9, 3, 6, '#e8f0e0'], ['E', 5, 7, 5, 3, '#4fe3c8'], ['P', 3, 6, W], ['P', 7, 6, W], ['R', 11, 11, 2, 4, '#e8f0e0'], ['E', 12, 10, 3, 2, '#4fe3c8'], ['P', 11, 9, W], ['P', 1, 2, '#b8fff0'], ['P', 14, 5, '#b8fff0'], ['P', 9, 3, '#b8fff0']],
+    minicrystal: () => [['T', [[5, 15], [6, 8], [7, 7], [9, 15]], '#b06cff'], ['T', [[9, 15], [10, 10], [11, 9], [12, 15]], '#5be7ff'], ['L', 7, 9, 7, 13, '#e0c4ff']],
+    gravel: () => [['E', 4, 11, 1, 1, '#b0a6b8'], ['E', 10, 9, 2, 1, '#c4bcca'], ['P', 13, 13, '#a49aac'], ['E', 7, 13, 1, 1, '#a49aac'], ['P', 12, 6, '#c4bcca'], ['P', 3, 6, '#a49aac']],
+    moss: () => [['E', 8, 12, 6, 2, '#4f8a3a'], ['E', 5, 11, 2, 1, '#6fae4a'], ['E', 11, 11, 2, 1, '#6fae4a'], ['L', 4, 9, 4, 10, '#6fae4a'], ['L', 9, 8, 9, 10, '#6fae4a'], ['L', 12, 9, 12, 10, '#6fae4a'], ['P', 9, 7, '#b8fff0']],
+    caveentry: () => [['T', [[0, 15], [1, 7], [4, 3], [8, 1], [12, 3], [15, 7], [15, 15]], '#8a7f76'], ['P', 4, 5, '#b0a69c'], ['P', 11, 4, '#b0a69c'], ['P', 13, 9, '#6b6058'],
+      ['E', 8, 11, 4, 4, '#1a1024'], ['R', 4, 11, 9, 5, '#1a1024'], ['T', [[6, 8], [7, 10], [8, 8]], '#8a7f76'], ['T', [[9, 8], [10, 10], [11, 8]], '#8a7f76'], ['P', 8, 13, '#5be7ff'], ['P', 6, 14, '#b06cff']],
+    orenode: () => [['E', 8, 10, 7, 5, '#7d7268'], ['E', 6, 8, 3, 2, '#9a8f86'], ['R', 4, 9, 2, 2, '#ff9f1c'], ['R', 9, 7, 2, 1, GOLD], ['R', 10, 11, 2, 2, '#ff9f1c'], ['P', 6, 13, GOLD], ['P', 13, 9, GOLD], ['P', 12, 3, W], ['L', 12, 2, 12, 4, '#fff3b0'], ['L', 11, 3, 13, 3, '#fff3b0']],
+    // Cloud Kingdom
+    cloudpuff: () => [['E', 4, 10, 3, 3, W], ['E', 8, 6, 4, 4, W], ['E', 12, 9, 3, 3, W], ['R', 1, 10, 14, 4, W], ['L', 2, 13, 14, 13, '#c8d8f2'], ['L', 12, 12, 14, 11, '#c8d8f2'], ['P', 6, 4, '#ffffff']],
+    pillar: () => [['R', 2, 13, 12, 3, '#d8d4e6'], ['R', 4, 4, 8, 9, '#f2f0f8'], ['L', 6, 5, 6, 12, '#c8c2da'], ['L', 9, 5, 9, 12, '#c8c2da'], ['R', 2, 1, 12, 3, '#d8d4e6'], ['P', 3, 2, W], ['P', 12, 2, '#b8b2ca']],
+    beanleaf: () => [['L', 3, 15, 5, 11, '#2e7d32', 2], ['T', [[4, 12], [2, 6], [6, 1], [12, 0], [15, 3], [13, 9], [8, 12]], '#4caf50'], ['L', 5, 11, 13, 2, '#2e7d32'], ['L', 8, 7, 6, 4, '#2e7d32'], ['L', 10, 5, 13, 6, '#2e7d32'], ['P', 6, 3, '#8fe08f']],
+    skytree: () => [['E', 8, 13, 7, 2, W], ['E', 4, 12, 3, 2, W], ['E', 12, 12, 3, 2, W], ['R', 7, 7, 2, 5, BROWN], ['E', 8, 5, 6, 4, '#6fd35f'], ['E', 6, 3, 2, 2, '#9be86f'], ['P', 11, 6, '#ff9ad5'], ['P', 5, 7, '#ff9ad5'], ['P', 9, 2, '#ff9ad5']],
+    tinycloud: () => [['E', 7, 10, 4, 2, W], ['E', 9, 8, 3, 2, W], ['L', 4, 12, 10, 12, '#c8d8f2']],
+    twinkle: () => [['L', 8, 4, 8, 12, '#fff3b0'], ['L', 4, 8, 12, 8, '#fff3b0'], ['P', 8, 8, W], ['P', 13, 3, '#fff3b0'], ['P', 3, 13, '#fff3b0']],
+    wisp: () => [['L', 1, 7, 10, 7, W], ['P', 11, 6, W], ['P', 12, 5, W], ['P', 11, 4, W], ['P', 10, 5, W], ['L', 5, 11, 13, 11, W], ['P', 14, 10, W], ['P', 14, 9, W]],
+    beanstalk: () => [['E', 8, 2, 6, 2, W], ['E', 4, 2, 3, 2, W], ['L', 8, 15, 6, 11, '#3fae4a', 3], ['L', 6, 11, 9, 7, '#3fae4a', 3], ['L', 9, 7, 7, 3, '#3fae4a', 2],
+      ['T', [[9, 12], [14, 10], [12, 13]], '#5fc25f'], ['T', [[6, 9], [1, 7], [3, 10]], '#5fc25f'], ['T', [[9, 5], [13, 4], [11, 6]], '#5fc25f'], ['L', 7, 13, 8, 11, '#8fe08f'], ['P', 3, 2, '#c8d8f2']],
+    nestnode: () => [['E', 8, 13, 7, 2, W], ['E', 8, 10, 6, 3, '#c8a06a'], ['L', 3, 9, 13, 9, '#8a6a3a'], ['L', 4, 11, 12, 11, '#a0803a'], ['T', [[6, 8], [3, 1], [5, 1], [7, 8]], '#8fd0ff'], ['L', 5, 2, 6, 7, W], ['T', [[9, 8], [12, 2], [13, 3], [10, 8]], W], ['P', 9, 7, '#ffd23f']],
+    // Sunken Ship
+    crate: () => [['R', 2, 3, 12, 12, '#b07a3a'], ['R', 2, 3, 12, 1, '#7a4a1f'], ['R', 2, 14, 12, 1, '#7a4a1f'], ['R', 2, 3, 1, 12, '#7a4a1f'], ['R', 13, 3, 1, 12, '#7a4a1f'], ['L', 3, 4, 12, 13, '#8a5a2b'], ['L', 3, 13, 12, 4, '#8a5a2b'], ['P', 5, 7, '#d8a060']],
+    barrel: () => [['E', 8, 9, 6, 7, '#a0703a'], ['R', 2, 5, 13, 1, DARKS], ['R', 2, 12, 13, 1, DARKS], ['L', 6, 3, 6, 15, '#8a5a2b'], ['L', 10, 3, 10, 15, '#8a5a2b'], ['P', 4, 8, '#c8925a']],
+    mast: () => [['R', 7, 0, 2, 16, '#8a5a2b'], ['R', 1, 2, 14, 1, '#6b3f1f'], ['T', [[2, 3], [14, 3], [13, 10], [3, 10]], '#f4efe0'], ['L', 3, 6, 13, 6, '#d8ccb0'], ['R', 7, 3, 2, 8, '#8a5a2b'], ['R', 5, 13, 6, 3, '#6b3f1f'], ['L', 1, 3, 3, 13, '#c8a06a'], ['L', 15, 3, 13, 13, '#c8a06a']],
+    cannon: () => [['R', 2, 6, 10, 5, '#3a3f4a'], ['R', 11, 5, 3, 7, '#2b2f3a'], ['E', 2, 8, 1, 2, '#3a3f4a'], ['P', 4, 7, '#7a8090'], ['P', 6, 7, '#7a8090'], ['R', 3, 11, 9, 2, BROWN], ['E', 4, 13, 2, 2, '#5a3a22'], ['E', 10, 13, 2, 2, '#5a3a22'], ['P', 4, 13, GOLD], ['P', 10, 13, GOLD]],
+    rope: () => [['E', 8, 11, 6, 3, '#d9b77a'], ['E', 8, 11, 4, 2, '#b8955a'], ['E', 8, 11, 2, 1, '#d9b77a'], ['L', 13, 10, 15, 6, '#d9b77a']],
+    plank: () => [['R', 2, 9, 12, 3, '#c8925a'], ['L', 3, 10, 12, 10, '#a0703a'], ['P', 3, 9, DARKS], ['P', 12, 11, DARKS]],
+    anchor: () => [['R', 7, 1, 3, 1, DARKS], ['R', 6, 2, 1, 2, DARKS], ['R', 10, 2, 1, 2, DARKS], ['R', 7, 4, 3, 1, DARKS], ['R', 8, 5, 1, 9, '#7a8090'], ['R', 5, 6, 7, 1, '#7a8090'],
+      ['L', 3, 11, 6, 14, '#7a8090'], ['L', 13, 11, 10, 14, '#7a8090'], ['R', 6, 14, 5, 1, '#7a8090'], ['P', 3, 10, '#7a8090'], ['P', 13, 10, '#7a8090']],
+    dock: () => [['R', 0, 11, 16, 5, '#2a7fd4'], ['L', 1, 13, 4, 13, '#8fd0ff'], ['L', 10, 14, 13, 14, '#8fd0ff'], ['R', 1, 3, 2, 11, '#6b3f1f'], ['R', 13, 3, 2, 11, '#6b3f1f'], ['R', 0, 2, 16, 3, '#c8925a'], ['L', 5, 2, 5, 4, '#8a5a2b'], ['L', 10, 2, 10, 4, '#8a5a2b'],
+      ['L', 6, 5, 6, 14, '#a0703a'], ['L', 9, 5, 9, 14, '#a0703a'], ['L', 6, 7, 9, 7, '#d8a060'], ['L', 6, 10, 9, 10, '#d8a060'], ['L', 6, 13, 9, 13, '#d8a060']],
+    clamnode: () => [['T', [[1, 10], [15, 10], [13, 13], [8, 15], [3, 13]], '#ffb3c7'], ['L', 4, 12, 12, 12, '#e07a9a'], ['R', 2, 8, 12, 2, '#8a3a5a'],
+      ['T', [[1, 8], [2, 4], [5, 1], [8, 0], [11, 1], [14, 4], [15, 8]], '#ffb3c7'], ['L', 8, 7, 4, 2, '#e07a9a'], ['L', 8, 7, 8, 1, '#e07a9a'], ['L', 8, 7, 12, 2, '#e07a9a'],
+      ['E', 8, 9, 2, 2, W], ['P', 7, 8, '#ffffff'], ['P', 9, 10, '#d8d4f0']],
+    // big moves
+    firestorm: () => [['T', [[1, 15], [0, 10], [2, 6], [4, 9], [5, 3], [8, 7], [10, 0], [12, 6], [15, 4], [15, 11], [14, 15]], '#ff5a2a'], ['T', [[3, 15], [3, 11], [6, 9], [7, 12], [10, 6], [12, 10], [12, 15]], '#ff9f43'],
+      ['T', [[5, 15], [7, 11], [9, 13], [10, 10], [11, 15]], '#ffd23f'], ['P', 1, 2, '#ff9f43'], ['P', 14, 1, '#ffd23f'], ['P', 8, 14, W]],
+    icetornado: () => [['E', 8, 2, 7, 2, '#bfe9ff'], ['E', 8, 5, 6, 2, '#7fd6ff'], ['E', 8, 8, 4, 2, '#bfe9ff'], ['E', 9, 11, 3, 1, '#7fd6ff'], ['E', 9, 13, 2, 1, '#bfe9ff'], ['P', 10, 15, '#7fd6ff'],
+      ['L', 3, 2, 12, 2, W], ['L', 5, 8, 10, 8, W], ['P', 1, 10, W], ['P', 14, 9, W], ['P', 2, 14, W]],
+    thunderstorm: () => [['E', 5, 5, 4, 3, '#5f6680'], ['E', 10, 4, 5, 4, '#5f6680'], ['R', 2, 5, 13, 3, '#5f6680'], ['L', 3, 8, 13, 8, '#454b63'],
+      ['T', [[5, 9], [2, 13], [4, 13], [3, 16], [7, 11], [5, 11], [7, 9]], YEL], ['T', [[11, 9], [9, 12], [11, 12], [10, 15], [14, 10], [12, 10], [13, 9]], YEL]],
+    power: () => [['E', 8, 8, 7, 7, '#9a4ae8'], ['E', 8, 8, 5, 5, '#ff6fd0'], ['T', [[8, 2], [10, 6], [14, 7], [11, 10], [12, 14], [8, 12], [4, 14], [5, 10], [2, 7], [6, 6]], '#ffe14a'], ['P', 8, 8, W], ['R', 4, 3, 2, 1, W], ['P', 3, 4, W]],
+  });
+  Object.assign(M.GROUND, {
+    cave: [['P', 3, 4, '#ffffff1c'], ['P', 4, 4, '#ffffff14'], ['P', 11, 10, '#00000038'], ['P', 12, 10, '#00000030'], ['P', 12, 11, '#00000030'], ['P', 7, 13, '#00000022'], ['P', 13, 3, '#b06cff40'], ['P', 2, 12, '#00000022'], ['P', 8, 7, '#ffffff10']],
+    clouds: [['E', 4, 4, 2, 1, '#ffffff66'], ['E', 12, 11, 2, 1, '#ffffff55'], ['P', 9, 7, '#ffffff44'], ['P', 2, 13, '#7aa0d033'], ['P', 13, 3, '#7aa0d026'], ['P', 6, 12, '#ffffff33']],
+    ship: [['L', 0, 3, 15, 3, '#3a1f0a55'], ['L', 0, 7, 15, 7, '#3a1f0a55'], ['L', 0, 11, 15, 11, '#3a1f0a55'], ['L', 0, 15, 15, 15, '#3a1f0a55'],
+      ['L', 5, 0, 5, 2, '#3a1f0a44'], ['L', 12, 4, 12, 6, '#3a1f0a44'], ['L', 2, 8, 2, 10, '#3a1f0a44'], ['L', 9, 12, 9, 14, '#3a1f0a44'],
+      ['L', 7, 1, 10, 1, '#ffffff16'], ['L', 1, 5, 6, 5, '#ffffff16'], ['L', 10, 9, 14, 9, '#ffffff16'], ['L', 3, 13, 6, 13, '#ffffff16'],
+      ['P', 6, 1, '#00000044'], ['P', 11, 5, '#00000044'], ['P', 3, 9, '#00000044'], ['P', 10, 13, '#00000044']],
+  });
+  Object.assign(M.WATER, {
+    cave: [['R', 0, 0, 16, 16, '#17223d'], ['L', 2, 5, 6, 5, '#2c4170'], ['L', 9, 11, 13, 11, '#2c4170'], ['L', 10, 2, 12, 2, '#2c4170'], ['P', 12, 5, '#5be7ff'], ['P', 4, 12, '#7fd6ff'], ['P', 3, 13, '#2c4170']],
+    clouds: [['R', 0, 0, 16, 16, '#6fb8f0'], ['E', 4, 4, 2, 1, W], ['E', 6, 3, 1, 1, W], ['E', 12, 11, 2, 1, '#e8f4ff'], ['L', 9, 6, 13, 6, '#9fd2ff'], ['L', 1, 9, 4, 9, '#9fd2ff'], ['P', 7, 14, W], ['P', 14, 1, '#ffffff']],
+    ship: [['R', 0, 0, 16, 16, '#0d4f86'], ['L', 1, 4, 3, 3, '#3f8fd0'], ['L', 4, 3, 6, 4, '#3f8fd0'], ['L', 9, 10, 11, 9, '#3f8fd0'], ['L', 12, 9, 14, 10, '#3f8fd0'], ['P', 3, 3, W], ['P', 11, 9, W], ['P', 7, 13, '#2a70b0']],
+  });
+
+  /* =====================================================================
+     Soft scenery, entrances, gather spots, effects (100 x 100)
+     ===================================================================== */
+  const ring = (d, col, w, ol = OL) => `<path d="${d}" fill="none" stroke="${ol}" stroke-width="${w + 7}"/><path d="${d}" fill="none" stroke="${col}" stroke-width="${w}"/>`;
+  const sparkle = (x, y, r, c = '#fff3b0') => `<path d="M${x} ${y - r}Q${x + r * .2} ${y - r * .2} ${x + r} ${y}Q${x + r * .2} ${y + r * .2} ${x} ${y + r}Q${x - r * .2} ${y + r * .2} ${x - r} ${y}Q${x - r * .2} ${y - r * .2} ${x} ${y - r}Z" fill="${c}" stroke-width="2.5"/>`;
+  const cloud = (x, y, s, c = '#fff') => `<path d="M${x - 30 * s} ${y + 12 * s}C${x - 44 * s} ${y + 12 * s} ${x - 44 * s} ${y - 8 * s} ${x - 28 * s} ${y - 8 * s}C${x - 28 * s} ${y - 26 * s} ${x - 4 * s} ${y - 30 * s} ${x + 2 * s} ${y - 16 * s}C${x + 10 * s} ${y - 28 * s} ${x + 34 * s} ${y - 22 * s} ${x + 30 * s} ${y - 6 * s}C${x + 44 * s} ${y - 6 * s} ${x + 44 * s} ${y + 12 * s} ${x + 30 * s} ${y + 12 * s}Z" fill="${c}"/>`;
+  const sprink = (x, y, r, c) => `<rect x="${x - 7}" y="${y - 3}" width="14" height="6" rx="3" fill="${c}" stroke-width="2.5" transform="rotate(${r} ${x} ${y})"/>`;
+  const gumdropS = (x, y, s, c) => `<path d="M${x - 18 * s} ${y}C${x - 18 * s} ${y - 22 * s} ${x - 10 * s} ${y - 30 * s} ${x} ${y - 30 * s}C${x + 10 * s} ${y - 30 * s} ${x + 18 * s} ${y - 22 * s} ${x + 18 * s} ${y}Q${x} ${y + 5 * s} ${x - 18 * s} ${y}Z" fill="${c}"/><circle cx="${x - 7 * s}" cy="${y - 18 * s}" r="${2.6 * s}" fill="#fff" opacity=".7" stroke="none"/><circle cx="${x + 5 * s}" cy="${y - 10 * s}" r="${2 * s}" fill="#fff" opacity=".7" stroke="none"/>`;
+  const wrappedS = (x, y, s, c, st = '#fff') => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-18 0L-36 -14V14Z" fill="${c}"/><path d="M18 0L36 -14V14Z" fill="${c}"/><ellipse rx="22" ry="16" fill="${c}"/><path d="M-10 -14Q-2 0 -10 14M4 -16Q12 0 4 16" fill="none" stroke="${st}" stroke-width="5"/><ellipse rx="22" ry="16" fill="none"/></g>`;
+  const lollyS = (x, y, r, c, stick) => `${stick ? `<rect x="${x - r * .16}" y="${y + r * .6}" width="${r * .32}" height="${stick}" rx="${r * .14}" fill="#fff6ec"/>` : ''}<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/><path d="${spiral(x, y, 5, r * .36)}" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="${Math.max(3, r * .17)}"/><circle cx="${x}" cy="${y}" r="${r}" fill="none"/>`;
+  const gem = (x, y, s, c) => `<path d="M${x} ${y - 14 * s}L${x + 10 * s} ${y - 4 * s}L${x} ${y + 12 * s}L${x - 10 * s} ${y - 4 * s}Z" fill="${c}"/><path d="M${x - 10 * s} ${y - 4 * s}H${x + 10 * s}" stroke-width="2.5"/><path d="M${x - 3 * s} ${y - 9 * s}L${x - 6 * s} ${y - 5 * s}" stroke="#fff" stroke-width="3"/>`;
+  Object.assign(M.S, {
+    // Crystal Caverns
+    stalagmite: () => `<path d="M8 92L28 36Q32 28 36 36L52 92Z" fill="#d6c8e6"/><path d="M40 92L60 12Q64 4 68 12L90 92Z" fill="#c2b0da"/><path d="M62 22L56 60M30 44L26 70" stroke="#fff" stroke-opacity=".7" stroke-width="5"/>`,
+    cavewall: () => `<path d="M4 94V36Q6 14 26 16Q36 4 54 10Q70 2 84 14Q98 22 96 40V94Z" fill="#b9aacf"/><path d="M20 44Q34 36 44 48M58 30Q70 26 80 36M28 72Q42 62 56 74M66 60Q78 56 88 66" fill="none" stroke-width="3"/><ellipse cx="26" cy="28" rx="7" ry="4" fill="#fff" opacity=".45" stroke="none"/><path d="M76 78L80 68L84 78Z" fill="#c9b4ff" stroke-width="2.5"/>`,
+    crystals: () => `<ellipse cx="50" cy="90" rx="42" ry="7" fill="#c5bcd6"/><path d="M14 90V52L24 40L34 52V90Z" fill="#d6c2ff"/><path d="M36 90V28L50 8L64 28V90Z" fill="#a8eaff"/><path d="M66 90V48L76 36L86 48V90Z" fill="#ffc2ec"/><path d="M44 30V82M20 54V82M72 50V82" stroke="#fff" stroke-opacity=".75" stroke-width="5"/>`,
+    glowshroom: () => `<circle cx="46" cy="40" r="42" fill="#bffaf0" opacity=".45" stroke="none"/><path d="M38 92Q36 66 42 52H56Q62 66 58 92Z" fill="#fff6ec"/><path d="M10 56C10 26 30 12 48 12C66 12 86 26 86 56Q48 66 10 56Z" fill="#7fe8d6"/><circle cx="30" cy="38" r="6" fill="#fff" stroke="none"/><circle cx="56" cy="28" r="7" fill="#fff" stroke="none"/><circle cx="70" cy="44" r="5" fill="#fff" stroke="none"/><path d="M74 92V80" stroke-width="4"/><path d="M64 82Q64 68 76 68Q88 68 88 82Z" fill="#c9b4ff"/>`,
+    minicrystal: () => `<path d="M30 90V54L40 40L50 54V90Z" fill="#d6c2ff"/><path d="M50 90V62L59 52L68 62V90Z" fill="#a8eaff"/><path d="M38 56V82" stroke="#fff" stroke-opacity=".75" stroke-width="4"/>`,
+    gravel: () => `<ellipse cx="28" cy="70" rx="12" ry="8" fill="#d8cfe6"/><ellipse cx="58" cy="78" rx="10" ry="7" fill="#c5bcd6"/><ellipse cx="72" cy="60" rx="8" ry="6" fill="#d8cfe6"/><ellipse cx="44" cy="54" rx="6" ry="5" fill="#c5bcd6"/>`,
+    moss: () => `<path d="M10 86C12 66 28 60 38 66C44 52 66 52 70 66C80 60 94 72 90 86Z" fill="#9ade8a"/><path d="M30 60V48M50 56V40M70 60V50" stroke-width="4"/><circle cx="30" cy="46" r="4" fill="#fff3b0"/><circle cx="50" cy="38" r="4" fill="#ffc2ec"/><circle cx="70" cy="48" r="4" fill="#fff3b0"/>`,
+    caveentry: () => `<path d="M2 94C2 48 22 14 50 14C78 14 98 48 98 94Z" fill="#c2b3d8"/><path d="M26 94V66C26 40 74 40 74 66V94Z" fill="#4a2a5e"/><path d="M34 52L38 62L42 50M58 50L62 62L66 52" fill="#c2b3d8" stroke-width="3"/><ellipse cx="30" cy="28" rx="8" ry="4" fill="#fff" opacity=".45" stroke="none"/><path d="M80 36L84 26L88 36Z" fill="#a8eaff" stroke-width="2.5"/>${sparkle(50, 80, 7, '#a8eaff')}`,
+    gemnode: () => `<path d="M8 90C4 64 20 46 44 44C70 42 94 60 90 90Z" fill="#c5bcd6"/>${gem(34, 62, 1.1, '#c49bff')}${gem(62, 56, 1.3, '#7fe3ff')}${gem(50, 80, .8, '#ff9ad5')}${sparkle(80, 30, 9)}${sparkle(20, 34, 6)}`,
+    // Cloud Kingdom
+    cloudpuff: () => `${cloud(50, 62, 1.2)}<path d="M24 66Q50 72 76 66" fill="none" stroke="#dbe6ff" stroke-width="6"/>`,
+    pillar: () => `<rect x="20" y="80" width="60" height="12" rx="4" fill="#efeaf8"/><rect x="29" y="22" width="42" height="58" fill="#fbf9ff"/><path d="M40 28V74M50 28V74M60 28V74" stroke="#d9d0ec" stroke-width="4"/><rect x="18" y="10" width="64" height="14" rx="5" fill="#efeaf8"/><path d="M29 22H71M29 80H71"/>`,
+    beanleaf: () => `<path d="M14 90C8 50 36 12 88 8C92 60 62 90 14 90Z" fill="#7ad86a"/><path d="M14 90Q46 56 82 16M38 64L32 44M50 50L46 30M38 64L58 66M52 50L72 50" fill="none" stroke="#4caf50" stroke-width="4"/>`,
+    rainbow: () => `<path d="M22 78A28 28 0 0 1 78 78" fill="none" stroke="${OL}" stroke-width="39" stroke-linecap="butt"/>${[['#ff8fa3', 41], ['#ffc46b', 33], ['#ffe680', 25], ['#8fe08f', 17]].map(([c, r]) => `<path d="M${50 - r} 78A${r} ${r} 0 0 1 ${50 + r} 78" fill="none" stroke="${c}" stroke-width="8.5" stroke-linecap="butt"/>`).join('')}${cloud(16, 80, .45)}${cloud(84, 80, .45)}`,
+    tinycloud: () => `${cloud(50, 60, .7)}`,
+    twinkle: () => `${sparkle(44, 54, 22)}${sparkle(76, 26, 9, '#fff')}`,
+    wisp: () => `${ring('M8 46H60C74 46 80 34 72 26C64 20 54 26 58 34', '#fff', 6)}${ring('M24 70H74C84 70 88 62 82 56', '#fff', 6)}`,
+    beanstalk: () => `${cloud(50, 18, .7)}${ring('M50 96C30 80 70 66 48 50C30 38 62 30 50 16', '#5cbf6a', 11)}<path d="M38 74C24 62 10 72 16 80C24 82 32 80 38 74Z" fill="#7ad86a"/><path d="M60 58C76 48 88 58 82 66C74 68 66 66 60 58Z" fill="#7ad86a"/><path d="M42 40C30 30 18 38 22 46C30 48 36 46 42 40Z" fill="#7ad86a"/>`,
+    fluffnode: () => `<circle cx="34" cy="66" r="18" fill="#fff"/><circle cx="62" cy="62" r="22" fill="#fff"/><circle cx="48" cy="48" r="18" fill="#fff"/><path d="M18 74Q50 92 82 72" fill="none" stroke="#dbe6ff" stroke-width="6"/><circle cx="40" cy="44" r="5" fill="#ffd6f0" stroke="none"/>${sparkle(82, 30, 9)}${sparkle(18, 36, 6, '#ffd6f0')}`,
+    // Candy Volcano
+    lollitree: () => `<rect x="44" y="50" width="12" height="44" rx="5" fill="#fff6ec"/><path d="M44 62H56M44 76H56" stroke="#ff8fc0" stroke-width="4"/>${lollyS(50, 38, 32, '#ff8fc0')}`,
+    candycane: () => `${ring('M58 94V36C58 14 28 14 30 34', '#fff', 14)}<path d="M58 94V36C58 14 28 14 30 34" fill="none" stroke="#ff4d6d" stroke-width="14" stroke-dasharray="9 9"/>`,
+    gumdrop: () => `${gumdropS(50, 90, 2.3, '#7ad86a')}<circle cx="64" cy="70" r="2.5" fill="#fff" stroke="none"/><circle cx="36" cy="80" r="2.5" fill="#fff" stroke="none"/>`,
+    cupcakerock: () => `<path d="M18 58H82L72 94H28Z" fill="#ffd6a5"/><path d="M32 60L36 92M44 60L46 92M56 60L54 92M68 60L64 92" stroke="#e8ae72" stroke-width="3.5"/><path d="M12 60C4 48 14 34 28 36C28 20 44 12 56 20C66 12 84 20 80 36C92 36 98 52 88 60C80 68 72 58 62 64C54 68 46 58 38 64C30 68 22 58 12 60Z" fill="#c9a0ff"/><path d="M30 36l6 -3M60 28l5 4M70 46l6 -2M24 48l4 4" stroke-width="5"/><circle cx="50" cy="12" r="8" fill="#ff4d6d"/>`,
+    sprinkles: () => `${sprink(30, 40, 30, '#ff8fc0')}${sprink(64, 34, -20, '#7fd6ff')}${sprink(44, 64, 70, '#ffe066')}${sprink(72, 66, 10, '#8fe08f')}${sprink(24, 74, -40, '#c49bff')}`,
+    wrapped: () => wrappedS(50, 60, 1.05, '#ff8fc0'),
+    minilolly: () => lollyS(50, 40, 20, '#c49bff', 46),
+    candyhill: () => `<circle cx="38" cy="16" r="9" fill="#fff0f7"/><circle cx="54" cy="10" r="11" fill="#ffd6e7"/><circle cx="66" cy="20" r="7" fill="#fff0f7"/><path d="M4 94L34 30H66L96 94Z" fill="#c98a5a"/><path d="M30 38L34 30H66L70 38C72 50 64 54 62 44C60 58 50 58 50 46C48 58 38 56 38 46C36 52 28 50 30 38Z" fill="#ff9ac4"/>${sprink(28, 76, 30, '#ffe066')}${sprink(54, 70, -20, '#7fd6ff')}${sprink(74, 82, 60, '#8fe08f')}${sprink(44, 86, 0, '#fff')}<path d="M40 94V82Q50 72 60 82V94Z" fill="#6b3f2a"/>`,
+    candynode: () => `${wrappedS(34, 76, .6, '#ffe066', '#ff8fc0')}${gumdropS(66, 88, .9, '#ff8fc0')}${lollyS(50, 58, 16, '#7fd6ff')}${gumdropS(26, 92, .6, '#8fe08f')}${sprink(76, 52, 30, '#c49bff')}${sparkle(80, 26, 8)}`,
+    // big moves
+    firerain: () => [[26, 30], [62, 18], [44, 62], [80, 56], [18, 78]].map(([x, y], i) => `<path d="M${x - 14} ${y - 18}L${x - 4} ${y - 6}" stroke="#ffb36b" stroke-width="5"/><circle cx="${x}" cy="${y}" r="${i % 2 ? 8 : 10}" fill="#ff7a3d"/><circle cx="${x + 2}" cy="${y + 2}" r="${i % 2 ? 3.5 : 4.5}" fill="#ffd23f" stroke="none"/>`).join(''),
+    snowstorm: () => `${ring('M10 40C30 20 60 24 70 40C76 52 62 60 56 50', '#cfeeff', 6)}${ring('M90 66C70 84 40 82 32 68C28 58 40 52 46 60', '#cfeeff', 6)}${[[22, 72, 9], [80, 28, 9], [50, 50, 7], [84, 84, 6], [16, 16, 6]].map(([x, y, r]) => `<path d="M${x} ${y - r}V${y + r}M${x - r * .87} ${y - r / 2}L${x + r * .87} ${y + r / 2}M${x - r * .87} ${y + r / 2}L${x + r * .87} ${y - r / 2}" stroke="${OL}" stroke-width="7"/><path d="M${x} ${y - r}V${y + r}M${x - r * .87} ${y - r / 2}L${x + r * .87} ${y + r / 2}M${x - r * .87} ${y + r / 2}L${x + r * .87} ${y - r / 2}" stroke="#fff" stroke-width="3"/>`).join('')}`,
+    zapzap: () => `<path d="M34 4L8 46H26L18 80L48 34H30Z" fill="#ffd23f"/><path d="M74 16L50 58H66L56 96L90 46H72Z" fill="#ffe680"/>${sparkle(84, 12, 7, '#fff')}${sparkle(18, 92, 6, '#fff')}`,
+    power: () => `<circle cx="50" cy="50" r="44" fill="#ffe680" opacity=".45" stroke="none"/><circle cx="50" cy="50" r="34" fill="#ffb3e6"/><circle cx="50" cy="50" r="24" fill="#ffe0f4" stroke="none"/><path d="M50 26L56 42L73 43L60 54L64 71L50 62L36 71L40 54L27 43L44 42Z" fill="#ffd23f" stroke-width="3"/><ellipse cx="34" cy="32" rx="6" ry="4" fill="#fff" stroke="none" transform="rotate(-35 34 32)"/>${sparkle(86, 14, 8, '#fff')}${sparkle(12, 84, 7, '#fff')}${sparkle(88, 80, 5, '#fff3b0')}`,
+  });
+  Object.assign(M.SOFT_WATER, { cave: ['#7a8fd0', '#d8e4ff'], clouds: ['#a9d8ff', '#ffffff'], candy: ['#8a5236', '#c48a6a'] });
+
+  /* =====================================================================
+     Items: materials and crafted gear
+     ===================================================================== */
+  Object.assign(ART.IT, {
+    ore: () => [['T', [[2, 12], [3, 5], [8, 2], [13, 4], [14, 11], [9, 14]], '#7d7268'], ['T', [[3, 6], [8, 3], [8, 8]], '#9a8f86'], ['R', 5, 8, 2, 2, '#ff9f1c'], ['R', 9, 5, 2, 2, GOLD], ['R', 10, 10, 2, 2, '#ff9f1c'], ['P', 7, 12, GOLD], ['P', 9, 5, W]],
+    skyfeather: () => [['L', 3, 14, 13, 2, W], ['T', [[4, 12], [11, 1], [14, 4], [7, 13]], '#8fd0ff'], ['T', [[6, 10], [11, 4], [11, 8]], W], ['P', 12, 2, '#d8f0ff']],
+    pearl: () => [['E', 8, 9, 5, 5, '#f2ecf8'], ['E', 9, 10, 3, 3, '#e4dcf2'], ['R', 5, 6, 2, 2, W], ['P', 11, 12, '#ffd6f0']],
+    fang: () => [['T', [[4, 2], [13, 2], [12, 7], [9, 11], [3, 15], [4, 10], [4, 6]], '#f4efe0'], ['R', 4, 1, 9, 2, '#c8a06a'], ['L', 6, 4, 5, 10, W], ['L', 11, 4, 10, 8, '#d8ceb4']],
+    emberblade: () => [['T', [[8, 5], [7, 1], [10, 3]], '#ff5a2a'], ['T', [[11, 3], [11, 0], [13, 1]], '#ff5a2a'], ['T', [[12, 7], [15, 7], [13, 5]], '#ff5a2a'], ['P', 15, 1, '#ffd23f'],
+      ['L', 4, 12, 13, 3, '#ff7a2f', 3], ['L', 5, 11, 13, 3, '#ffd23f'], ['L', 2, 10, 6, 14, GOLD, 2], ['L', 1, 14, 3, 12, BROWN, 2]],
+    frostaxe: () => [['L', 3, 15, 11, 4, BROWN, 2], ['T', [[9, 1], [15, 4], [15, 9], [11, 7]], '#7fd6ff'], ['T', [[9, 1], [6, 3], [9, 5]], '#bfe9ff'], ['L', 12, 4, 14, 6, W], ['P', 3, 14, '#7fd6ff']],
+    stormspear: () => [['L', 1, 14, 10, 5, BROWN, 2], ['T', [[9, 7], [12, 0], [11, 4], [15, 3], [12, 8], [13, 5], [10, 8]], YEL], ['P', 12, 2, W], ['P', 3, 3, YEL], ['P', 14, 10, YEL]],
+    skycape: () => [['T', [[4, 2], [12, 2], [15, 14], [11, 12], [8, 15], [5, 12], [1, 14]], '#5aa9ff'], ['T', [[6, 3], [10, 3], [11, 11], [8, 13], [5, 11]], '#8fd0ff'], ['R', 4, 1, 8, 2, '#3f7fd9'], ['R', 7, 1, 2, 2, GOLD], ['P', 3, 13, W], ['P', 13, 12, W]],
+    tideshield: () => [['T', [[2, 2], [14, 2], [14, 8], [8, 15], [2, 8]], '#2f6fd0'], ['T', [[2, 9], [14, 9], [8, 15]], '#5aa9ff'], ['R', 2, 8, 13, 1, '#5aa9ff'],
+      ['L', 3, 8, 5, 6, W], ['L', 5, 5, 8, 5, W], ['L', 9, 6, 9, 7, W], ['P', 8, 8, W], ['L', 10, 8, 13, 8, W], ['P', 7, 7, '#2f6fd0'], ['R', 2, 2, 13, 1, GOLD], ['P', 8, 12, '#bfe9ff']],
+    pearlcrown: () => [['R', 2, 9, 13, 5, GOLD], ['T', [[2, 9], [2, 4], [6, 9]], GOLD], ['T', [[6, 9], [8, 3], [10, 9]], GOLD], ['T', [[10, 9], [14, 4], [14, 9]], GOLD],
+      ['E', 2, 3, 1, 1, W], ['E', 8, 2, 1, 1, W], ['E', 14, 3, 1, 1, W], ['P', 5, 11, '#ffd6f0'], ['P', 8, 11, '#7fd6ff'], ['P', 11, 11, '#ffd6f0']],
+  });
+  Object.assign(ART.RPI, {
+    shiny: () => `<path d="M12 78C6 54 26 30 50 30C76 30 94 52 88 78Q50 92 12 78Z" fill="#d4cce6"/><path d="M30 46L40 62L58 52L70 64M40 62L36 80M58 52L62 36" fill="none" stroke-width="2.5"/><ellipse cx="34" cy="44" rx="7" ry="4" fill="#fff" opacity=".7" stroke="none"/>${sparkle(76, 22, 12)}${sparkle(22, 26, 7, '#fff')}`,
+    fluff: () => `<circle cx="32" cy="62" r="18" fill="#fff"/><circle cx="64" cy="58" r="22" fill="#fff"/><circle cx="46" cy="42" r="18" fill="#fff"/><path d="M18 70Q50 88 82 70" fill="none" stroke="#dbe6ff" stroke-width="6"/><circle cx="40" cy="38" r="5" fill="#ffd6f0" stroke="none"/>${sparkle(84, 24, 8, '#a9dcff')}`,
+    candy: () => wrappedS(50, 50, 1.15, '#ff8fc0'),
+    wand2: c => `<path d="M18 88L58 48" stroke-width="10"/><path d="M18 88L58 48" stroke="#ffd6f0" stroke-width="5"/><path d="M48 66C38 58 40 70 46 70ZM48 66C56 74 44 76 44 70Z" fill="#ff8fc0" stroke-width="2.5"/><path d="M68 10L74 28L92 30L78 42L82 60L68 50L54 60L58 42L44 30L62 28Z" fill="${c || '#ffd23f'}"/><circle cx="64" cy="30" r="3" fill="#fff" stroke="none"/>${sparkle(30, 30, 7, '#fff')}${sparkle(90, 76, 6, c || '#fff3b0')}`,
+    puffhat: () => `<ellipse cx="50" cy="72" rx="44" ry="13" fill="#fff"/><circle cx="34" cy="54" r="16" fill="#fff"/><circle cx="66" cy="54" r="16" fill="#fff"/><circle cx="50" cy="40" r="20" fill="#fff"/><path d="M22 66Q50 76 78 66" fill="none" stroke="#a9dcff" stroke-width="6"/><path d="M54 18L46 32H52L48 42L60 28H53L57 18Z" fill="#ffd23f" stroke-width="2.5"/>`,
+    candycoat: () => `<clipPath id="cc"><path d="M30 16L50 26L70 16L90 34L78 46V90H22V46L10 34Z"/></clipPath><path d="M30 16L50 26L70 16L90 34L78 46V90H22V46L10 34Z" fill="#fff"/><g clip-path="url(#cc)" stroke="#ff6fa8" stroke-width="9">${[-40, -16, 8, 32, 56, 80].map(o => `<path d="M${o} 100L${o + 60} 0"/>`).join('')}</g><path d="M30 16L50 26L70 16L90 34L78 46V90H22V46L10 34Z" fill="none"/><path d="M50 26V90"/><circle cx="58" cy="48" r="4" fill="#ffd23f"/><circle cx="58" cy="66" r="4" fill="#ffd23f"/>`,
+    candycrown: () => `<path d="M14 82V40L32 58L50 30L68 58L86 40V82Z" fill="#ffd6e7"/><path d="M14 70H86" stroke="#ff6fa8" stroke-width="7"/><path d="M14 70H86" stroke="#fff" stroke-width="2" stroke-dasharray="6 6"/>${gumdropS(14, 40, .45, '#7fd6ff')}${gumdropS(86, 40, .45, '#8fe08f')}${lollyS(50, 22, 12, '#ff8fc0')}<circle cx="32" cy="64" r="4" fill="#ffe066"/><circle cx="68" cy="64" r="4" fill="#ffe066"/>`,
+  });
 })();
 
 /* Mathlings adaptive engine: pure logic, no DOM.
@@ -2041,6 +2653,7 @@ const Engine = (() => {
 
   // res = { first: bool (correct on first attempt), ms, untimed }  untimed = story problems: credit accuracy, never speed
   function recordAnswer(p, pr, res, now = Date.now()) {
+    if (!pr.skill || !SK[pr.skill]) { const lg = (p.log[dayKey(now)] = p.log[dayKey(now)] || { n: 0, c: 0 }); lg.n++; if (res.first) lg.c++; return []; }
     const sk = SK[pr.skill]; const s = p.skills[sk.id]; const goal = goalMs(p, sk);
     const ms = res.untimed ? Infinity : Math.max(200, Math.round(res.ms || 0));
     if (res.untimed) s.u = (s.u || 0) + 1;
@@ -2104,6 +2717,40 @@ const Engine = (() => {
     const sk = SK[wpick(ok, id => (charged(p, id) ? 1 : 2.5), rng)];
     const fact = sk.kind === 'fact' ? pickFact(p, sk, false, rng, now) : sk.gen(rng);
     return build(sk, fact, rng, p.skills[sk.id].st === 'mastered');
+  }
+
+  // ---------- big-move challenge problems: one step harder than usual ----------
+  // Hamstey Man: a times fact he knows, then add a small number (3 x 4 + 5). Red Panda: three small numbers (2 + 3 + 1).
+  function challenge(p, rng = Math.random) {
+    const st = id => p.skills[id] && ['learning', 'mastered'].includes(p.skills[id].st);
+    if (p.id === 'redpanda') {
+      const top = (p.act || 1) >= 3 ? 13 : 10;
+      let a, b, c; do { a = rint(rng, 1, 5); b = rint(rng, 1, 5); c = rint(rng, 1, 4); } while (a + b + c > top || a + b > 10);
+      return { challenge: true, terms: [a, '+', b, '+', c], ans: a + b + c, say: `${a} plus ${b} plus ${c}`, steps: [q(a, '+', b, a + b, { note: 'Add the first two.' }), q(a + b, '+', c, a + b + c, { note: 'Now add the last one.' })] };
+    }
+    // a times table he already knows: a mastered one if any, else the easiest one he has started; facts he has got right before
+    const tables = ['mul2510', 'mul34', 'mul6789'];
+    const done = tables.filter(id => p.skills[id] && p.skills[id].st === 'mastered');
+    const mul = done.length ? done[Math.floor(rng() * done.length)] : tables.find(st);
+    if (mul) {
+      const all = SK[mul]._facts; const known = all.filter(f => p.facts[f.key] && p.facts[f.key].b >= 2 && f.ans <= 81);
+      const pool = known.length ? known : all.filter(f => f.ans <= 50);
+      const f = pool[Math.floor(rng() * pool.length)] || all[0]; const c = rint(rng, 2, 9);
+      return { challenge: true, terms: [f.a, '×', f.b, '+', c], ans: f.ans + c, say: `${f.a} times ${f.b} plus ${c}`, steps: [q(f.a, 'x', f.b, f.ans, { note: 'Do the times part first.' }), q(f.ans, '+', c, f.ans + c, { note: 'Then add.' })] };
+    }
+    const a = rint(rng, 12, 40), b = rint(rng, 2, 9), c = rint(rng, 2, 9);
+    return { challenge: true, terms: [a, '+', b, '+', c], ans: a + b + c, say: `${a} plus ${b} plus ${c}`, steps: [q(a, '+', b, a + b, { note: 'Add the first two.' }), q(a + b, '+', c, a + b + c, { note: 'Now add the last one.' })] };
+  }
+  function recordChallenge(p, first, now = Date.now()) {
+    p.ch = p.ch || { n: 0, c: 0 }; p.ch.n++; if (first) p.ch.c++;
+    const lg = (p.log[dayKey(now)] = p.log[dayKey(now)] || { n: 0, c: 0 }); lg.n++; if (first) lg.c++;
+  }
+  // a single fact as a problem (crafting recipes), recorded like any other practice when it belongs to a skill
+  function factProblem(op, a, b) {
+    const f = op === '+' ? addF(Math.min(a, b), Math.max(a, b)) : op === '-' ? subF(a, b) : op === 'x' ? mulF(Math.min(a, b), Math.max(a, b)) : null;
+    const sk = f && FACT_SKILL[f.key] ? SK[FACT_SKILL[f.key]] : null;
+    const pr = { skill: sk ? sk.id : null, key: f ? f.key : null, op, a, b, l: a, r: b, ans: op === '+' ? a + b : op === '-' ? a - b : a * b, form: 'std', isFact: !!sk, say: `${a} ${WORD[op]} ${b}` };
+    return pr;
   }
 
   // ---------- sight words (Red Panda): Dolch pre-primer by act, then primer words ----------
@@ -2333,7 +2980,7 @@ const Engine = (() => {
     return out;
   }
 
-  return { WORDS, ALL_WORDS, pickWord, recordWord, wordStats, wordCharged, wordKnown, charged, chargeOf, gateReady, pickFrom, SKILLS, SK, SYM, WORD, power, ACTS, skillAct, actSkills, actDone, report, progress, needTries, STARTS, DEFAULT_SETTINGS, newProfile, repair, refresh, pickProblem, recordAnswer, helpSteps, skillStats, grid, trouble, keyLabel, dayKey, goalMs, median, acc };
+  return { challenge, recordChallenge, factProblem, WORDS, ALL_WORDS, pickWord, recordWord, wordStats, wordCharged, wordKnown, charged, chargeOf, gateReady, pickFrom, SKILLS, SK, SYM, WORD, power, ACTS, skillAct, actSkills, actDone, report, progress, needTries, STARTS, DEFAULT_SETTINGS, newProfile, repair, refresh, pickProblem, recordAnswer, helpSteps, skillStats, grid, trouble, keyLabel, dayKey, goalMs, median, acc };
 })();
 if (typeof module !== 'undefined') module.exports = Engine;
 
@@ -2364,6 +3011,9 @@ const SPECIES = {
     { id: 'buzz',  e: 'zap',  em: '🐝', names: ['Buzz', 'Big Buzz', 'Super Buzz'], move: 'Buzz' },
     { id: 'slush', e: 'ice',  em: '🦭', names: ['Slush', 'Big Slush', 'Super Slush'], move: 'Splash' },
     { id: 'star',  e: 'zap',  em: '🦄', names: ['Star', 'Big Star', 'Super Star'], move: 'Shine' },
+    { id: 'gemmy', e: 'ice',  em: '💎', names: ['Gemmy', 'Big Gemmy', 'Super Gemmy'], move: 'Gem' },
+    { id: 'cloudy', e: 'zap', em: '☁️', names: ['Cloudy', 'Big Cloudy', 'Super Cloudy'], move: 'Rain' },
+    { id: 'gumdrop', e: 'fire', em: '🍬', names: ['Gumdrop', 'Big Gumdrop', 'Super Gumdrop'], move: 'Pop' },
   ],
   hero: [
     { id: 'knight', e: 'fire', em: '🤺', names: ['Blaze Knight', 'Flame Paladin', 'Sun Champion'], move: 'Flame Slash' },
@@ -2375,6 +3025,9 @@ const SPECIES = {
     { id: 'ninja',  e: 'zap',  em: '🥷', names: ['Storm Ninja', 'Shadow Ninja', 'Thunder Shogun'], move: 'Lightning Blade' },
     { id: 'ranger', e: 'ice',  em: '🧝', names: ['Snow Ranger', 'Frost Archer', 'Winter Warden'], move: 'Ice Arrow' },
     { id: 'bird',   e: 'zap',  em: '🦅', names: ['Thunderbird', 'Storm Roc', 'Sky Emperor'], move: 'Thunder Dive' },
+    { id: 'dwarf',  e: 'fire', em: '🪓', names: ['Dwarf Warrior', 'Dwarf Champion', 'Dwarf King'], move: 'Axe Quake' },
+    { id: 'pegasus', e: 'zap', em: '🐎', names: ['Sky Pegasus', 'Storm Pegasus', 'Thunder Pegasus'], move: 'Sky Charge' },
+    { id: 'tideknight', e: 'ice', em: '🔱', names: ['Tide Knight', 'Wave Paladin', 'Ocean Lord'], move: 'Tidal Thrust' },
   ],
 };
 
@@ -2399,6 +3052,16 @@ const AREAS = {
     { name: 'Rainbow Castle', icon: '@ms:castle', bg: 'castle', hint: null, catch: ['slush', 'star'],
       foes: [{ id: 'boo', em: '👻', name: 'Boo', weak: 'fire' }, { id: 'bat', em: '🦇', name: 'Bat', weak: 'zap' }, { id: 'cloud', em: '🌩️', name: 'Storm Cloud', weak: 'ice', resist: 'zap' }],
       boss: { id: 'dragon', em: '🐉', name: 'Grumpy Dragon', phases: [{ weak: 'ice', resist: 'fire' }, { weak: 'zap' }, { weak: 'fire', resist: 'ice' }] } },
+    // side areas: one per act, reached from the act's first area
+    { name: 'Sparkle Cave', icon: '@ms:crystals', bg: 'cave', hint: null, catch: ['gemmy'], side: true, parent: 0, mat: 'shiny', entry: '@ms:caveentry', node: '@ms:gemnode',
+      foes: [{ id: 'mole', em: '', name: 'Mole', weak: 'ice' }, { id: 'glowworm', em: '', name: 'Glow Worm', weak: 'fire' }, { id: 'rockbug', em: '', name: 'Rock Bug', weak: 'zap' }],
+      boss: { id: 'crystalcrab', em: '', name: 'Crystal Crab', phases: [{ weak: 'zap' }, { weak: 'fire' }] } },
+    { name: 'Cloud Town', icon: '@ms:cloudpuff', bg: 'clouds', hint: null, catch: ['cloudy'], side: true, parent: 2, mat: 'fluff', entry: '@ms:beanstalk', node: '@ms:fluffnode',
+      foes: [{ id: 'drip', em: '', name: 'Drip', weak: 'zap' }, { id: 'gusty', em: '', name: 'Gusty', weak: 'fire' }, { id: 'owlet', em: '', name: 'Owlet', weak: 'ice' }],
+      boss: { id: 'skywhale', em: '', name: 'Sky Whale', phases: [{ weak: 'zap' }, { weak: 'ice' }] } },
+    { name: 'Candy Volcano', icon: '@ms:lollitree', bg: 'candy', hint: null, catch: ['gumdrop'], side: true, parent: 4, mat: 'candy', entry: '@ms:candyhill', node: '@ms:candynode',
+      foes: [{ id: 'gummy', em: '', name: 'Gummy', weak: 'ice' }, { id: 'lolly', em: '', name: 'Lolly', weak: 'zap' }, { id: 'cupcake', em: '', name: 'Cupcake', weak: 'ice', resist: 'fire' }],
+      boss: { id: 'jellyking', em: '', name: 'Jelly King', phases: [{ weak: 'ice' }, { weak: 'zap' }] } },
   ],
   hero: [
     { name: 'Green Plains', icon: '@mp:wheat', bg: 'meadow', hint: null, catch: 'starters',
@@ -2419,6 +3082,15 @@ const AREAS = {
     { name: 'Shadow Castle', icon: '@mp:castle', bg: 'castle', hint: null, catch: ['ranger', 'bird'],
       foes: [{ id: 'ghost', em: '👻', name: 'Phantom', weak: 'fire' }, { id: 'vamp', em: '🧛', name: 'Night Count', weak: 'fire', resist: 'ice' }, { id: 'darkmech', em: '🦾', name: 'Dark Mech', weak: 'zap' }, { id: 'rex', em: '🦖', name: 'Dino Knight', weak: 'ice' }],
       boss: { id: 'voidking', em: '👾', name: 'Void King', phases: [{ weak: 'ice' }, { weak: 'fire' }, { weak: 'zap' }] } },
+    { name: 'Crystal Caverns', icon: '@mp:crystals', bg: 'cave', hint: null, catch: ['dwarf'], side: true, parent: 0, mat: 'ore', entry: '@mp:caveentry', node: '@mp:orenode',
+      foes: [{ id: 'rockmole', em: '', name: 'Rock Mole', weak: 'ice' }, { id: 'crysslime', em: '', name: 'Crystal Slime', weak: 'fire', resist: 'ice' }, { id: 'glowbeetle', em: '', name: 'Glow Beetle', weak: 'fire' }],
+      boss: { id: 'cavewyrm', em: '', name: 'Cave Wyrm', phases: [{ weak: 'ice' }, { weak: 'fire' }] } },
+    { name: 'Cloud Kingdom', icon: '@mp:cloudpuff', bg: 'clouds', hint: null, catch: ['pegasus'], side: true, parent: 2, mat: 'feather', entry: '@mp:beanstalk', node: '@mp:nestnode',
+      foes: [{ id: 'harpy', em: '', name: 'Storm Harpy', weak: 'ice' }, { id: 'thunderpuff', em: '', name: 'Thunder Puff', weak: 'fire', resist: 'zap' }, { id: 'skyray', em: '', name: 'Sky Ray', weak: 'zap' }],
+      boss: { id: 'cloudgiant', em: '', name: 'Cloud Giant', phases: [{ weak: 'fire', resist: 'zap' }, { weak: 'ice' }] } },
+    { name: 'Sunken Ship', icon: '@mp:anchor', bg: 'ship', hint: null, catch: ['tideknight'], side: true, parent: 4, mat: 'pearl', entry: '@mp:dock', node: '@mp:clamnode',
+      foes: [{ id: 'crabknight', em: '', name: 'Crab Knight', weak: 'zap' }, { id: 'volteel', em: '', name: 'Volt Eel', weak: 'ice', resist: 'zap' }, { id: 'ghostpirate', em: '', name: 'Ghost Pirate', weak: 'fire' }],
+      boss: { id: 'ghostcaptain', em: '', name: 'Ghost Captain', phases: [{ weak: 'zap' }, { weak: 'fire' }] } },
   ],
 };
 
@@ -2453,7 +3125,7 @@ const TXT = {
     who: 'Choose an attack', go: 'Fight!', grumpy: n => `A ${n} attacks!`,
     weak: 'Weak', strong: 'Resists',
     used: (a, m) => `${a} uses ${m}!`, super: 'Weakness hit!', meh: 'Resisted...',
-    happy: 'Victory!', joined: n => `${n} joined your party!`,
+    happy: 'Victory!', joined: n => (G.P && G.P.g.party.length >= 3 ? `${n} joined you! (Waiting on the bench: swap in from Party.)` : `${n} joined your party!`),
     catchIt: 'Recruit!', tryAgain: 'Not quite. Check it again.', yes: 'Correct!',
     nap: n => `${n} is knocked out!`, allNap: 'The party retreats to camp and patches up. Try again!',
     help: 'Let’s break it down', nowYou: 'Now you try it.', next: 'Next', ok: 'OK',
@@ -2520,7 +3192,45 @@ const MAPS = {
     '###############',
   ],
 };
-const AREA_MAP = ['A0', 'B1', 'A2', 'B3', 'A0', 'B1'];
+MAPS.C6 = [
+  '###############',
+  '#P..,..M..#R..#',
+  'X....A....#...#',
+  '#.##...,..~~.M#',
+  '#.R#..T...~~..#',
+  '#..,..M.......#',
+  '#.i..#...F##..#',
+  '#.c..#.B..#Z..#',
+  '#..G...i..C.iR#',
+  '###############',
+];
+MAPS.K7 = [
+  '###############',
+  'X.P..,....M..R#',
+  '#.....A..~~~..#',
+  '#.M..,...~~~..#',
+  '#..T..#..,..F.#',
+  '#R....#.M.....#',
+  '#..i.B#....,..#',
+  '#.c....C.i..Z.#',
+  '#..,.G...i.R..#',
+  '###############',
+];
+MAPS.S8 = [
+  '###############',
+  '#~~~~~~~~~~~~~#',
+  'X.P..,..M..R..#',
+  '#..A....#...M.#',
+  '#.R.T...#.F...#',
+  '#...,.M...,...#',
+  '#.i..B....#Z..#',
+  '#.c...i.C.#.iR#',
+  '#..,...G......#',
+  '###############',
+];
+MAPS.A0[4] = '#O.,..S..~~...#';
+MAPS.A2[5] = '#OM..,....S...#';
+const AREA_MAP = ['A0', 'B1', 'A2', 'B3', 'A0', 'B1', 'C6', 'K7', 'S8'];
 const BIOME = {
   cute: {
     meadow: { obs: ['@ms:tree', '@ms:tree', '@ms:rock', '@ms:bush'], deco: ['@ms:daisy', '@ms:tulip', '@ms:clover'] },
@@ -2529,6 +3239,9 @@ const BIOME = {
     snow:   { obs: ['@ms:snowpine', '@ms:iceblock', '@ms:rock:#dfe8f7', '@ms:snowpine'], deco: ['@ms:snowflake', '@ms:sparkle:#cfeeff', '@ms:snowpile'] },
     sea:    { obs: ['@ms:palm', '@ms:rock:#e8d6b0', '@ms:palm', '@ms:sandcastle'], deco: ['@ms:shell', '@ms:bubble', '@ms:shell:#ff9ad5'] },
     castle: { obs: ['@ms:brick', '@ms:statue', '@ms:brick', '@ms:brick'], deco: ['@ms:sparkle', '@ms:candle', '@ms:star'] },
+    cave:   { obs: ['@ms:stalagmite', '@ms:cavewall', '@ms:crystals', '@ms:glowshroom'], deco: ['@ms:minicrystal', '@ms:gravel', '@ms:moss'] },
+    clouds: { obs: ['@ms:cloudpuff', '@ms:pillar', '@ms:beanleaf', '@ms:rainbow'], deco: ['@ms:tinycloud', '@ms:twinkle', '@ms:wisp'] },
+    candy:  { obs: ['@ms:lollitree', '@ms:candycane', '@ms:gumdrop', '@ms:cupcakerock'], deco: ['@ms:sprinkles', '@ms:wrapped', '@ms:minilolly'] },
   },
   hero: {
     meadow: { obs: ['@mp:oak', '@mp:oak', '@mp:rock', '@mp:bush'], deco: ['@mp:flower', '@mp:flower:#ff8fc0', '@mp:clover'] },
@@ -2537,6 +3250,9 @@ const BIOME = {
     snow:   { obs: ['@mp:snowpine', '@mp:icerock', '@mp:rock:#aab6c8', '@mp:snowpine'], deco: ['@mp:snowflake', '@mp:sparkle', '@mp:snowpile'] },
     sea:    { obs: ['@mp:palm', '@mp:searock', '@mp:palm', '@mp:palm'], deco: ['@mp:shell', '@mp:bubble', '@mp:coral'] },
     castle: { obs: ['@mp:brick', '@mp:statue', '@mp:brick', '@mp:brick'], deco: ['@mp:sparkle', '@mp:candle', '@mp:star'] },
+    cave:   { obs: ['@mp:stalagmite', '@mp:cavewall', '@mp:crystals', '@mp:glowshroom'], deco: ['@mp:minicrystal', '@mp:gravel', '@mp:moss'] },
+    clouds: { obs: ['@mp:cloudpuff', '@mp:pillar', '@mp:beanleaf', '@mp:skytree'], deco: ['@mp:tinycloud', '@mp:twinkle', '@mp:wisp'] },
+    ship:   { obs: ['@mp:crate', '@mp:barrel', '@mp:mast', '@mp:cannon'], deco: ['@mp:rope', '@mp:plank', '@mp:anchor'] },
   },
 };
 
@@ -2549,6 +3265,9 @@ const NPCS = {
     { A: ['@ms:v-sam', 'Ski Sam'], B: ['@ms:v-rudy', 'Rudy', '@ms:mitten', 'mittens'], C: ['@ms:v-snowy', 'Snowy'], D: ['@ms:v-tia', 'Miss Tia'], shop: ['@ms:v-teddy', 'Teddy'] },
     { A: ['@ms:v-marina', 'Marina'], B: ['@ms:v-flip', 'Flip', '@ms:shell', 'shells'], C: ['@ms:v-bubbles', 'Bubbles'], D: ['@ms:v-tia', 'Miss Tia'], shop: ['@ms:v-teddy', 'Teddy'] },
     { A: ['@ms:v-pia', 'Princess Pia'], B: ['@ms:v-twinkle', 'Twinkle', '@ms:star', 'stars'], C: ['@ms:v-wanda', 'Wanda'], D: ['@ms:v-tia', 'Miss Tia'], shop: ['@ms:v-teddy', 'Teddy'] },
+    { A: ['@ms:v-molly', 'Molly Mole'], B: ['@ms:v-betty', 'Bat Betty', '@ms:minicrystal', 'gems'], C: ['@ms:v-glow', 'Glow Gus'], F: ['@ms:v-bea', 'Baker Bea'] },
+    { A: ['@ms:v-kiki', 'Kiki'], B: ['@ms:v-bell', 'Birdy Bell', '@ms:tinycloud', 'clouds'], C: ['@ms:v-ray', 'Rainbow Ray'], F: ['@ms:v-bea', 'Baker Bea'] },
+    { A: ['@ms:v-cocoa', 'Cocoa Cub'], B: ['@ms:v-sprinkles', 'Sprinkles', '@rpi:candy', 'candies'], C: ['@ms:v-taffy', 'Taffy'], F: ['@ms:v-bea', 'Baker Bea'] },
   ],
   hero: [
     { A: ['@mp:p-rowan', 'Elder Rowan'], B: ['@mp:p-gil', 'Farmer Gil', '@mp:egg', 'eggs'], C: ['@mp:p-brom', 'Guard Brom'], shop: ['@mp:p-doran', 'Smith Doran'] },
@@ -2557,12 +3276,15 @@ const NPCS = {
     { A: ['@mp:p-finn', 'Scholar Finn'], B: ['@mp:p-owl', 'Owl Sage', '@mp:iceshard', 'ice shards'], C: ['@mp:p-bjorn', 'Hunter Bjorn'], shop: ['@mp:p-doran', 'Smith Doran'] },
     { A: ['@mp:p-triton', 'Triton'], B: ['@mp:p-salt', 'Captain Salt', '@it:coin', 'doubloons'], C: ['@mp:p-kai', 'Diver Kai'], shop: ['@mp:p-doran', 'Smith Doran'] },
     { A: ['@mp:p-aldric', 'Prince Aldric'], B: ['@mp:p-mira', 'Queen Mira', '@mp:scroll', 'scrolls'], C: ['@mp:p-royal', 'Royal Guard'], shop: ['@mp:p-doran', 'Smith Doran'] },
+    { A: ['@mp:p-tobb', 'Old Miner Tobb'], B: ['@mp:p-lia', 'Gem Cutter Lia', '@mp:minicrystal', 'gems'], C: ['@mp:p-orm', 'Cave Guard Orm'], F: ['@mp:p-bruna', 'Smith Bruna'] },
+    { A: ['@mp:p-nimbus', 'Sky Sage Nimbus'], B: ['@mp:p-rory', 'Balloon Pilot Rory', '@it:skyfeather', 'sky feathers'], C: ['@mp:p-vale', 'Sky Knight Vale'], F: ['@mp:p-bruna', 'Smith Bruna'] },
+    { A: ['@mp:p-jory', 'First Mate Jory'], B: ['@mp:p-coralie', 'Coralie', '@it:pearl', 'pearls'], C: ['@mp:p-gus', 'Keeper Gus'], F: ['@mp:p-bruna', 'Smith Bruna'] },
   ],
 };
 // story-problem nouns, by area
 const STORY_ITEMS = {
-  cute: [['cookies', '@ms:cookie'], ['apples', '@ms:apple'], ['eggs', '@ms:egg'], ['snowballs', '@ms:snowball'], ['shells', '@ms:shell'], ['stars', '@ms:star']],
-  hero: [['arrows', '@mp:sword'], ['potions', '@it:potion'], ['bolts', '@mp:hammer'], ['torches', '@mp:fire'], ['gold coins', '@it:coin'], ['shields', '@mp:shield']],
+  cute: [['cookies', '@ms:cookie'], ['apples', '@ms:apple'], ['eggs', '@ms:egg'], ['snowballs', '@ms:snowball'], ['shells', '@ms:shell'], ['stars', '@ms:star'], ['gems', '@rpi:shiny'], ['clouds', '@ms:tinycloud'], ['candies', '@rpi:candy']],
+  hero: [['arrows', '@mp:sword'], ['potions', '@it:potion'], ['bolts', '@mp:hammer'], ['torches', '@mp:fire'], ['gold coins', '@it:coin'], ['shields', '@mp:shield'], ['gems', '@mp:minicrystal'], ['feathers', '@it:skyfeather'], ['pearls', '@it:pearl']],
 };
 // gear: p = attack power, g = guard, el = +50% damage for heroes of that element, res = halves hits from that element, luck = +25% battle gold
 const GEAR = {
@@ -2583,6 +3305,12 @@ const GEAR = {
     { id: 'ring', em: '@rpi:ring', name: 'Ring', act: 3, p: 0.8, cost: 100 },
     { id: 'wings', em: '@rpi:bell', name: 'Bell', act: 3, p: 0.5, g: 0.4, cost: 120 },
     { id: 'tiara', em: '@rpi:crown', name: 'Crown', act: 3, p: 0.6, g: 0.6, cost: 160 },
+    { id: 'hotwand', em: '@rpi:wand2:#ff7a2f', name: 'Hot Wand', craft: true, p: 0.35, el: 'fire' },
+    { id: 'icewand', em: '@rpi:wand2:#7fc8ff', name: 'Ice Wand', craft: true, p: 0.35, el: 'ice' },
+    { id: 'zapwand', em: '@rpi:wand2:#ffd23f', name: 'Zap Wand', craft: true, p: 0.35, el: 'zap' },
+    { id: 'puffhat', em: '@rpi:puffhat', name: 'Puff Hat', craft: true, g: 0.45, res: 'zap' },
+    { id: 'candycoat', em: '@rpi:candycoat', name: 'Candy Coat', craft: true, g: 0.45, res: 'fire' },
+    { id: 'candycrown', em: '@rpi:candycrown', name: 'Candy Crown', craft: true, p: 0.6, g: 0.4, luck: 0.25 },
   ],
   hero: [
     { id: 'bsword', em: '@it:sword', name: 'Bronze Sword', act: 1, p: 0.2, cost: 120 },
@@ -2601,6 +3329,12 @@ const GEAR = {
     { id: 'crystal', em: '@it:sword:#7fe3ff', name: 'Crystal Sword', act: 3, p: 0.8, cost: 750 },
     { id: 'orb', em: '@it:orb', name: 'Rune Orb', act: 3, p: 0.5, g: 0.4, cost: 900 },
     { id: 'crown', em: '@it:crown', name: 'Champion Crown', act: 3, p: 0.6, g: 0.6, cost: 1200 },
+    { id: 'emberblade', em: '@it:emberblade', name: 'Ember Blade', craft: true, p: 0.35, el: 'fire' },
+    { id: 'frostaxe', em: '@it:frostaxe', name: 'Frost Axe', craft: true, p: 0.35, el: 'ice' },
+    { id: 'stormspear', em: '@it:stormspear', name: 'Storm Spear', craft: true, p: 0.35, el: 'zap' },
+    { id: 'skycape', em: '@it:skycape', name: 'Sky Cape', craft: true, g: 0.45, res: 'zap' },
+    { id: 'tideshield', em: '@it:tideshield', name: 'Tide Shield', craft: true, g: 0.45, res: 'fire' },
+    { id: 'pearlcrown', em: '@it:pearlcrown', name: 'Pearl Crown', craft: true, p: 0.6, g: 0.4, luck: 0.25 },
   ],
 };
 // things you use up: potion heals, hipotion heals fully, feather wakes up a knocked-out friend
@@ -2623,12 +3357,45 @@ const MAKER = {
     names: ['Pom', 'Bop', 'Dot', 'Kit', 'Jem', 'Lulu', 'Mo', 'Pip', 'Sun', 'Bean', 'Fig', 'Nim'],
     moves: { fire: 'Glow', ice: 'Snow', zap: 'Zap' } },
 };
+// materials for crafting: each side area has its own; monsters everywhere drop the common one
+const MATS = {
+  hero: { ore: { name: 'Iron Ore', pl: 'iron ore', em: '@it:ore' }, feather: { name: 'Sky Feather', pl: 'sky feathers', em: '@it:skyfeather' }, pearl: { name: 'Sea Pearl', pl: 'sea pearls', em: '@it:pearl' }, fang: { name: 'Monster Fang', pl: 'monster fangs', em: '@it:fang' } },
+  cute: { shiny: { name: 'Shiny Rock', pl: 'shiny rocks', em: '@rpi:shiny' }, fluff: { name: 'Fluff', pl: 'fluff', em: '@rpi:fluff' }, candy: { name: 'Candy', pl: 'candies', em: '@rpi:candy' }, berry: { name: 'Berry', pl: 'berries', em: '@ms:berry' } },
+};
+const COMMON_MAT = { hero: 'fang', cute: 'berry' };
+// recipes: the math is the recipe. Hamstey Man: parts x amount each. Red Panda: this + that, how many in all?
+const RECIPES = {
+  hero: [
+    { gear: 'emberblade', area: 6, main: 'ore', each: 4, parts: 3, part: 'blade pieces', other: { fang: 3 } },
+    { gear: 'frostaxe', area: 6, main: 'ore', each: 5, parts: 2, part: 'axe heads', other: { fang: 4 } },
+    { gear: 'stormspear', area: 7, main: 'feather', each: 3, parts: 3, part: 'spear bands', other: { ore: 4 } },
+    { gear: 'skycape', area: 7, main: 'feather', each: 3, parts: 4, part: 'cape panels', other: { fang: 3 } },
+    { gear: 'tideshield', area: 8, main: 'pearl', each: 6, parts: 2, part: 'shield rings', other: { ore: 5 } },
+    { gear: 'pearlcrown', area: 8, main: 'pearl', each: 4, parts: 4, part: 'crown points', other: { feather: 6 } },
+  ],
+  cute: [
+    { gear: 'hotwand', area: 6, mats: { shiny: 3, berry: 2 } },
+    { gear: 'icewand', area: 6, mats: { shiny: 4, berry: 2 } },
+    { gear: 'zapwand', area: 7, mats: { fluff: 4, berry: 3 } },
+    { gear: 'puffhat', area: 7, mats: { fluff: 5, shiny: 2 } },
+    { gear: 'candycoat', area: 8, mats: { candy: 5, fluff: 3 } },
+    { gear: 'candycrown', area: 8, mats: { candy: 6, shiny: 4 } },
+  ],
+};
+// big moves: learned at level 5, stronger at level 12. They hit every monster, but each one takes less than a single attack.
+const BIG_MOVES = {
+  hero: { fire: ['Firestorm', 'Inferno'], ice: ['Ice Tornado', 'Blizzard Storm'], zap: ['Thunderstorm', 'Mega Storm'] },
+  cute: { fire: ['Fire Rain', 'Big Fire Rain'], ice: ['Snow Storm', 'Big Snow Storm'], zap: ['Zap Zap', 'Big Zap Zap'] },
+};
+const BIG_FX = { hero: { fire: '@mp:firestorm', ice: '@mp:icetornado', zap: '@mp:thunderstorm' }, cute: { fire: '@ms:firerain', ice: '@ms:snowstorm', zap: '@ms:zapzap' } };
+const BIG_SPLASH = 0.6; // share of a single hit that each monster takes from a big move
 // the keeper of each act's gate: beat it in the Gate Trial to open the gate without lighting every crystal
 const GATE_GUARD = {
   hero: { id: 'golem', em: '@hm:golem', name: 'Crystal Golem' },
   cute: { id: 'keeper', em: '@rp:keeper', name: 'Star Keeper' },
 };
 const ACT_NAMES = ['', 'Act I', 'Act II', 'Act III', 'World 2'];
+const MAIN_AREAS = 6; // areas 0-5 are the story path; 6-8 are side areas
 const HERO_NAMES = ['Rex', 'Kai', 'Zara', 'Blaze', 'Nova', 'Ash', 'Luna', 'Thor', 'Ivy', 'Max', 'Sage', 'Jet', 'Rook', 'Vex', 'Echo', 'Orion', 'Pike', 'Rune', 'Bolt', 'Fang'];
 
 // creatures and monsters use drawn art; the emoji stays as a fallback
@@ -2754,6 +3521,7 @@ function repairP(P) {
     P.g.v4 = true;
   }
   P.g.custom = P.g.custom || [];
+  P.g.mats = P.g.mats || {}; P.g.recipes = P.g.recipes || {}; P.g.sboss = P.g.sboss || {}; P.g.power = P.g.power || 0;
   P.play = Object.assign(f.play, P.play || {});
   return P;
 }
@@ -2809,7 +3577,7 @@ const Voice = {
 // readable words: in Red Panda's world every word can be tapped to hear it
 function rw(text, cls = '') {
   const el = h('span', { class: 'rw ' + cls });
-  if (!cute()) { el.textContent = text; return el; }
+  if (!cute()) { const t = String(text); if (t.includes('@')) appendWithArt(el, t); else el.textContent = t; return el; }
   String(text).split(/(\s+)/).forEach(part => {
     if (!part) return;
     if (/^\s+$/.test(part)) { el.append(part); return; }
@@ -3187,12 +3955,19 @@ function screenTeam() {
       h('div', { class: 'tgrid' }, party().map(cardFor)),
       box.length ? h('div', { class: 'tlabel' }, rw(cute() ? 'More friends' : 'Reserves'), G.swapSel ? h('span', { class: 'tnote' }, rw(cute() ? ' Tap one on your team to swap.' : ' Now tap a party member to swap.')) : null) : null,
       box.length ? h('div', { class: 'tgrid' }, box.map(cardFor)) : null,
-      h('div', { class: 'tcount' }, `${Object.keys(g.caught).filter(k => !k.startsWith('cu')).length} / 9 ${cute() ? 'friends' : 'heroes'}`),
+      h('div', { class: 'tcount' }, `${Object.keys(g.caught).filter(k => !k.startsWith('cu')).length} / ${SPECIES[G.theme].length} ${cute() ? 'friends' : 'heroes'}`),
+      matsStrip(),
       g.custom.length < 3 ? h('div', { class: 'maker-row' }, h('button', { class: 'bigbtn alt maker-open', onclick: () => openMaker() }, ic(cute() ? 'sparkle' : 'hammer'), ' ', rw(cute() ? 'Make a friend' : 'Create a hero'), ` (${3 - g.custom.length} left)`)) : null);
   }
   setScreen('team', h('div', { class: 'team' },
     h('div', { class: 'top' }, homeBtn(), h('div', { class: 'top-title' }, t.team), h('button', { class: 'ib wide', onclick: screenWorld }, rw(t.map + ' ›')), soundBtn(), gearBtn()),
     tabs, body));
+}
+// collected materials (for crafting)
+function matsStrip() {
+  const M = MATS[G.theme]; const m = G.P.g.mats || {};
+  if (!Object.keys(M).some(k => m[k])) return null;
+  return h('div', { class: 'craft-mats team-mats' }, h('span', { class: 'tlabel' }, rw(cute() ? 'My stuff' : 'Materials')), ...Object.keys(M).map(k => h('span', { class: 'cmat' }, M[k].em, h('b', null, m[k] || 0), h('small', null, rw(M[k].name)))));
 }
 function tapCreature(c) {
   const g = G.P.g; Sfx.play('tap');
@@ -3222,6 +3997,7 @@ function bagView() {
   return h('div', { class: 'teambody bag' },
     h('div', { class: 'bag-head win' }, h('div', { class: 'bag-items' }, Object.keys(I).map(k => h('div', { class: 'bag-item' }, h('span', { class: 'bag-big' }, I[k].em), h('div', null, h('div', { class: 'tlabel' }, `${I[k].name} × ${g.items[k] || 0}`), h('div', { class: 'bag-sub' }, I[k].desc))))),
       h('div', { class: 'bag-sub' }, 'Get more from quests, chests and shops, or rest at an inn @mp:inn.')),
+    matsStrip(),
     h('div', { class: 'bag-list' }, rows),
     owned.length ? h('div', { class: 'tlabel' }, 'Gear') : null,
     owned.length ? h('div', { class: 'bag-gear' }, owned.map(i => { const who = g.roster.find(o => o.gear === i.id); return h('button', { class: 'gear-row', onclick: () => equipPicker(i).then(screenTeam) }, h('span', { class: 'shop-em' }, i.em), h('span', { class: 'shop-name' }, i.name), h('span', { class: 'shop-eff' }, effectText(i)), h('span', { class: 'gear-state' }, who ? cName(who) : 'Not equipped')); })) : null);
@@ -3262,13 +4038,16 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && G.P
 /* ---------- battles ---------- */
 const OPCLS = { '+': 'plus', '-': 'minus', 'x': 'times', '/': 'div' };
 const dmgTarget = () => (cute() ? 6 : 40);
-function makeFoe(def, kind) {
-  const g = G.P.g; const tgt = dmgTarget();
-  const hpMul = kind === 'k' ? 11 : kind === 't' ? 8 : kind === 'c' ? 3.5 : 5;
+// side areas fight like the act they belong to
+const areaLevel = ai => (ai < MAIN_AREAS ? ai : (ai - MAIN_AREAS) * 2 + 0.5);
+// kind: b battle, c wild creature, k boss, s side boss, t gate trial. n = monsters in the group (each one is smaller)
+function makeFoe(def, kind, n = 1) {
+  const g = G.P.g; const tgt = dmgTarget(); const lvl = areaLevel(g.area);
+  const hpMul = kind === 'k' ? 11 : kind === 't' ? 8 : kind === 's' ? 9 : kind === 'c' ? 3.5 : n === 1 ? 5 : n === 2 ? 3 : 2.4;
   const max = Math.round(tgt * hpMul * (1 + 0.15 * (g.world - 1)));
-  const base = cute() ? 3 + g.area * 0.8 : 3 + g.area;
-  const atk = Math.max(1, Math.round((base + (g.world - 1) * 2) * (kind === 'k' ? 1.25 : 1) * (cute() ? 1 : 1.3)));
-  const f = { id: def.id, em: def.em, name: (g.world > 1 && kind !== 'c' ? (cute() ? 'Big ' : 'Mega ') : '') + def.name, weak: def.weak || null, resist: def.resist || null, atkEl: def.resist || null, hp: max, max, atk, boss: kind === 'k' || kind === 't', phase: 0 };
+  const base = cute() ? 3 + lvl * 0.8 : 3 + lvl;
+  const atk = Math.max(1, Math.round((base + (g.world - 1) * 2) * (kind === 'k' || kind === 's' ? 1.25 : 1) * (cute() ? 1 : 1.3) * (n > 1 ? 0.8 : 1)));
+  const f = { id: def.id, em: def.em, name: (g.world > 1 && kind !== 'c' ? (cute() ? 'Big ' : 'Mega ') : '') + def.name, weak: def.weak || null, resist: def.resist || null, atkEl: def.resist || null, hp: max, max, atk, boss: kind === 'k' || kind === 't' || kind === 's', phase: 0 };
   if (def.phases) { f.phases = def.phases; f.weak = def.phases[0].weak; f.resist = def.phases[0].resist || null; f.atkEl = f.resist; }
   const k = f.id + ':0'; g.book[k] = Object.assign(g.book[k] || {}, { seen: 1 });
   return f;
@@ -3277,60 +4056,102 @@ function catchSpecies(area) {
   const list = area.catch === 'starters' ? SPECIES[G.theme].slice(0, 3).map(s => s.id) : area.catch;
   return list.find(id => !G.P.g.caught[id]) || null;
 }
-// o = { type: 'b' | 'c' | 'k', def, catchSp, onWin(), after() }
+// how many monsters jump out: Hamstey Man up to 3, Red Panda up to 2, more often in later acts
+function groupSize(kind) {
+  if (kind !== 'b') return 1;
+  if (G.forceGroup) return Math.min(G.forceGroup, cute() ? 2 : 3); // test hook
+  const act = Math.min(3, actOf(G.P.g.area));
+  const p2 = cute() ? [0, 0.35, 0.5, 0.6][act] : [0, 0.6, 0.7, 0.75][act];
+  const p3 = cute() ? 0 : [0, 0.25, 0.45, 0.6][act];
+  let n = 1; if (Math.random() < p2) { n = 2; if (Math.random() < p3) n = 3; }
+  return n;
+}
+// big moves: learned at level 5, stronger at level 12; they need a full power meter
+const bmStage = c => (c.lv >= 12 ? 2 : c.lv >= 5 ? 1 : 0);
+function bigMove(c) {
+  const st = bmStage(c); if (!st) return null; const e = spById(c.sp).e;
+  return { name: BIG_MOVES[G.theme][e][st - 1], stage: st, fx: BIG_FX[G.theme][e], e };
+}
+const power = () => Math.max(0, Math.min(100, G.P.g.power || 0));
+const powerFull = () => power() >= 100;
+function addPower(n) {
+  const before = power(); G.P.g.power = Math.min(100, before + n); updatePower();
+  if (before < 100 && powerFull()) { Sfx.play('star'); const el = $('.power'); if (el) anim(el, 'full', 900); }
+}
+function updatePower() {
+  const el = $('.power'); if (!el) return;
+  el.querySelector('i').style.width = power() + '%'; el.classList.toggle('ready', powerFull());
+  const b = el.querySelector('b'); if (b) b.textContent = powerFull() ? (cute() ? 'Ready!' : 'READY') : '';
+}
+// o = { type: 'b' | 'c' | 'k' | 's' | 't', def, catchSp, onWin(B), after() }
 function startBattle(o) {
   Sfx.play('tap'); W.walkId++;
   if (keepsHp() && party().every(c => hpOf(c) <= 0)) {
     talk(...INNKEEPER, `Your party is too hurt to fight! Use a potion from your bag ${ic('bag')}, or rest at the inn ${ic('inn')}.`);
     return;
   }
-  let foe;
-  if (o.type === 'c') { const sp = spById(o.catchSp); foe = makeFoe({ id: 'wild-' + sp.id, em: sp.em, name: sp.names[0], weak: TYPE_WEAK[sp.e], resist: sp.e }, 'c'); }
-  else foe = makeFoe(o.def, o.type);
+  let foes;
+  if (o.type === 'c') { const sp = spById(o.catchSp); foes = [makeFoe({ id: 'wild-' + sp.id, em: sp.em, name: sp.names[0], weak: TYPE_WEAK[sp.e], resist: sp.e }, 'c')]; }
+  else {
+    const n = groupSize(o.type); const area = curArea();
+    foes = [makeFoe(o.def, o.type, n)];
+    for (let i = 1; i < n; i++) foes.push(makeFoe(pick(area.foes), 'b', n));
+  }
+  foes.forEach((f, i) => { f.i = i; });
+  // Final Fantasy style: two of the same monster become "A" and "B"
+  { const base = foes.map(f => f.name); foes.forEach((f, i) => { const same = foes.filter((x, j) => base[j] === base[i]); if (same.length > 1) f.name = base[i] + ' ' + 'ABC'[same.indexOf(f)]; }); }
   const hp = {}; party().forEach(c => { hp[c.u] = keepsHp() ? hpOf(c) : maxHp(c); });
   const lit0 = G.P.g.world === 1 ? new Set(gateBits(actOf(G.P.g.area)).filter(b => b.lit).map(b => b.id)) : new Set();
-  G.B = { type: o.type, o, foe, hp, catchSp: o.catchSp || null, rewards: [], events: [], stats: { n: 0, c: 0 }, phase: 'intro', purpose: 'attack', gems: 0, lit0, words: 0 };
+  const bm0 = {}; party().forEach(c => { bm0[c.u] = bmStage(c); });
+  G.B = { type: o.type, o, foes, foe: foes[0], hp, catchSp: o.catchSp || null, rewards: [], events: [], stats: { n: 0, c: 0 }, phase: 'intro', purpose: 'attack', gems: 0, lit0, bm0, words: 0, drops: {} };
   screenBattle();
   introBattle();
 }
+const aliveFoes = () => (G.B ? G.B.foes.filter(f => f.hp > 0) : []);
+const foeBox = f => $(`.foe[data-i="${f.i}"]`);
+const foeSpr = f => $(`.foe[data-i="${f.i}"] .foe-spr`);
 function battleGems(type) {
   const act = actOf(G.P.g.area) + (G.P.g.world - 1) * 3;
   const base = cute() ? 3 + act : 6 + 3 * act;
-  return type === 'k' ? base * 3 : type === 't' ? base * 2 : base;
+  return type === 'k' ? base * 3 : type === 't' || type === 's' ? base * 2 : base;
 }
 async function introBattle() {
-  const B = G.B; const t = T();
-  const line = type => (B.type === 't' ? (cute() ? 'Star Test! ' : 'Gate Trial! ') : B.type === 'k' ? t.boss + ' ' : '') + (B.type === 'c' ? (cute() ? `${B.foe.name} is shy!` : `A wild ${B.foe.name} appears!`) : t.grumpy(B.foe.name));
-  setMsg(line()); if (B.foe.boss) Sfx.play('phase');
-  await readLine($('.panel'), line(), true);
+  const B = G.B; const t = T(); const n = B.foes.length; const f = B.foes[0];
+  const many = cute() ? `${n === 2 ? 'Two' : 'Three'} grumpies!` : `${B.foes.map(x => x.name).join(', ')} attack!`;
+  const line = (B.type === 't' ? (cute() ? 'Star Test! ' : 'Gate Trial! ') : B.type === 'k' || B.type === 's' ? t.boss + ' ' : '') + (B.type === 'c' ? (cute() ? `${f.name} is shy!` : `A wild ${f.name} appears!`) : n > 1 ? many : t.grumpy(f.name));
+  setMsg(line); if (f.boss) Sfx.play('phase');
+  await readLine($('.panel'), line, true);
   await wait(cute() ? 300 : 900);
   if (G.B === B) showMenu();
 }
 function screenBattle() {
-  const B = G.B; const area = curArea(); const f = B.foe;
-  const foeBox = h('div', { class: 'foe' },
+  const B = G.B; const area = curArea();
+  const foesEl = h('div', { class: 'foes n' + B.foes.length }, B.foes.map(f => h('div', { class: 'foe', 'data-i': f.i, onclick: () => tapFoe(f) },
     h('div', { class: 'foe-card win' }, h('div', { class: 'foe-name' }, rw(f.name)), h('div', { class: 'hp foe-hp' }, h('i'), h('b')), h('div', { class: 'foe-tags' })),
-    sprite(f.em, { cls: 'foe-spr' + (f.boss ? ' boss' : '') }));
+    sprite(f.em, { cls: 'foe-spr' + (f.boss ? ' boss' : '') }))));
   const partyBox = h('div', { class: 'party' }, party().map(c => h('div', { class: 'mem', 'data-u': c.u },
     cSprite(c, 'mem-spr'),
-    h('div', { class: 'mem-info win' }, h('div', { class: 'mem-name' }, cName(c)), h('div', { class: 'mem-lv' }, 'Lv ' + c.lv), h('div', { class: 'hp mem-hp' }, h('i'), h('b'))))));
+    h('div', { class: 'mem-info win' }, h('div', { class: 'mem-name' }, cName(c)), h('div', { class: 'mem-lv' }, 'Lv ' + c.lv), h('div', { class: 'hp mem-hp' }, h('i'), h('b'))))),
+    party().some(c => bmStage(c)) ? h('div', { class: 'power win', title: 'Power for big moves' }, h('span', { class: 'power-ic' }, ic('power')), h('div', { class: 'power-bar' }, h('i')), h('b')) : null);
   setScreen('battle', h('div', { class: 'battle' },
     h('div', { class: 'top slim' }, homeBtn(), h('div', { class: 'top-title' }, h('span', { class: 'banner-icon' }, area.icon), ' ', area.name), soundBtn()),
-    h('div', { class: `field bg-${area.bg}` }, foeBox, partyBox, h('div', { class: 'fx' })),
+    h('div', { class: `field bg-${area.bg}` }, foesEl, partyBox, h('div', { class: 'fx' })),
     h('div', { class: 'panel win' })));
-  updateFoe(); party().forEach(updateMem);
+  B.foes.forEach(updateFoe); party().forEach(updateMem); updatePower();
 }
 function known(f, kind) { const k = G.P.g.book[f.id + ':' + f.phase]; return !!(k && k[kind]); }
 function discover(f, kind) { const k = f.id + ':' + f.phase; G.P.g.book[k] = Object.assign(G.P.g.book[k] || {}, { seen: 1, [kind]: true }); }
-function updateFoe() {
-  const f = G.B.foe; const bar = $('.foe-hp');
-  bar.querySelector('i').style.width = (f.hp / f.max) * 100 + '%';
-  bar.querySelector('b').textContent = cute() ? '' : `HP ${f.hp}/${f.max}`;
+function updateFoe(f) {
+  f = f || G.B.foe; const box = foeBox(f); if (!box) return;
+  const bar = box.querySelector('.foe-hp');
+  bar.querySelector('i').style.width = (Math.max(0, f.hp) / f.max) * 100 + '%';
+  bar.querySelector('b').textContent = cute() ? '' : `HP ${Math.max(0, f.hp)}/${f.max}`;
   bar.classList.toggle('low', f.hp / f.max < 0.3);
-  const tags = $('.foe-tags'); tags.replaceChildren();
+  box.classList.toggle('down', f.hp <= 0);
+  const tags = box.querySelector('.foe-tags'); tags.replaceChildren();
   if (f.weak) tags.append(h('span', { class: 'tag weak' }, rw(T().weak), ' ', known(f, 'weak') ? elemTag(f.weak) : h('span', { class: 'q' }, '?')));
   if (f.resist && known(f, 'resist')) tags.append(h('span', { class: 'tag resist' }, rw(T().strong), ' ', elemTag(f.resist)));
-  if (f.atkEl) tags.append(h('span', { class: 'tag uses' }, rw(cute() ? 'Uses' : 'Attacks with'), ' ', elemTag(f.atkEl)));
+  if (f.atkEl && G.B.foes.length === 1) tags.append(h('span', { class: 'tag uses' }, rw(cute() ? 'Uses' : 'Attacks with'), ' ', elemTag(f.atkEl)));
 }
 function updateMem(c) {
   const el = $(`.mem[data-u="${c.u}"]`); if (!el) return;
@@ -3344,18 +4165,19 @@ function setPanel(mode, content) { const p = $('.panel'); if (!p) return; p.clas
 function setMsg(text) { setPanel('msg', h('div', { class: 'pmsg' }, rw(text), replayBtn(text))); }
 
 function showMenu() {
-  const B = G.B; if (!B || B.foe.hp <= 0) return;
-  B.phase = 'menu'; B.purpose = 'attack'; G.pad = null;
+  const B = G.B; if (!B || !aliveFoes().length) return;
+  B.phase = 'menu'; B.purpose = 'attack'; B.moveKind = 'normal'; G.pad = null;
   const alive = party().filter(c => B.hp[c.u] > 0);
   const prompt = h('div', { class: 'prompt' }, rw(T().who), replayBtn(T().who));
   const btns = alive.map(c => {
-    const sp = spById(c.sp);
-    return h('button', { class: `atk el-${sp.e}`, onclick: () => chooseAttack(c.u) },
-      h('span', { class: 'atk-em' }, sp.em), h('span', { class: 'atk-who' }, cName(c)), h('span', { class: 'atk-move' }, rw(sp.move)), elemTag(sp.e));
+    const sp = spById(c.sp); const bm = bigMove(c); const ready = bm && powerFull();
+    return h('button', { class: `atk el-${sp.e}` + (ready ? ' bmready' : ''), onclick: () => chooseAttack(c.u) },
+      h('span', { class: 'atk-em' }, sp.em), h('span', { class: 'atk-who' }, cName(c)), h('span', { class: 'atk-move' }, rw(sp.move)), elemTag(sp.e),
+      ready ? h('span', { class: 'bm-badge' }, ic('power')) : null);
   });
   const I = ITEMS[G.theme]; const total = Object.keys(I).reduce((a, k) => a + (G.P.g.items[k] || 0), 0);
   btns.push(h('button', { class: 'atk potion', disabled: total <= 0 || null, onclick: itemMenu },
-    h('span', { class: 'atk-em' }, I.potion.em), h('span', { class: 'atk-who' }, `${total} left`), h('span', { class: 'atk-move' }, rw('Items')), h('span', { class: 'etag' }, rw(cute() ? 'Help a friend' : 'Heal'))));
+    h('span', { class: 'atk-em' }, I.potion.em), h('span', { class: 'atk-who' }, `${total} left`), h('span', { class: 'atk-move' }, rw('Items')), h('span', { class: 'etag' }, rw(cute() ? 'Help' : 'Heal'))));
   setPanel('menu', h('div', { class: 'pmenu' }, prompt, h('div', { class: 'atks' }, btns)));
   readLine(prompt, T().who);
 }
@@ -3401,15 +4223,61 @@ async function useItemBattle(k, u) {
   if (party().every(m => B.hp[m.u] <= 0)) return lose();
   showMenu();
 }
-function chooseAttack(u) { if (G.B.phase !== 'menu') return; Sfx.play('tap'); G.B.attacker = u; G.B.purpose = 'attack'; nextProblem(); }
+function chooseAttack(u) {
+  const B = G.B; if (B.phase !== 'menu') return; Sfx.play('tap'); B.attacker = u; B.purpose = 'attack';
+  const c = byU(u); const bm = bigMove(c);
+  if (bm && powerFull()) return moveMenu(c, bm);
+  useMove('normal');
+}
+// a hero with a full power meter can use its normal move or its big move
+function moveMenu(c, bm) {
+  const B = G.B; const sp = spById(c.sp); B.phase = 'move';
+  const n = aliveFoes().length;
+  const txt = cute() ? 'Which one?' : `${cName(c)}: choose a move`;
+  const btns = [
+    h('button', { class: `atk el-${sp.e}`, onclick: () => { Sfx.play('tap'); useMove('normal'); } }, h('span', { class: 'atk-em' }, sp.em), h('span', { class: 'atk-who' }, rw(cute() ? 'One' : 'One target')), h('span', { class: 'atk-move' }, rw(sp.move)), elemTag(sp.e)),
+    h('button', { class: `atk bigmove el-${sp.e}`, onclick: () => { Sfx.play('tap'); useMove('big'); } }, h('span', { class: 'atk-em' }, bm.fx), h('span', { class: 'atk-who' }, rw(n === 1 ? (cute() ? 'Just one' : 'Softer hit') : cute() ? 'All of them!' : `All ${n} · softer`)), h('span', { class: 'atk-move' }, rw(bm.name)), elemTag(sp.e)),
+    backBtn(showMenu)];
+  setPanel('menu', h('div', { class: 'pmenu' }, h('div', { class: 'prompt' }, rw(txt), replayBtn(txt)), h('div', { class: 'atks' }, btns)));
+}
+function useMove(kind) {
+  const B = G.B; B.moveKind = kind;
+  if (kind === 'big') { B.foe = aliveFoes()[0]; return nextChallenge(); }
+  const alive = aliveFoes();
+  if (alive.length > 1) return targetMenu();
+  B.foe = alive[0]; nextProblem();
+}
+function targetMenu() {
+  const B = G.B; B.phase = 'target';
+  const txt = cute() ? 'Who?' : 'Choose a target';
+  const btns = aliveFoes().map(f => h('button', { class: 'atk pick target', onclick: () => tapFoe(f) }, sprite(f.em, { cls: 'atk-em' }), h('span', { class: 'atk-move' }, rw(f.name)), hpLine(f.hp, f.max)));
+  btns.push(backBtn(showMenu));
+  setPanel('menu', h('div', { class: 'pmenu' }, h('div', { class: 'prompt' }, rw(txt), replayBtn(txt)), h('div', { class: 'atks' }, btns)));
+  $$('.foe').forEach(el => el.classList.toggle('pickme', aliveFoes().some(f => String(f.i) === el.dataset.i)));
+  readLine($('.panel .prompt'), txt);
+}
+function tapFoe(f) {
+  const B = G.B; if (!B || B.phase !== 'target' || f.hp <= 0) return;
+  Sfx.play('tap'); $$('.foe').forEach(el => el.classList.remove('pickme'));
+  B.foe = f; nextProblem();
+}
+// the big move's problem is a step harder: Hamstey Man 3 x 4 + 5, Red Panda 2 + 3 + 1
+function nextChallenge() {
+  const B = G.B;
+  Object.assign(B, { prob: E.challenge(G.P), typed: '', tries: 0, assisted: false, recorded: false, mode: 'answer', phase: 'problem', tFirst: 0 });
+  renderProblem(); B.t0 = performance.now();
+  if (G.P.settings.autoRead) Voice.say(B.prob.say, { auto: true });
+}
 
 async function nextProblem() {
   const B = G.B;
   // some of Red Panda's turns are sight-word turns (never two in a row)
   const S = G.P.settings;
-  if (cute() && S.words && B.purpose === 'attack' && !B.lastWord && Math.random() < (S.wordRate || 0.35)) { B.lastWord = true; return nextWord(); }
+  if (B.heldWord && B.purpose === 'attack') return nextWord();
+  if (cute() && S.words && B.purpose === 'attack' && !B.held && !B.lastWord && Math.random() < (S.wordRate ?? 0.35)) { B.lastWord = true; return nextWord(); }
   B.lastWord = false;
-  const prob = B.type === 't' ? E.pickFrom(G.P, E.actSkills(G.P, actOf(G.P.g.area))) : E.pickProblem(G.P);
+  const held = B.purpose === 'attack' && B.held; B.held = null; // a problem they backed out of comes back
+  const prob = held || (B.type === 't' ? E.pickFrom(G.P, E.actSkills(G.P, actOf(G.P.g.area))) : E.pickProblem(G.P));
   Object.assign(B, { prob, typed: '', tries: 0, assisted: false, recorded: false, mode: 'answer', phase: 'problem', tFirst: 0 });
   renderProblem();
   B.t0 = performance.now();
@@ -3419,24 +4287,32 @@ async function nextProblem() {
   }
 }
 function exprEl(pr, typed, big = true) {
-  const opc = OPCLS[pr.op];
+  const opc = OPCLS[pr.op] || 'plus';
   const num = n => h('span', { class: 'num', onclick: () => Voice.say(String(n)) }, n);
   const op = h('span', { class: `op op-${opc}`, onclick: () => Voice.say(E.WORD[pr.op]) }, E.SYM[pr.op],
     cute() ? h('small', { class: 'opword' }, E.WORD[pr.op]) : null);
   const box = h('span', { class: 'ans' + (typed ? ' has' : '') }, typed || '?');
   const eq = h('span', { class: 'eq' }, '=');
+  if (pr.terms) {
+    const OPN = { '+': ['plus', 'plus'], '×': ['times', 'times'] };
+    const ps = pr.terms.map((t, i) => i % 2 === 0 ? num(t) : h('span', { class: `op op-${OPN[t][0]}`, onclick: () => Voice.say(OPN[t][1]) }, t, cute() ? h('small', { class: 'opword' }, OPN[t][1]) : null));
+    return h('div', { class: 'expr chal' + (big ? '' : ' mini') + ' long' }, ps, eq, box);
+  }
   const parts = pr.form === 'missing' ? [num(pr.l), op, box, eq, num(pr.res)] : [num(pr.l), op, num(pr.r), eq, box];
   return h('div', { class: 'expr' + (big ? '' : ' mini') + (String(pr.l).length + String(pr.r || pr.res).length > 3 ? ' long' : '') }, parts);
 }
 function renderProblem(note) {
   const B = G.B; const pr = B.prob;
-  const who = B.purpose === 'catch' ? (cute() ? 'Solve to make a friend!' : 'Solve it to recruit!') : (() => { const c = byU(B.attacker); return `${cName(c)}: ${spById(c.sp).move}` + ((B.streak || 0) >= 2 ? `  ${ic('fire')}×${B.streak}` : ''); })();
+  const who = B.purpose === 'catch' ? (cute() ? 'Solve to make a friend!' : 'Solve it to recruit!') : (() => {
+    const c = byU(B.attacker);
+    if (B.moveKind === 'big') { const bm = bigMove(c); return `${cName(c)}: ${bm.name}!` + (cute() ? '' : ' (hits all)'); }
+    return `${cName(c)}: ${spById(c.sp).move}` + (B.foes.length > 1 ? ` → ${B.foe.name}` : '') + ((B.streak || 0) >= 2 ? `  ${ic('fire')}×${B.streak}` : ''); })();
   const noteEl = h('div', { class: 'pnote' + (note ? ' alert' : '') }, rw(note || who));
   const left = h('div', { class: 'pleft' }, noteEl, exprEl(pr, B.typed),
     h('div', { class: 'ptools' },
       h('button', { class: 'tool', 'aria-label': 'Read it to me', onclick: () => Voice.say(pr.say) }, ic('sound')),
       h('button', { class: 'tool', onclick: helpTap }, ic('bulb'), ' ', rw(cute() ? 'Help' : 'Hint')),
-      B.purpose === 'attack' && B.mode === 'answer' && !B.recorded ? h('button', { class: 'tool ghost', onclick: () => { Sfx.play('tap'); showMenu(); } }, rw(cute() ? 'Back' : 'Change')) : null));
+      B.purpose === 'attack' && B.mode === 'answer' && !B.recorded && B.moveKind !== 'big' ? h('button', { class: 'tool ghost', onclick: () => { Sfx.play('tap'); B.held = B.prob; showMenu(); } }, rw(cute() ? 'Back' : 'Change')) : null));
   setPanel('problem', h('div', { class: 'pprob' }, left, numpad(padKey, true)));
   G.pad = padKey;
   if (note) readLine(noteEl, note);
@@ -3455,7 +4331,8 @@ function padKey(k) {
 }
 function recordAns(first, ms) {
   const B = G.B; B.recorded = true;
-  const ev = E.recordAnswer(G.P, B.prob, { first, ms }); B.events.push(...ev);
+  if (B.prob.challenge) E.recordChallenge(G.P, first);
+  else { const ev = E.recordAnswer(G.P, B.prob, { first, ms }); B.events.push(...ev); }
   B.stats.n++; if (first) B.stats.c++;
 }
 function helpTap() { const B = G.B; if (B.phase !== 'problem') return; Sfx.play('tap'); if (!B.recorded) recordAns(false, performance.now() - B.t0); B.streak = 0; openHelp(); }
@@ -3468,6 +4345,8 @@ function submit() {
   if (correct) {
     const q = B.tries === 0 && !B.assisted ? 1 : B.tries <= 1 ? 0.5 : 0;
     B.streak = q === 1 ? (B.streak || 0) + 1 : 0;
+    // correct answers charge the power meter for big moves (not the big move's own problem)
+    if (!pr.challenge && B.purpose === 'attack') addPower(q === 1 ? 25 + ((B.streak || 0) >= 3 ? 10 : 0) : q > 0 ? 10 : 0);
     return finishProblem(q);
   }
   B.streak = 0; B.tries++; Sfx.play('oops'); anim($('.panel .ans'), 'nope', 400); B.typed = '';
@@ -3492,6 +4371,7 @@ async function finishProblem(q) {
   Sfx.play(q === 0 && B.purpose !== 'catch' ? 'blip' : 'good');
   await wait(380);
   if (B.purpose === 'catch') return doCatch();
+  if (B.moveKind === 'big') return doBigMove(q);
   return doAttack(q);
 }
 
@@ -3528,7 +4408,7 @@ async function doAttack(q) {
   const m = pow * mult; const bonus = dmg - Math.ceil(raw);
   setMsg(T().used(cName(c), sp.move));
   if (q === 0) {
-    const meEl0 = $(`.mem[data-u="${c.u}"] .spr`), foeEl0 = $('.foe-spr');
+    const meEl0 = $(`.mem[data-u="${c.u}"] .spr`), foeEl0 = foeSpr(f);
     anim(meEl0, 'lunge', 380); Sfx.play('whoosh'); await wait(420);
     popText(foeEl0, cute() ? 'Miss!' : 'MISS', 'tagpop dim');
     const t = cute() ? 'You got it! But no hit this time.' : 'Correct, but the attack missed this time.';
@@ -3538,7 +4418,7 @@ async function doAttack(q) {
     if (party().every(x => B.hp[x.u] <= 0)) return lose();
     return showMenu();
   }
-  const meEl = $(`.mem[data-u="${c.u}"] .spr`), foeEl = $('.foe-spr');
+  const meEl = $(`.mem[data-u="${c.u}"] .spr`), foeEl = foeSpr(f);
   anim(meEl, 'lunge', 380); Sfx.play('whoosh');
   await projectile(meEl, foeEl, ELEM[sp.e].icon);
   Sfx.play(mult === 2 ? 'super' : 'hit');
@@ -3552,59 +4432,114 @@ async function doAttack(q) {
   if (charm > 1) setTimeout(() => popText(meEl, ELEM[sp.e].icon + '+', 'tagpop'), 150);
   if (mult === 2) { setTimeout(() => popText(foeEl, T().super, 'tagpop'), 200); discover(f, 'weak'); }
   else if (mult === 0.5) { setTimeout(() => popText(foeEl, T().meh, 'tagpop dim'), 200); discover(f, 'resist'); }
-  f.hp = Math.max(0, f.hp - dmg); updateFoe();
+  f.hp = Math.max(0, f.hp - dmg); updateFoe(f);
   giveXp(c, q === 1 ? 10 : 5, B.rewards);
   await wait(900);
+  return afterHits(B, [f]);
+}
+// after any hit: defeated monsters cheer/vanish, bosses may change form, then the monsters' turn
+async function afterHits(B, hit) {
   if (G.B !== B) return;
-  if (f.hp <= 0) return win();
-  if (f.phases && f.phase < f.phases.length - 1 && f.hp <= f.max * (1 - (f.phase + 1) / f.phases.length)) {
-    f.phase++; f.weak = f.phases[f.phase].weak; f.resist = f.phases[f.phase].resist || null; f.atkEl = f.resist || f.atkEl;
-    Sfx.play('phase'); await anim(foeEl, 'phase', 800); updateFoe();
-    const msg = T().changed + ' ' + T().phaseHint; setMsg(msg); await readLine($('.panel'), msg, true); await wait(900);
+  if (!aliveFoes().length) return win();
+  for (const f of hit) if (f.hp <= 0) { const el = foeSpr(f); if (el) el.classList.add(cute() ? 'cheer' : 'poof'); if (cute()) hearts(el); }
+  for (const f of hit) {
+    if (f.hp > 0 && f.phases && f.phase < f.phases.length - 1 && f.hp <= f.max * (1 - (f.phase + 1) / f.phases.length)) {
+      f.phase++; f.weak = f.phases[f.phase].weak; f.resist = f.phases[f.phase].resist || null; f.atkEl = f.resist || f.atkEl;
+      Sfx.play('phase'); await anim(foeSpr(f), 'phase', 800); updateFoe(f);
+      const msg = T().changed + ' ' + T().phaseHint; setMsg(msg); await readLine($('.panel'), msg, true); await wait(900);
+    }
   }
   await enemyTurn();
   if (G.B !== B) return;
   if (party().every(m => B.hp[m.u] <= 0)) return lose();
   showMenu();
 }
+// big move: hits every monster, but each takes less than a single attack would (BIG_SPLASH)
+async function doBigMove(q) {
+  const B = G.B, c = byU(B.attacker), sp = spById(c.sp), bm = bigMove(c);
+  G.P.g.power = 0; updatePower();
+  const gear = gearOf(c); const gp = (gear && gear.p) || 0; const charm = gear && gear.el === sp.e ? 1.5 : 1;
+  const meEl = $(`.mem[data-u="${c.u}"] .spr`);
+  setMsg(T().used(cName(c), bm.name));
+  anim(meEl, 'lunge', 380); Sfx.play('whoosh');
+  if (q === 0) {
+    await wait(420); aliveFoes().forEach(f => popText(foeSpr(f), cute() ? 'Miss!' : 'MISS', 'tagpop dim'));
+    const t = cute() ? 'You got it! But the big move missed.' : 'Correct, but the big move fizzled this time.';
+    setMsg(t); await readLine($('.panel'), t, true); await wait(900);
+    return afterHits(B, []);
+  }
+  const targets = aliveFoes();
+  anim($('.field'), 'bigflash', 700);
+  await Promise.all(targets.map((f, k) => wait(k * 90).then(() => projectile(meEl, foeSpr(f), bm.fx))));
+  Sfx.play('super'); anim($('.field'), 'quake', 420);
+  for (const f of targets) {
+    const mult = sp.e === f.weak ? 2 : sp.e === f.resist ? 0.5 : 1;
+    const dmg = Math.max(1, Math.ceil(dmgTarget() * BIG_SPLASH * (bm.stage === 2 ? 1.3 : 1) * mult * q * (1 + gp) * charm));
+    const el = foeSpr(f); anim(el, 'hurt', 480);
+    popText(el, String(dmg), mult === 2 ? 'dmg big' : 'dmg');
+    if (mult === 2) { setTimeout(() => popText(el, T().super, 'tagpop'), 200); discover(f, 'weak'); }
+    else if (mult === 0.5) { setTimeout(() => popText(el, T().meh, 'tagpop dim'), 200); discover(f, 'resist'); }
+    f.hp = Math.max(0, f.hp - dmg); updateFoe(f);
+  }
+  giveXp(c, q === 1 ? 14 : 7, B.rewards);
+  await wait(1000);
+  return afterHits(B, targets);
+}
+// each monster still standing may strike (in a group, each one a little less often)
 async function enemyTurn() {
-  const B = G.B, f = B.foe;
-  if (Math.random() > (f.boss ? 0.55 : 0.5)) return;
-  const alive = party().filter(m => B.hp[m.u] > 0); if (!alive.length) return;
-  const t = pick(alive); const gear = gearOf(t);
-  const resMul = gear && gear.res && gear.res === f.atkEl ? 0.5 : 1;
-  const dmg = Math.max(1, Math.round((f.atk + rnd(-1, 1)) * (1 - ((gear && gear.g) || 0)) * resMul));
-  const foeEl = $('.foe-spr'), tEl = $(`.mem[data-u="${t.u}"] .spr`);
-  setMsg(cute() ? `${f.name}: ${pick(['Hmph!', 'Grr!', 'Splash!', 'Bonk!'])}` : `${f.name} attacks ${cName(t)}!`);
-  anim(foeEl, 'lunge-r', 380); await wait(260);
-  Sfx.play('enemy'); anim(tEl, 'hurt', 480); popText(tEl, '−' + dmg, 'dmg bad');
-  B.hp[t.u] = Math.max(0, B.hp[t.u] - dmg); updateMem(t); syncHp();
-  await wait(800);
-  if (B.hp[t.u] <= 0) { setMsg(T().nap(cName(t))); Sfx.play('faint'); await wait(1200); }
+  const B = G.B; const foes = aliveFoes(); const chance = foes.length === 1 ? (foes[0].boss ? 0.55 : 0.5) : 0.32;
+  for (const f of foes) {
+    if (G.B !== B || Math.random() > chance) continue;
+    const alive = party().filter(m => B.hp[m.u] > 0); if (!alive.length) return;
+    const t = pick(alive); const gear = gearOf(t);
+    const resMul = gear && gear.res && gear.res === f.atkEl ? 0.5 : 1;
+    const dmg = Math.max(1, Math.round((f.atk + rnd(-1, 1)) * (1 - ((gear && gear.g) || 0)) * resMul));
+    const foeEl = foeSpr(f), tEl = $(`.mem[data-u="${t.u}"] .spr`);
+    setMsg(cute() ? `${f.name}: ${pick(['Hmph!', 'Grr!', 'Splash!', 'Bonk!'])}` : `${f.name} attacks ${cName(t)}!`);
+    anim(foeEl, 'lunge-r', 380); await wait(260);
+    Sfx.play('enemy'); anim(tEl, 'hurt', 480); popText(tEl, '−' + dmg, 'dmg bad');
+    B.hp[t.u] = Math.max(0, B.hp[t.u] - dmg); updateMem(t); syncHp();
+    await wait(800);
+    if (B.hp[t.u] <= 0) { setMsg(T().nap(cName(t))); Sfx.play('faint'); await wait(1200); }
+  }
 }
 async function win() {
   const B = G.B; B.phase = 'done'; G.pad = null;
-  const foeEl = $('.foe-spr'); Sfx.play('win');
-  if (cute()) { foeEl.classList.add('cheer'); hearts(foeEl); } else foeEl.classList.add('poof');
+  const foeEl = foeSpr(B.foe.hp <= 0 ? B.foe : B.foes[0]); Sfx.play('win');
+  B.foes.forEach(f => { const el = foeSpr(f); if (!el || el.classList.contains('cheer') || el.classList.contains('poof')) return; if (cute()) { el.classList.add('cheer'); hearts(el); } else el.classList.add('poof'); });
   setMsg(T().happy); readLine($('.panel'), T().happy, true);
-  party().forEach(m => giveXp(m, 4, B.rewards));
+  party().forEach(m => giveXp(m, 4 + 2 * (B.foes.length - 1), B.rewards));
   const luck = party().some(m => { const gr = gearOf(m); return gr && gr.luck; }) ? 1.25 : 1;
-  B.gems = Math.round(battleGems(B.type) * luck); setTimeout(() => { popText(foeEl, `+${B.gems} ${CUR().em}`, 'tagpop gem'); Sfx.play('blip', 7); }, 500);
+  B.gems = Math.round(battleGems(B.type) * (1 + 0.5 * (B.foes.length - 1)) * luck);
+  B.drops = rollDrops(B);
+  setTimeout(() => { popText(foeEl, `+${B.gems} ${CUR().em}`, 'tagpop gem'); Sfx.play('blip', 7); }, 500);
+  const dropTxt = Object.entries(B.drops).map(([k, n]) => `+${n} ${MATS[G.theme][k].em}`).join('  ');
+  if (dropTxt) setTimeout(() => popText(foeEl, dropTxt, 'tagpop gem drop'), 900);
   await wait(1500);
   if (G.B !== B) return;
   if (B.type === 'c' && B.catchSp) return catchPhase();
   endBattle(true);
 }
+// materials: each monster drops the common one (fangs / berries); side areas add their own; side bosses drop a pile
+function rollDrops(B) {
+  const area = curArea(); const d = {}; const add = (k, n) => { if (k && n > 0) d[k] = (d[k] || 0) + n; };
+  const n = B.foes.length;
+  if (B.type === 's') add(area.mat, 4);
+  else if (B.type === 'k') add(COMMON_MAT[G.theme], 3);
+  else if (area.side) { add(area.mat, n); if (Math.random() < 0.5) add(COMMON_MAT[G.theme], 1); }
+  else add(COMMON_MAT[G.theme], n);
+  return d;
+}
 function catchPhase() {
   const B = G.B; B.purpose = 'catch'; B.phase = 'menu';
-  const sp = spById(B.catchSp); const foeEl = $('.foe-spr'); foeEl.classList.remove('cheer', 'poof'); foeEl.classList.add('friendly');
+  const sp = spById(B.catchSp); const foeEl = foeSpr(B.foes[0]); foeEl.classList.remove('cheer', 'poof'); foeEl.classList.add('friendly');
   const txt = cute() ? `${sp.names[0]} wants to be your friend!` : `${sp.names[0]} wants to join your party!`;
   const prompt = h('div', { class: 'prompt' }, rw(txt));
   setPanel('menu', h('div', { class: 'pmenu' }, prompt, h('button', { class: 'bigbtn catchbtn', onclick: () => { Sfx.play('tap'); nextProblem(); } }, cute() ? ic('heart') : ic('shield'), ' ', rw(T().catchIt))));
   readLine(prompt, txt);
 }
 async function doCatch() {
-  const B = G.B; const sp = spById(B.catchSp); const foeEl = $('.foe-spr');
+  const B = G.B; const sp = spById(B.catchSp); const foeEl = foeSpr(B.foes[0]);
   setMsg(cute() ? 'Here you go!' : 'Recruiting...');
   await projectile($('.party .spr'), foeEl, cute() ? ic('heart') : ic('crystal'));
   Sfx.play('catch'); foeEl.classList.add('caught'); hearts(foeEl); await wait(900);
@@ -3622,7 +4557,11 @@ async function lose() {
 async function endBattle(won) {
   const B = G.B; const g = G.P.g;
   syncHp();
-  if (won) { g.gems += B.gems || 0; g.wins++; const act = actOf(g.area); g.actWins = g.actWins || {}; g.actWins[act] = (g.actWins[act] || 0) + 1; if (B.o.onWin) B.o.onWin(); }
+  if (won) {
+    g.gems += B.gems || 0; g.wins++; const act = actOf(g.area); g.actWins = g.actWins || {}; g.actWins[act] = (g.actWins[act] || 0) + 1;
+    g.mats = g.mats || {}; for (const [k, n] of Object.entries(B.drops || {})) g.mats[k] = (g.mats[k] || 0) + n;
+    if (B.o.onWin) B.o.onWin(B);
+  }
   if (won && B.type === 'k' && keepsHp()) { healAll(); B.healed = true; }
   Store.save(G.P, true);
   G.B = null;
@@ -3639,7 +4578,19 @@ async function showRewards(B) {
   const rightTxt = cute() ? `${B.stats.c} right the first time!` : `${B.stats.c} of ${B.stats.n} correct on the first try.`;
   const words = B.events.filter(e => e.type === 'word').map(e => e.word);
   if (B.healed) lines.push('Your whole party is fully healed!');
-  if (lines.length) { Sfx.play('level'); await card({ big: ic('party'), title: t.happy, lines: [rightTxt, `+${B.gems || 0} ${CUR().em}`, ...lines], say: t.happy }); }
+  const drops = Object.entries(B.drops || {}).map(([k, n]) => `+${n} ${MATS[G.theme][k].em} ${MATS[G.theme][k].name}`);
+  if (lines.length) { Sfx.play('level'); await card({ big: ic('party'), title: t.happy, lines: [rightTxt, `+${B.gems || 0} ${CUR().em}`, ...drops, ...lines], say: t.happy }); }
+  // a hero reaching level 5 or 12 learns its big move
+  for (const c of party()) {
+    const was = (B.bm0 || {})[c.u] || 0; const bm = bigMove(c);
+    if (bm && bm.stage > was) {
+      Sfx.play('evolve');
+      const up = bm.stage === 2;
+      const title = up ? (cute() ? `${cName(c)}'s big move got bigger: ${bm.name}!` : `${cName(c)}'s big move grew stronger: ${bm.name}!`) : cute() ? `${cName(c)} can do ${bm.name}!` : `${cName(c)} learned ${bm.name}!`;
+      const line = up ? (cute() ? 'It hits even harder now!' : 'It now hits every monster about 30% harder.') : cute() ? 'It hits all the grumpies at once! Fill the power bar to use it.' : 'A big move hits every monster at once, a bit softer on each. Charge the power meter with correct answers, then solve one harder problem to use it.';
+      await card({ big: bm.fx, title, lines: [line], say: title, cls: 'star' });
+    }
+  }
   if (words.length) await learnedWordsCard(words);
   for (const e of B.events.filter(e => e.type === 'mastered')) {
     const name = E.SK[e.skill].kid; const title = e.placed ? t.placed(name) : t.mastered(name);
@@ -3671,7 +4622,7 @@ function openHelp() {
   runHelp(B.prob).then(() => { if (G.B !== B) return; B.phase = 'problem'; B.typed = ''; renderProblem(T().nowYou); B.t0 = performance.now(); });
 }
 function runHelp(pr) { return new Promise(resolve => {
-  const steps = E.helpSteps(pr); let i = 0;
+  const steps = pr.steps || E.helpSteps(pr); let i = 0;
   const body = h('div', { class: 'help-body' });
   const title = h('div', { class: 'help-title' }, rw(T().help));
   const ov = h('div', { class: 'ov help' }, h('div', { class: 'ov-card win help-card', role: 'dialog', 'aria-modal': 'true' },
@@ -3712,7 +4663,8 @@ const VIS = {
       }
     };
     for (let k = 0; k < st.a; k++) { const d = h('button', { class: 'dot full', 'aria-label': 'dot' }); d.onclick = () => tap(d); dots.push(d); }
-    setTimeout(() => setNote(cute() ? `Take away ${st.b}. Tap ${st.b} dots.` : `Take away ${st.b}: tap ${st.b} dots to cross them out.`), 30);
+    const dw = st.b === 1 ? 'dot' : 'dots';
+    setTimeout(() => setNote(cute() ? `Take away ${st.b}. Tap ${st.b} ${dw}.` : `Take away ${st.b}: tap ${st.b} ${dw} to cross ${st.b === 1 ? 'it' : 'them'} out.`), 30);
     return h('div', { class: 'vis' }, note, h('div', { class: 'dots tens' }, dots), btn);
   },
   make10(st, next) {
@@ -3784,10 +4736,10 @@ const VIS = {
         const countLeft = () => { pc.rods.concat(pc.cubes).forEach(e => { e.onclick = null; e.disabled = true; }); countUp(pc.rods.filter(r => !r.classList.contains('x')), pc.cubes.filter(c => !c.classList.contains('x'))); };
         const crossTens = () => {
           if (!Bt) return countLeft();
-          let ct = 0; tell(cute() ? `Now take away ${Bt} tens. Tap ${Bt} sticks.` : `Now take away ${Bt} tens: tap ${Bt} sticks.`);
+          let ct = 0; tell(cute() ? `Now take away ${Bt} ${Bt === 1 ? 'ten' : 'tens'}. Tap ${Bt} ${Bt === 1 ? 'stick' : 'sticks'}.` : `Now take away ${Bt} ${Bt === 1 ? 'ten' : 'tens'}: tap ${Bt} ${Bt === 1 ? 'stick' : 'sticks'}.`);
           pc.rods.forEach(r => { r.disabled = false; r.onclick = () => { if (r.classList.contains('x') || ct >= Bt) return; r.classList.add('x'); ct++; Sfx.play('blip', ct); sayN(ct); if (ct === Bt) setTimeout(countLeft, 450); }; });
         };
-        tell(cute() ? `Take away ${Bo}. Tap ${Bo} cubes.` : `Take away ${Bo} ones: tap ${Bo} cubes.`);
+        tell(cute() ? `Take away ${Bo}. Tap ${Bo} ${Bo === 1 ? 'cube' : 'cubes'}.` : `Take away ${Bo} ${Bo === 1 ? 'one' : 'ones'}: tap ${Bo} ${Bo === 1 ? 'cube' : 'cubes'}.`);
         pc.cubes.forEach(c => { c.disabled = false; c.onclick = () => { if (c.classList.contains('x') || crossed >= Bo) return; c.classList.add('x'); crossed++; Sfx.play('blip', crossed); sayN(crossed); if (crossed === Bo) setTimeout(() => { pc.cubes.forEach(x => { x.onclick = null; x.disabled = true; }); crossTens(); }, 450); }; });
       };
     }
@@ -3879,14 +4831,14 @@ function wordWidget(wq, { onFirst, onDone, note }) {
   return el;
 }
 function nextWord() {
-  const B = G.B; const wq = E.pickWord(G.P);
+  const B = G.B; const wq = B.heldWord || E.pickWord(G.P); B.heldWord = null;
   Object.assign(B, { prob: { isWord: true, word: wq.word, wq, ans: 0 }, typed: '', tries: 0, assisted: false, recorded: false, mode: 'word', phase: 'problem' });
   const c = byU(B.attacker); const who = `${cName(c)}: ${spById(c.sp).move}`;
-  const back = h('button', { class: 'tool ghost wback', onclick: () => { if (B.recorded) return; Sfx.play('tap'); Voice.stop(); showMenu(); } }, rw('Back'));
+  const back = h('button', { class: 'tool ghost wback', onclick: () => { if (B.recorded) return; Sfx.play('tap'); Voice.stop(); B.heldWord = wq; showMenu(); } }, rw('Back'));
   const w = wordWidget(wq, {
     note: who,
     onFirst: right => { B.recorded = true; back.remove(); B.events.push(...E.recordWord(G.P, wq, right)); B.stats.n++; if (right) B.stats.c++; B.words++; },
-    onDone: tries => { const q = tries === 0 ? 1 : tries === 1 ? 0.5 : 0; B.streak = q === 1 ? (B.streak || 0) + 1 : 0; B.tries = tries; finishProblem(q); },
+    onDone: tries => { const q = tries === 0 ? 1 : tries === 1 ? 0.5 : 0; B.streak = q === 1 ? (B.streak || 0) + 1 : 0; B.tries = tries; addPower(q === 1 ? 25 : q > 0 ? 10 : 0); finishProblem(q); },
   });
   setPanel('word', h('div', { class: 'pword' }, w, back));
 }
@@ -3912,7 +4864,9 @@ function wordQuest(npc, idx) {
 /* ---------- walkable mini-worlds ---------- */
 const DIRS = [[1, 0], [-1, 0], [0, 1], [0, -1]];
 const W = { t: 48, walkId: 0, rows: null, ents: [], busy: false };
-const actOf = ai => Math.floor(ai / 2) + 1;
+const actOf = ai => (ai >= MAIN_AREAS ? ai - MAIN_AREAS + 1 : Math.floor(ai / 2) + 1);
+const isSide = ai => ai >= MAIN_AREAS;
+const sideOf = ai => AREAS[G.theme].findIndex(a => a.side && a.parent === ai); // the side area reached from this area (or -1)
 const curAct = () => Math.min(3, G.P.act || 1);
 const gearOf = c => (c && c.gear ? GEAR[G.theme].find(i => i.id === c.gear) || null : null);
 const npcOf = (ai, role) => NPCS[G.theme][ai][role];
@@ -3925,7 +4879,7 @@ function qState(ai, role) {
   return q;
 }
 const TRIAL_WINS = 8; // battles won in an act before the Gate Trial is offered
-const isGateArea = ai => ai % 2 === 1;
+const isGateArea = ai => ai < MAIN_AREAS && ai % 2 === 1;
 
 function mapRows(ai) {
   const rows = MAPS[AREA_MAP[ai]].map(r => r.split(''));
@@ -3934,12 +4888,13 @@ function mapRows(ai) {
 }
 function aState(ai) {
   const g = G.P.g; const s = (g.maps[ai] = g.maps[ai] || { cyc: -1, gems: [], chest: false, mons: {}, items: [] });
-  if (s.cyc !== cyc()) { s.cyc = cyc(); s.gems = []; s.chest = false; } // coins and chests come back after a rest too
+  if (s.cyc !== cyc()) { s.cyc = cyc(); s.gems = []; s.chest = false; s.nodes = []; } // coins, chests and gather spots come back after a rest too
   return s;
 }
 function findChar(rows, ch) { for (let y = 0; y < rows.length; y++) for (let x = 0; x < rows[y].length; x++) if (rows[y][x] === ch) return { x, y }; return null; }
 function spawnAt(ai, from) {
   const rows = mapRows(ai);
+  if (from === 'portal') { const o = findChar(rows, 'O'); if (o) for (const [dx, dy] of DIRS) { const c = rows[o.y + dy] && rows[o.y + dy][o.x + dx]; if (c && '.,'.includes(c)) return { a: ai, x: o.x + dx, y: o.y + dy }; } }
   if (from === 'front') { const e = findChar(rows, 'E'); for (const [dx, dy] of DIRS) { const c = rows[e.y + dy] && rows[e.y + dy][e.x + dx]; if (c && c !== '#') return { a: ai, x: e.x + dx, y: e.y + dy }; } }
   const p = findChar(rows, 'P'); return { a: ai, x: p.x, y: p.y };
 }
@@ -3962,6 +4917,10 @@ function buildEnts(ai) {
     else if (c === 'k' && !g.beaten[ai]) ents.push({ kind: 'guard', x, y, em: area.boss.em, block: true });
     else if (c === '=' && !gateOpen(ai)) ents.push({ kind: 'gate', x, y, em: ic('gate'), block: true });
     else if (c === 'K' && !g.beaten[ai]) ents.push({ kind: 'boss', x, y, em: area.boss.em, block: true });
+    else if (c === 'O' && sideOf(ai) >= 0) { const side = AREAS[G.theme][sideOf(ai)]; ents.push({ kind: 'portal', x, y, em: side.entry, to: sideOf(ai) }); }
+    else if (c === 'F' && npcOf(ai, 'F')) { const n = npcOf(ai, 'F'); ents.push({ kind: 'crafter', x, y, em: n[0], name: n[1], block: true }); }
+    else if (c === 'R' && area.node && !(s.nodes || []).includes(id)) ents.push({ kind: 'node', x, y, em: area.node, id, block: true });
+    else if (c === 'Z' && (g.sboss || {})[ai] !== cyc()) ents.push({ kind: 'sboss', x, y, em: area.boss.em, block: true });
     else if (c === 'E') ents.push({ kind: 'exit', dir: 1, x, y, em: ic('exit') });
     else if (c === 'X') ents.push({ kind: 'exit', dir: -1, x, y, em: ic('exitl') });
   }));
@@ -3972,10 +4931,12 @@ function walkable(x, y) {
   const r = W.rows[y]; if (!r || x < 0 || x >= r.length) return false;
   const c = r[x]; if (c === '#' || c === '~' || c === 'H') return false;
   if (c === 'D' && !cute()) return true;
+  if (c === 'O' && sideOf(G.P.g.area) < 0) return true;
   const e = entAt(x, y); return !(e && e.block);
 }
 function bfs(from, goals) {
   const key = (x, y) => x + ',' + y; const goalSet = new Set(goals.map(p => key(p.x, p.y)));
+  const doorway = (x, y) => { const e = entAt(x, y); return e && (e.kind === 'portal' || e.kind === 'exit'); };
   if (goalSet.has(key(from.x, from.y))) return [];
   const prev = new Map([[key(from.x, from.y), null]]); const q = [from];
   while (q.length) {
@@ -3983,6 +4944,7 @@ function bfs(from, goals) {
     for (const [dx, dy] of DIRS) {
       const nx = cur.x + dx, ny = cur.y + dy, k = key(nx, ny);
       if (prev.has(k) || !walkable(nx, ny)) continue;
+      if (!goalSet.has(k) && doorway(nx, ny)) continue; // don't get pulled through a cave entrance or exit on the way somewhere else
       prev.set(k, cur);
       if (goalSet.has(k)) { const path = [{ x: nx, y: ny }]; let p = cur; while (p && !(p.x === from.x && p.y === from.y)) { path.unshift({ x: p.x, y: p.y }); p = prev.get(key(p.x, p.y)); } return path; }
       q.push({ x: nx, y: ny });
@@ -4039,9 +5001,10 @@ function rewardPop(text) {
   const el = h('div', { class: 'wpop reward', style: { left: `calc(var(--t) * ${p.x + 0.5})`, top: `calc(var(--t) * ${Math.max(0.15, p.y - 0.35)})` } }, text);
   map.append(el); Sfx.play('catch'); setTimeout(() => el.remove(), 2600);
 }
-const rewardText = r => `+${r.gold} ${CUR().em}` + (r.pot ? `   +${r.pot} ${ITEMS[G.theme].potion.em}` : '');
+const matText = m => Object.entries(m || {}).map(([k, n]) => `+${n} ${MATS[G.theme][k].em}`).join('   ');
+const rewardText = r => [r.gold ? `+${r.gold} ${CUR().em}` : '', r.pot ? `+${r.pot} ${ITEMS[G.theme].potion.em}` : '', matText(r.mat)].filter(Boolean).join('   ');
 const INNKEEPER = ['@mp:p-inn', 'Innkeeper'];
-function grant(r) { addGems(r.gold); if (r.pot) addPotions(r.pot); }
+function grant(r) { if (r.gold) addGems(r.gold); if (r.pot) addPotions(r.pot); if (r.mat) { const m = (G.P.g.mats = G.P.g.mats || {}); for (const [k, n] of Object.entries(r.mat)) m[k] = (m[k] || 0) + n; } }
 async function innTalk() {
   const g = G.P.g; const cost = 20 * curAct();
   if (!g.roster.some(c => hpOf(c) < maxHp(c))) return talk(...INNKEEPER, 'Your party looks well rested! Come back when you need a bed.');
@@ -4108,9 +5071,10 @@ async function areaIntro(ai) {
   const area = AREAS[G.theme][ai]; const lines = [];
   if (area.hint) lines.push(cute() ? `${T().bring} ${ELEM[area.hint].icon} ${ELEM[area.hint].cute}!` : `Scouts say: monsters here fear ${ELEM[area.hint].icon} ${ELEM[area.hint].hero}.`);
   if (ai === 0 && G.P.g.world === 1) lines.push(cute() ? 'Tap to walk. Talk to friends with !' : 'Tap to move. Talk to anyone with a ! above them.');
+  if (isSide(ai)) lines.push(cute() ? `Find ${MATS.cute[area.mat].pl} here! ${NPCS.cute[ai].F[1]} can make special things with them.` : `A side area: new monsters, same skills. Gather ${MATS.hero[area.mat].pl} here; ${NPCS.hero[ai].F[1]} forges gear you can't buy in any shop.`);
   if (isGateArea(ai) && G.P.g.world === 1) lines.push(cute() ? 'Light up the stars to open the Star Gate!' : 'Charge this act’s crystals to open the Crystal Gate.');
-  if (ai % 2 === 0 && ai > 0 && G.P.g.world === 1) { const news = E.actSkills(G.P, actOf(ai)).map(id => E.SK[id].kid); lines.push((cute() ? 'New here: ' : 'New skills here: ') + news.join(', ')); }
-  await card({ big: area.icon, title: (G.P.g.world === 1 ? ACT_NAMES[actOf(ai)] + ': ' : '') + area.name, lines, say: area.name });
+  if (ai % 2 === 0 && ai > 0 && ai < MAIN_AREAS && G.P.g.world === 1) { const news = E.actSkills(G.P, actOf(ai)).map(id => E.SK[id].kid); lines.push((cute() ? 'New here: ' : 'New skills here: ') + news.join(', ')); }
+  await card({ big: area.icon, title: (G.P.g.world === 1 && !isSide(ai) ? ACT_NAMES[actOf(ai)] + ': ' : '') + area.name, lines, say: area.name });
 }
 
 /* ---------- moving ---------- */
@@ -4139,6 +5103,7 @@ async function walkPath(path, target) {
     if (e && e.kind === 'gem') pickGem(e);
     else if (e && e.kind === 'item') pickItem(e);
     else if (e && e.kind === 'exit') return useExit(e);
+    else if (e && e.kind === 'portal') return enterSide(e);
   }
   if (target && id === W.walkId) { if (av) av.classList.toggle('flip', target.x < g.pos.x); interact(target); }
   Store.saveLocal(G.P);
@@ -4159,10 +5124,16 @@ function pickItem(e) {
 }
 function useExit(e) {
   const g = G.P.g; const ai = g.area;
+  if (isSide(ai)) { const back = AREAS[G.theme][ai].parent; g.area = back; g.pos = spawnAt(back, 'portal'); Store.save(G.P); return screenWorld(); }
   if (e.dir === -1) { g.area = ai - 1; g.pos = spawnAt(ai - 1, 'front'); Store.save(G.P); return screenWorld(); }
   if (!g.beaten[ai]) return;
-  if (ai === AREAS[G.theme].length - 1) return finishWorld();
+  if (ai === MAIN_AREAS - 1) return finishWorld();
   g.area = ai + 1; g.pos = spawnAt(ai + 1, 'back'); Store.save(G.P); screenWorld();
+}
+// side areas: down the cave, up the beanstalk, aboard the ship / into the candy volcano
+function enterSide(e) {
+  const g = G.P.g; Sfx.play('whoosh');
+  g.area = e.to; g.pos = spawnAt(e.to, 'back'); Store.save(G.P); screenWorld();
 }
 async function finishWorld() {
   const g = G.P.g; Sfx.play('win');
@@ -4188,10 +5159,17 @@ async function interact(e) {
   const g = G.P.g; const ai = g.area; const area = AREAS[G.theme][ai];
   if (e.kind === 'npc') return npcTalk(e.role);
   if (e.kind === 'shop') return openShop();
-  if (e.kind === 'chest') { aState(ai).chest = true; removeEnt(e); const r = { gold: cute() ? 10 : 25, pot: 1 }; grant(r); Store.save(G.P); refreshWorldBits(); rewardPop(rewardText(r)); return; }
+  if (e.kind === 'chest') { aState(ai).chest = true; removeEnt(e); const r = { gold: cute() ? 10 : 25, pot: 1, mat: area.side ? { [area.mat]: 3 } : null }; grant(r); Store.save(G.P); refreshWorldBits(); rewardPop(rewardText(r)); return; }
+  if (e.kind === 'node') { const st = aState(ai); st.nodes = st.nodes || []; st.nodes.push(e.id); removeEnt(e); const r = { gold: 0, mat: { [area.mat]: 2 } }; grant(r); Sfx.play('catch'); Store.save(G.P); rewardPop(matText(r.mat)); return; }
+  if (e.kind === 'crafter') return openCraft(e);
+  if (e.kind === 'sboss') {
+    const ok = await talk(area.boss.em, area.boss.name, (cute() ? `I am ${area.boss.name}! Want my treasure? Beat me!` : `You dare enter my lair? Defeat me and the treasure is yours.`) + (party().length < 3 ? (cute() ? ' Tip: bring 3 friends!' : ' (Tip: a full party of 3 is much stronger.)') : ''), [{ label: T().go, value: true }, { label: cute() ? 'Not yet' : 'Retreat', value: false, alt: true }]);
+    if (ok) startBattle({ type: 's', def: area.boss, onWin: () => { g.sboss = g.sboss || {}; g.sboss[ai] = cyc(); } });
+    return;
+  }
   if (e.kind === 'inn') return innTalk();
   if (e.kind === 'mon') {
-    return startBattle({ type: 'b', def: e.foe, onWin: () => { aState(ai).mons[e.id] = Date.now() + 2 * 60000; const q = qState(ai, 'C'); if (q.st === 'active') q.n++; } });
+    return startBattle({ type: 'b', def: e.foe, onWin: B => { aState(ai).mons[e.id] = Date.now() + 2 * 60000; const q = qState(ai, 'C'); if (q.st === 'active') q.n += B ? B.foes.length : 1; } });
   }
   if (e.kind === 'wild') return startBattle({ type: 'c', catchSp: e.sp });
   const tip = party().length < 3 ? (cute() ? ' Tip: bring 3 friends!' : ' (Tip: a full party of 3 is much stronger.)') : '';
@@ -4257,7 +5235,7 @@ async function npcTalk(role) {
   const g = G.P.g; const ai = g.area; const n = npcOf(ai, role); const q = qState(ai, role);
   const rA = { gold: cute() ? 12 : 30, pot: 1 }, rB = { gold: cute() ? 15 : 35, pot: 0 }, rC = { gold: cute() ? 15 : 35, pot: 0 }, rD = { gold: 12, pot: 0 };
   if (role === 'D') {
-    if (q.st === 'done') return talk(n[0], n[1], 'Good reading! Come back after you rest!');
+    if (q.st === 'done') return talk(n[0], n[1], 'Good reading! Come back after nap time!');
     const ok = await talk(n[0], n[1], 'Hi! Can you find my words?', [{ label: 'Yes!', value: true }, { label: 'Not now', value: false, alt: true }]);
     if (!ok) return;
     for (let i = 0; i < 3; i++) await wordQuest(n, i);
@@ -4266,7 +5244,7 @@ async function npcTalk(role) {
     grant(rD); Store.save(G.P, true); refreshWorldBits(); rewardPop(rewardText(rD)); return;
   }
   if (role === 'A') {
-    if (q.st === 'done') return talk(n[0], n[1], cute() ? 'Thank you! Come back after you rest!' : 'Thank you, friend. Come back after you rest; I may need help again.');
+    if (q.st === 'done') return talk(n[0], n[1], cute() ? 'Thank you! Come back after nap time!' : 'Thank you, friend. Come back tomorrow, or after your party’s next long sleep.');
     const ok = await talk(n[0], n[1], cute() ? 'Hi! Can you help me count?' : 'Ah, a hero! I have a few problems that need a clever mind. Will you help?', [{ label: cute() ? 'Yes!' : 'I’ll help', value: true }, { label: cute() ? 'Not now' : 'Later', value: false, alt: true }]);
     if (!ok) return;
     for (let i = 0; i < 3; i++) await storyProblem(ai, n, i);
@@ -4283,7 +5261,7 @@ async function npcTalk(role) {
     }
     if (q.st === 'active' && q.n >= 3) { q.st = 'done'; q.cyc = cyc(); Sfx.play('win'); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `My ${item}! Thank you! Here are ${rB.gold} gems!` : `You found them! Here are ${rB.gold} gold for your trouble.`); grant(rB); Store.save(G.P, true); screenWorld(); rewardPop(rewardText(rB)); return; }
     if (q.st === 'active') return talk(n[0], n[1], cute() ? `Find ${3 - q.n} more ${em}!` : `Still ${3 - q.n} ${item} out there. Look around!`);
-    return talk(n[0], n[1], cute() ? 'Thank you, friend! Come back after you rest!' : 'Thanks again, hero. Check back after you rest.');
+    return talk(n[0], n[1], cute() ? 'Thank you, friend! Come back after nap time!' : 'Thanks again, hero. Check back tomorrow, or after your party’s next long sleep.');
   }
   if (role === 'C') {
     if (q.st === 'new') {
@@ -4293,7 +5271,7 @@ async function npcTalk(role) {
     }
     if (q.st === 'active' && q.n >= 3) { q.st = 'done'; q.cyc = cyc(); Sfx.play('win'); Store.save(G.P, true); await talk(n[0], n[1], cute() ? `So happy now! Here are ${rC.gold} gems!` : `The raids have stopped! Take ${rC.gold} gold.`); grant(rC); Store.save(G.P, true); refreshWorldBits(); rewardPop(rewardText(rC)); return; }
     if (q.st === 'active') return talk(n[0], n[1], cute() ? `Cheer up ${3 - q.n} more!` : `${3 - q.n} more to go. Tap a monster to fight it.`);
-    return talk(n[0], n[1], cute() ? 'It is so nice here now! Come back after you rest!' : 'Peace at last, thanks to you. Check back after you rest.');
+    return talk(n[0], n[1], cute() ? 'It is so nice here now! Come back after nap time!' : 'Peace at last, thanks to you. Check back tomorrow, or after your party’s next long sleep.');
   }
 }
 function refreshWorldBits() {
@@ -4321,14 +5299,16 @@ function questLog() {
 }
 
 /* ---------- story problems ---------- */
+const one = noun => (noun.endsWith('ies') ? noun.slice(0, -3) + 'y' : noun.endsWith('ches') ? noun.slice(0, -2) : noun.endsWith('s') ? noun.slice(0, -1) : noun);
 function storyFor(pr, ai) {
-  const [noun, em] = STORY_ITEMS[G.theme][ai];
+  const [nouns, em] = STORY_ITEMS[G.theme][ai]; const noun = nouns;
   const { l, r, res } = pr;
   let text;
   if (cute()) {
-    if (pr.form === 'missing') text = `I need ${res} ${noun}. I have ${l}. How many more?`;
-    else if (pr.op === '+') text = `I have ${l} ${noun}. I get ${r} more. How many now?`;
-    else if (pr.op === '-') text = `I have ${l} ${noun}. I give away ${r}. How many are left?`;
+    const N = n => (n === 1 ? one(nouns) : nouns);
+    if (pr.form === 'missing') text = `I need ${res} ${N(res)}. I have ${l}. How many more?`;
+    else if (pr.op === '+') text = `I have ${l} ${N(l)}. I get ${r} more. How many now?`;
+    else if (pr.op === '-') text = `I have ${l} ${N(l)}. I give away ${r}. How many are left?`;
     else if (pr.op === 'x') text = `I have ${l} bags. Each bag has ${r} ${noun}. How many in all?`;
     else text = `I have ${l} ${noun}. I share them with ${r} friends. How many does each friend get?`;
   } else {
@@ -4393,7 +5373,7 @@ function effectText(i) {
 }
 function openShop() {
   const g = G.P.g; const keeper = npcOf(g.area, 'shop');
-  const items = GEAR[G.theme].filter(i => i.act <= curAct());
+  const items = GEAR[G.theme].filter(i => !i.craft && i.act <= curAct());
   const close = () => { ov.remove(); refreshWorldBits(); };
   const list = h('div', { class: 'shop-list' });
   const I = ITEMS[G.theme];
@@ -4498,6 +5478,119 @@ function openMaker() {
   ovRoot.append(ov); draw();
 }
 
+/* ---------- crafting: the recipe is the math ---------- */
+const matName = (k, n) => (n === 1 ? MATS[G.theme][k].name.toLowerCase() : MATS[G.theme][k].pl);
+const haveMat = k => ((G.P.g.mats || {})[k] || 0);
+function recipeNeeds(r) { return cute() ? { ...r.mats } : { [r.main]: r.each * r.parts, ...r.other }; }
+function matsLine(need) { return Object.entries(need).map(([k, n]) => `${n} ${MATS[G.theme][k].em}`).join('  +  '); }
+// a math question in a speech card (used by crafting): resolves true when solved, false after several misses
+function askMath(npc, text, pr, opts = {}) {
+  return new Promise(resolve => {
+    let typed = '', recorded = false, misses = 0;
+    const box = h('span', { class: 'ans' }, '?'); const msg = h('div', { class: 'vmsg' }); const eqSlot = h('div', { class: 'story-eq' });
+    const textEl = h('div', { class: 'story-text' }, rw(text));
+    const record = first => { if (recorded) return; recorded = true; if (opts.record !== false) E.recordAnswer(G.P, pr, { first, untimed: true }); };
+    const showEq = () => eqSlot.replaceChildren(exprEl(pr, '', false));
+    const done = ok => { G.pad = null; setTimeout(() => { ov.remove(); resolve(ok); }, ok ? 700 : 1400); };
+    const helpBtn = h('button', { class: 'tool', onclick: async () => { Sfx.play('tap'); record(false); showEq(); G.pad = null; await runHelp(pr); G.pad = key; msg.replaceChildren(rw(T().nowYou)); } }, ic('bulb'), ' ', rw(cute() ? 'Help' : 'Hint'));
+    const key = k => {
+      if (k === 'ok') {
+        if (!typed) return;
+        if (parseInt(typed, 10) === pr.ans) { record(true); Sfx.play('good'); box.classList.add('ok'); return done(true); }
+        record(false); Sfx.play('oops'); anim(box, 'nope', 400); typed = ''; box.textContent = '?'; box.classList.remove('has'); misses++;
+        let m;
+        if (misses === 1) { showEq(); m = cute() ? 'Look! Here is the math. Try again!' : 'Here’s the math behind it. Try again, or tap Hint.'; }
+        else if (misses < 4) m = cute() ? 'Not yet. Tap Help!' : 'Not quite. Try the Hint.';
+        else { m = cute() ? 'Good trying! Come back soon.' : 'Good effort. Come back and try again.'; msg.replaceChildren(rw(m)); readLine(msg, m); return done(false); }
+        msg.replaceChildren(rw(m)); readLine(msg, m); return;
+      }
+      if (k === 'del') typed = typed.slice(0, -1); else if (typed.length < 3) typed += k;
+      box.textContent = typed || '?'; box.classList.toggle('has', !!typed);
+    };
+    const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win story', role: 'dialog', 'aria-modal': 'true' },
+      h('div', { class: 'story-head' }, h('span', { class: 'talk-face sm' }, npc[0]), h('div', null, h('div', { class: 'talk-name' }, npc[1]), opts.sub ? h('div', { class: 'story-n' }, opts.sub) : null)),
+      h('div', { class: 'story-body' },
+        h('div', { class: 'story-left' }, textEl, opts.pics ? h('div', { class: 'pics' }, opts.pics) : null, eqSlot,
+          h('div', { class: 'story-ans' }, rw('Answer:'), box), msg,
+          h('div', { class: 'ptools' }, h('button', { class: 'tool', 'aria-label': 'Read it to me', onclick: () => readLine(textEl, text, false) }, ic('sound')), helpBtn)),
+        numpad(key))));
+    ovRoot.append(ov); G.pad = key; readLine(textEl, text);
+  });
+}
+const picRow = (em, n) => h('div', { class: 'pics-row' }, Array.from({ length: n }, () => h('span', null, em)));
+function openCraft(e) {
+  const g = G.P.g; g.recipes = g.recipes || {}; g.mats = g.mats || {};
+  const npc = [e.em, e.name]; const M = MATS[G.theme];
+  const list = h('div', { class: 'shop-list' }); const matsEl = h('div', { class: 'craft-mats' });
+  const close = () => { ov.remove(); refreshWorldBits(); };
+  const render = () => {
+    matsEl.replaceChildren(...Object.keys(M).map(k => h('span', { class: 'cmat' }, M[k].em, h('b', null, haveMat(k)), h('small', null, rw(M[k].name)))));
+    const open = RECIPES[G.theme].filter(r => { const side = AREAS[G.theme][r.area]; return g.seen[r.area] || g.seen[side.parent] || g.world > 1; });
+    const later = RECIPES[G.theme].length - open.length;
+    list.replaceChildren(...open.map(r => {
+      const gear = GEAR[G.theme].find(x => x.id === r.gear); const owned = g.bag.includes(gear.id);
+      const need = recipeNeeds(r); const enough = Object.entries(need).every(([k, n]) => haveMat(k) >= n);
+      const how = cute() ? matsLine(r.mats) : `${r.parts} × ${r.each} ${M[r.main].em}` + Object.entries(r.other).map(([k, n]) => `  +  ${n} ${M[k].em}`).join('');
+      return h('div', { class: 'shop-row craft' + (owned ? ' owned' : '') + (enough && !owned ? ' ready' : '') }, h('span', { class: 'shop-em' }, gear.em),
+        h('div', { class: 'shop-info' }, h('div', { class: 'shop-name' }, rw(gear.name)), h('div', { class: 'shop-eff' }, effectText(gear)), h('div', { class: 'craft-need' }, how)),
+        owned ? h('span', { class: 'shop-owned' }, rw(cute() ? 'Got it!' : 'Owned')) : h('button', { class: 'bigbtn buy', onclick: () => craft(r, gear) }, rw(cute() ? 'Make' : 'Forge')));
+    }), later ? h('div', { class: 'ov-line craft-later' }, rw(cute() ? `${later} more to make later!` : `${later} more recipes unlock in later acts.`)) : null);
+  };
+  const craft = async (r, gear) => {
+    Sfx.play('tap'); ov.style.display = 'none';
+    const ok = await craftFlow(npc, r, gear);
+    if (!document.body.contains(ov)) return;
+    ov.style.display = ''; render(); if (ok) refreshWorldBits();
+  };
+  const hello = cute() ? 'Hi! Bring me things and I will make something special!' : 'Bring me materials and I’ll forge gear no shop can sell.';
+  const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win shop craftcard', role: 'dialog', 'aria-modal': 'true' },
+    h('div', { class: 'story-head' }, h('span', { class: 'talk-face sm' }, npc[0]), h('div', null, h('div', { class: 'talk-name' }, npc[1], replayBtn(hello)), h('div', { class: 'talk-text sm' }, rw(hello)))),
+    matsEl, list, h('button', { class: 'bigbtn alt', onclick: () => { Sfx.play('tap'); close(); } }, rw(cute() ? 'Bye!' : 'Leave'))));
+  ovRoot.append(ov); render();
+}
+async function craftFlow(npc, r, gear) {
+  const g = G.P.g; const M = MATS[G.theme];
+  // 1. the recipe question (asked until it has been solved once)
+  if (!g.recipes[r.gear]) {
+    let pr, text, pics = null;
+    if (cute()) {
+      const [[k1, a], [k2, b]] = Object.entries(r.mats);
+      pr = E.factProblem('+', a, b); pr.l = a; pr.r = b;
+      text = `The ${gear.name} needs ${a} ${matName(k1, a)} and ${b} ${matName(k2, b)}. How many things in all?`;
+      pics = [picRow(M[k1].em, a), h('span', { class: 'pics-plus op-plus' }, '+'), picRow(M[k2].em, b)];
+    } else {
+      pr = E.factProblem('x', r.parts, r.each); pr.l = r.parts; pr.r = r.each;
+      text = `The ${gear.name} has ${r.parts} ${r.part}. Each one takes ${r.each} ${matName(r.main, 2)}. How many ${matName(r.main, 2)} in all?`.replace('How many iron ore', 'How much iron ore');
+    }
+    const solved = await askMath(npc, text, pr, { pics, sub: cute() ? 'Recipe' : 'Recipe math' });
+    if (!solved) return false;
+    g.recipes[r.gear] = true; Store.saveLocal(G.P);
+  }
+  // 2. enough materials? If not, work out how many more
+  const need = recipeNeeds(r);
+  const short = Object.entries(need).filter(([k, n]) => haveMat(k) < n);
+  if (!short.length) {
+    for (const [k, n] of Object.entries(need)) g.mats[k] -= n;
+    g.bag.push(gear.id); Sfx.play('catch'); Store.save(G.P, true);
+    const title = cute() ? `You made a ${gear.name}!` : `${npc[1]} forged the ${gear.name}!`;
+    await card({ big: gear.em, title, lines: [effectText(gear)], say: title, cls: 'star' });
+    await equipPicker(gear);
+    return true;
+  }
+  const [k, n] = short[0]; const have = haveMat(k);
+  if (have > 0 && n - have > 0 && n <= 20) {
+    const pr = cute() ? { op: '+', form: 'missing', l: have, r: null, res: n, ans: n - have, say: `${have} plus what makes ${n}`, skill: null, steps: [{ kind: 'takeAway', a: n, b: have }] } : E.factProblem('-', n, have);
+    const text = cute() ? `You need ${n} ${matName(k, n)}. You have ${have}. How many more?` : `You need ${n} ${matName(k, n)}. You have ${have}. How many more do you need?`;
+    const solved = await askMath(npc, text, pr, { record: !cute(), pics: cute() ? [picRow(M[k].em, have)] : null, sub: cute() ? 'How many more?' : 'Count what’s missing' });
+    if (!solved) return false;
+  }
+  const where = AREAS[G.theme].find(a => a.side && a.mat === k);
+  const tip = k === COMMON_MAT[G.theme] ? (cute() ? 'Win battles to get them!' : 'Every monster you beat can drop them.') : (cute() ? `Look in ${where.name}!` : `Monsters and gather spots in the ${where.name} have them.`);
+  const lines = short.map(([kk, nn]) => `${M[kk].em} ${haveMat(kk)} of ${nn}`);
+  await talk(npc[0], npc[1], (cute() ? `Find ${n - have} more ${matName(k, n - have)}! ` : `Bring me ${n - have} more ${matName(k, 2)}. `) + tip + ' ' + lines.join('   '));
+  return false;
+}
+
 /* ---------- grown-up dashboard ---------- */
 const PD = { data: {}, sel: null, fam: null, cell: null, confirmReset: false };
 const STATUS_LBL = { locked: 'Locked', ready: 'Up next', learning: 'Practicing', mastered: 'Mastered' };
@@ -4556,7 +5649,11 @@ function overview(P) {
       tile('Story', P.g.world > 1 ? `World ${P.g.world}` : ACT_NAMES[Math.min(3, P.act || 1)], actLine(P)),
       tile('Practicing now', learning.length ? learning.join(', ') : '–', null)));
 }
-function moneyLine(P) { const it = P.g.items || {}; return P.id === 'hamstey' ? `${P.g.gems} gold · ${it.potion || 0} potions` : `${P.g.gems} gems · ${it.potion || 0} jams`; }
+function moneyLine(P) {
+  const it = P.g.items || {}; const crafted = GEAR[P.id === 'hamstey' ? 'hero' : 'cute'].filter(x => x.craft && (P.g.bag || []).includes(x.id)).map(x => x.name);
+  return (P.id === 'hamstey' ? `${P.g.gems} gold · ${it.potion || 0} potions` : `${P.g.gems} gems · ${it.potion || 0} jams`) + (crafted.length ? ` · crafted: ${crafted.join(', ')}` : '');
+}
+function challengeLine(P) { const c = P.ch || { n: 0, c: 0 }; return c.n ? `Big-move challenge problems: ${c.c} of ${c.n} right on the first try (${P.id === 'hamstey' ? 'two-step, like 3 × 4 + 5' : 'three numbers, like 2 + 3 + 1'}).` : ''; }
 function gateCount(P) {
   const act = Math.min(3, P.act || 1); const ids = E.actSkills(P, act);
   let lit = ids.filter(id => E.charged(P, id)).length, n = ids.length;
@@ -4661,6 +5758,8 @@ function aboutCard() {
   return h('section', { class: 'pd-card about' }, h('h2', null, 'How the game adapts'),
     h('p', null, 'Every fact (like 7 + 5 or 6 × 8) has its own record. Missed facts come back within a few problems, shaky ones show up often, and solid ones return less and less: spaced repetition. About a quarter of problems review mastered skills so they stay fresh, and new facts come in a few at a time.'),
     h('p', null, 'Each area is a small map with monsters, coins or gems, a chest, a shop and quests (plus Miss Tia’s word quest for Red Panda). Quests, coins and chests come back after every rest. Story-problem answers count toward accuracy but never toward speed, since reading takes time.'),
+    h('p', null, 'Each act also has an optional side area (a cave, a cloud kingdom, and a sunken ship or candy volcano) with new monsters at the same math level, a side boss that returns after every rest, gather spots and a crafter. Crafting is the only way to get the best gear, and the recipe is the math: Hamstey Man works out parts × amount each, Red Panda adds two amounts, and both figure out how many more they need.'),
+    h('p', null, 'Battles can have up to 3 monsters for Hamstey Man and 2 for Red Panda; they pick a target for each attack. Heroes learn a big move at level 5 (stronger at 12). Correct answers fill a power meter; a big move hits every monster for a bit less than a single attack (60% each) and asks one harder problem first.'),
     h('p', null, 'Each act ends at a gate with one crystal (star) per skill. A crystal fills as they practice and lights at about 80% right with enough tries, before full mastery. After 8 battle wins in an act, the Gate Trial opens: beat the gate guardian in a battle that mixes every kind of problem from the act, and the gate opens. Skills keep being practiced until truly mastered.'),
     h('p', null, 'The answer is the attack damage, and hitting the enemy’s weakness doubles it. A wrong answer opens a step-by-step breakdown (dots, ten-frames, arrays, tens and ones) and then they try again for half damage.'),
     h('p', null, 'When progress saves to your Claude account, you can ask Claude in the chat how either kid is doing and it can read these records.'));
@@ -4692,7 +5791,7 @@ function summaryText(P, r) {
 }
 function reportText(P) {
   const r = E.report(P); const d = new Date().toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
-  const L = [`Mathlings report: ${pName(P)} (${d})`, `Story: ${storyLine(P)} · ${moneyLine(P)}`, trendLine(r), '', summaryText(P, r), '', 'Doing well'];
+  const L = [`Mathlings report: ${pName(P)} (${d})`, `Story: ${storyLine(P)} · ${moneyLine(P)}`, trendLine(r), challengeLine(P), '', summaryText(P, r), '', 'Doing well'].filter((x, i) => x !== '' || i !== 3);
   (r.strengths.length ? r.strengths : [{ title: 'Not enough data yet', detail: '' }]).forEach(x => L.push(`- ${x.title}${x.detail ? ': ' + x.detail : ''}`));
   L.push('', 'Working on');
   (r.working.length ? r.working : [{ title: 'Nothing in progress (waiting for the next act)', pct: null, needs: [] }]).forEach(x => L.push(`- ${x.title}${x.pct != null ? `: ${x.pct}% of the way` : ''}${x.needs.length ? ` (needs ${x.needs.join('; ')})` : ''}`));
@@ -4726,6 +5825,7 @@ function reportCard(P) {
       h('button', { class: 'act', onclick: () => copyText(reportText(P), status, 'Report copied. Paste it into a message or a Claude chat.') }, 'Copy report')),
     h('p', { class: 'rc-sum' }, summaryText(P, r)),
     h('p', { class: 'pd-help' }, trendLine(r)),
+    challengeLine(P) ? h('p', { class: 'pd-help' }, challengeLine(P)) : null,
     status,
     h('div', { class: 'rc-cols' },
       col('good', 'Doing well', good, 'Nothing mastered yet. Strengths show up here as they play.'),
