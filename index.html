@@ -1260,6 +1260,188 @@ img.art.px { image-rendering: pixelated; image-rendering: crisp-edges; }
   .wtop .top-title .actlbl { display: none; }
 }
 
+/* ---------- version 7 ---------- */
+/* ---------- v7: chips under the map and above the town ---------- */
+.v7chips { flex: 0 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: stretch; justify-content: flex-end; max-width: 52%; }
+.chip { position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; font-family: var(--font-d); font-size: 18px; line-height: 1.05; cursor: pointer; }
+.t-hero .chip { border-radius: 4px; font-size: 10px; padding: 6px 10px; }
+.chip-ic { display: inline-grid; place-items: center; flex: 0 0 auto; }
+.chip-ic img.art { width: 30px; height: 30px; }
+.t-hero .chip-ic img.art { width: 26px; height: 26px; }
+.chip-txt { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; text-align: left; }
+.chip-txt b { font-family: var(--font-b); font-weight: 400; font-size: 15px; color: var(--muted); }
+.t-hero .chip-txt b { font-size: 17px; }
+.chip.hero.on { background: #5a4a10; box-shadow: 0 0 0 3px #ffd23f, 0 0 18px rgba(255,210,63,.55); }
+.chip.hero.on b { color: #ffd23f; }
+.chip.streak { cursor: default; }
+.chip.ready, .chip.raid { animation: chipglow 1.2s ease-in-out infinite; }
+.chip.raid { background: #7a1020; }
+.t-cute .chip.raid { background: #ffd6e0; }
+@keyframes chipglow { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,210,63,0); } 50% { box-shadow: 0 0 0 4px rgba(255,210,63,.9); } }
+.chip.egg.ready { animation: chipglow 1s ease-in-out infinite; }
+.egg-pips { display: flex; gap: 4px; }
+.egg-pips i { width: 12px; height: 12px; border-radius: 50%; background: color-mix(in srgb, var(--ink) 15%, transparent); }
+.egg-pips i.on { background: #ff7ab6; box-shadow: 0 0 0 2px #fff; }
+.wobble img.art, .wobble { animation: wobble 1.6s ease-in-out infinite; transform-origin: 50% 90%; }
+@keyframes wobble { 0%, 60%, 100% { transform: rotate(0); } 70% { transform: rotate(-9deg); } 80% { transform: rotate(8deg); } 90% { transform: rotate(-4deg); } }
+.egg-big img.art { width: 1em; height: 1em; }
+.egg-big.hatching img.art { animation: hatch .5s ease-in-out infinite; }
+@keyframes hatch { 0%, 100% { transform: rotate(-12deg) scale(1); } 50% { transform: rotate(12deg) scale(1.08); } }
+.vbar { display: flex; flex-wrap: wrap; gap: 10px; padding: 8px calc(var(--gut-r) + 8px) 0 calc(var(--gut-l) + 8px); }
+.tri { display: inline-flex; gap: 6px; }
+.tri img.art { width: .8em; height: .8em; }
+@media (orientation: portrait) {
+  .wbottom { flex-wrap: wrap; }
+  .v7chips { max-width: 100%; flex: 1 1 100%; justify-content: center; order: 3; }
+}
+
+/* ---------- v7: battle ---------- */
+.atk.guard { border-color: #61d0ff; }
+.t-hero .atk.guard { background: #0a3a6a; }
+.tag.st { font-size: .78em; padding: 2px 6px; }
+.tag.st img.art { width: 1.1em; height: 1.1em; vertical-align: -0.2em; }
+.tag.st.charge { background: #b0203a; color: #fff; animation: chipglow .9s ease-in-out infinite; }
+.tag.st.adapt { background: #3a3f7a; color: #fff; }
+.tag.st.burn { background: #7a2a10; color: #ffd0b0; }
+.tag.st.ice { background: #0d4a7a; color: #d9f1ff; }
+.tag.st.zap { background: #6a5a10; color: #fff3a0; }
+.tag.st.rule { background: #4a1a6a; color: #fff; }
+.pop.tagpop.combo3 { margin-top: -2.8em; color: #ff9cf0; font-size: clamp(26px, 4.8vmin, 42px); }
+.pop.tagpop.status { margin-top: 1.6em; font-size: clamp(18px, 3.2vmin, 28px); color: #ffffff; }
+.pop.tagpop.status.fire { color: #ffb08a; } .pop.tagpop.status.ice { color: #aee6ff; } .pop.tagpop.status.zap { color: #fff27a; }
+.pop.burn { color: #ffb08a; font-size: clamp(24px, 4.4vmin, 38px); }
+.pop img.art { width: 1em; height: 1em; vertical-align: -0.12em; }
+.mem .spr.guarded { animation: guardglow .9s ease-in-out; }
+@keyframes guardglow { 0%, 100% { filter: none; } 40% { filter: drop-shadow(0 0 12px #61d0ff) brightness(1.3); } }
+.qw-spr { font-size: 64px; }
+
+/* ---------- v7: math card (quick wins, friend care) ---------- */
+.mpop .talk-face .spr { font-size: 54px; }
+.mpop .story-eq { margin: 6px 0; }
+.pics-row span.gone { opacity: .25; filter: grayscale(1); }
+
+/* ---------- v7: gear slots ---------- */
+.gearcard { width: min(720px, 100%); }
+.slots { display: grid; gap: 12px; width: 100%; text-align: left; }
+.slot { padding: 10px 12px; display: grid; gap: 8px; }
+.slot-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.slot-head b { font-family: var(--font-d); }
+.t-hero .slot-head b { font-size: 12px; }
+.slot-ic img.art { width: 30px; height: 30px; }
+.slot-cur { color: var(--muted); }
+.slot-cur small { font-size: .8em; }
+.slot-none { color: var(--muted); font-size: .9em; }
+.slotnote { color: var(--muted); }
+
+/* ---------- v7: Wanted board ---------- */
+.bountyscr .board { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: center; align-items: center; gap: 16px; padding: 12px calc(var(--gut-r) + 12px) 12px calc(var(--gut-l) + 12px); overflow: auto; background: linear-gradient(#6b4a2a, #4a3018); }
+@media (orientation: portrait) { .bountyscr .board { grid-template-columns: 1fr; } }
+.poster { display: grid; justify-items: center; align-content: start; gap: 8px; padding: 14px 12px; text-align: center; background: #f3e2b8; color: #3a2410; border-color: #8a5a2b; box-shadow: 0 6px 0 rgba(0,0,0,.3); transform: rotate(-1deg); }
+.poster:nth-child(2) { transform: rotate(1deg); }
+.t-hero .poster { background: #f3e2b8; color: #3a2410; border-color: #8a5a2b; }
+.poster.done { opacity: .6; filter: grayscale(.6); }
+.poster-head { font-family: var(--font-d); font-size: 22px; letter-spacing: 2px; color: #8a1a10; }
+.t-hero .poster-head { font-size: 16px; }
+.poster-spr .spr { font-size: 130px; }
+@media (orientation: portrait) { .poster-spr .spr { font-size: 64px; } .poster { grid-template-columns: auto 1fr; text-align: left; justify-items: start; } .poster-spr { grid-row: span 4; } .poster-head { grid-column: 2; } }
+.poster-name { font-family: var(--font-d); font-size: 15px; line-height: 1.3; }
+.t-hero .poster-name { font-size: 11px; }
+.poster-rule { display: flex; align-items: center; gap: 6px; font-size: 20px; line-height: 1.1; }
+.poster-rule img.art { width: 24px; height: 24px; }
+.poster-pay { font-family: var(--font-d); font-size: 14px; color: #1f6a20; }
+.t-hero .poster-pay { font-size: 11px; }
+.poster-pay small { font-family: var(--font-b); font-size: 16px; color: #6a4a10; }
+.poster .bigbtn { font-size: 14px; padding: 10px 24px; }
+
+/* ---------- v7: castle ---------- */
+.plot.cst .plot-art { position: relative; }
+.plot.cst .plot-art::before { content: ''; }
+.cst1 .plot-art img.art { clip-path: inset(72% 0 0 0); }
+.cst2 .plot-art img.art { clip-path: inset(45% 0 0 0); }
+.cst3 .plot-art img.art { clip-path: inset(18% 0 0 0); }
+.cst0 .plot-art img.art, .cst1 .plot-art img.art, .cst2 .plot-art img.art, .cst3 .plot-art img.art { filter: drop-shadow(0 0 0 transparent); }
+.cst .plot-art { background: radial-gradient(closest-side, rgba(255,255,255,.12), transparent); }
+.cart.cst0 .plot-art img.art { opacity: .25; filter: grayscale(1); }
+.castlescr .cbody { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); gap: 14px; padding: 10px calc(var(--gut-r) + 12px) 12px calc(var(--gut-l) + 12px); overflow: auto; }
+@media (orientation: portrait) { .castlescr .cbody { grid-template-columns: 1fr; } }
+.ccol { display: grid; align-content: start; gap: 12px; padding: 12px; }
+.cart { height: 150px; display: grid; place-items: center; background: linear-gradient(transparent 60%, rgba(0,0,0,.18)); border-radius: 8px; }
+.cart .plot-art img.art { max-height: 140px; }
+.cstages { display: grid; gap: 6px; }
+.cstage { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; background: rgba(0,0,0,.12); }
+.cstage.done { background: rgba(108,255,159,.15); }
+.cstage.next { box-shadow: inset 0 0 0 2px var(--hl); }
+.cs-n { font-family: var(--font-d); font-size: 14px; text-align: center; }
+.cs-n img.art { width: 22px; height: 22px; }
+.cs-name { font-family: var(--font-d); font-size: 11px; }
+.t-cute .cs-name { font-size: 16px; }
+.cs-st { color: var(--muted); }
+.cstage .bigbtn { font-size: 11px; padding: 8px 12px; }
+.crank { display: flex; align-items: center; gap: 10px; }
+.crank b { font-family: var(--font-d); font-size: 13px; }
+.room-ic img.art { width: 40px; height: 40px; }
+.ccol2 { display: grid; align-content: start; gap: 10px; min-width: 0; }
+.rooms { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+.room { display: grid; justify-items: center; align-content: start; gap: 4px; padding: 10px 8px; text-align: center; opacity: .82; }
+.room.open { opacity: 1; box-shadow: 0 0 0 3px var(--good); }
+.room.ready { opacity: 1; box-shadow: 0 0 0 3px var(--hl); animation: chipglow 1.2s ease-in-out infinite; }
+.room-name { font-family: var(--font-d); font-size: 11px; line-height: 1.3; }
+.t-cute .room-name { font-size: 15px; }
+.room-perk { font-size: 18px; line-height: 1.1; color: var(--muted); }
+.room-need { width: 100%; display: grid; gap: 4px; font-size: 17px; line-height: 1.1; }
+.room-need .xpbar { height: 8px; }
+.room-st.ok { color: var(--good); font-family: var(--font-d); font-size: 11px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.room-st img.art { width: 18px; height: 18px; }
+.bigbtn.sm, .room .bigbtn { font-size: 11px; padding: 8px 14px; }
+.craid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 10px 14px; }
+.craid.ready { box-shadow: 0 0 0 3px #ff5d73; animation: chipglow 1.2s ease-in-out infinite; }
+
+/* ---------- v7: friend care and dress up (Red Panda) ---------- */
+.carescr .care-grid { flex: 1 1 auto; min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; padding: 12px calc(var(--gut-r) + 12px) 12px calc(var(--gut-l) + 12px); align-content: start; }
+.care-card { display: grid; justify-items: center; gap: 8px; padding: 12px 10px; text-align: center; }
+.care-card .care-spr { font-size: 84px; }
+.care-card.happy { animation: happyhop .9s ease-in-out 2; box-shadow: 0 0 0 4px #ff7ab6; }
+@keyframes happyhop { 0%, 100% { transform: translateY(0); } 30% { transform: translateY(-14px); } 60% { transform: translateY(0); } }
+.care-btns { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.cbtn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; border: 3px solid var(--line); background: var(--panel2); font-family: var(--font-d); font-size: 18px; }
+.cbtn .chip-ic img.art { width: 26px; height: 26px; }
+.cbtn.done { border-color: #ff7ab6; background: #ffe3f0; }
+.cbtn.done img.art { width: 22px; height: 22px; }
+.costume { position: absolute; left: 50%; top: -14%; width: 52%; transform: translateX(-50%); pointer-events: none; z-index: 2; line-height: 0; }
+.costume img.art { width: 100% !important; height: auto !important; max-width: none; }
+.costume.cos-bunny { top: -30%; width: 58%; }
+.costume.cos-daisy, .costume.cos-tulip, .costume.cos-star { left: 70%; width: 36%; top: -6%; }
+.costume.cos-ribbon { left: 70%; width: 42%; top: -4%; }
+.dresscard { width: min(680px, 100%); }
+.dress-prev .spr { font-size: 110px; }
+.dress-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; width: 100%; }
+.dress-item { display: grid; justify-items: center; gap: 4px; padding: 8px; font-family: var(--font-d); font-size: 15px; }
+.dress-item.on { box-shadow: 0 0 0 4px #ff7ab6; }
+.dress-item.shop { opacity: .9; }
+.dress-ic img.art { width: 56px; height: 56px; }
+.dress-cost { font-family: var(--font-b); font-size: 15px; display: inline-flex; align-items: center; gap: 2px; }
+.dress-cost.cant { color: var(--bad); }
+.dress-cost img.art { width: 18px; height: 18px; }
+.ov-cos { width: 1em !important; height: 1em !important; }
+.ov-big img.ov-cos { width: 96px !important; height: 96px !important; }
+
+/* five battle buttons (with Guard): two rows in portrait so nothing gets cut off */
+@media (orientation: portrait) {
+  .atks.many { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-columns: auto; grid-auto-rows: minmax(0, 1fr); }
+}
+@media (orientation: landscape) { .atks.many { grid-auto-columns: minmax(0, 250px); } }
+
+/* tester fixes: bigger tap targets and easier-to-see care pictures */
+.cstage .bigbtn, .room .bigbtn, .bigbtn.sm { min-height: 44px; padding: 10px 16px; }
+.room .bigbtn { min-width: 120px; }
+.mpop.care .pics-row img.art { width: 34px; height: 34px; }
+.mpop.care .pics-row span.gone { opacity: .35; filter: grayscale(1); transform: scale(.8); display: inline-block; }
+
+/* group fights: status tags shrink to icons so the three monster cards don't collide */
+.foes.n2 .tag.st, .foes.n3 .tag.st { font-size: .62em; padding: 1px 4px; }
+.foes.n3 .st-t { display: none; }
+@media (orientation: portrait) { .foes.n2 .st-t { display: none; } }
+
 </style>
 </head>
 <body>
@@ -3835,9 +4017,9 @@ const Engine = (() => {
     hamstey: { mastered: ['add5', 'add10', 'make10', 'teen', 'sub5', 'sub10', 'teensub', 'add20'], learning: ['sub20', 'add2d_easy', 'mul2510'], ea: 30,
       settings: { maxActive: 4, speedGoalMs: 4000, autoRead: false, retryFirst: true, timed: false } },
     redpanda: { mastered: [], learning: ['add5'], ea: 4,
-      settings: { maxActive: 2, speedGoalMs: 6000, autoRead: true, retryFirst: false, timed: false, words: true, wordRate: 0.5 } },
+      settings: { maxActive: 2, speedGoalMs: 6000, autoRead: true, retryFirst: false, timed: false, words: true, wordRate: 'auto' } },
   };
-  const SETTINGS_V = 5;
+  const SETTINGS_V = 6;
 
   // ---------- helpers ----------
   const median = (arr) => { if (!arr.length) return Infinity; const s = [...arr].sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
@@ -3877,6 +4059,9 @@ const Engine = (() => {
     if (!p.sv || p.sv < 5) { // version 6: correct matters, fast doesn't (speed still recorded); more skills at once; more reading
       if (p.id === 'hamstey') { p.settings.timed = false; p.settings.maxActive = Math.max(4, p.settings.maxActive || 3); }
       if (p.id === 'redpanda' && (p.settings.wordRate || 0.35) <= 0.35) p.settings.wordRate = 0.5;
+    }
+    if (!p.sv || p.sv < 6) { // version 7: lighter reading for Red Panda (1 in 4 turns until she knows 10 words, then 1 in 3)
+      if (p.id === 'redpanda') p.settings.wordRate = 'auto';
     }
     p.sv = SETTINGS_V;
     p.wf = p.wf || {}; p.wseq = p.wseq || 0;
@@ -4992,6 +5177,7 @@ function repairP(P) {
   P.g.custom = P.g.custom || [];
   P.g.mats = P.g.mats || {}; P.g.recipes = P.g.recipes || {}; P.g.sboss = P.g.sboss || {}; P.g.power = P.g.power || 0;
   P.play = Object.assign(f.play, P.play || {});
+  v7Repair(P); // version 7: gear slots, castle stages, egg, tips
   return P;
 }
 async function loadProfile(id) {
@@ -5263,8 +5449,9 @@ function sprite(em, { stage = 0, elem = null, cls = '' } = {}) {
 function cSprite(c, cls = '') {
   const sp = spById(c.sp); const st = stageOf(c.lv);
   const el = sprite(String(sp.em).startsWith('@') ? `${sp.em}:${st}` : sp.em, { stage: st, elem: sp.e, cls });
-  const gr = c.gear && GEAR[G.theme] ? GEAR[G.theme].find(i => i.id === c.gear) : null;
+  const gr = GEAR[G.theme] ? gearOf(c) : null;
   if (gr) el.append(h('span', { class: 'badge-gear' }, gr.em));
+  if (cute()) addCostume(el, c); // version 7: Red Panda's dress-up
   if (c.shiny) { el.classList.add('shiny'); el.append(h('span', { class: 'shine' }, ic('shiny'))); }
   return el;
 }
@@ -5347,7 +5534,7 @@ function goToSleep() {
   Store.save(G.P, true);
 }
 setInterval(() => {
-  if (!G.P || document.hidden || !['world', 'battle', 'team', 'village', 'tower'].includes(G.screen)) return;
+  if (!G.P || document.hidden || !['world', 'battle', 'team', 'village', 'tower', 'castle', 'bounty', 'care'].includes(G.screen)) return;
   rollDay(); G.P.play.ms += 1000;
   const dk = E.dayKey(); const lg = (G.P.log[dk] = G.P.log[dk] || { n: 0, c: 0 }); lg.ms = (lg.ms || 0) + 1000;
   if (G.P.play.ms % 15000 === 0) Store.saveLocal(G.P);
@@ -5441,7 +5628,7 @@ function screenTeam() {
         keepsHp() ? hpLine(hpOf(c), maxHp(c)) : null,
         h('div', { class: 'xpbar', title: 'Experience' }, h('i', { style: { width: Math.round((c.xp / xpNeed(c.lv)) * 100) + '%' } })),
         h('div', { class: 'ccard-move' }, rw(sp.move)),
-        h('span', { class: 'ccard-gear', role: 'button', tabindex: '0', onclick: e => { e.stopPropagation(); Sfx.play('tap'); gearMenu(c); } }, gearOf(c) ? `${gearOf(c).em} ${gearOf(c).name}` : `${ic('bag')} ${cute() ? 'Gear' : 'Equip'}`));
+        h('span', { class: 'ccard-gear', role: 'button', tabindex: '0', onclick: e => { e.stopPropagation(); Sfx.play('tap'); gearMenu(c); } }, gearList(c).length ? gearList(c).map(i => i.em).join(' ') + (gearList(c).length < 3 ? ` ${ic('bag')}+` : '') : `${ic('bag')} ${cute() ? 'Gear' : 'Equip'}`));
     };
     const box = g.roster.filter(c => !inParty.has(c.u));
     body = h('div', { class: 'teambody' },
@@ -5454,7 +5641,7 @@ function screenTeam() {
       g.custom.length < 3 ? h('div', { class: 'maker-row' }, h('button', { class: 'bigbtn alt maker-open', onclick: () => openMaker() }, ic(cute() ? 'sparkle' : 'hammer'), ' ', rw(cute() ? 'Make a friend' : 'Create a hero'), ` (${3 - g.custom.length} left)`)) : null);
   }
   setScreen('team', h('div', { class: 'team' },
-    h('div', { class: 'top' }, homeBtn(), h('div', { class: 'top-title' }, t.team), h('button', { class: 'ib wide', onclick: screenWorld }, rw(t.map + ' ›')), soundBtn(), gearBtn()),
+    h('div', { class: 'top' }, homeBtn(), h('div', { class: 'top-title' }, t.team), G.teamBack ? h('button', { class: 'ib wide', onclick: () => { const f = G.teamBack; G.teamBack = null; f(); } }, rw('Wanted ›')) : h('button', { class: 'ib wide', onclick: screenWorld }, rw(t.map + ' ›')), soundBtn(), gearBtn()),
     tabs, body));
 }
 // collected materials (for crafting)
@@ -5494,7 +5681,7 @@ function bagView() {
     matsStrip(),
     h('div', { class: 'bag-list' }, rows),
     owned.length ? h('div', { class: 'tlabel' }, 'Gear') : null,
-    owned.length ? h('div', { class: 'bag-gear' }, owned.map(i => { const who = g.roster.find(o => o.gear === i.id); return h('button', { class: 'gear-row', onclick: () => equipPicker(i).then(screenTeam) }, h('span', { class: 'shop-em' }, i.em), h('span', { class: 'shop-name' }, i.name), h('span', { class: 'shop-eff' }, effectText(i)), h('span', { class: 'gear-state' }, who ? cName(who) : 'Not equipped')); })) : null);
+    owned.length ? h('div', { class: 'bag-gear' }, owned.map(i => { const who = wearer(i.id); return h('button', { class: 'gear-row', onclick: () => equipPicker(i).then(screenTeam) }, h('span', { class: 'shop-em' }, i.em), h('span', { class: 'shop-name' }, i.name), h('span', { class: 'shop-eff' }, effectText(i)), h('span', { class: 'gear-state' }, who ? cName(who) : 'Not equipped')); })) : null);
 }
 // potion heals about half, hipotion heals fully, feather wakes up a knocked-out friend
 function itemFits(k, hp, mx) { return k === 'feather' ? hp <= 0 : hp > 0 && hp < mx; }
@@ -5594,27 +5781,30 @@ function updatePower() {
 // o = { type: 'b' | 'c' | 'k' | 's' | 't', def, catchSp, onWin(B), after() }
 function startBattle(o) {
   Sfx.play('tap'); W.walkId++;
-  if (o.type !== 'w' && keepsHp() && party().every(c => hpOf(c) <= 0)) {
+  if (!isTemp(o) && keepsHp() && party().every(c => hpOf(c) <= 0)) {
     talk(...INNKEEPER, `Your party is too hurt to fight! Use a potion from your bag ${ic('bag')}, or rest at the inn ${ic('inn')}.`);
     return;
   }
   let foes;
   if (o.type === 'w') foes = [o.foe]; // the Speed Tower brings its own monster
+  else if (o.foes) foes = o.foes; // version 7: raids bring their own waves
   else if (o.type === 'c') { const sp = spById(o.catchSp); foes = [makeFoe({ id: 'wild-' + sp.id, em: sp.em, name: sp.names[0], weak: TYPE_WEAK[sp.e], resist: sp.e }, 'c')]; }
   else {
-    const n = groupSize(o.type); const area = curArea();
+    const n = o.minions ? 1 + o.minions : groupSize(o.type); const area = curArea();
     foes = [makeFoe(o.def, o.type, n)];
-    for (let i = 1; i < n; i++) foes.push(makeFoe(pick(area.foes), 'b', n));
+    for (let i = 1; i < n; i++) foes.push(makeFoe(pick(area.foes), 'b', o.minions ? 3 : n));
   }
   foes.forEach((f, i) => { f.i = i; });
+  if (o.rule) applyRule(foes[0], o.rule); // version 7: Wanted bosses and remixed bosses bring a special rule
   // rare shiny monsters: odd colors, sparkles, triple gold; a shiny recruit stays shiny forever
   if (o.type === 'b' || o.type === 'c') foes.forEach(f => { if (Math.random() < (o.type === 'c' ? SHINY_CATCH : SHINY_RATE) || G.forceShiny) { f.shiny = true; f.name = (cute() ? 'Shiny ' : 'Shiny ') + f.name; } });
   // Final Fantasy style: two of the same monster become "A" and "B"
   { const base = foes.map(f => f.name); foes.forEach((f, i) => { const same = foes.filter((x, j) => base[j] === base[i]); if (same.length > 1) f.name = base[i] + ' ' + 'ABC'[same.indexOf(f)]; }); }
-  const hp = {}; party().forEach(c => { hp[c.u] = o.type === 'w' ? (o.hp && o.hp[c.u] != null ? o.hp[c.u] : maxHp(c)) : keepsHp() ? hpOf(c) : maxHp(c); });
+  const hp = {}; party().forEach(c => { hp[c.u] = isTemp(o) ? (o.hp && o.hp[c.u] != null ? o.hp[c.u] : maxHp(c)) : keepsHp() ? hpOf(c) : maxHp(c); });
   const lit0 = G.P.g.world === 1 ? new Set(gateBits(actOf(G.P.g.area)).filter(b => b.lit).map(b => b.id)) : new Set();
   const bm0 = {}; party().forEach(c => { bm0[c.u] = bmStage(c); });
-  G.B = { type: o.type, o, foes, foe: foes[0], hp, catchSp: o.catchSp || null, rewards: [], events: [], stats: { n: 0, c: 0 }, phase: 'intro', purpose: 'attack', gems: 0, lit0, bm0, words: 0, drops: {} };
+  G.B = { type: o.type, o, foes, foe: foes[0], hp, catchSp: o.catchSp || null, rewards: [], events: [], stats: { n: 0, c: 0 }, phase: 'intro', purpose: 'attack', gems: 0, lit0, bm0, words: 0, drops: {},
+    heroMode: heroModeOn() && o.type !== 'w', lastEl: null, eturn: 0, guard: 0, combos: 0 };
   screenBattle();
   introBattle();
 }
@@ -5630,7 +5820,7 @@ function battleGems(type) {
 async function introBattle() {
   const B = G.B; const t = T(); const n = B.foes.length; const f = B.foes[0];
   const many = cute() ? `${n === 2 ? 'Two' : 'Three'} grumpies!` : `${B.foes.map(x => x.name).join(', ')} attack!`;
-  const line = (B.type === 'w' ? `${cute() ? 'Floor' : 'Floor'} ${B.o.floor}! ` : '') + (B.type === 't' ? (cute() ? 'Star Test! ' : 'Gate Trial! ') : B.type === 'k' || B.type === 's' ? t.boss + ' ' : '') + (B.type === 'c' ? (cute() ? `${f.name} is shy!` : `A wild ${f.name} appears!`) : n > 1 ? many : t.grumpy(f.name));
+  const line = (B.o.label ? B.o.label + ' ' : '') + (B.type === 'w' ? `${cute() ? 'Floor' : 'Floor'} ${B.o.floor}! ` : '') + (B.type === 't' ? (cute() ? 'Star Test! ' : 'Gate Trial! ') : B.type === 'k' || B.type === 's' ? t.boss + ' ' : '') + (B.type === 'c' ? (cute() ? `${f.name} is shy!` : `A wild ${f.name} appears!`) : n > 1 ? many : t.grumpy(f.name));
   const shiny = B.foes.find(x => x.shiny);
   if (shiny) Sfx.play('star');
   const line2 = shiny ? (cute() ? `Wow! A shiny one! ${ic('shiny')}` : `${ic('shiny')} A rare shiny ${shiny.name.replace('Shiny ', '')}! ${ic('shiny')}`) : null;
@@ -5638,6 +5828,8 @@ async function introBattle() {
   setMsg(line); if (f.boss) Sfx.play('phase');
   await readLine($('.panel'), line, true);
   await wait(cute() ? 300 : 900);
+  if (G.B === B && f.rule && !cute()) { const rl = ruleLine(f); setMsg(rl); await wait(1700); }
+  if (G.B === B) await battleTips(B);
   if (G.B === B) showMenu();
 }
 function screenBattle() {
@@ -5668,6 +5860,7 @@ function updateFoe(f) {
   if (f.weak) tags.append(h('span', { class: 'tag weak' }, rw(T().weak), ' ', known(f, 'weak') ? elemTag(f.weak) : h('span', { class: 'q' }, '?')));
   if (f.resist && known(f, 'resist')) tags.append(h('span', { class: 'tag resist' }, rw(T().strong), ' ', elemTag(f.resist)));
   if (f.atkEl && G.B.foes.length === 1) tags.append(h('span', { class: 'tag uses' }, rw(cute() ? 'Uses' : 'Attacks with'), ' ', elemTag(f.atkEl)));
+  if (!cute()) tags.append(...statusTags(f)); // version 7: burning, frozen, shocked, adapted, charging, special rules
 }
 function updateMem(c) {
   const el = $(`.mem[data-u="${c.u}"]`); if (!el) return;
@@ -5691,13 +5884,16 @@ function showMenu() {
       h('span', { class: 'atk-em' }, sp.em), h('span', { class: 'atk-who' }, cName(c)), h('span', { class: 'atk-move' }, rw(sp.move)), elemTag(sp.e),
       ready ? h('span', { class: 'bm-badge' }, ic('power')) : null);
   });
+  // version 7: when a boss is charging a big attack, the party can Guard (solve one problem to raise shields)
+  if (!cute() && aliveFoes().some(f => f.charge)) btns.push(h('button', { class: 'atk guard', onclick: chooseGuard },
+    h('span', { class: 'atk-em' }, ic('shield')), h('span', { class: 'atk-who' }, 'Whole party'), h('span', { class: 'atk-move' }, 'Guard'), h('span', { class: 'etag' }, 'Block it')));
   const I = ITEMS[G.theme]; const total = Object.keys(I).reduce((a, k) => a + (G.P.g.items[k] || 0), 0);
   btns.push(h('button', { class: 'atk potion', disabled: total <= 0 || null, onclick: itemMenu },
     h('span', { class: 'atk-em' }, I.potion.em), h('span', { class: 'atk-who' }, `${total} left`), h('span', { class: 'atk-move' }, rw('Items')), h('span', { class: 'etag' }, rw(cute() ? 'Help' : 'Heal'))));
-  setPanel('menu', h('div', { class: 'pmenu' }, prompt, h('div', { class: 'atks' }, btns)));
+  setPanel('menu', h('div', { class: 'pmenu' }, prompt, h('div', { class: 'atks' + (btns.length > 4 ? ' many' : '') }, btns)));
   readLine(prompt, T().who);
 }
-function syncHp() { if (!keepsHp() || !G.B || G.B.type === 'w') return; party().forEach(c => { if (G.B.hp[c.u] != null) c.hp = Math.max(0, Math.min(maxHp(c), G.B.hp[c.u])); }); }
+function syncHp() { if (!keepsHp() || !G.B || isTemp(G.B.o)) return; party().forEach(c => { if (G.B.hp[c.u] != null) c.hp = Math.max(0, Math.min(maxHp(c), G.B.hp[c.u])); }); }
 function backBtn(fn) { return h('button', { class: 'atk back', onclick: () => { Sfx.play('tap'); fn(); } }, h('span', { class: 'atk-move' }, rw('‹ Back'))); }
 function itemMenu() {
   const B = G.B; if (B.phase !== 'menu') return; Sfx.play('tap');
@@ -5752,7 +5948,7 @@ function moveMenu(c, bm) {
   const txt = cute() ? 'Which one?' : `${cName(c)}: choose a move`;
   const btns = [
     h('button', { class: `atk el-${sp.e}`, onclick: () => { Sfx.play('tap'); useMove('normal'); } }, h('span', { class: 'atk-em' }, sp.em), h('span', { class: 'atk-who' }, rw(cute() ? 'One' : 'One target')), h('span', { class: 'atk-move' }, rw(sp.move)), elemTag(sp.e)),
-    h('button', { class: `atk bigmove el-${sp.e}`, onclick: () => { Sfx.play('tap'); useMove('big'); } }, h('span', { class: 'atk-em' }, bm.fx), h('span', { class: 'atk-who' }, rw(n === 1 ? (cute() ? 'Just one' : 'Softer hit') : cute() ? 'All of them!' : `All ${n} · softer`)), h('span', { class: 'atk-move' }, rw(bm.name)), elemTag(sp.e)),
+    h('button', { class: `atk bigmove el-${sp.e}`, onclick: () => { Sfx.play('tap'); useMove('big'); } }, h('span', { class: 'atk-em' }, bm.fx), h('span', { class: 'atk-who' }, rw(n === 1 ? (cute() ? 'Super hit!' : 'Finisher · ×1.5') : cute() ? 'All of them!' : `All ${n} · softer`)), h('span', { class: 'atk-move' }, rw(bm.name)), elemTag(sp.e)),
     backBtn(showMenu)];
   setPanel('menu', h('div', { class: 'pmenu' }, h('div', { class: 'prompt' }, rw(txt), replayBtn(txt)), h('div', { class: 'atks' }, btns)));
 }
@@ -5790,10 +5986,12 @@ async function nextProblem() {
   // some of Red Panda's turns are sight-word turns (never two in a row)
   const S = G.P.settings;
   if (B.heldWord && B.purpose === 'attack') return nextWord();
-  if (cute() && S.words && B.type !== 'w' && B.purpose === 'attack' && !B.held && !B.lastWord && Math.random() < (S.wordRate ?? 0.35)) { B.lastWord = true; return nextWord(); }
+  if (cute() && S.words && B.type !== 'w' && B.purpose === 'attack' && !B.held && !B.lastWord && Math.random() < wordRateNow(G.P)) { B.lastWord = true; return nextWord(); }
   B.lastWord = false;
   const held = B.purpose === 'attack' && B.held; B.held = null; // a problem they backed out of comes back
-  const prob = held || (B.type === 't' ? E.pickFrom(G.P, E.actSkills(G.P, actOf(G.P.g.area))) : E.pickProblem(G.P));
+  // version 7: Hero Mode mixes in tougher problems (and pays double gold)
+  const hero = !held && B.heroMode && B.type !== 't' && B.purpose !== 'catch' && Math.random() < HERO_SHARE ? heroProblem(G.P) : null;
+  const prob = held || hero || (B.type === 't' ? E.pickFrom(G.P, E.actSkills(G.P, actOf(G.P.g.area))) : E.pickProblem(G.P));
   Object.assign(B, { prob, typed: '', tries: 0, assisted: false, recorded: false, mode: 'answer', phase: 'problem', tFirst: 0 });
   renderProblem();
   B.t0 = performance.now();
@@ -5819,8 +6017,9 @@ function exprEl(pr, typed, big = true) {
 }
 function renderProblem(note) {
   const B = G.B; const pr = B.prob;
-  const who = B.purpose === 'catch' ? (cute() ? 'Solve to make a friend!' : 'Solve it to recruit!') : (() => {
+  const who = B.purpose === 'catch' ? (cute() ? 'Solve to make a friend!' : 'Solve it to recruit!') : B.purpose === 'guard' ? 'Guard! Solve it to raise your shields.' : (() => {
     const c = byU(B.attacker);
+    if (pr.hero) return `${ic('crown')} Hero problem! ${cName(c)}: ${spById(c.sp).move}` + (B.foes.length > 1 ? ` → ${B.foe.name}` : '');
     if (B.moveKind === 'big') { const bm = bigMove(c); return `${cName(c)}: ${bm.name}!` + (cute() ? '' : ' (hits all)'); }
     return `${cName(c)}: ${spById(c.sp).move}` + (B.foes.length > 1 ? ` → ${B.foe.name}` : '') + ((B.streak || 0) >= 2 ? `  ${ic('fire')}×${B.streak}` : ''); })();
   const noteEl = h('div', { class: 'pnote' + (note ? ' alert' : '') }, rw(note || who));
@@ -5847,7 +6046,8 @@ function padKey(k) {
 }
 function recordAns(first, ms) {
   const B = G.B; B.recorded = true;
-  if (B.prob.challenge) E.recordChallenge(G.P, first);
+  if (B.prob.hero) recordHero(first);
+  else if (B.prob.challenge) E.recordChallenge(G.P, first);
   else { const ev = E.recordAnswer(G.P, B.prob, { first, ms }); B.events.push(...ev); }
   B.stats.n++; if (first) B.stats.c++;
 }
@@ -5863,7 +6063,8 @@ function submit() {
     const q = B.tries === 0 && !B.assisted ? 1 : B.tries <= 1 ? 0.5 : 0;
     B.streak = q === 1 ? (B.streak || 0) + 1 : 0;
     // correct answers charge the power meter for big moves (not the big move's own problem)
-    if (!pr.challenge && B.purpose === 'attack') addPower(q === 1 ? 25 + ((B.streak || 0) >= 3 ? 10 : 0) + powerBoost() : q > 0 ? 10 : 0);
+    if ((!pr.challenge || pr.hero) && B.purpose === 'attack') addPower(q === 1 ? 25 + ((B.streak || 0) >= 3 ? 10 : 0) + powerBoost() : q > 0 ? 10 : 0);
+    if (q === 1) eggTick(); // version 7: Red Panda's surprise egg grows with right answers
     return finishProblem(q);
   }
   B.streak = 0; B.tries++; Sfx.play('oops'); anim($('.panel .ans'), 'nope', 400); B.typed = '';
@@ -5893,6 +6094,7 @@ async function finishProblem(q) {
   Sfx.play(q === 0 && B.purpose !== 'catch' ? 'blip' : 'good');
   await wait(380);
   if (B.purpose === 'catch') return doCatch();
+  if (B.purpose === 'guard') return doGuard(q);
   if (B.moveKind === 'big') return doBigMove(q);
   return doAttack(q);
 }
@@ -5918,16 +6120,17 @@ function hearts(atEl) { for (let i = 0; i < 7; i++) setTimeout(() => popText(atE
 
 async function doAttack(q) {
   const B = G.B, f = B.foe, c = byU(B.attacker), sp = spById(c.sp);
-  const isWord = !!B.prob.isWord;
-  const base = isWord ? dmgTarget() : Math.max(1, B.prob.ans);
-  const pow = isWord ? 1 : E.power(B.prob.skill, dmgTarget());
-  const mult = sp.e === f.weak ? 2 : sp.e === f.resist ? 0.5 : 1;
-  const gear = gearOf(c); const gp = (gear && gear.p) || 0;
-  const charm = gear && gear.el === sp.e ? 1.5 : 1;
+  const isWord = !!B.prob.isWord; const heroP = !!B.prob.hero;
+  const base = isWord ? dmgTarget() : heroP ? Math.round(dmgTarget() * HERO_HIT) : Math.max(1, B.prob.ans); // hero problems hit a little harder than usual
+  const pow = isWord || heroP ? 1 : E.power(B.prob.skill, dmgTarget());
+  const mult = elemMult(f, sp.e); // weakness, resistance, plus version 7 armor and adapting
+  const gs = gearStats(c); const gp = gs.p;
+  const charm = gs.els.has(sp.e) ? 1.5 : 1;
   const combo = q === 1 && (B.streak || 0) >= 3 ? 1.5 : 1;
   const spd = B.type === 'w' && q === 1 && !isWord ? speedTier(B) : null; // Speed Tower: quick answers hit harder
+  const fx = q > 0 && !cute() ? elemFx(B, f, sp.e) : null; // version 7: element combos and shocks
   const raw = base * pow * mult * q;
-  const dmg = q === 0 ? 0 : Math.max(1, Math.ceil(raw * (1 + gp) * charm * combo * (spd ? spd.mul : 1)));
+  const dmg = q === 0 ? 0 : Math.max(1, Math.ceil(raw * (1 + gp) * charm * combo * (spd ? spd.mul : 1) * (fx ? fx.mul : 1) * roomDmg()));
   const m = pow * mult; const bonus = dmg - Math.ceil(raw);
   setMsg(T().used(cName(c), sp.move));
   if (q === 0) {
@@ -5955,11 +6158,14 @@ async function doAttack(q) {
   if (charm > 1) setTimeout(() => popText(meEl, ELEM[sp.e].icon + '+', 'tagpop'), 150);
   if (spd && spd.mul > 1) { setTimeout(() => popText(foeEl, `${ic('stopwatch')} ${spd.name} ×${spd.mul}`, 'tagpop speed'), 420); if (spd.mul > 1.3) Sfx.play('star'); B.fast = (B.fast || 0) + 1; }
   if (mult === 2) { setTimeout(() => popText(foeEl, T().super, 'tagpop'), 200); discover(f, 'weak'); }
-  else if (mult === 0.5) { setTimeout(() => popText(foeEl, T().meh, 'tagpop dim'), 200); discover(f, 'resist'); }
+  else if (f.adapt === sp.e && !cute()) setTimeout(() => popText(foeEl, 'Adapted!', 'tagpop dim'), 200);
+  else if (f.rule === 'lock' && sp.e !== f.lockEl && !cute()) setTimeout(() => popText(foeEl, 'Armor!', 'tagpop dim'), 200);
+  else if (mult <= 0.5) { setTimeout(() => popText(foeEl, T().meh, 'tagpop dim'), 200); if (sp.e === f.resist) discover(f, 'resist'); }
   f.hp = Math.max(0, f.hp - dmg); updateFoe(f);
   giveXp(c, q === 1 ? 10 : 5, B.rewards);
+  const extra = fx ? await elemAfter(B, f, sp.e, mult, dmg, fx) : [];
   await wait(900);
-  return afterHits(B, [f]);
+  return afterHits(B, [f, ...extra]);
 }
 // after any hit: defeated monsters cheer/vanish, bosses may change form, then the monsters' turn
 async function afterHits(B, hit) {
@@ -5982,7 +6188,7 @@ async function afterHits(B, hit) {
 async function doBigMove(q) {
   const B = G.B, c = byU(B.attacker), sp = spById(c.sp), bm = bigMove(c);
   G.P.g.power = 0; updatePower();
-  const gear = gearOf(c); const gp = (gear && gear.p) || 0; const charm = gear && gear.el === sp.e ? 1.5 : 1;
+  const gs = gearStats(c); const gp = gs.p; const charm = gs.els.has(sp.e) ? 1.5 : 1;
   const meEl = $(`.mem[data-u="${c.u}"] .spr`);
   setMsg(T().used(cName(c), bm.name));
   anim(meEl, 'lunge', 380); Sfx.play('whoosh');
@@ -5996,36 +6202,53 @@ async function doBigMove(q) {
   anim($('.field'), 'bigflash', 700);
   await Promise.all(targets.map((f, k) => wait(k * 90).then(() => projectile(meEl, foeSpr(f), bm.fx))));
   Sfx.play('super'); anim($('.field'), 'quake', 420);
+  // version 7: against a single monster the big move is a Finisher (one big hit, x1.5) that also breaks its guard
+  const finisher = targets.length === 1;
   for (const f of targets) {
-    const mult = sp.e === f.weak ? 2 : sp.e === f.resist ? 0.5 : 1;
-    const dmg = Math.max(1, Math.ceil(dmgTarget() * BIG_SPLASH * (bm.stage === 2 ? 1.3 : 1) * mult * q * (1 + gp) * charm));
+    const mult = elemMult(f, sp.e);
+    const dmg = Math.max(1, Math.ceil(dmgTarget() * (finisher ? 1.5 : BIG_SPLASH) * (bm.stage === 2 ? 1.3 : 1) * mult * q * (1 + gp) * charm * roomDmg() * roomBig()));
     const el = foeSpr(f); anim(el, 'hurt', 480);
-    popText(el, String(dmg), mult === 2 ? 'dmg big' : 'dmg');
+    popText(el, String(dmg), mult === 2 || finisher ? 'dmg big' : 'dmg');
+    if (finisher) setTimeout(() => popText(el, cute() ? 'Super hit!' : 'FINISHER!', 'tagpop combo2'), 120);
     if (mult === 2) { setTimeout(() => popText(el, T().super, 'tagpop'), 200); discover(f, 'weak'); }
-    else if (mult === 0.5) { setTimeout(() => popText(el, T().meh, 'tagpop dim'), 200); discover(f, 'resist'); }
+    else if (mult <= 0.5) { setTimeout(() => popText(el, T().meh, 'tagpop dim'), 200); if (sp.e === f.resist) discover(f, 'resist'); }
     f.hp = Math.max(0, f.hp - dmg); updateFoe(f);
+    if (finisher && !cute()) breakGuard(f);
   }
+  if (!cute()) B.lastEl = sp.e;
   giveXp(c, q === 1 ? 14 : 7, B.rewards);
   await wait(1000);
   return afterHits(B, targets);
 }
 // each monster still standing may strike (in a group, each one a little less often)
 async function enemyTurn() {
-  const B = G.B; const foes = aliveFoes(); const chance = foes.length === 1 ? (foes[0].boss ? 0.55 : 0.5) : 0.32;
+  const B = G.B; B.eturn = (B.eturn || 0) + 1;
+  // version 7 (Hamstey Man): burns tick, healing bosses heal, then each monster may be frozen, dazed, charging or attacking
+  if (!cute()) { await statusTicks(B); if (G.B !== B) return; if (!aliveFoes().length) { await win(); return; } }
+  const foes = aliveFoes(); const chance = foes.length === 1 ? (foes[0].boss ? 0.55 : 0.5) : 0.32;
   for (const f of foes) {
-    if (G.B !== B || Math.random() > chance) continue;
-    const alive = party().filter(m => B.hp[m.u] > 0); if (!alive.length) return;
-    const t = pick(alive); const gear = gearOf(t);
-    const resMul = gear && gear.res && gear.res === f.atkEl ? 0.5 : 1;
-    const dmg = Math.max(1, Math.round((f.atk + rnd(-1, 1)) * (1 - ((gear && gear.g) || 0)) * resMul));
-    const foeEl = foeSpr(f), tEl = $(`.mem[data-u="${t.u}"] .spr`);
-    setMsg(cute() ? `${f.name}: ${pick(['Hmph!', 'Grr!', 'Splash!', 'Bonk!'])}` : `${f.name} attacks ${cName(t)}!`);
-    anim(foeEl, 'lunge-r', 380); await wait(260);
-    Sfx.play('enemy'); anim(tEl, 'hurt', 480); popText(tEl, '−' + dmg, 'dmg bad');
-    B.hp[t.u] = Math.max(0, B.hp[t.u] - dmg); updateMem(t); syncHp();
-    await wait(800);
-    if (B.hp[t.u] <= 0) { setMsg(T().nap(cName(t))); Sfx.play('faint'); await wait(1200); }
+    if (G.B !== B || f.hp <= 0) continue;
+    if (!cute()) {
+      const act = await specialTurn(B, f); if (G.B !== B) return;
+      if (act) continue;
+    }
+    const times = !cute() && f.rule === 'twice' ? 2 : 1;
+    for (let k = 0; k < times; k++) {
+      if (G.B !== B || Math.random() > chance) continue;
+      const alive = party().filter(m => B.hp[m.u] > 0); if (!alive.length) return;
+      const t = pick(alive); const gs = gearStats(t);
+      const resMul = gs.res.has(f.atkEl) ? 0.5 : 1;
+      const dmg = Math.max(1, Math.round((f.atk + rnd(-1, 1)) * (1 - gs.g) * resMul * roomDef()));
+      const foeEl = foeSpr(f), tEl = $(`.mem[data-u="${t.u}"] .spr`);
+      setMsg(cute() ? `${f.name}: ${pick(['Hmph!', 'Grr!', 'Splash!', 'Bonk!'])}` : `${f.name} attacks ${cName(t)}!` + (k ? ' Again!' : ''));
+      anim(foeEl, 'lunge-r', 380); await wait(260);
+      Sfx.play('enemy'); anim(tEl, 'hurt', 480); popText(tEl, '−' + dmg, 'dmg bad');
+      B.hp[t.u] = Math.max(0, B.hp[t.u] - dmg); updateMem(t); syncHp();
+      await wait(800);
+      if (B.hp[t.u] <= 0) { setMsg(T().nap(cName(t))); Sfx.play('faint'); await wait(1200); }
+    }
   }
+  B.guard = 0;
 }
 async function win() {
   const B = G.B; B.phase = 'done'; G.pad = null;
@@ -6033,9 +6256,10 @@ async function win() {
   B.foes.forEach(f => { const el = foeSpr(f); if (!el || el.classList.contains('cheer') || el.classList.contains('poof')) return; if (cute()) { el.classList.add('cheer'); hearts(el); } else el.classList.add('poof'); });
   setMsg(T().happy); readLine($('.panel'), T().happy, true);
   party().forEach(m => giveXp(m, 4 + 2 * (B.foes.length - 1), B.rewards));
-  const luck = party().some(m => { const gr = gearOf(m); return gr && gr.luck; }) ? 1.25 : 1;
+  const luck = party().some(m => gearStats(m).luck) ? 1.25 : 1;
   const shinies = B.foes.filter(f => f.shiny).length;
   B.gems = B.o.gems != null ? B.o.gems : Math.round(battleGems(B.type) * (1 + 0.5 * (B.foes.length - 1)) * luck * (1 + 2 * shinies));
+  B.gold0 = B.gems; B.gems = Math.round(B.gems * goldMul(B)); // version 7: Hero Mode doubles it, hunt streaks and the Treasury add more
   B.drops = B.o.drops || rollDrops(B);
   if (shinies) { const g = G.P.g; g.shinyBook = g.shinyBook || {}; if (B.type !== 'c') B.foes.filter(f => f.shiny).forEach(f => { g.shinyBook[f.id] = (g.shinyBook[f.id] || 0) + 1; }); /* recruits count on the team, not in the book */ B.drops[COMMON_MAT[G.theme]] = (B.drops[COMMON_MAT[G.theme]] || 0) + 2 * shinies; B.shinyWin = shinies; }
   setTimeout(() => { popText(foeEl, `+${B.gems} ${CUR().em}`, 'tagpop gem'); Sfx.play('blip', 7); }, 500);
@@ -6077,14 +6301,16 @@ async function doCatch() {
 async function lose() {
   const B = G.B; B.phase = 'done'; Sfx.play('faint');
   setMsg(T().allNap); await readLine($('.panel'), T().allNap, true); await wait(1500);
-  if (keepsHp() && B.type !== 'w') { syncHp(); party().forEach(c => { c.hp = Math.max(hpOf(c), Math.ceil(maxHp(c) / 2)); }); }
+  if (keepsHp() && !isTemp(B.o)) { syncHp(); party().forEach(c => { c.hp = Math.max(hpOf(c), Math.ceil(maxHp(c) / 2)); }); }
+  if (!isTemp(B.o)) huntReset();
   G.B = null; Store.save(G.P); if (B.o.back) return B.o.back(false, B); screenWorld();
 }
 async function endBattle(won) {
   const B = G.B; const g = G.P.g;
   syncHp();
   if (won) {
-    g.gems += B.gems || 0; g.wins++; const act = actOf(g.area); g.actWins = g.actWins || {}; if (B.type !== 'w') g.actWins[act] = (g.actWins[act] || 0) + 1; /* tower wins don't open the Gate Trial */
+    g.gems += B.gems || 0; g.wins++; const act = actOf(g.area); g.actWins = g.actWins || {}; if (!isTemp(B.o)) g.actWins[act] = (g.actWins[act] || 0) + 1; /* tower and raid wins don't open the Gate Trial */
+    if (B.type === 'b') huntWin(); // version 7: hunt streak
     g.mats = g.mats || {}; for (const [k, n] of Object.entries(B.drops || {})) g.mats[k] = (g.mats[k] || 0) + n;
     if (B.o.onWin) B.o.onWin(B);
   }
@@ -6141,6 +6367,7 @@ async function showRewards(B) {
     Sfx.play('evolve'); const title = t.evolve(r.from, r.to);
     await card({ big: cSprite(r.c, 'ov-spr evolving'), title, say: title, cls: 'evolve' });
   }
+  await afterBattleV7(B); // version 7: star gifts and egg hatching (Red Panda), rank-ups (Hamstey Man)
   Store.save(G.P, true);
 }
 
@@ -6368,7 +6595,7 @@ function nextWord() {
   const w = readingWidget(wq, {
     note: who,
     onFirst: right => { B.recorded = true; back.remove(); B.events.push(...E.recordReading(G.P, wq, right)); B.stats.n++; if (right) B.stats.c++; B.words++; },
-    onDone: tries => { const q = tries === 0 ? 1 : tries === 1 ? 0.5 : 0; B.streak = q === 1 ? (B.streak || 0) + 1 : 0; B.tries = tries; addPower(q === 1 ? 25 + powerBoost() : q > 0 ? 10 : 0); finishProblem(q); },
+    onDone: tries => { const q = tries === 0 ? 1 : tries === 1 ? 0.5 : 0; B.streak = q === 1 ? (B.streak || 0) + 1 : 0; B.tries = tries; addPower(q === 1 ? 25 + powerBoost() : q > 0 ? 10 : 0); if (q === 1) eggTick(); finishProblem(q); },
   });
   setPanel('word', h('div', { class: 'pword' }, w, back));
 }
@@ -6438,7 +6665,7 @@ const actOf = ai => (ai >= MAIN_AREAS ? ai - MAIN_AREAS + 1 : Math.floor(ai / 2)
 const isSide = ai => ai >= MAIN_AREAS;
 const sideOf = ai => areaList().findIndex(a => a.side && a.parent === ai); // the side area reached from this area (or -1)
 const curAct = () => Math.min(3, G.P.act || 1);
-const gearOf = c => (c && c.gear ? GEAR[G.theme].find(i => i.id === c.gear) || null : null);
+const gearOf = c => gearList(c)[0] || null; // version 7: up to 3 gear slots (see gearList / gearStats)
 const npcOf = (ai, role) => { const n = NPCS[G.theme][ai] && NPCS[G.theme][ai][role]; const q = areaDef(ai).qitem; return n && role === 'B' && q ? [n[0], n[1], q[0], q[1]] : n; };
 // quests come back after every rest (and every new day): a finished quest from an earlier rest turns into a new one
 const cyc = () => G.P.play.cyc || 0;
@@ -6530,7 +6757,8 @@ function screenWorld() {
   if (isAsleep()) return screenRest();
   if (G.P.play.ms >= limitMs()) { goToSleep(); return screenRest(); }
   const g = G.P.g; const ai = g.area; const area = areaDef(ai); const t = T();
-  W.rows = mapRows(ai);
+  W.rows = mapRows(ai); G.teamBack = null;
+  if (g.hunt && g.hunt.a !== ai) g.hunt = null; // version 7: a hunt streak lasts while you stay in one land
   if (!g.pos || g.pos.a !== ai) g.pos = spawnAt(ai, 'back');
   W.ents = buildEnts(ai);
   { const pc = W.rows[g.pos.y] && W.rows[g.pos.y][g.pos.x]; if (!pc || (!walkable(g.pos.x, g.pos.y) && !'EX'.includes(pc))) g.pos = spawnAt(ai, 'back'); } // an old save's spot can be a wall on the new big maps
@@ -6565,8 +6793,8 @@ function screenWorld() {
   const wrap = h('div', { class: 'wwrap' + (W.big ? ' big' : '') }, W.big ? bigView(map, ai) : map);
   setScreen('world', h('div', { class: `world bg-${area.bg}` }, worldTop(ai), wrap, worldBottom(ai)));
   sizeWorld();
-  if (!g.seen[ai]) { g.seen[ai] = true; Store.saveLocal(G.P); setTimeout(async () => { await areaIntro(ai); ensureNames(); }, 250); }
-  else setTimeout(ensureNames, 250);
+  if (!g.seen[ai]) { g.seen[ai] = true; Store.saveLocal(G.P); setTimeout(async () => { await areaIntro(ai); ensureNames(); whatsNew(); }, 250); }
+  else setTimeout(() => { ensureNames(); whatsNew(); }, 250);
 }
 // heroes recruited before naming existed get their one-time name here
 async function ensureNames() {
@@ -6736,7 +6964,8 @@ function worldBottom(ai) {
   return h('div', { class: 'wbottom' },
     h('button', { class: 'pstrip win', onclick: () => { G.teamTab = 'team'; screenTeam(); } }, party().map(c => h('div', { class: 'pmini' + (keepsHp() && hpOf(c) <= 0 ? ' out' : '') }, cSprite(c), h('div', { class: 'pmini-lv' }, keepsHp() ? cName(c) : 'Lv ' + c.lv),
       keepsHp() ? h('div', { class: 'minihp' + (hpOf(c) / maxHp(c) < 0.3 ? ' low' : '') }, h('i', { style: { width: (hpOf(c) / maxHp(c) * 100) + '%' } })) : null))),
-    bits.length ? h('div', { class: 'qtrack win' }, bits) : h('div', { class: 'qtrack win hint-tap' }, rw(cute() ? 'Tap to walk!' : 'Tap anywhere to move.')));
+    bits.length ? h('div', { class: 'qtrack win' }, bits) : h('div', { class: 'qtrack win hint-tap' }, rw(cute() ? 'Tap to walk!' : 'Tap anywhere to move.')),
+    v7Chips(ai));
 }
 async function areaIntro(ai) {
   const area = areaDef(ai); const lines = [];
@@ -6842,19 +7071,21 @@ async function interact(e) {
   }
   if (e.kind === 'inn') return innTalk();
   if (e.kind === 'mon') {
-    return startBattle({ type: 'b', def: e.foe, onWin: B => { aState(ai).mons[e.id] = Date.now() + 2 * 60000; const q = qState(ai, 'C'); if (q.st === 'active') q.n += B ? B.foes.length : 1; } });
+    const onWin = B => { aState(ai).mons[e.id] = Date.now() + 2 * 60000; const q = qState(ai, 'C'); if (q.st === 'active') q.n += B ? B.foes.length : 1; };
+    if (quickWinOK(ai)) return quickWin(e, onWin); // version 7: monsters in a land you already cleared go down with one right answer
+    return startBattle({ type: 'b', def: e.foe, onWin });
   }
   if (e.kind === 'wild') return startBattle({ type: 'c', catchSp: e.sp });
   const tip = party().length < 3 ? (cute() ? ' Tip: bring 3 friends!' : ' (Tip: a full party of 3 is much stronger.)') : '';
   if (e.kind === 'guard') {
     const ok = await talk(area.boss.em, area.boss.name, (cute() ? `I am ${area.boss.name}! You want to pass? Beat me!` : `None shall pass the ${area.boss.name}! Fight me if you dare.`) + tip, [{ label: T().go, value: true }, { label: cute() ? 'Not yet' : 'Retreat', value: false, alt: true }]);
-    if (ok) startBattle({ type: 'k', def: area.boss, onWin: () => { g.beaten[ai] = true; } });
+    if (ok) startBattle({ type: 'k', def: area.boss, rule: storyRule(ai), onWin: () => { g.beaten[ai] = true; } });
     return;
   }
   if (e.kind === 'gate') return gateTalk(ai, e);
   if (e.kind === 'boss') {
     const ok = await talk(area.boss.em, area.boss.name, (cute() ? `I am the ${area.boss.name}. I am SO grumpy!` : (G.P.g.world > 1 ? `You made it this far? Face the ${area.boss.name}!` : `So, you opened the gate. Face the ${area.boss.name}!`)) + tip, [{ label: T().go, value: true }, { label: cute() ? 'Not yet' : 'Retreat', value: false, alt: true }]);
-    if (ok) startBattle({ type: 'k', def: area.boss, onWin: () => { g.beaten[ai] = true; }, after: () => actComplete(ai) });
+    if (ok) startBattle({ type: 'k', def: area.boss, rule: storyRule(ai), onWin: () => { g.beaten[ai] = true; }, after: () => actComplete(ai) });
   }
 }
 // the gate: one crystal (star) per skill of the act, plus a word star for Red Panda
@@ -7076,27 +7307,7 @@ function openShop() {
     list, h('button', { class: 'bigbtn alt', onclick: () => { Sfx.play('tap'); close(); } }, rw(cute() ? 'Bye!' : 'Leave shop'))));
   ovRoot.append(ov); render();
 }
-function equipPicker(item) {
-  return new Promise(res => {
-    const g = G.P.g;
-    const pickC = c => { g.roster.forEach(o => { if (o.gear === item.id) o.gear = null; }); c.gear = item.id; Sfx.play('good'); Store.save(G.P); ov.remove(); res(); };
-    const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win' }, h('div', { class: 'ov-big' }, item.em), h('div', { class: 'ov-title' }, rw(cute() ? 'Who gets it?' : `Equip the ${item.name} on...`)),
-      h('div', { class: 'pick-grid' }, g.roster.map(c => { const cur = gearOf(c); return h('button', { class: 'pickc win', onclick: () => pickC(c) }, cSprite(c), h('div', { class: 'ccard-name' }, cName(c)), h('div', { class: 'pick-cur' }, cur ? `${cur.em} ${cur.name}` : (cute() ? 'No gear' : 'Nothing equipped'))); })),
-      h('button', { class: 'tool ghost', onclick: () => { ov.remove(); res(); } }, rw(cute() ? 'Later' : 'Keep in bag'))));
-    ovRoot.append(ov);
-  });
-}
-function gearMenu(c) {
-  const g = G.P.g; const owned = GEAR[G.theme].filter(i => g.bag.includes(i.id));
-  const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win' }, cSprite(c, 'ov-spr'), h('div', { class: 'ov-title' }, rw(cName(c))),
-    owned.length ? h('div', { class: 'gear-list' }, owned.map(i => {
-      const on = c.gear === i.id; const who = g.roster.find(o => o.gear === i.id && o !== c);
-      return h('button', { class: 'gear-row' + (on ? ' on' : ''), onclick: () => { g.roster.forEach(o => { if (o.gear === i.id) o.gear = null; }); c.gear = on ? null : i.id; Sfx.play('good'); Store.save(G.P); ov.remove(); screenTeam(); } },
-        h('span', { class: 'shop-em' }, i.em), h('span', { class: 'shop-name' }, rw(i.name)), h('span', { class: 'shop-eff' }, effectText(i)), h('span', { class: 'gear-state' }, on ? (cute() ? 'On!' : 'Equipped') : who ? `(${cName(who)})` : ''));
-    })) : h('div', { class: 'ov-line' }, rw(cute() ? `Buy gear at the shop ${ic('shop')} with gems!` : `Buy gear at a shop ${ic('shop')} with gold.`)),
-    h('button', { class: 'bigbtn', onclick: () => { Sfx.play('tap'); ov.remove(); } }, rw(T().ok))));
-  ovRoot.append(ov);
-}
+// version 7: equipPicker and gearMenu moved to the gear-slot code (v7 gear)
 
 /* ---------- creature maker: kids design their own (up to 3) ---------- */
 function openMaker() {
@@ -7158,6 +7369,7 @@ function recipeNeeds(r) { return cute() ? { ...r.mats } : { [r.main]: r.each * r
 function matsLine(need) { return Object.entries(need).map(([k, n]) => `${n} ${MATS[G.theme][k].em}`).join('  +  '); }
 // a math question in a speech card (used by crafting): resolves true when solved, false after several misses
 function askMath(npc, text, pr, opts = {}) {
+  G.lastPr = pr; // test hook: the automated play-through reads the answer from here
   return new Promise(resolve => {
     let typed = '', recorded = false, misses = 0;
     const box = h('span', { class: 'ans' }, '?'); const msg = h('div', { class: 'vmsg' }); const eqSlot = h('div', { class: 'story-eq' });
@@ -7450,7 +7662,8 @@ const VB = {
     { id: 'statue', art: '@mp:vh-statue', name: 'Hero Statue', cost: 900, max: 1, deco: true, info: () => 'A statue of your bravest hero.' },
     { id: 'tree', art: '@mp:vh-tree', name: 'Oak Tree', cost: 40, max: 1, deco: true, multi: true, info: () => 'Shade for the villagers.' },
     { id: 'lamp', art: '@mp:vh-lamp', name: 'Lamp Post', cost: 60, max: 1, deco: true, multi: true, info: () => 'Lights the streets at night.' },
-    { id: 'castle', art: '@mp:vh-castle', name: 'Castle', cost: 3000, max: 1, deco: true, need: 6, info: (lv, built) => built ? 'The grandest building of all. Your town is a kingdom now!' : 'The grandest building of all. Needs 6 other buildings first.' },
+    // version 7: the castle is built in 4 stages (750 gold each) and has rooms that open when you master a skill
+    { id: 'castle', art: '@mp:vh-castle', name: 'Castle', cost: 750, max: 4, stages: true, need: 6, info: (lv, built) => built ? castleInfo(lv) : 'Built in 4 stages: Foundation, Walls, Towers, Throne Room. Rooms inside open when you master skills. Needs 6 other buildings first.' },
   ],
   cute: [
     { id: 'house', art: '@ms:vc-cottage', name: 'Cottage', cost: 40, max: 3, does: 'xp', info: lv => `Friends nap here. They grow ${lv > 1 ? 'much ' : ''}faster!` },
@@ -7472,11 +7685,11 @@ const vState = () => { const g = G.P.g; g.village = g.village || { b: {} }; retu
 const vDef = id => VB[G.theme].find(d => d.id === id);
 const vBuilt = () => Object.values(vState().b);
 function vLevel(id) { return vBuilt().filter(b => b.id === id).reduce((m, b) => Math.max(m, b.lv), 0); }
-const upCost = (d, lv) => d.cost * (lv + 1); // level 2 costs 2x, level 3 costs 3x
+const upCost = (d, lv) => (d.stages ? d.cost : d.cost * (lv + 1)); // level 2 costs 2x, level 3 costs 3x (castle stages cost the same each)
 // bonuses used elsewhere in the game
-const xpBoost = () => 1 + 0.05 * vLevel('house');
+const xpBoost = () => 1 + 0.05 * vLevel('house') + (roomOpen('stables') ? 0.1 : 0);
 const priceOf = c => Math.max(1, Math.round(c * (1 - 0.1 * vLevel(cute() ? 'treehouse' : 'market'))));
-const powerBoost = () => 5 * vLevel(cute() ? 'playground' : 'forge');
+const powerBoost = () => 5 * vLevel(cute() ? 'playground' : 'forge') + (roomOpen('yard') ? 5 : 0);
 const today = () => E.dayKey();
 const ready = b => { const d = vDef(b.id); return d && (d.daily || d.act === 'train' || d.act === 'read') && b.day !== today() || (d && d.act === 'heal' && b.cyc !== cyc()); };
 const vReadyCount = () => (G.P.g.village ? vBuilt().filter(ready).length : 0);
@@ -7494,8 +7707,9 @@ function screenVillage() {
   const hint = cute() ? (nb ? 'Tap a spot to build more!' : 'Tap a spot to build!') : nb ? 'Tap an empty plot to build, or a building to use it.' : 'Tap an empty plot to build your first building.';
   setScreen('village', h('div', { class: 'village world bg-village' },
     h('div', { class: 'top wtop' }, iconBtn(cute() ? 'Back to the map' : 'Back to the map', ic('exitl'), () => { Sfx.play('tap'); screenWorld(); }),
-      h('div', { class: 'top-title' }, h('span', { class: 'banner-icon' }, cute() ? '@ms:vc-cottage' : '@mp:vh-house'), ' ', rw(cute() ? 'My Village' : 'My Town'), h('span', { class: 'actlbl' }, `${nb} ${cute() ? 'built' : nb === 1 ? 'building' : 'buildings'}`)),
+      h('div', { class: 'top-title' }, h('span', { class: 'banner-icon' }, cute() ? '@ms:vc-cottage' : '@mp:vh-house'), ' ', rw(cute() ? 'My Village' : 'My Town'), h('span', { class: 'actlbl' }, cute() ? `${nb} built` : rankTitle())),
       h('div', { class: 'gems', title: CUR().title }, CUR().em + ' ', h('b', null, g.gems)), soundBtn(), gearBtn()),
+    villageBar(), // version 7: Wanted board, raids, friend care
     h('div', { class: 'vwrap' }, h('div', { class: 'vgrid', style: !cute() && ART.url('@mp:g-village') ? { '--vtx': `url("${ART.url('@mp:g-village')}")` } : null }, plots), h('div', { class: 'vwalkers' }, walkers)),
     h('div', { class: 'wbottom' }, h('div', { class: 'qtrack win hint-tap' }, rw(hint), replayBtn(hint)))));
 }
@@ -7510,7 +7724,8 @@ function plotEl(i) {
   if (!b) return h('button', { class: 'plot empty win', 'aria-label': 'Empty plot', onclick: () => { Sfx.play('tap'); buildMenu(i); } }, h('span', { class: 'plot-art' }, cute() ? '@ms:vc-plot' : '@mp:vh-plot'), h('span', { class: 'plot-plus' }, '+'));
   const d = vDef(b.id); if (!d) return h('div', { class: 'plot win' });
   const r = ready(b);
-  return h('button', { class: 'plot built win' + (r ? ' ready' : ''), onclick: () => { Sfx.play('tap'); useBuilding(i); } }, h('span', { class: 'plot-art' }, d.art),
+  const cst = d.stages ? ` cst cst${b.lv}` + (castleNews() ? ' ready' : '') : '';
+  return h('button', { class: 'plot built win' + (r ? ' ready' : '') + cst, onclick: () => { Sfx.play('tap'); useBuilding(i); } }, h('span', { class: 'plot-art' }, d.art),
     h('span', { class: 'plot-name' }, rw(d.name)), d.max > 1 ? h('span', { class: 'plot-stars' }, Array.from({ length: b.lv }, () => ic('star'))) : null,
     r ? h('span', { class: 'bub new vbub' }, d.daily ? '!' : d.act === 'heal' ? ic('heart') : '!') : null);
 }
@@ -7541,6 +7756,7 @@ function buildProblem(d, lv) {
     const text = `${pl(a).replace('block', 'red block')} and ${pl(b).replace('block', 'blue block')}. How many blocks?`;
     return { pr, text, pics: [picRow('@ms:shape-box:#ff6b6b', a), h('span', { class: 'pics-plus' }, '+'), picRow('@ms:shape-box:#5aa9ff', b)], sub: d.name };
   }
+  if (d.stages) return castleProblem(lv); // version 7: each castle stage has its own blueprint math
   const T = [['mul2510', [2, 5, 10]], ['mul34', [3, 4]], ['mul6789', [6, 7, 8, 9]], ['mul1112', [11, 12]]];
   const known = T.filter(([id]) => ['learning', 'mastered'].includes((G.P.skills[id] || {}).st)).flatMap(([, t]) => t);
   const a = pick(known.length ? known : [2, 5, 10]); const b = rnd(2, lv >= 1 ? 9 : 6);
@@ -7554,18 +7770,21 @@ async function buildFlow(d, plot, lv) {
   const g = G.P.g; const cost = lv ? upCost(d, lv) : d.cost;
   if (g.gems < cost) { await talk(...builderNpc(), cute() ? `That needs ${cost} gems. You have ${g.gems}. Win battles and climb the tower for more!` : `That costs ${cost} gold and you have ${g.gems}. Battles and the Speed Tower pay well.`); return screenVillage(); }
   const q = buildProblem(d, lv);
-  const ok = await askMath(builderNpc(), q.text, q.pr, { record: !cute(), pics: q.pics, sub: q.sub });
+  const ok = await askMath(builderNpc(), q.text, q.pr, { record: !cute() && !q.pr.challenge, pics: q.pics, sub: q.sub });
+  if (q.pr.challenge) E.recordChallenge(G.P, ok);
   if (!ok) return screenVillage();
   g.gems -= cost; const V = vState();
   if (lv) V.b[plot].lv = lv + 1; else V.b[plot] = { id: d.id, lv: 1, day: null, cyc: -1 };
   Sfx.play('win'); Store.save(G.P, true); screenVillage();
   const el = $$('.plot')[plot]; if (el) anim(el, 'justbuilt', 900); vPop(plot, ic('sparkle') + ' ' + ic('star') + ' ' + ic('sparkle'));
-  const title = lv ? (cute() ? `${d.name} got bigger!` : `${d.name} upgraded to level ${lv + 1}!`) : (cute() ? `You built ${aAn(d.name)}!` : `${d.name} built!`);
-  await wait(500); await card({ big: d.art, title, lines: [d.info(lv + 1)], say: title, cls: 'star' });
+  const title = d.stages ? `Castle: ${CASTLE_STAGES[lv + 1].name} built!` : lv ? (cute() ? `${d.name} got bigger!` : `${d.name} upgraded to level ${lv + 1}!`) : (cute() ? `You built ${aAn(d.name)}!` : `${d.name} built!`);
+  await wait(500); await card({ big: d.art, title, lines: [d.info(lv + 1, true)], say: title, cls: 'star' + (d.stages ? ` cstcard cst${lv + 1}` : '') });
+  if (d.stages) { await castleBuilt(lv + 1); return screenCastle(plot); }
   screenVillage();
 }
 async function useBuilding(plot) {
   const g = G.P.g; const b = vState().b[plot]; const d = vDef(b.id); const npc = builderNpc();
+  if (d.stages) return screenCastle(plot); // version 7
   const lines = [d.info(b.lv, true)];
   const btns = [];
   if (ready(b) && d.daily) btns.push({ label: cute() ? 'Get it!' : 'Collect', value: 'collect' });
@@ -7729,7 +7948,8 @@ function overview(P) {
       tile('Practicing now', learning.length ? learning.join(', ') : '–', null),
       tile('Speed Tower', P.g.tower && P.g.tower.climbs ? `Best floor ${P.g.tower.best}` : 'Not climbed yet', P.g.tower && P.g.tower.climbs ? `${P.g.tower.climbs} climbs · ${P.g.tower.fast} lightning-fast hits` : 'Quick answers hit harder there (optional)'),
       tile('Village', `${P.g.village ? Object.keys(P.g.village.b).length : 0} buildings`, villageLine(P).replace(/^Village: \d+ buildings? /, '') || 'Spend gold/gems building a town'),
-      P.id === 'hamstey' ? tile('Speed (tracked only)', speedLine(P).replace('Speed (tracked, not required): ', '') || '–', 'Median time to start answering; mastery does not need speed') : null));
+      P.id === 'hamstey' ? tile('Speed (tracked only)', speedLine(P).replace('Speed (tracked, not required): ', '') || '–', 'Median time to start answering; mastery does not need speed') : null,
+      ...v7Tiles(P, tile)));
 }
 // version 6: tower, village, speed (tracked only) and the new kinds of reading
 function towerLine(P) { const t = P.g.tower; return t && t.climbs ? `Speed Tower: best floor ${t.best} · ${t.climbs} climb${t.climbs > 1 ? 's' : ''} · ${t.fast} lightning-fast hits` : ''; }
@@ -7845,7 +8065,7 @@ function settingsCard(P) {
       chk(`s-timed-${P.id}`, 'Speed counts toward mastery', 'timed', 'Off means a skill is mastered by getting answers right, at any speed. Times are still shown in the report.'),
       chk(`s-snd-${P.id}`, 'Sound effects', 'sound'),
       chk(`s-words-${P.id}`, 'Sight words', 'words', 'Word turns in battles, Miss Tia’s word quest, and a word star on each gate.'),
-      sel(`s-wrate-${P.id}`, 'How often word turns come up', 'wordRate', [[0.2, 'Now and then'], [0.35, 'About 1 in 3 turns'], [0.5, 'About half']], null)),
+      sel(`s-wrate-${P.id}`, 'How often word turns come up', 'wordRate', [['auto', 'Light: 1 in 4 until 10 words known, then 1 in 3'], ['0.2', 'Now and then'], ['0.35', 'About 1 in 3 turns'], ['0.5', 'About half']], 'Version 7 default is Light, since reading is also practiced outside the game.', false)),
     h('div', { class: 'acts' },
       h('button', { class: 'act', onclick: () => { P.play.sleepUntil = 0; P.play.ms = 0; pdSave(P); renderParent(); } }, 'Wake the team now'),
       P.g.world === 1 && !P.g.gates[Math.min(3, P.act || 1) * 2 - 1] ? h('button', { class: 'act', title: 'Lets them fight the act boss without lighting every crystal', onclick: () => { P.g.gates[Math.min(3, P.act || 1) * 2 - 1] = true; pdSave(P); renderParent(); } }, `Open the ${ACT_NAMES[Math.min(3, P.act || 1)]} gate`) : null,
@@ -7888,7 +8108,8 @@ function summaryText(P, r) {
 }
 function reportText(P) {
   const r = E.report(P); const d = new Date().toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
-  const L = [`Mathlings report: ${pName(P)} (${d})`, `Story: ${storyLine(P)} · ${moneyLine(P)}`, trendLine(r), challengeLine(P), towerLine(P), villageLine(P), speedLine(P), readingLine(P), '', summaryText(P, r), '', 'Doing well'].filter((x, i) => x !== '' || i >= 8);
+  const L = [`Mathlings report: ${pName(P)} (${d})`, `Story: ${storyLine(P)} · ${moneyLine(P)}`, trendLine(r), challengeLine(P), towerLine(P), villageLine(P), ...v7Lines(P), speedLine(P), readingLine(P)].filter(Boolean);
+  L.push('', summaryText(P, r), '', 'Doing well');
   (r.strengths.length ? r.strengths : [{ title: 'Not enough data yet', detail: '' }]).forEach(x => L.push(`- ${x.title}${x.detail ? ': ' + x.detail : ''}`));
   L.push('', 'Working on');
   (r.working.length ? r.working : [{ title: 'Nothing in progress (waiting for the next act)', pct: null, needs: [] }]).forEach(x => L.push(`- ${x.title}${x.pct != null ? `: ${x.pct}% of the way` : ''}${x.needs.length ? ` (needs ${x.needs.join('; ')})` : ''}`));
@@ -8036,13 +8257,924 @@ function soundCard(P) {
     h('div', { class: 'acts' }, h('button', { class: 'act', onclick: run }, 'Test sound')), out);
 }
 
+/* =====================================================================
+   Mathlings version 7
+   Hamstey Man: element powers + combos + adapting monsters + charging bosses (and Guard), Finisher big moves,
+   3 gear slots, Hero Mode, quick wins and hunt streaks, the Wanted board, a castle built in stages with
+   skill rooms, raids and kingdom ranks, and "what's new" explainers.
+   Red Panda: a surprise egg, lighter reading, star gifts, and friend care (feed, bath, dress up).
+   ===================================================================== */
+
+/* ---------- v7: small shared helpers ---------- */
+const isTemp = o => !!o && (o.type === 'w' || !!o.temp); // tower floors and raid waves use their own HP
+const v7s = () => { const g = G.P.g; g.stats7 = g.stats7 || { quick: 0, hero: { n: 0, c: 0 }, combos: 0, guards: 0, hatched: 0, care: 0, raids: 0 }; return g.stats7; };
+const tipSeen = id => !!((G.P.g.tips || {})[id]);
+async function tipOnce(id, opts) {
+  const g = G.P.g; g.tips = g.tips || {}; if (g.tips[id]) return false;
+  g.tips[id] = Date.now(); Store.saveLocal(G.P); await card(opts); return true;
+}
+function hashStr(s) { let x = 7; for (let i = 0; i < s.length; i++) x = (x * 31 + s.charCodeAt(i)) >>> 0; return x; }
+
+/* ---------- v7: save migration ---------- */
+function v7Repair(P) {
+  const g = P.g; const th = P.id === 'hamstey' ? 'hero' : 'cute';
+  // gear: one item per creature becomes up to 3 slots (weapon / armor / charm)
+  (g.roster || []).forEach(c => {
+    if (c.gear !== undefined) { if (c.gear) { const it = GEAR[th].find(i => i.id === c.gear); c.eq = c.eq || {}; if (it) c.eq[slotOf(it)] = it.id; } delete c.gear; }
+    c.eq = c.eq || {};
+  });
+  g.tips = g.tips || {};
+  g.castle = g.castle || { rooms: {}, raids: 0, raidNext: 0, rank: 0 };
+  g.castle.rooms = g.castle.rooms || {};
+  g.bounty = g.bounty || { day: null, list: [], done: 0 };
+  g.stats7 = g.stats7 || { quick: 0, hero: { n: 0, c: 0 }, combos: 0, guards: 0, hatched: 0, care: 0, raids: 0 };
+  g.starGifts = g.starGifts || {};
+  g.wardrobe = g.wardrobe || [];
+  if (!g.v7) {
+    g.v7 = Date.now();
+    g.v7new = !!g.started; // returning players get the "what's new" tour once
+    if (th === 'hero' && g.village) Object.values(g.village.b).forEach(b => { if (b.id === 'castle') b.lv = 4; }); // a finished version 6 castle counts as all 4 stages
+    if (th === 'hero') g.castle.rank = rankIndex(crownsOf(P));
+    if (th === 'cute' && g.started) { g.egg = g.egg || newEgg(P, 'welcome'); g.eggDay = E.dayKey(); }
+    if (th === 'cute') Object.keys(g.actWins || {}).forEach(() => {}); // (nothing to carry over)
+  }
+  return P;
+}
+
+/* ---------- v7: gear slots ---------- */
+const SLOTS = {
+  hero: [['w', 'Weapon', 'sword'], ['a', 'Armor', 'shield'], ['c', 'Charm', 'crystal']],
+  cute: [['w', 'Hold', 'star'], ['a', 'Wear', 'heart'], ['c', 'Extra', 'sparkle']],
+};
+// weapons add power, armor adds guard or resists an element, charms are the element/luck/mixed pieces
+function slotOf(i) {
+  if (i.slot) return i.slot;
+  if ((i.el && !i.p) || i.luck) return 'c';
+  if (i.p && !i.g && !i.res) return 'w';
+  if (!i.p) return 'a';
+  return i.p <= 0.1 ? 'a' : 'c';
+}
+const slotName = k => (SLOTS[G.theme === 'cute' ? 'cute' : 'hero'].find(s => s[0] === k) || [k, k])[1];
+function gearList(c) {
+  if (!c || !c.eq || !GEAR[G.theme]) return [];
+  return ['w', 'a', 'c'].map(k => c.eq[k]).filter(Boolean).map(id => GEAR[G.theme].find(i => i.id === id)).filter(Boolean);
+}
+// all equipped pieces added together (power capped at +100%, guard at 60%)
+function gearStats(c) {
+  const out = { p: 0, g: 0, els: new Set(), res: new Set(), luck: false };
+  for (const i of gearList(c)) { out.p += i.p || 0; out.g += i.g || 0; if (i.el) out.els.add(i.el); if (i.res) out.res.add(i.res); if (i.luck) out.luck = true; }
+  out.p = Math.min(1, out.p); out.g = Math.min(0.6, out.g);
+  return out;
+}
+const wearer = id => G.P.g.roster.find(o => Object.values(o.eq || {}).includes(id)) || null;
+function equip(c, item) {
+  G.P.g.roster.forEach(o => { if (o.eq) for (const k of Object.keys(o.eq)) if (o.eq[k] === item.id) delete o.eq[k]; });
+  c.eq = c.eq || {}; c.eq[slotOf(item)] = item.id;
+}
+function unequip(c, k) { if (c.eq) delete c.eq[k]; }
+function equipPicker(item) {
+  return new Promise(res => {
+    const g = G.P.g; const k = slotOf(item);
+    const pickC = c => { equip(c, item); Sfx.play('good'); Store.save(G.P); ov.remove(); res(); };
+    const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win' }, h('div', { class: 'ov-big' }, item.em),
+      h('div', { class: 'ov-title' }, rw(cute() ? 'Who gets it?' : `Equip the ${item.name} on...`)),
+      h('div', { class: 'ov-line slotnote' }, rw(`${slotName(k)} slot`)),
+      h('div', { class: 'pick-grid' }, g.roster.map(c => { const cur = c.eq && c.eq[k] ? GEAR[G.theme].find(i => i.id === c.eq[k]) : null;
+        return h('button', { class: 'pickc win', onclick: () => pickC(c) }, cSprite(c), h('div', { class: 'ccard-name' }, cName(c)),
+          h('div', { class: 'pick-cur' }, cur ? `${cur.em} ${cur.name}` : (cute() ? 'Empty' : `${slotName(k)}: empty`))); })),
+      h('button', { class: 'tool ghost', onclick: () => { ov.remove(); res(); } }, rw(cute() ? 'Later' : 'Keep in bag'))));
+    ovRoot.append(ov);
+  });
+}
+// one creature's three slots: tap a piece to put it on (or take it off)
+function gearMenu(c) {
+  const g = G.P.g; const owned = GEAR[G.theme].filter(i => g.bag.includes(i.id));
+  const close = () => { ov.remove(); screenTeam(); };
+  const body = h('div', { class: 'slots' });
+  const render = () => {
+    body.replaceChildren(...SLOTS[cute() ? 'cute' : 'hero'].map(([k, label, icon]) => {
+      const cur = c.eq && c.eq[k] ? GEAR[G.theme].find(i => i.id === c.eq[k]) : null;
+      const mine = owned.filter(i => slotOf(i) === k);
+      return h('div', { class: 'slot win' },
+        h('div', { class: 'slot-head' }, h('span', { class: 'slot-ic' }, ic(icon)), h('b', null, rw(label)), h('span', { class: 'slot-cur' }, cur ? [cur.em, ' ', rw(cur.name), ' ', h('small', null, effectText(cur))] : rw(cute() ? 'Empty' : 'Empty slot'))),
+        mine.length ? h('div', { class: 'gear-list' }, mine.map(i => {
+          const on = cur && cur.id === i.id; const who = wearer(i.id);
+          return h('button', { class: 'gear-row' + (on ? ' on' : ''), onclick: () => { if (on) unequip(c, k); else equip(c, i); Sfx.play('good'); Store.save(G.P); render(); } },
+            h('span', { class: 'shop-em' }, i.em), h('span', { class: 'shop-name' }, rw(i.name)), h('span', { class: 'shop-eff' }, effectText(i)),
+            h('span', { class: 'gear-state' }, on ? (cute() ? 'On!' : 'Equipped') : who && who !== c ? `(${cName(who)})` : ''));
+        })) : h('div', { class: 'slot-none' }, rw(cute() ? 'Nothing here yet.' : 'Nothing for this slot yet.')));
+    }));
+  };
+  const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win gearcard' }, cSprite(c, 'ov-spr'), h('div', { class: 'ov-title' }, rw(cName(c))),
+    owned.length ? body : h('div', { class: 'ov-line' }, rw(cute() ? `Buy gear at the shop ${ic('shop')} with gems!` : `Buy gear at a shop ${ic('shop')} with gold.`)),
+    h('button', { class: 'bigbtn', onclick: () => { Sfx.play('tap'); close(); } }, rw(T().ok))));
+  ovRoot.append(ov); render();
+  if (!cute()) tipOnce('slots', { big: '@mp:sword', title: 'Three gear slots', lines: ['Every hero can wear a Weapon, an Armor and a Charm at the same time.', 'Weapons add power. Armor adds guard. Charms boost an element or bring luck.'] });
+}
+
+/* ---------- v7: Hero Mode (tougher problems, double gold) ---------- */
+const HERO_SHARE = 0.4; // share of problems that are hero problems while Hero Mode is on (the rest stay adaptive practice)
+const HERO_HIT = 1.3;   // a right hero problem hits 30% harder than a normal one
+const heroModeOn = () => !!(G.P && G.theme === 'hero' && G.P.g.heroMode);
+const hq = (l, op, r, ans, note) => ({ kind: 'q', l, op, r, ans, say: `${l} ${E.WORD[op]} ${r}`, note });
+function heroProblem(P, rng = Math.random) {
+  const st = id => P.skills[id] && ['learning', 'mastered'].includes(P.skills[id].st);
+  const tables = [[2, 5, 10], [3, 4], [6, 7, 8, 9], [11, 12]].filter((t, i) => st(['mul2510', 'mul34', 'mul6789', 'mul1112'][i])).flat();
+  const T2 = tables.length ? tables : [2, 5, 10];
+  const ri = (a, b) => a + Math.floor(rng() * (b - a + 1)); const pk = arr => arr[Math.floor(rng() * arr.length)];
+  const r = rng(); let pr;
+  if (r < 0.22) { // missing factor: 7 x ? = 42 (gets ready for division)
+    const a = pk(T2.filter(x => x <= 10).length ? T2.filter(x => x <= 10) : T2), b = ri(2, 9), c = a * b;
+    pr = { op: 'x', form: 'missing', l: a, r: null, res: c, ans: b, say: `${a} times what makes ${c}?`,
+      steps: [{ kind: 'deal', total: c, groups: a }, Object.assign(hq(a, 'x', '?', b, `${a} times what makes ${c}? Count by ${a}s until you reach ${c}.`), { form: 'missing', res: c, say: `${a} times what makes ${c}?` })] };
+  } else if (r < 0.4) { // 3-digit adding: 245 + 138
+    const a = ri(110, 690), b = ri(21, Math.min(299, 980 - a)); const ah = Math.floor(a / 100) * 100, bh = Math.floor(b / 100) * 100;
+    pr = { terms: [a, '+', b], ans: a + b, say: `${a} plus ${b}`,
+      steps: bh ? [hq(ah, '+', bh, ah + bh, 'Hundreds first.'), hq(a - ah, '+', b - bh, a - ah + b - bh, 'Now the rest.'), hq(ah + bh, '+', a - ah + b - bh, a + b, 'Put them together.')]
+        : [hq(a - ah, '+', b, a - ah + b, `Leave the ${ah} for later. Add the rest first.`), hq(ah, '+', a - ah + b, a + b, `Now add the ${ah} back.`)] };
+  } else if (r < 0.62) { // take away across a hundred: 142 - 67 (count up)
+    const a = ri(101, 175), b = ri(Math.max(12, a - 95), 98); const up = Math.ceil(b / 10) * 10; // always crosses 100
+    if (up === b || up >= a) pr = { terms: [a, '−', b], ans: a - b, say: `${a} minus ${b}`, steps: [Object.assign(hq(b, '+', '?', a - b, `Count up from ${b} to ${a}. How big is the jump?`), { form: 'missing', res: a, say: `${b} plus what makes ${a}?` })] };
+    else pr = { terms: [a, '−', b], ans: a - b, say: `${a} minus ${b}`,
+      steps: [hq(b, '+', up - b, up, `Count up from ${b} to the next ten.`), hq(up, '+', a - up, a, `Then jump from ${up} to ${a}.`), hq(up - b, '+', a - up, a - b, 'Add the two jumps. That is the answer!')] };
+  } else if (r < 0.82) { // 2-digit x 1-digit: 23 x 4
+    const m = pk(T2.filter(x => x <= 9).length ? T2.filter(x => x <= 9) : [2, 3, 4, 5]); const t = ri(13, Math.min(49, Math.floor(999 / m))); const tens = Math.floor(t / 10) * 10, ones = t % 10;
+    pr = { terms: [t, '×', m], ans: t * m, say: `${t} times ${m}`,
+      steps: ones ? [hq(tens, 'x', m, tens * m, `Split ${t} into ${tens} and ${ones}. First ${tens} times ${m}.`), hq(ones, 'x', m, ones * m, `Then ${ones} times ${m}.`), hq(tens * m, '+', ones * m, t * m, 'Add the two parts.')]
+        : [hq(tens / 10, 'x', m, tens / 10 * m, `${t} is ${tens / 10} tens. First ${tens / 10} times ${m}.`), hq(tens / 10 * m, 'x', 10, t * m, 'Then times 10.')] };
+  } else { // two steps with brackets: (12 - 4) x 6
+    const m = pk(T2.filter(x => x <= 9).length ? T2.filter(x => x <= 9) : [2, 3, 4, 5]); const inner = ri(3, 9); const b = ri(2, 9); const a = inner + b;
+    pr = { terms: ['(', a, '−', b, ')', '×', m], ans: inner * m, say: `${a} minus ${b}, times ${m}`,
+      steps: [hq(a, '-', b, inner, 'Brackets first.'), hq(inner, 'x', m, inner * m, 'Then multiply.')] };
+  }
+  return Object.assign(pr, { challenge: true, hero: true, form: pr.form || 'std' });
+}
+// hero problems count in the day's log and in their own tally (not in the big-move challenge numbers)
+function recordHero(first) {
+  const s = v7s(); s.hero.n++; if (first) s.hero.c++;
+  const dk = E.dayKey(); const lg = (G.P.log[dk] = G.P.log[dk] || { n: 0, c: 0 }); lg.n++; if (first) lg.c++;
+}
+// gold: Hero Mode doubles it, a hunt streak adds up to 2x on normal fights, the Treasury adds 10%
+function goldMul(B) {
+  if (!B || B.type === 'w') return 1;
+  let m = B.heroMode ? 2 : 1;
+  if (B.type === 'b') m *= huntMul();
+  if (roomOpen('treasury')) m *= 1.1;
+  return m;
+}
+async function toggleHero() {
+  const g = G.P.g; Sfx.play('tap'); g.heroMode = !g.heroMode; Store.save(G.P);
+  refreshWorldBits();
+  if (g.heroMode) await tipOnce('hero', { big: '@mp:crown', title: 'Hero Mode is ON', lines: ['Tougher problems show up in battles: bigger numbers, missing numbers and two-step puzzles.', 'Every win pays DOUBLE gold. A right hero problem also hits 30% harder.', 'Turn it off any time with the same button.'], cls: 'star' });
+  else rewardPop('Hero Mode off');
+}
+
+/* ---------- v7: hunt streaks ---------- */
+const huntN = () => { const hn = G.P.g.hunt; return hn && hn.a === G.P.g.area ? hn.n : 0; };
+const huntMul = () => 1 + 0.25 * Math.min(4, huntN());
+function huntWin() { const g = G.P.g; if (!g.hunt || g.hunt.a !== g.area) g.hunt = { a: g.area, n: 0 }; g.hunt.n++; }
+function huntReset() { if (G.P) G.P.g.hunt = null; }
+
+/* ---------- v7: a math card that records like a battle answer (quick wins, friend care) ---------- */
+// resolves { right, first, events } or the alt value
+function mathPop({ face, name, text, pr, tries = 1, alt, pics, sub, cls = '' }) {
+  G.lastPr = pr; // test hook
+  return new Promise(resolve => {
+    let typed = '', misses = 0, recorded = false, t0 = performance.now(), tFirst = 0; const events = [];
+    const box = h('span', { class: 'ans' }, '?'); const msg = h('div', { class: 'vmsg' });
+    const textEl = h('div', { class: 'story-text' }, rw(text));
+    const record = first => {
+      if (recorded) return; recorded = true;
+      if (pr.hero) recordHero(first);
+      else if (pr.challenge) E.recordChallenge(G.P, first);
+      else events.push(...E.recordAnswer(G.P, pr, { first, ms: (tFirst || performance.now()) - t0 }));
+    };
+    let over = false; // once answered, the alt button and keys do nothing
+    const finish = v => { over = true; G.pad = null; setTimeout(() => { ov.remove(); resolve(v); }, v && v.right ? 650 : 900); };
+    const eqEl = h('div', { class: 'story-eq' }, exprEl(pr, '', false));
+    const setBox = () => { const b = eqEl.querySelector('.ans'); if (b) { b.textContent = typed || '?'; b.classList.toggle('has', !!typed); } };
+    const key = k => {
+      if (over) return;
+      if (k === 'ok') {
+        if (!typed) return;
+        if (parseInt(typed, 10) === pr.ans) { record(misses === 0); Sfx.play('good'); const b = eqEl.querySelector('.ans'); if (b) b.classList.add('ok'); return finish({ right: true, first: misses === 0, events }); }
+        record(false); Sfx.play('oops'); misses++; typed = ''; setBox(); anim(eqEl.querySelector('.ans'), 'nope', 400);
+        if (misses >= tries) { const m = cute() ? 'Good try! Let us try again later.' : 'Not this time!'; msg.replaceChildren(rw(m)); readLine(msg, m); return finish({ right: false, first: false, events }); }
+        const m = cute() ? pick(['Try again!', 'You got this!', 'So close! Try again!']) : 'Not quite. Try again!'; msg.replaceChildren(rw(m)); Voice.say(m, { force: cute() }); return;
+      }
+      if (k === 'del') typed = typed.slice(0, -1); else if (typed.length < 3) { if (!tFirst) tFirst = performance.now(); typed = (typed === '0' ? '' : typed) + k; }
+      setBox();
+    };
+    const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win story mpop ' + cls, role: 'dialog', 'aria-modal': 'true' },
+      h('div', { class: 'story-head' }, h('span', { class: 'talk-face sm' }, face), h('div', null, h('div', { class: 'talk-name' }, name), sub ? h('div', { class: 'story-n' }, sub) : null)),
+      h('div', { class: 'story-body' },
+        h('div', { class: 'story-left' }, textEl, pics ? h('div', { class: 'pics' }, pics) : null, eqEl, msg,
+          h('div', { class: 'ptools' }, h('button', { class: 'tool', 'aria-label': 'Read it to me', onclick: () => Voice.say(pr.say, { force: true }) }, ic('sound')),
+            alt ? h('button', { class: 'tool ghost', onclick: () => { if (over) return; over = true; Sfx.play('tap'); G.pad = null; ov.remove(); resolve(alt.value); } }, rw(alt.label)) : null)),
+        numpad(key))));
+    ovRoot.append(ov); G.pad = key;
+    readLine(textEl, text).then(() => { if (G.P.settings.autoRead && document.body.contains(ov)) Voice.say(pr.say, { auto: true }); });
+  });
+}
+
+/* ---------- v7: quick wins (a land you already cleared: its monsters are scared of you) ---------- */
+const QUICK_PAY = 0.4;
+function quickWinOK(ai) {
+  const g = G.P.g;
+  return !!g.beaten[ai] && ai < MAIN_AREAS && party().some(c => !keepsHp() || hpOf(c) > 0);
+}
+async function quickWin(e, onWin) {
+  W.walkId++; const g = G.P.g; const ai = g.area;
+  const first = await tipOnce('quick', cute()
+    ? { big: e.em, title: 'Quick win!', lines: ['You already beat the big grumpy here. The little ones are shy of you!', 'Get one right and they run off happy.'] }
+    : { big: e.em, title: 'Quick wins', lines: ['You already cleared this land, so its monsters are scared of you.', 'Get ONE problem right and you win on the spot. Miss it, and the monster fights back.', 'Want a real fight anyway? Press "Full battle".'] });
+  void first;
+  const lit0 = g.world === 1 ? new Set(gateBits(actOf(ai)).filter(b => b.lit).map(b => b.id)) : new Set();
+  const hero = heroModeOn() && Math.random() < HERO_SHARE;
+  const pr = hero ? heroProblem(G.P) : E.pickProblem(G.P);
+  const name = e.foe.name;
+  const res = await mathPop({ face: sprite(e.foe.em, { cls: 'qw-spr' }), name: cute() ? `${name} is shy!` : `${name} looks scared!`, pr, tries: 1,
+    text: cute() ? 'Solve it and it runs off happy!' : (hero ? 'Hero problem! One right answer wins.' : 'One right answer wins. Miss, and it fights back!'),
+    sub: huntN() ? `${cute() ? 'Streak' : 'Hunt streak'} ×${huntMul()}` : null, alt: { label: cute() ? 'Battle!' : 'Full battle', value: 'battle' } });
+  if (res === 'battle') return startBattle({ type: 'b', def: e.foe, onWin });
+  if (!res.right) { await talk(e.em, name, cute() ? 'Grr! Let us play!' : 'It fights back!'); return startBattle({ type: 'b', def: e.foe, onWin }); }
+  // win on the spot
+  const B = { type: 'b', o: {}, foes: [], heroMode: heroModeOn(), rewards: [], events: res.events || [], stats: { n: 1, c: res.first ? 1 : 0 }, bm0: {}, lit0, drops: {} };
+  party().forEach(c => { B.bm0[c.u] = bmStage(c); });
+  const luck = party().some(m => gearStats(m).luck) ? 1.25 : 1;
+  B.gems = Math.max(1, Math.round(battleGems('b') * QUICK_PAY * luck * goldMul(B))); // one problem pays less than a whole fight
+  B.drops = { [COMMON_MAT[G.theme]]: 1 };
+  party().forEach(m => giveXp(m, 6, B.rewards));
+  g.gems += B.gems; g.wins++; const act = actOf(ai); g.actWins = g.actWins || {}; g.actWins[act] = (g.actWins[act] || 0) + 1;
+  g.mats = g.mats || {}; for (const [k, n] of Object.entries(B.drops)) g.mats[k] = (g.mats[k] || 0) + n;
+  onWin(null); huntWin(); v7s().quick++;
+  if (res.first) eggTick();
+  removeEnt(e); Sfx.play('win'); Store.save(G.P, true);
+  refreshWorldBits(); rewardPop(`${cute() ? ic('heart') : ic('boom')} +${B.gems} ${CUR().em}`);
+  await wait(500);
+  await showRewards(B);
+  refreshWorldBits();
+}
+
+/* ---------- v7: chips under the map (Hero Mode, Wanted, hunt streak / egg, friend care) ---------- */
+function v7Chips(ai, opts = {}) {
+  const g = G.P.g; const kids = [];
+  const n = huntN();
+  if (cute()) {
+    if (g.egg) kids.push(h('button', { class: 'chip egg win' + (g.egg.n >= g.egg.need ? ' ready' : ''), 'aria-label': 'Surprise egg', onclick: eggInfo },
+      h('span', { class: 'chip-ic wobble' }, '@ms:egg'), h('span', { class: 'egg-pips' }, Array.from({ length: g.egg.need }, (_, i) => h('i', { class: i < g.egg.n ? 'on' : '' })))));
+    if (!opts.noCare) kids.push(h('button', { class: 'chip care win', 'aria-label': 'Friend care', onclick: () => { Sfx.play('tap'); screenCare(); } }, h('span', { class: 'chip-ic' }, ic('heart')), rw('Care'), careWaiting() ? h('span', { class: 'ibadge' }, '!') : null));
+  } else {
+    kids.push(h('button', { class: 'chip hero win' + (g.heroMode ? ' on' : ''), 'aria-pressed': g.heroMode ? 'true' : 'false', onclick: toggleHero },
+      h('span', { class: 'chip-ic' }, '@mp:crown'), h('span', { class: 'chip-txt' }, 'Hero Mode', h('b', null, g.heroMode ? 'ON · 2× gold' : 'OFF'))));
+    const open = bountyState().list.filter(b => !b.done).length;
+    kids.push(h('button', { class: 'chip wanted win', onclick: () => { Sfx.play('tap'); screenBounty(); } }, h('span', { class: 'chip-ic' }, '@mp:scroll'), h('span', { class: 'chip-txt' }, 'Wanted', h('b', null, open ? `${open} today` : 'All done')), open ? h('span', { class: 'ibadge' }, open) : null));
+    if (n) kids.push(h('div', { class: 'chip streak win', title: 'Hunt streak: wins in a row in this land' }, h('span', { class: 'chip-ic' }, ic('fire')), h('span', { class: 'chip-txt' }, `Hunt ${n}`, h('b', null, `next ×${huntMul()}`))));
+  }
+  return h('div', { class: 'v7chips' }, kids);
+}
+
+/* ---------- v7: what's new (once, after the update) ---------- */
+async function whatsNew() {
+  if (!G.P || G.screen !== 'world' || G.naming || G.v7tour || $('.ov')) return;
+  const g = G.P.g;
+  if (cute()) { await rpDaily(); if (!g.v7new) return; }
+  if (!g.v7new) return;
+  G.v7tour = true;
+  if (cute()) {
+    await card({ big: '@ms:egg', title: 'A surprise egg!', lines: ['Look! An egg is waiting for you.', `Get ${g.egg ? g.egg.need : 6} right to hatch it. Who is inside?`], say: 'A surprise egg!', cls: 'star' });
+    await card({ big: ic('heart'), title: 'Friend care', lines: ['Tap the heart to feed your friends and give them a bath.', 'You can dress them up too!'], say: 'Friend care' });
+  } else {
+    await card({ big: '@mp:crown', title: 'Version 7: new powers!', lines: ['Your heroes learned new tricks, and your town has big plans.', 'Here is what changed.'], cls: 'star' });
+    await card({ big: h('span', { class: 'tri' }, ic('fire'), ic('ice'), ic('zap')), title: 'Switch it up in battle', lines: [
+      `${ic('fire')} Fire burns: extra damage for 2 turns.`, `${ic('ice')} Ice can freeze: a frozen monster skips its attack.`, `${ic('zap')} Thunder jumps to a 2nd monster, or shocks a lone one.`,
+      'Switch elements for COMBOS: Steam Blast, Shatter, Overload.', 'Same element twice in a row? The monster ADAPTS. Switch to break it!'] });
+    await card({ big: ic('shield'), title: 'Bosses charge up', lines: ['When a boss is Charging, hit its weakness or land a combo to stop it. Or press Guard and solve one problem to block it.', 'A big move on ONE monster is now a Finisher: ×1.5 and it breaks the monster’s guard.'] });
+    await card({ big: '@mp:scroll', title: 'Hero Mode and the Wanted board', lines: ['Hero Mode (bottom of the map): tougher problems, DOUBLE gold. On or off any time.', 'Wanted board: 3 bounty bosses every day, each with a special rule. They pay big.', 'Monsters in lands you already cleared now go down with ONE right answer. Win in a row for a hunt streak: up to 2× gold.'] });
+    await card({ big: '@mp:vh-castle', title: 'Your castle, in 4 stages', lines: ['Foundation, Walls, Towers, Throne Room: 750 gold each.', 'Rooms inside open when you MASTER a skill. Each room gives your heroes a power.', 'Each hero also has 3 gear slots now: Weapon, Armor, Charm.', 'After the Throne Room, monsters raid your town. Defend it to rise in rank!'] });
+    g.tips.tour = Date.now();
+  }
+  g.v7new = false; G.v7tour = false; Store.save(G.P, true);
+  refreshWorldBits();
+}
+
+/* ---------- v7: battle mechanics (Hamstey Man) ----------
+   Each element does something of its own: fire burns, ice can freeze, thunder jumps to a 2nd monster (or shocks a lone one).
+   Switching elements makes a combo. Hitting one monster with the same element twice in a row makes it adapt (½ damage)
+   until a different element breaks the shield. Bosses charge big attacks: interrupt them or Guard. */
+const ADAPT_AFTER = 2;
+const COMBOS = { 'fire+ice': { name: 'Steam Blast' }, 'ice+zap': { name: 'Shatter' }, 'fire+zap': { name: 'Overload', splash: 0.4 } };
+const comboMul = () => (roomOpen('wizard') ? 1.6 : 1.4);
+const roomDmg = () => (roomOpen('war') ? 1.1 : 1);
+const roomDef = () => (roomOpen('guard') ? 0.9 : 1);
+const roomBig = () => (roomOpen('armory') ? 1.25 : 1);
+const elName = el => ELEM[el][cute() ? 'cute' : 'hero'];
+
+function elemMult(f, el) {
+  if (cute()) return el === f.weak ? 2 : el === f.resist ? 0.5 : 1;
+  if (f.rule === 'lock') return el === f.lockEl ? 2 : 0.4;
+  if (f.adapt === el) return 0.5;
+  let m = el === f.weak ? 2 : el === f.resist ? 0.5 : 1;
+  if (f.shield && f.shield.length) m *= 0.35;
+  return m;
+}
+function elemFx(B, f, el) {
+  const fx = { mul: 1, combo: null };
+  if (B.lastEl && B.lastEl !== el && B.lastEl in ELEM) {
+    fx.combo = COMBOS[[B.lastEl, el].sort().join('+')];
+    fx.mul *= fx.combo.name === 'Shatter' && f.frozen ? comboMul() + 0.35 : comboMul();
+  }
+  if (f.shock) { fx.mul *= 1.25; fx.shocked = true; }
+  return fx;
+}
+const popLater = (el, text, cls, ms) => setTimeout(() => popText(el, text, cls), ms);
+// after a hit lands: combos, interrupts, shields, adapting, then the element's own power. Returns extra monsters that got hit.
+async function elemAfter(B, f, el, mult, dmg, fx) {
+  const extra = []; const foeEl = foeSpr(f); let t = 450; let note = null;
+  if (fx.combo) {
+    B.combos = (B.combos || 0) + 1; v7s().combos++;
+    popLater(foeEl, `${fx.combo.name}!`, 'tagpop combo3', t); t += 250; Sfx.play('star');
+    if (fx.combo.name === 'Shatter' && f.frozen) f.frozen = false; // the ice shatters
+  }
+  if (fx.shocked) f.shock = false;
+  if (f.charge && (mult >= 2 || fx.combo)) { f.charge = 0; f.stagger = true; popLater(foeEl, 'Interrupted!', 'tagpop combo2', t); t += 250; }
+  if (f.shield && f.shield.includes(el)) {
+    f.shield = f.shield.filter(x => x !== el);
+    if (!f.shield.length) { f.shield = null; popLater(foeEl, 'Shield broken!', 'tagpop combo2', t); Sfx.play('super'); }
+    else popLater(foeEl, `Shield: ${f.shield.length} left`, 'tagpop status', t);
+    t += 250;
+  }
+  if (f.rule !== 'lock') {
+    if (f.adapt && f.adapt !== el) { f.adapt = null; popLater(foeEl, 'Guard broken!', 'tagpop combo2', t); t += 250; }
+    f.sameN = f.lastHitEl === el ? (f.sameN || 1) + 1 : 1; f.lastHitEl = el;
+    if (f.sameN >= ADAPT_AFTER && f.hp > 0 && f.adapt !== el) { f.adapt = el; note = `${f.name} adapted to ${elName(el)}! Switch elements to break it.`; }
+  }
+  if (f.hp > 0 && el === 'fire') { f.burn = 2; f.burnDmg = Math.max(1, Math.ceil(dmg * 0.2)); popLater(foeEl, `${ic('fire')} Burning`, 'tagpop status fire', t); t += 250; }
+  if (f.hp > 0 && el === 'ice' && !f.frozen && (mult >= 2 || Math.random() < (f.boss ? 0.2 : 0.4))) { f.frozen = true; popLater(foeEl, `${ic('ice')} Frozen!`, 'tagpop status ice', t); t += 250; }
+  if (el === 'zap') {
+    const others = aliveFoes().filter(x => x !== f);
+    if (others.length) {
+      const o = pick(others); const d2 = Math.max(1, Math.ceil(dmg * 0.5 * (elemMult(o, 'zap') >= 2 ? 1.5 : 1)));
+      await wait(250); await projectile(foeEl, foeSpr(o), ELEM.zap.icon);
+      o.hp = Math.max(0, o.hp - d2); anim(foeSpr(o), 'hurt', 480); popText(foeSpr(o), String(d2), 'dmg'); popLater(foeSpr(o), 'Chain!', 'tagpop status zap', 150); updateFoe(o); extra.push(o);
+    } else if (f.hp > 0) { f.shock = true; popLater(foeEl, `${ic('zap')} Shocked`, 'tagpop status zap', t); t += 250; }
+  }
+  if (fx.combo && fx.combo.splash) {
+    for (const o of aliveFoes().filter(x => x !== f && !extra.includes(x))) {
+      const d3 = Math.max(1, Math.ceil(dmg * fx.combo.splash)); o.hp = Math.max(0, o.hp - d3); anim(foeSpr(o), 'hurt', 480); popText(foeSpr(o), String(d3), 'dmg'); updateFoe(o); extra.push(o);
+    }
+  }
+  B.lastEl = el;
+  updateFoe(f);
+  await wait(Math.min(700, t - 200));
+  if (note) {
+    setMsg(note); Sfx.play('phase'); updateFoe(f); await wait(1300);
+    if (G.B === B) await tipOnce('adapt', { big: ic('shield'), title: 'Monsters adapt!', lines: ['Hit a monster with the same element twice in a row and it gets used to it: that element only does half damage.', 'Hit it with a DIFFERENT element to break its guard. Switching also makes a combo!'] });
+  } else if (fx.combo && !tipSeen('combo') && G.B === B) {
+    await tipOnce('combo', { big: h('span', { class: 'tri' }, ic('fire'), ic('ice'), ic('zap')), title: `Combo: ${fx.combo.name}!`, lines: ['Attacking with a different element than the last attack makes a combo: extra damage.', 'Steam Blast = fire + ice. Shatter = ice + thunder (huge on a frozen monster). Overload = thunder + fire (splashes the others).'] });
+  }
+  return extra;
+}
+// a Finisher (or anything else that breaks a guard): no more adapting, no more charging
+function breakGuard(f) {
+  if (f.adapt) { f.adapt = null; popText(foeSpr(f), 'Guard broken!', 'tagpop combo2'); }
+  f.sameN = 0; f.lastHitEl = null;
+  if (f.charge) { f.charge = 0; f.stagger = true; setTimeout(() => popText(foeSpr(f), 'Interrupted!', 'tagpop combo2'), 250); }
+  updateFoe(f);
+}
+// start of the monsters' turn: burns hurt, healing bosses heal (unless burning)
+async function statusTicks(B) {
+  for (const f of aliveFoes()) {
+    if (G.B !== B) return;
+    if (f.burn > 0) {
+      const d = Math.min(f.hp, f.burnDmg || 1); f.hp -= d; f.burn--;
+      popText(foeSpr(f), `${ic('fire')} −${d}`, 'dmg burn'); anim(foeSpr(f), 'hurt', 400); updateFoe(f); Sfx.play('hit'); await wait(550);
+      if (f.hp <= 0) { const el = foeSpr(f); if (el) el.classList.add('poof'); }
+    } else if (f.rule === 'regen' && f.hp < f.max) {
+      const hl = Math.min(f.max - f.hp, Math.ceil(f.max * 0.08)); f.hp += hl;
+      popText(foeSpr(f), '+' + hl, 'dmg heal'); updateFoe(f); setMsg(`${f.name} heals itself! Burn it with Fire to stop that.`); Sfx.play('heal'); await wait(1000);
+    }
+  }
+}
+const BIG_ATK = ['Mega Smash', 'Doom Roar', 'Tidal Crash', 'Shadow Storm', 'Meteor Slam', 'Thunder Quake'];
+const bigAtkName = f => BIG_ATK[hashStr(String(f.id)) % BIG_ATK.length];
+// returns true when the monster spent its turn (frozen, dazed, charging or unleashing)
+async function specialTurn(B, f) {
+  if (f.frozen) { f.frozen = false; popText(foeSpr(f), `${ic('ice')} Frozen!`, 'tagpop status ice'); setMsg(`${f.name} is frozen and can't attack!`); updateFoe(f); await wait(1000); return true; }
+  if (f.stagger) { f.stagger = false; popText(foeSpr(f), 'Dazed', 'tagpop status'); setMsg(`${f.name} is dazed and loses its turn!`); updateFoe(f); await wait(900); return true; }
+  if (f.charge) { await unleash(B, f); return true; }
+  if (f.boss && B.type !== 'c') {
+    f.cn = (f.cn || 0) + 1; const every = f.rule === 'charge' ? 2 : 3;
+    if (f.cn % every === 0) {
+      f.charge = 1; updateFoe(f); Sfx.play('phase'); anim(foeSpr(f), 'phase', 800);
+      setMsg(`${f.name} is charging ${bigAtkName(f)}! Hit its weakness, land a combo, or Guard!`); await wait(1500);
+      if (G.B === B) await tipOnce('charge', { big: ic('boom'), title: 'A big attack is coming!', lines: ['When a boss is Charging, you have one turn to stop it:', `Hit its weakness or land a combo to INTERRUPT it (it gets dazed).`, `Or press ${ic('shield')} Guard and solve one problem to block most of it.`] });
+      return true;
+    }
+  }
+  return false;
+}
+async function unleash(B, f) {
+  f.charge = 0; updateFoe(f);
+  setMsg(`${f.name} unleashes ${bigAtkName(f)}!`); anim(foeSpr(f), 'lunge-r', 380); await wait(300);
+  Sfx.play('super'); anim($('.field'), 'quake', 420);
+  const gm = B.guard === 1 ? 0.15 : B.guard === 2 ? 0.5 : 1;
+  for (const t of party().filter(m => B.hp[m.u] > 0)) {
+    const gs = gearStats(t); const resMul = gs.res.has(f.atkEl) ? 0.5 : 1;
+    const d = Math.max(1, Math.round(f.atk * 1.6 * (1 - gs.g) * resMul * gm * roomDef()));
+    B.hp[t.u] = Math.max(0, B.hp[t.u] - d); const tEl = $(`.mem[data-u="${t.u}"] .spr`); anim(tEl, 'hurt', 480); popText(tEl, '−' + d, 'dmg bad'); updateMem(t);
+  }
+  syncHp();
+  if (B.guard) { const pEl = $('.party'); if (pEl) popText(pEl, `${ic('shield')} Blocked!`, 'tagpop combo2'); }
+  await wait(1100);
+  if (B.guard) { setMsg('Your shields blocked most of it!'); await wait(800); }
+  for (const t of party().filter(m => B.hp[m.u] <= 0)) { setMsg(T().nap(cName(t))); Sfx.play('faint'); await wait(900); }
+}
+function chooseGuard() {
+  const B = G.B; if (!B || B.phase !== 'menu') return; Sfx.play('tap');
+  B.purpose = 'guard'; B.moveKind = 'normal'; B.attacker = (party().find(c => B.hp[c.u] > 0) || party()[0]).u;
+  nextProblem();
+}
+async function doGuard(q) {
+  const B = G.B; B.guard = q === 1 ? 1 : q > 0 ? 2 : 0; if (B.guard) v7s().guards++;
+  setMsg(q ? (q === 1 ? 'Shields up!' : 'Shields half up!') : 'Correct, but too late to guard!');
+  $$('.mem .spr').forEach(el => anim(el, 'guarded', 900)); Sfx.play(q ? 'heal' : 'blip');
+  await wait(900);
+  if (G.B !== B) return;
+  B.purpose = 'attack';
+  await enemyTurn(); if (G.B !== B) return;
+  if (party().every(m => B.hp[m.u] <= 0)) return lose();
+  showMenu();
+}
+// little tags under a monster's name
+function statusTags(f) {
+  const t = []; const tag = (cls, ...kids) => h('span', { class: 'tag st ' + cls }, ...kids); const tx = s => h('span', { class: 'st-t' }, s);
+  if (f.charge) t.push(tag('charge', ic('boom'), tx(' Charging!')));
+  if (f.rule === 'lock') t.push(tag('rule', ic('shield'), tx(' Only '), elemTag(f.lockEl)));
+  if (f.shield && f.shield.length) t.push(tag('rule', ic('shield'), ' ', ...f.shield.map(e => ELEM[e].icon)));
+  if (f.rule === 'regen') t.push(tag('rule', ic('heart'), tx(' Heals')));
+  if (f.rule === 'twice') t.push(tag('rule', tx('2× attacks')));
+  if (f.adapt) t.push(tag('adapt', tx('Adapted '), ic('shield'), ELEM[f.adapt].icon));
+  if (f.burn > 0) t.push(tag('burn', ic('fire'), ` ${f.burn}`));
+  if (f.frozen) t.push(tag('ice', ic('ice'), tx(' Frozen')));
+  if (f.shock) t.push(tag('zap', ic('zap'), tx(' Shocked')));
+  return t;
+}
+
+/* ---------- v7: special rules (Wanted bosses, raid bosses, remixed story bosses in World 3+) ---------- */
+const RULES = {
+  lock: { name: 'Armored', icon: 'shield', short: f => `Only ${elName(f.lockEl)} cracks its armor`, line: f => `Armored! Only ${elName(f.lockEl)} can crack its armor. Other elements do much less.`, need: f => f.lockEl },
+  rainbow: { name: 'Rainbow', icon: 'crystal', short: () => 'Break its shield with all 3 elements', line: () => 'Rainbow shield! Hit it with Fire, Ice AND Thunder to break the shield.' },
+  regen: { name: 'Healing', icon: 'heart', short: () => 'Heals every turn unless burning', line: () => 'It heals itself every turn, unless it is burning. Use Fire!', need: () => 'fire' },
+  twice: { name: 'Speedy', icon: 'boom', short: () => 'Attacks twice. Freeze it!', line: () => 'Speedy! It can attack twice in a turn. Freeze it with Ice!', need: () => 'ice' },
+  charge: { name: 'Thunderous', icon: 'zap', short: () => 'Charges every other turn', line: () => 'It charges a big attack every other turn. Interrupt it or Guard!' },
+  swarm: { name: 'Swarm', icon: 'party', short: () => 'Brings 2 helpers', line: () => 'It brought helpers! Thunder jumps between monsters, and big moves hit them all.' },
+};
+function applyRule(f, rule) {
+  if (!RULES[rule] || cute()) return;
+  f.rule = rule;
+  if (rule === 'lock') { f.lockEl = f.weak || pick(['fire', 'ice', 'zap']); f.weak = f.lockEl; f.resist = null; f.phases = null; }
+  if (rule === 'rainbow') f.shield = ['fire', 'ice', 'zap'];
+  if (!f.name.startsWith(RULES[rule].name)) f.name = `${RULES[rule].name} ${f.name}`;
+}
+const ruleLine = f => RULES[f.rule] ? RULES[f.rule].line(f) : '';
+function storyRule(ai) {
+  if (cute() || G.P.g.world < 3) return null;
+  const r = seeded(G.P.g.world * 131 + ai * 17)();
+  return ['lock', 'rainbow', 'regen', 'twice', 'charge'][Math.floor(r * 5)];
+}
+async function battleTips(B) {
+  if (cute() || tipSeen('tour') || tipSeen('battle7')) return;
+  await tipOnce('battle7', { big: h('span', { class: 'tri' }, ic('fire'), ic('ice'), ic('zap')), title: 'Battle tips', lines: ['Fire burns, Ice can freeze, Thunder jumps to another monster.', 'Switch elements between attacks for a COMBO.', 'Same element twice in a row? The monster adapts. Switch!'] });
+}
+
+/* ---------- v7: the Wanted board (Hamstey Man): 3 bounty bosses a day, each with a special rule ---------- */
+const BOUNTY_RULES = ['lock', 'rainbow', 'regen', 'twice', 'charge', 'swarm'];
+function bountyState() {
+  const g = G.P.g; const b = (g.bounty = g.bounty || { day: null, list: [], done: 0 });
+  const d = today();
+  if (b.day !== d || b.world !== g.world) { b.day = d; b.world = g.world; b.list = makeBounties(d, g.world); }
+  return b;
+}
+function makeBounties(day, world) {
+  const r = seeded(hashStr(day) + world * 101);
+  const bosses = bookAreas('hero').map(a => a.boss).filter((x, i, arr) => arr.findIndex(y => y.id === x.id) === i);
+  const rules = BOUNTY_RULES.slice(); const out = [];
+  for (let i = 0; i < 3; i++) {
+    const rule = rules.splice(Math.floor(r() * rules.length), 1)[0];
+    let boss; do { boss = bosses[Math.floor(r() * bosses.length)]; } while (out.some(o => o.id === boss.id) && bosses.length > 3);
+    out.push({ id: boss.id, rule, done: false });
+  }
+  return out;
+}
+const bossDef = id => bookAreas('hero').map(a => a.boss).find(b => b.id === id);
+const bountyPay = () => Math.round(battleGems('k') * 1.5 * (roomOpen('maproom') ? 1.25 : 1));
+function bountyName(bt) { const d = bossDef(bt.id); return `${RULES[bt.rule].name} ${d ? d.name : 'Monster'}`; }
+function screenBounty(note) {
+  if (isAsleep()) return screenRest();
+  const g = G.P.g; const b = bountyState(); const pay = bountyPay();
+  const posters = b.list.map((bt, i) => {
+    const d = bossDef(bt.id); const R = RULES[bt.rule];
+    const fake = { lockEl: d && d.phases ? d.phases[0].weak : d && d.weak };
+    return h('div', { class: 'poster win' + (bt.done ? ' done' : '') },
+      h('div', { class: 'poster-head' }, 'WANTED'),
+      h('div', { class: 'poster-spr' }, sprite(d ? d.em : '@mp:question', { cls: 'boss' })),
+      h('div', { class: 'poster-name' }, bountyName(bt)),
+      h('div', { class: 'poster-rule' }, h('span', { class: 'chip-ic' }, ic(R.icon)), ' ', R.short(fake)),
+      h('div', { class: 'poster-pay' }, bt.done ? h('span', null, ic('star'), ' Caught!') : [`${heroModeOn() ? pay * 2 : pay} ${CUR().em}`, heroModeOn() ? h('small', null, ' (Hero Mode 2×)') : null]),
+      bt.done ? null : h('button', { class: 'bigbtn', onclick: () => huntBounty(i) }, 'Hunt!'));
+  });
+  const left = b.list.filter(x => !x.done).length;
+  const say = note || (left ? `${left} bount${left > 1 ? 'ies' : 'y'} left today. New ones every morning.` : 'All bounties caught! New ones tomorrow.');
+  setScreen('bounty', h('div', { class: 'bountyscr world bg-village' },
+    h('div', { class: 'top wtop' }, iconBtn('Back to the map', ic('exitl'), () => { Sfx.play('tap'); screenWorld(); }),
+      h('div', { class: 'top-title' }, h('span', { class: 'banner-icon' }, '@mp:scroll'), ' Wanted Board', h('span', { class: 'actlbl' }, `${b.done || 0} caught in all`)),
+      h('div', { class: 'gems', title: CUR().title }, CUR().em + ' ', h('b', null, g.gems)), soundBtn(), gearBtn()),
+    h('div', { class: 'board' }, posters),
+    h('div', { class: 'wbottom' }, h('div', { class: 'qtrack win hint-tap' }, rw(say)),
+      h('button', { class: 'chip win', onclick: () => { Sfx.play('tap'); G.teamTab = 'team'; G.teamBack = screenBounty; screenTeam(); } }, h('span', { class: 'chip-ic' }, ic('party')), h('span', { class: 'chip-txt' }, 'Party', h('b', null, 'swap heroes'))))));
+  tipOnce('bounty', { big: '@mp:scroll', title: 'The Wanted board', lines: ['Three bounty bosses every day. Each one has a special rule, written on its poster.', 'Read the rule and bring the right heroes. Bounties pay big gold, and Hero Mode doubles it.', 'New bounties every morning.'] });
+}
+async function huntBounty(i) {
+  const g = G.P.g; const b = bountyState(); const bt = b.list[i]; if (!bt || bt.done) return; Sfx.play('tap');
+  const d = bossDef(bt.id); if (!d) return;
+  if (keepsHp() && party().every(c => hpOf(c) <= 0)) return talk(...INNKEEPER, `Your party is too hurt to hunt! Use a potion ${ic('bag')} or rest at an inn first.`);
+  const R = RULES[bt.rule]; const fake = { lockEl: d.phases ? d.phases[0].weak : d.weak };
+  const need = R.need ? R.need(fake) : null; const has = need ? party().some(c => spById(c.sp).e === need) : true;
+  const line = R.line(fake) + (need && !has ? ` You have no ${elName(need)} hero in your party!` : '');
+  const v = await talk(d.em, bountyName(bt), line, [{ label: 'Fight!', value: 'go' }, { label: 'Change party', value: 'team', alt: true }, { label: 'Back', value: null, alt: true }]);
+  if (v === 'team') { G.teamTab = 'team'; G.teamBack = screenBounty; return screenTeam(); }
+  if (v !== 'go') return;
+  const area = curArea();
+  startBattle({ type: 'k', def: Object.assign({}, d, { name: d.name }), rule: bt.rule, minions: bt.rule === 'swarm' ? 2 : 0, gems: bountyPay(),
+    area: { name: 'Wanted: ' + bountyName(bt), icon: '@mp:scroll', bg: area.bg, foes: area.foes },
+    onWin: () => { bt.done = true; b.done = (b.done || 0) + 1; },
+    back: won => screenBounty(won ? `You caught the ${bountyName(bt)}!` : 'It got away this time. Heal up and try again!') });
+}
+
+/* ---------- v7: the castle (Hamstey Man): 4 stages, rooms that open with mastered skills, raids, kingdom ranks ---------- */
+const CASTLE_STAGES = [null, { name: 'Foundation' }, { name: 'Walls' }, { name: 'Towers' }, { name: 'Throne Room' }];
+const ROOMS = [
+  { id: 'guard', name: 'Guard Tower', skill: 'add2d', icon: '@mp:shield', perk: 'Heroes take 10% less damage.' },
+  { id: 'stables', name: 'Stables', skill: 'sub2d_easy', icon: '@hm:pegasus', perk: '+10% experience from battles.' },
+  { id: 'treasury', name: 'Treasury', skill: 'sub2d', icon: '@mp:chest', perk: '+10% gold from every battle.' },
+  { id: 'kitchen', name: 'Royal Kitchen', skill: 'mul2510', icon: '@it:potion', perk: '2 potions every day.' },
+  { id: 'yard', name: 'Training Yard', skill: 'mul34', icon: '@mp:hammer', perk: 'The power meter fills faster.' },
+  { id: 'war', name: 'War Room', skill: 'mul6789', icon: '@mp:sword', perk: 'Heroes hit 10% harder.' },
+  { id: 'armory', name: 'Armory', skill: 'mul1112', icon: '@it:blades', perk: 'Big moves hit 25% harder.' },
+  { id: 'maproom', name: 'Map Room', skill: 'div2510', icon: '@mp:scroll', perk: 'Bounties pay 25% more.' },
+  { id: 'wizard', name: 'Wizard Tower', skill: 'div34', icon: '@it:orb', perk: 'Combos hit even harder.' },
+  { id: 'roost', name: 'Dragon Roost', skill: 'div6789', icon: '@hm:drake:2', perk: 'Raids pay double.' },
+];
+const RANKS = [[0, 'Squire'], [4, 'Knight'], [10, 'Lord'], [18, 'Baron'], [28, 'Count'], [40, 'Duke'], [55, 'Prince'], [75, 'King'], [100, 'High King']];
+const roomOpen = id => !!(G.P && G.theme === 'hero' && G.P.g.castle && G.P.g.castle.rooms && G.P.g.castle.rooms[id]);
+function castleStageOf(P) { const v = P.g.village; if (!v) return 0; const b = Object.values(v.b).find(x => x.id === 'castle'); return b ? b.lv : 0; }
+const castleStage = () => (G.P ? castleStageOf(G.P) : 0);
+const castlePlot = () => { const v = vState(); const k = Object.keys(v.b).find(i => v.b[i].id === 'castle'); return k == null ? null : Number(k); };
+function crownsOf(P) {
+  const c = P.g.castle || { rooms: {} };
+  return 2 * castleStageOf(P) + 3 * Object.keys(c.rooms || {}).length + 2 * (c.raids || 0) + ((P.g.bounty || {}).done || 0);
+}
+function rankIndex(n) { let k = 0; RANKS.forEach(([min], i) => { if (n >= min) k = i; }); return k; }
+const rankTitle = () => RANKS[rankIndex(crownsOf(G.P))][1];
+async function rankCheck() {
+  if (cute()) return; const c = G.P.g.castle; const k = rankIndex(crownsOf(G.P));
+  if (k > (c.rank || 0)) {
+    c.rank = k; Store.save(G.P, true); Sfx.play('evolve');
+    const nx = RANKS[k + 1];
+    await card({ big: '@mp:crown', title: `You are now a ${RANKS[k][1]}!`, lines: [`Kingdom crowns: ${crownsOf(G.P)}.`, nx ? `Next rank: ${nx[1]} at ${nx[0]} crowns.` : 'The highest rank in the land!', 'Earn crowns by building the castle, opening rooms, defending raids and catching bounties.'], cls: 'star' });
+  }
+}
+function castleInfo(lv) {
+  const nx = CASTLE_STAGES[lv + 1];
+  return `Stage ${lv} of 4: ${CASTLE_STAGES[lv].name}.` + (nx ? ` Next: ${nx.name} (750 gold).` : ' Your castle is complete!') + ' Tap it to see the rooms.';
+}
+const skillPct = id => { const s = G.P.skills[id]; if (!s) return 0; if (s.st === 'mastered') return 100; if (s.st !== 'learning') return 0; return Math.min(99, Math.round(E.progress(G.P, E.SK[id]) * 100)); };
+const roomReady = r => castleStage() >= 1 && !roomOpen(r.id) && G.P.skills[r.skill] && G.P.skills[r.skill].st === 'mastered';
+function castleNews() {
+  if (cute() || !G.P.g.castle) return false;
+  return ROOMS.some(roomReady) || (roomOpen('kitchen') && G.P.g.castle.kitchenDay !== today()) || raidReady();
+}
+// each stage has its own blueprint math
+function castleProblem(lv) {
+  const P = G.P; const st = id => P.skills[id] && ['learning', 'mastered'].includes(P.skills[id].st);
+  const known = [[2, 5, 10], [3, 4], [6, 7, 8, 9]].filter((t, i) => st(['mul2510', 'mul34', 'mul6789'][i])).flat();
+  const hard = known.filter(x => x !== 2 && x !== 10); // castle math leans on the tables he is still building
+  const k = hard.length ? hard : known.length ? known : [2, 5, 10];
+  const stage = lv + 1; const name = CASTLE_STAGES[stage].name;
+  if (stage === 1) { const a = pick(k), b = rnd(6, 9); return { pr: E.factProblem('x', a, b), text: `The castle foundation is ${b} stones across and ${a} rows deep. How many stones?`, pics: a * b <= 108 ? [h('div', { class: 'tilegrid', style: { 'grid-template-columns': `repeat(${b}, 15px)`, 'grid-auto-rows': '15px' } }, Array.from({ length: a * b }, () => h('i')))] : null, sub: `Stage 1: ${name}` }; }
+  if (stage === 2) { const b = pick(k.filter(x => x >= 3).length ? k.filter(x => x >= 3) : k); return { pr: E.factProblem('x', 4, b), text: `The castle has 4 walls. Each wall needs ${b} big blocks. How many blocks?`, pics: null, sub: `Stage 2: ${name}` }; }
+  if (stage === 3) { const a = rnd(3, 6), b = pick(k); return { pr: E.factProblem('x', a, b), text: `${a} towers, and each tower has ${b} floors. How many floors in all?`, pics: null, sub: `Stage 3: ${name}` }; }
+  const a = pick(k), b = rnd(3, 9), c = rnd(4, 12);
+  const pr = { challenge: true, terms: [a, '×', b, '+', c], ans: a * b + c, say: `${a} times ${b} plus ${c}`, form: 'std',
+    steps: [hq(a, 'x', b, a * b, 'The floor first: times.'), hq(a * b, '+', c, a * b + c, 'Then add the gold tiles.')] };
+  return { pr, text: `The throne room floor is ${a} rows of ${b} tiles, plus ${c} gold tiles around the throne. How many tiles?`, pics: null, sub: `Stage 4: ${name}` };
+}
+async function castleBuilt(stage) {
+  const c = G.P.g.castle;
+  if (stage === 1 && ROOMS.some(roomReady)) await card({ big: '@mp:vh-castle', title: 'Rooms are ready!', lines: ['You already mastered some skills, so their rooms can open right now. Tap Open on each one!'], cls: 'star' });
+  if (stage === 4) { c.raidNext = 0; await card({ big: '@mp:vh-castle', title: 'Your castle is complete!', lines: ['Word spread across the land... and monsters want your treasure.', 'RAIDS have begun! Defend your town to earn gold and crowns.'], cls: 'star' }); }
+  Store.save(G.P, true); await rankCheck();
+}
+function screenCastle(plot) {
+  if (isAsleep()) return screenRest();
+  const g = G.P.g; const c = g.castle; const lv = castleStage(); const d = vDef('castle');
+  if (plot == null) plot = castlePlot();
+  const stages = [1, 2, 3, 4].map(i => h('div', { class: 'cstage' + (i <= lv ? ' done' : i === lv + 1 ? ' next' : '') },
+    h('span', { class: 'cs-n' }, i <= lv ? ic('star') : String(i)), h('span', { class: 'cs-name' }, CASTLE_STAGES[i].name),
+    i === lv + 1 ? h('button', { class: 'bigbtn buy' + (g.gems >= 750 ? '' : ' cant'), onclick: async () => { Sfx.play('tap'); await buildFlow(d, plot, lv); } }, `Build 750 ${CUR().em}`) : h('span', { class: 'cs-st' }, i <= lv ? 'Built' : '')));
+  const rooms = ROOMS.map(r => {
+    const open = roomOpen(r.id); const ready = roomReady(r); const pct = skillPct(r.skill);
+    const st = G.P.skills[r.skill] ? G.P.skills[r.skill].st : 'locked';
+    return h('div', { class: 'room win' + (open ? ' open' : ready ? ' ready' : '') },
+      h('span', { class: 'room-ic' }, r.icon), h('div', { class: 'room-name' }, r.name), h('div', { class: 'room-perk' }, r.perk),
+      open ? h('div', { class: 'room-st ok' }, ic('star'), ' Open',
+        r.id === 'kitchen' ? (c.kitchenDay !== today() ? h('button', { class: 'bigbtn buy sm', onclick: () => kitchenCollect(plot) }, 'Collect') : h('small', null, ' · back tomorrow')) : null)
+        : ready ? h('button', { class: 'bigbtn buy', onclick: () => openRoom(r, plot) }, 'Open!')
+          : h('div', { class: 'room-need' }, h('div', null, `Master: ${E.SK[r.skill].kid}`), h('div', { class: 'xpbar' }, h('i', { style: { width: pct + '%' } })),
+            h('small', null, pct >= 100 ? 'Mastered! Build the Foundation to open it.' : st === 'locked' ? 'Not started yet' : `${pct}% of the way`)));
+  });
+  const k = rankIndex(crownsOf(G.P)); const nx = RANKS[k + 1];
+  const raid = lv >= 4 ? h('div', { class: 'craid win' + (raidReady() ? ' ready' : '') }, h('span', { class: 'room-ic' }, ic('boom')),
+    h('div', null, h('div', { class: 'room-name' }, raidReady() ? 'RAID! Monsters at the gates!' : 'Raids'), h('div', { class: 'room-perk' }, raidReady() ? 'Defend 3 waves to win big gold and 2 crowns.' : `Next raid ${raidWhen()}. Defended: ${c.raids || 0}.`)),
+    raidReady() ? h('button', { class: 'bigbtn', onclick: () => startRaid() }, 'Defend!') : null) : null;
+  setScreen('castle', h('div', { class: 'castlescr world bg-village' },
+    h('div', { class: 'top wtop' }, iconBtn('Back to town', ic('exitl'), () => { Sfx.play('tap'); screenVillage(); }),
+      h('div', { class: 'top-title' }, h('span', { class: 'banner-icon' }, '@mp:vh-castle'), ' My Castle', h('span', { class: 'actlbl' }, RANKS[k][1])),
+      h('div', { class: 'gems', title: CUR().title }, CUR().em + ' ', h('b', null, g.gems)), soundBtn(), gearBtn()),
+    h('div', { class: 'cbody' },
+      h('div', { class: 'ccol win' },
+        h('div', { class: `cart cst cst${lv}` }, h('span', { class: 'plot-art' }, '@mp:vh-castle')),
+        h('div', { class: 'cstages' }, stages),
+        h('div', { class: 'crank' }, h('span', { class: 'room-ic' }, '@mp:crown'), h('div', null, h('b', null, RANKS[k][1]), h('div', { class: 'room-perk' }, `${crownsOf(G.P)} crowns` + (nx ? ` · ${nx[1]} at ${nx[0]}` : ''))))),
+      h('div', { class: 'ccol2' }, raid, h('div', { class: 'tlabel' }, 'Castle rooms: master a skill to open its room'), h('div', { class: 'rooms' }, rooms)))));
+  tipOnce('castle', { big: '@mp:vh-castle', title: 'Your castle', lines: ['Build it in 4 stages: Foundation, Walls, Towers, Throne Room. Each costs 750 gold and a bit of blueprint math.', 'Each ROOM opens when you master its skill. Rooms give your heroes powers.', 'Crowns raise your rank: Squire, Knight, Lord... all the way to High King.'] });
+}
+async function openRoom(r, plot) {
+  if (!roomReady(r)) return; Sfx.play('evolve');
+  G.P.g.castle.rooms[r.id] = Date.now(); Store.save(G.P, true);
+  await card({ big: r.icon, title: `${r.name} is open!`, lines: [`You mastered ${E.SK[r.skill].kid}, so the ${r.name} opened.`, r.perk], cls: 'star' });
+  await rankCheck(); screenCastle(plot);
+}
+function kitchenCollect(plot) { const c = G.P.g.castle; if (c.kitchenDay === today()) return; c.kitchenDay = today(); addPotions(2); Sfx.play('catch'); Store.save(G.P, true); screenCastle(plot); }
+
+/* ---------- v7: raids (after the Throne Room): 3 waves, the last one a raid boss with a rule ---------- */
+function raidReady() { const c = G.P.g.castle; return !cute() && castleStage() >= 4 && Date.now() >= (c.raidNext || 0); }
+function raidWhen() {
+  const t = G.P.g.castle.raidNext || 0; const days = Math.round((new Date(t).setHours(0, 0, 0, 0) - new Date().setHours(0, 0, 0, 0)) / 864e5);
+  return days <= 0 ? 'soon' : days === 1 ? 'tomorrow' : `in ${days} days`;
+}
+function nextRaidTime() { const t = new Date(); t.setDate(t.getDate() + 2); t.setHours(4, 0, 0, 0); return t.getTime(); }
+async function startRaid() {
+  if (!raidReady()) return; Sfx.play('tap');
+  await tipOnce('raid', { big: ic('boom'), title: 'Raid!', lines: ['Monsters attack in 3 waves. Your party starts fresh and keeps its HP from wave to wave.', 'Wave 3 is a raid boss with a special rule. Win to earn big gold and 2 crowns.', 'If your party falls, nothing is lost: the raiders wait, and you can try again.'] });
+  G.raidRun = { wave: 1, hp: null }; raidWave();
+}
+function raidWave() {
+  const run = G.raidRun; if (!run) return; const area = curArea();
+  let foes;
+  if (run.wave < 3) foes = [0, 1, 2].map(() => makeFoe(pick(area.foes), 'b', 3));
+  else { const bosses = bookAreas('hero').map(a => a.boss); const def = pick(bosses); foes = [makeFoe(def, 'k', 1)]; }
+  startBattle({ type: 'r', temp: true, foes, hp: run.hp, rule: run.wave === 3 ? pick(['lock', 'rainbow', 'regen', 'twice', 'charge']) : null, label: `Raid wave ${run.wave} of 3!`,
+    area: { name: `Raid: wave ${run.wave} of 3`, icon: ic('boom'), bg: area.bg, foes: area.foes },
+    back: async (won, B) => {
+      if (!won) { G.raidRun = null; Store.save(G.P, true); await card({ big: ic('boom'), title: 'The raiders pushed you back!', lines: ['Nothing is lost. Heal up and defend again when you are ready.'] }); return screenVillage(); }
+      run.hp = { ...B.hp }; run.wave++;
+      if (run.wave <= 3) { await card({ big: ic('shield'), title: `Wave ${run.wave - 1} defeated!`, lines: [run.wave === 3 ? 'Here comes the raid boss!' : 'Get ready for the next wave!'] }); return raidWave(); }
+      G.raidRun = null; const c = G.P.g.castle; c.raids = (c.raids || 0) + 1; c.raidNext = nextRaidTime(); v7s().raids++;
+      const pay = Math.round(battleGems('k') * 3 * (roomOpen('roost') ? 2 : 1) * (heroModeOn() ? 2 : 1)); addGems(pay);
+      Store.save(G.P, true); Sfx.play('win');
+      await card({ big: '@mp:vh-castle', title: 'Town defended!', lines: [`+${pay} ${CUR().em}`, '+2 crowns', 'The next raid comes in 2 days.'], cls: 'star' });
+      await rankCheck(); screenVillage();
+    } });
+}
+
+/* ---------- v7: the bar above the town (Wanted board, castle, raid / friend care) ---------- */
+function villageBar() {
+  const kids = [];
+  if (cute()) {
+    kids.push(h('button', { class: 'chip care win', onclick: () => { Sfx.play('tap'); screenCare(); } }, h('span', { class: 'chip-ic' }, ic('heart')), h('span', { class: 'chip-txt' }, 'Friend care', h('b', null, careWaiting() ? 'Friends are hungry!' : 'Feed, bath, dress up'))));
+  } else {
+    const open = bountyState().list.filter(b => !b.done).length;
+    kids.push(h('button', { class: 'chip wanted win', onclick: () => { Sfx.play('tap'); screenBounty(); } }, h('span', { class: 'chip-ic' }, '@mp:scroll'), h('span', { class: 'chip-txt' }, 'Wanted Board', h('b', null, open ? `${open} bounties today` : 'All caught today'))));
+    if (castleStage() >= 1) kids.push(h('button', { class: 'chip win' + (castleNews() ? ' ready' : ''), onclick: () => { Sfx.play('tap'); screenCastle(); } }, h('span', { class: 'chip-ic' }, '@mp:vh-castle'), h('span', { class: 'chip-txt' }, 'Castle', h('b', null, `Stage ${castleStage()} of 4`)), castleNews() ? h('span', { class: 'ibadge' }, '!') : null));
+    if (raidReady()) kids.push(h('button', { class: 'chip raid win ready', onclick: () => startRaid() }, h('span', { class: 'chip-ic' }, ic('boom')), h('span', { class: 'chip-txt' }, 'RAID!', h('b', null, 'Defend the town'))));
+    kids.push(h('div', { class: 'chip win' }, h('span', { class: 'chip-ic' }, '@mp:crown'), h('span', { class: 'chip-txt' }, rankTitle(), h('b', null, `${crownsOf(G.P)} crowns`))));
+  }
+  return h('div', { class: 'vbar' }, kids);
+}
+
+/* ---------- v7 (Red Panda): lighter reading, a surprise egg, star gifts, friend care ---------- */
+// reading: about 1 turn in 4 until she knows 10 sight words, then 1 in 3 (a grown-up can pick another rate)
+function wordRateNow(P) {
+  const r = P.settings.wordRate;
+  if (r === 'auto' || r == null) { let known = 0; try { known = E.wordStats(P).known.length; } catch (e) { /* no word data yet */ } return known >= 10 ? 0.33 : 0.25; }
+  const n = parseFloat(r); return isFinite(n) ? n : 0.25;
+}
+
+/* ---------- the surprise egg: right answers make it hatch into a new friend ---------- */
+const EGG_NEED = 6;
+function newEgg(P, why) {
+  const caught = P.g.caught || {}; const all = SPECIES.cute.map(s => s.id);
+  const starters = all.slice(0, 3).filter(id => !caught[id]); const others = all.slice(3).filter(id => !caught[id]);
+  const pool = starters.length ? starters : others;
+  const sp = pool.length ? pool[Math.floor(Math.random() * pool.length)] : all[Math.floor(Math.random() * all.length)];
+  return { sp, n: 0, need: EGG_NEED, shiny: !pool.length || Math.random() < 0.2, why, t: Date.now() };
+}
+function eggTick() {
+  if (!G.P || !cute() || !G.P.g.egg) return;
+  const e = G.P.g.egg; if (e.n < e.need) e.n++;
+}
+async function eggInfo() {
+  const e = G.P.g.egg; if (!e) return; Sfx.play('tap');
+  if (e.n >= e.need) return hatchEgg();
+  const left = e.need - e.n;
+  await card({ big: h('span', { class: 'egg-big wobble' }, '@ms:egg'), title: 'Your surprise egg', lines: [`${e.n} of ${e.need} right!`, `${left} more right answer${left > 1 ? 's' : ''} to hatch it.`], say: `${left} more to hatch it!` });
+}
+async function hatchEgg() {
+  const g = G.P.g; const egg = g.egg; if (!egg || egg.n < egg.need || G.hatching) return; G.hatching = true;
+  try {
+    Sfx.play('evolve');
+    await card({ big: h('span', { class: 'egg-big hatching' }, '@ms:egg'), title: 'Your egg is hatching!', say: 'Your egg is hatching!', cls: 'evolve' });
+    const c = addCreature(egg.sp); c.eq = {}; if (egg.shiny) c.shiny = true;
+    g.egg = null; v7s().hatched++; Store.save(G.P, true);
+    const nm = spById(egg.sp).names[0]; Sfx.play('catch');
+    const title = egg.shiny ? `A shiny ${nm}!` : `It is ${nm}!`;
+    await card({ big: cSprite(c, 'ov-spr'), title, lines: [g.party.includes(c.u) ? `${nm} joined your team!` : `${nm} is in More friends. You can swap any time!`, 'Another egg comes tomorrow!'], say: title, cls: 'star' });
+  } finally { G.hatching = false; }
+  refreshWorldBits();
+}
+// once a day: a new egg if the last one hatched; first time: star gifts start from what is lit now
+async function rpDaily() {
+  const g = G.P.g; if (!g.started) return;
+  if (!g.giftInit) { if (g.world === 1) { const act = actOf(g.area); gateBits(act).filter(b => b.lit).forEach(b => { g.starGifts[act + ':' + b.id] = 1; }); } g.giftInit = true; Store.saveLocal(G.P); }
+  if (!g.egg && g.eggDay !== today()) {
+    g.egg = newEgg(G.P, 'day'); g.eggDay = today(); Store.save(G.P); refreshWorldBits();
+    if (!g.v7new) await card({ big: h('span', { class: 'egg-big wobble' }, '@ms:egg'), title: 'A new egg!', lines: [`Get ${g.egg.need} right to hatch it!`], say: 'A new egg!', cls: 'star' });
+  }
+  if (g.egg && g.egg.n >= g.egg.need) await hatchEgg();
+}
+
+/* ---------- outfits (dress up) ---------- */
+const SVGU = body => 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g stroke="#4a2660" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">${body}</g></svg>`);
+const COSTUMES = [
+  { id: 'ribbon', name: 'Pink Ribbon', art: '@rpi:bow:#ff7ab6', cost: 10 },
+  { id: 'daisy', name: 'Daisy', art: '@ms:daisy', cost: 10 },
+  { id: 'star', name: 'Star Clip', art: '@ms:star', cost: 15 },
+  { id: 'party', name: 'Party Hat', svg: SVGU('<path d="M50 10 L78 86 L22 86 Z" fill="#ff7ab6"/><path d="M37 44 L63 44 M30 66 L70 66" stroke="#ffd23f" stroke-width="8"/><circle cx="50" cy="11" r="9" fill="#ffd23f"/>'), cost: 15 },
+  { id: 'bunny', name: 'Bunny Ears', svg: SVGU('<ellipse cx="34" cy="44" rx="13" ry="36" fill="#fff4fb"/><ellipse cx="66" cy="44" rx="13" ry="36" fill="#fff4fb"/><ellipse cx="34" cy="48" rx="6" ry="24" fill="#ffb3d6" stroke="none"/><ellipse cx="66" cy="48" rx="6" ry="24" fill="#ffb3d6" stroke="none"/><path d="M18 84 Q50 70 82 84" fill="none" stroke-width="9"/>'), cost: 20 },
+  { id: 'tulip', name: 'Tulip', art: '@ms:tulip', cost: 20 },
+  { id: 'tiara', name: 'Tiara', art: '@rpi:crown:#c08bff', cost: 25 },
+  { id: 'sunhat', name: 'Sun Hat', art: '@rpi:hat:#ffd23f', cost: 25 },
+];
+function costumeImg(cos, cls = '') {
+  if (cos.svg) { const img = document.createElement('img'); img.src = cos.svg; img.alt = ''; img.className = 'art ' + cls; img.draggable = false; return img; }
+  const el = artImg(cos.art); if (el.className !== undefined) el.className += ' ' + cls; return el;
+}
+function addCostume(el, c) {
+  if (!c.cos) return; const cos = COSTUMES.find(x => x.id === c.cos); if (!cos) return;
+  el.append(h('span', { class: 'costume cos-' + cos.id }, costumeImg(cos)));
+}
+// a lit gate star brings a gift right away: gems and a new outfit
+async function starGifts() {
+  const g = G.P.g; if (g.world !== 1 || !g.giftInit) return;
+  const act = actOf(g.area);
+  for (const b of gateBits(act).filter(b => b.lit)) {
+    const key = act + ':' + b.id; if (g.starGifts[key]) continue; g.starGifts[key] = Date.now();
+    const cos = COSTUMES.find(x => !g.wardrobe.includes(x.id)); addGems(cos ? 20 : 30);
+    if (cos) g.wardrobe.push(cos.id);
+    Store.save(G.P, true); Sfx.play('star');
+    await card({ big: cos ? costumeImg(cos, 'ov-cos') : ic('gift'), title: 'A star gift!', lines: [`+${cos ? 20 : 30} gems!`, cos ? `A new outfit: ${cos.name}! Put it on a friend in Friend care.` : 'Thank you for all that hard work!'], say: 'A star gift!', cls: 'star' });
+  }
+}
+
+/* ---------- friend care: feed and bath (each one a math problem), and dress up ---------- */
+const careWaiting = () => cute() && G.P.g.started && party().some(c => !c.care || c.care.feed !== today());
+function careStory(c, kind, pr) {
+  const nm = cName(c); const food = kind === 'feed'; const it = food ? '@ms:berry' : '@ms:bubble';
+  if (pr.form === 'missing') {
+    const have = pr.l, goal = pr.res;
+    return { text: food ? `${nm} wants ${goal} berries. You have ${have}. How many more?` : `${nm} wants ${goal} bubbles. There are ${have}. How many more?`, pics: goal <= 20 ? [h('div', { class: 'pics-row' }, Array.from({ length: goal }, (_, i) => h('span', { class: i >= have ? 'gone' : '' }, it)))] : null };
+  }
+  if (pr.op === '-') {
+    const a = pr.l, b = pr.r;
+    return { text: food ? `You have ${a} berries. ${nm} eats ${b}. How many are left?` : `There are ${a} bubbles. ${b} go pop! How many are left?`, pics: a <= 20 ? [h('div', { class: 'pics-row' }, Array.from({ length: a }, (_, i) => h('span', { class: i >= a - b ? 'gone' : '' }, it)))] : null };
+  }
+  const a = pr.l, b = pr.r;
+  return { text: food ? `${nm} has ${a} berries. You give ${b} more. How many berries now?` : `${nm} has ${a} bubbles. You add ${b} more. How many bubbles?`, pics: a + b <= 20 ? [picRow(it, a), h('span', { class: 'pics-plus' }, '+'), picRow(it, b)] : null };
+}
+function screenCare(note) {
+  if (isAsleep()) return screenRest();
+  const g = G.P.g; const day = today();
+  const order = [...party(), ...g.roster.filter(c => !g.party.includes(c.u))];
+  const cards = order.map(c => {
+    const cr = c.care || {}; const fed = cr.feed === day, bathed = cr.bath === day;
+    return h('div', { class: 'care-card win' + (G.careHappy === c.u ? ' happy' : ''), 'data-u': c.u },
+      cSprite(c, 'care-spr'), h('div', { class: 'ccard-name' }, rw(cName(c))),
+      h('div', { class: 'care-btns' },
+        h('button', { class: 'cbtn' + (fed ? ' done' : ''), onclick: () => careMath(c, 'feed') }, h('span', { class: 'chip-ic' }, '@ms:berry'), fed ? ic('heart') : rw('Feed')),
+        h('button', { class: 'cbtn' + (bathed ? ' done' : ''), onclick: () => careMath(c, 'bath') }, h('span', { class: 'chip-ic' }, '@ms:bubble'), bathed ? ic('heart') : rw('Bath')),
+        h('button', { class: 'cbtn dress', onclick: () => { if (!G.careBusy) dressMenu(c); } }, h('span', { class: 'chip-ic' }, '@rpi:bow:#ff7ab6'), rw('Dress'))));
+  });
+  G.careHappy = null;
+  const say = note || 'Feed your friends and give them a bath! Each one is a math problem.';
+  setScreen('care', h('div', { class: 'carescr world bg-village' },
+    h('div', { class: 'top wtop' }, iconBtn('Back to the map', ic('exitl'), () => { Sfx.play('tap'); screenWorld(); }),
+      h('div', { class: 'top-title' }, h('span', { class: 'banner-icon' }, ic('heart')), ' ', rw('Friend care')),
+      h('div', { class: 'gems', title: CUR().title }, CUR().em + ' ', h('b', null, g.gems)), soundBtn(), gearBtn()),
+    h('div', { class: 'care-grid' }, cards),
+    h('div', { class: 'wbottom' }, h('div', { class: 'qtrack win hint-tap' }, rw(say), replayBtn(say)), v7Chips(g.area, { noCare: true }))));
+  setTimeout(() => { const el = $('.carescr .qtrack'); if (el && G.screen === 'care' && note) readLine(el, say); }, 200);
+}
+async function careMath(c, kind) {
+  if (G.careBusy) return; G.careBusy = true;
+  try { await careMath1(c, kind); } finally { G.careBusy = false; }
+}
+async function careMath1(c, kind) {
+  Sfx.play('tap'); const day = today(); c.care = c.care || {};
+  if (c.care[kind] === day) { const m = kind === 'feed' ? `${cName(c)} is full! Come back tomorrow.` : `${cName(c)} is already clean! Come back tomorrow.`; return talk(cSprite(c), cName(c), m); }
+  const pr = E.pickProblem(G.P); const st = careStory(c, kind, pr);
+  const lit0 = G.P.g.world === 1 ? new Set(gateBits(actOf(G.P.g.area)).filter(b => b.lit).map(b => b.id)) : new Set();
+  const res = await mathPop({ face: cSprite(c), name: cName(c), text: st.text, pr, tries: 4, pics: st.pics, cls: 'care', alt: { label: 'Later', value: 'later' } });
+  if (!res || res === 'later' || !res.right) { Store.save(G.P); return screenCare(); }
+  c.care[kind] = day; const B = { type: 'care', o: {}, foes: [], rewards: [], events: res.events || [], stats: { n: 1, c: res.first ? 1 : 0 }, gems: 3, drops: {}, bm0: {}, lit0 };
+  party().forEach(m => { B.bm0[m.u] = bmStage(m); });
+  giveXp(c, 12, B.rewards); addGems(3); v7s().care++;
+  if (res.first) eggTick();
+  Store.save(G.P, true);
+  G.careHappy = c.u; Sfx.play('catch');
+  screenCare(kind === 'feed' ? `${cName(c)} says yum! +3 gems` : `${cName(c)} is so clean! +3 gems`);
+  await wait(700);
+  await showRewards(B);
+  if (G.screen === 'care') screenCare();
+}
+function dressMenu(c) {
+  const g = G.P.g; Sfx.play('tap');
+  const close = () => { ov.remove(); screenCare(); };
+  const list = h('div', { class: 'dress-grid' });
+  const gemLine = h('div', { class: 'ov-line' });
+  const say = t => { gemLine.replaceChildren(rw(t)); Voice.say(t, { force: true }); };
+  const render = () => {
+    gemLine.replaceChildren(rw(`You have ${g.gems} gems.`));
+    list.replaceChildren(h('button', { class: 'dress-item win' + (!c.cos ? ' on' : ''), onclick: () => { c.cos = null; Sfx.play('tap'); Store.save(G.P); render(); prev(); } }, h('span', { class: 'dress-ic' }, ic('question')), h('span', null, 'Nothing')),
+      ...COSTUMES.map(cos => {
+        const own = g.wardrobe.includes(cos.id); const on = c.cos === cos.id;
+        return h('button', { class: 'dress-item win' + (on ? ' on' : '') + (own ? '' : ' shop'), onclick: () => {
+          if (!own) { if (g.gems < cos.cost) { Sfx.play('oops'); say(`You need ${cos.cost - g.gems} more gems for that. Win battles to get more!`); return; } g.gems -= cos.cost; g.wardrobe.push(cos.id); Sfx.play('catch'); }
+          c.cos = cos.id; Sfx.play('good'); Store.save(G.P, true); render(); prev(); } },
+          h('span', { class: 'dress-ic' }, costumeImg(cos)), h('span', null, cos.name), own ? null : h('b', { class: 'dress-cost' + (g.gems < cos.cost ? ' cant' : '') }, `${cos.cost} `, CUR().em));
+      }));
+  };
+  const pv = h('div', { class: 'dress-prev' }); const prev = () => pv.replaceChildren(cSprite(c, 'ov-spr'));
+  const ov = h('div', { class: 'ov' }, h('div', { class: 'ov-card win dresscard', role: 'dialog', 'aria-modal': 'true' }, pv, h('div', { class: 'ov-title' }, rw(`Dress up ${cName(c)}`)),
+    gemLine, list, h('button', { class: 'bigbtn', onclick: () => { Sfx.play('tap'); close(); } }, rw('All done!'))));
+  ovRoot.append(ov); render(); prev();
+}
+
+/* ---------- after any battle / quick win / care problem ---------- */
+async function afterBattleV7(B) {
+  if (!G.P) return;
+  if (cute()) { await starGifts(); if (G.P.g.egg && G.P.g.egg.n >= G.P.g.egg.need) await hatchEgg(); }
+  else await rankCheck();
+}
+
+/* ---------- v7: grown-up dashboard and report lines ---------- */
+function v7Lines(P) {
+  const g = P.g; const s = g.stats7 || {}; const L = [];
+  if (P.id === 'hamstey') {
+    const hs = s.hero || { n: 0, c: 0 };
+    L.push(`Hero Mode: ${g.heroMode ? 'on' : 'off'}` + (hs.n ? ` · hero problems ${hs.c} of ${hs.n} right on the first try (missing factors, 3-digit adding and take-away, 2-digit × 1-digit, brackets)` : ' · no hero problems yet'));
+    const st = castleStageOf(P); const rooms = Object.keys((g.castle || {}).rooms || {});
+    L.push(`Castle: stage ${st} of 4` + (rooms.length ? ` · rooms open: ${rooms.map(id => (ROOMS.find(r => r.id === id) || {}).name).join(', ')}` : ' · no rooms open yet') + ` · rank ${RANKS[rankIndex(crownsOf(P))][1]} (${crownsOf(P)} crowns)` + ((g.castle || {}).raids ? ` · raids defended: ${g.castle.raids}` : ''));
+    L.push(`Battles: ${(g.bounty || {}).done || 0} bounties caught · ${s.quick || 0} quick wins · ${s.combos || 0} element combos · ${s.guards || 0} guard${s.guards === 1 ? '' : 's'}`);
+  } else {
+    const r = P.settings.wordRate; const rate = r === 'auto' || r == null ? 'light (1 in 4 until 10 words known, then 1 in 3)' : `${Math.round(parseFloat(r) * 100)}% of turns`;
+    L.push(`Reading turns: ${rate}`);
+    L.push(`Eggs hatched: ${s.hatched || 0}` + (g.egg ? ` · egg now ${g.egg.n} of ${g.egg.need}` : '') + ` · friend care problems: ${s.care || 0} · outfits: ${(g.wardrobe || []).length}`);
+  }
+  return L;
+}
+function v7Tiles(P, tile) {
+  const g = P.g; const s = g.stats7 || {};
+  if (P.id === 'hamstey') {
+    const hs = s.hero || { n: 0, c: 0 };
+    return [tile('Hero Mode', g.heroMode ? 'On' : 'Off', hs.n ? `Hero problems: ${hs.c} of ${hs.n} right first try` : 'Tougher problems, double gold (his choice)'),
+      tile('Castle', `Stage ${castleStageOf(P)} of 4`, `${Object.keys((g.castle || {}).rooms || {}).length} of ${ROOMS.length} rooms open (each needs a mastered skill) · ${RANKS[rankIndex(crownsOf(P))][1]}`)];
+  }
+  return [tile('Surprise eggs', `${s.hatched || 0} hatched`, g.egg ? `Current egg: ${g.egg.n} of ${g.egg.need} right answers` : 'A new egg comes each day'),
+    tile('Friend care', `${s.care || 0} problems`, 'Feed and bath: each one is a practice problem')];
+}
+// test hooks
+const V7API = { heroProblem, gearStats, gearList, slotOf, equip, bountyState, screenBounty, huntBounty, screenCastle, screenCare, careMath, quickWin, quickWinOK, hatchEgg, eggTick, newEgg, startRaid, rankTitle, crownsOf, rankIndex, ROOMS, RANKS, applyRule, elemMult, whatsNew, toggleHero, castleProblem, wordRateNow, dressMenu, COSTUMES, raidReady, openRoom, roomReady, castleStage, v7Lines, interact, buildFlow, vDef, useBuilding, gearMenu, chooseGuard, reportText, screenParent };
+
+
 /* ---------- boot ---------- */
 Voice.init();
 try { if (!IS_ARTIFACT && navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) { /* not supported */ }
 Store.init();
 PROFILES.forEach(p => Store.fetchRemote(p.id).then(() => { if (G.screen === 'profiles') screenProfiles(); }));
 screenProfiles();
-window.__mathlings = { G, ART, Engine, wordQuest, startBattle, gateTalk, screenWorld, screenTeam, nextWord,  freshProfile, repairP, runHelp, openMaker, Store, genMap, areaList, mapRows, W, setCam, screenVillage, screenTower };
+window.__mathlings = { V7: () => V7API, G, ART, Engine, wordQuest, startBattle, gateTalk, screenWorld, screenTeam, nextWord,  freshProfile, repairP, runHelp, openMaker, Store, genMap, areaList, mapRows, W, setCam, screenVillage, screenTower };
 
 })();
 </script>
